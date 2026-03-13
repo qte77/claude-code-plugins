@@ -1,7 +1,7 @@
 {
   "name": "codebase-tools",
-  "version": "1.0.0",
-  "description": "Codebase research and context compaction with ACE-FCA principles",
+  "version": "1.0.1",
+  "description": "Codebase research and context compaction skills with ACE-FCA principles",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["research", "context", "compaction", "exploration"]
 }

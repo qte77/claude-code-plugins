@@ -18,13 +18,13 @@
       "name": "commit-helper",
       "source": "./plugins/commit-helper",
       "description": "Generate conventional commit messages with GPG signing and approval workflow",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
-      "description": "Codebase research and context compaction with ACE-FCA principles",
-      "version": "1.0.0"
+      "description": "Codebase research and context compaction skills with ACE-FCA rules",
+      "version": "1.0.1"
     },
     {
       "name": "cc-meta",
@@ -36,37 +36,37 @@
       "name": "backend-design",
       "source": "./plugins/backend-design",
       "description": "Backend system architecture and API design skills",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "mas-design",
       "source": "./plugins/mas-design",
       "description": "Multi-agent system plugin design and OWASP MAESTRO security framework",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "website-audit",
       "source": "./plugins/website-audit",
       "description": "Website design research, usability audit, and WCAG accessibility audit skills",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "docs-generator",
       "source": "./plugins/docs-generator",
       "description": "Document generation for writeups, tech specs (ADR/RFC/design docs), and reports with pandoc PDF output",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "ralph",
       "source": "./plugins/ralph",
       "description": "PRD-to-JSON conversion and interactive user story builder for the Ralph loop",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "embedded-dev",
       "source": "./plugins/embedded-dev",
       "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "workspace-setup",
