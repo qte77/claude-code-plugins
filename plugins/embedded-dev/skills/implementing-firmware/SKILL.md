@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Edit, Glob, Grep, Bash
   argument-hint: [feature-or-requirement]
+  stability: stable
+  content-hash: sha256:0a0457594dd459c1070c0ea7581055ccd87cfd2999b728cace6c0ab35d44cb86
+  last-verified-cc-version: 1.0.34
 ---
 
 # Firmware Implementation

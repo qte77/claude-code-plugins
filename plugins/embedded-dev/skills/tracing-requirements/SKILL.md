@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob, Bash
   argument-hint: [requirements-file-or-directory]
+  stability: stable
+  content-hash: sha256:60299e811ff999ce8c75029c80101522807e4db4dee3b89d1118144314b25201
+  last-verified-cc-version: 1.0.34
 ---
 
 # Requirement Traceability Validation

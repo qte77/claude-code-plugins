@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [component-or-feature]
+  stability: stable
+  content-hash: sha256:22ef3fab6a9fb01b5370f9340404ea264dc8680ccb3610d34de29cfb9459493e
+  last-verified-cc-version: 1.0.34
 ---
 
 # Securing Multi-Agent Systems

@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Bash, Glob, Grep
   argument-hint: [kicad-project-path]
+  stability: stable
+  content-hash: sha256:9555a45ff552da34c27b43cc8037cc7101d3054816b547b92974e30a02430775
+  last-verified-cc-version: 1.0.34
 ---
 
 # PCB Design Audit

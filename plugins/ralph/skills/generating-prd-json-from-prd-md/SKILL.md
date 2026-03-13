@@ -5,6 +5,7 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Bash
   model: haiku
+  stability: development
 ---
 
 # PRD to JSON Conversion

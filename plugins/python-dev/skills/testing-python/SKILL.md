@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [test-scope or component-name]
+  stability: stable
+  content-hash: sha256:947b57f2dff1b22099a3db482b365d7d568d3e31782109926f4a5b29cc72cee6
+  last-verified-cc-version: 1.0.34
 ---
 
 # Python Testing
