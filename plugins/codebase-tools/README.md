@@ -1,6 +1,6 @@
 # codebase-tools
 
-Codebase research and context compaction skills with ACE-FCA principles.
+Codebase research and context compaction with ACE-FCA principles.
 
 ## Skills
 
