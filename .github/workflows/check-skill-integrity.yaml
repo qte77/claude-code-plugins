@@ -1,0 +1,16 @@
+name: Check Skill Integrity
+
+on:
+  pull_request:
+    paths:
+      - "plugins/*/skills/*/SKILL.md"
+
+jobs:
+  verify-skill-hashes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify stable skill content hashes
+        run: bash .github/scripts/compute-skill-hashes.sh --check

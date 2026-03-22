@@ -7,6 +7,9 @@ metadata:
   argument-hint: [component-name]
   context: fork
   agent: Explore
+  stability: stable
+  content-hash: sha256:a0726df430d19c4dc24580413b05a81905470ed5af7006efaef7f96e226b1c59
+  last-verified-cc-version: 1.0.34
 ---
 
 ## Git Context

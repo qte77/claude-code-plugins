@@ -7,6 +7,7 @@ metadata:
   argument-hint: (no arguments needed)
   disable-model-invocation: true
   allowed-tools: Bash, Read, Glob, Grep
+  stability: development
 ---
 
 # Commit staged with Generated Message

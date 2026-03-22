@@ -8,6 +8,9 @@ metadata:
   context: fork
   agent: Explore
   model: sonnet
+  stability: stable
+  content-hash: sha256:0a622edf25a7ca7d635e463c431ca32d74699c2908bbeca5efe7d674afae163f
+  last-verified-cc-version: 1.0.34
 ---
 
 # Context Compaction (ACE-FCA)

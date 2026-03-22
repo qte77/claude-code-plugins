@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [component-name]
+  stability: stable
+  content-hash: sha256:e622a74b96cffd4da81194994178e60b0dadf70fb28d46587f581bba07bc3fec
+  last-verified-cc-version: 1.0.34
 ---
 
 # Designing MAS Plugins

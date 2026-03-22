@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, WebSearch, WebFetch
   argument-hint: [device-description]
+  stability: stable
+  content-hash: sha256:70309f2eb68a0ceeef78777b3d23182c63a63ac3a4828b5278c407df0158ff83
+  last-verified-cc-version: 1.0.34
 ---
 
 # Compliance Requirements Generation

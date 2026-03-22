@@ -7,6 +7,9 @@ metadata:
   argument-hint: [topic-or-question]
   context: fork
   agent: Explore
+  stability: stable
+  content-hash: sha256:6aad2323da43ca6fddaf55f24d7a6fc781a15595ff623339477b75d7376c11e6
+  last-verified-cc-version: 1.0.34
 ---
 
 # Codebase Research (ACE-FCA)

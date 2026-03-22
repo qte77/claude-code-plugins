@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [feature-name]
+  stability: stable
+  content-hash: sha256:202611f850f48c0ffb59ba553331765e55a322c2242757f1e2d31ce0a9340f3a
+  last-verified-cc-version: 1.0.34
 ---
 
 # Python Implementation

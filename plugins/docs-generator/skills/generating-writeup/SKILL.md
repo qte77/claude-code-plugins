@@ -5,6 +5,9 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch
   argument-hint: [topic] [template] [citation-style]
+  stability: stable
+  content-hash: sha256:9e500bc5e5b4c840c55fdb360e80ad198953af3b1be65784df0f00ae22cbf5ad
+  last-verified-cc-version: 1.0.34
 ---
 
 # Writeup Generation

@@ -5,6 +5,7 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: AskUserQuestion, Read, Write, WebFetch, WebSearch
   disable-model-invocation: true
+  stability: development
 ---
 
 # User Story Builder
