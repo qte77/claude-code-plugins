@@ -5,6 +5,7 @@ Claude Code meta-skills for cross-project synthesis and session intelligence.
 ## Skills
 
 - **synthesizing-cc-bigpicture** — Synthesizes a living meta-plan across Claude Code sessions, plans, tasks, and team communications. Surfaces reasoning modes (diverge/converge, inductive/deductive, top-down/bottom-up) per work stream and project-arching TODOs/DONEs.
+- **compacting-context** — Distills verbose outputs into structured summaries following ACE-FCA principles. Use after pollution sources (searches, logs, JSON) or at phase milestones.
 
 ## Usage
 
