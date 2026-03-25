@@ -1,0 +1,7 @@
+{
+  "name": "go-dev",
+  "version": "1.0.0",
+  "description": "Go implementation, testing, code review skills, and scaffold adapter for Ralph loop",
+  "author": { "name": "Claude Code Utils Contributors" },
+  "keywords": ["go", "golang", "implementation", "testing", "review", "golangci-lint"]
+}

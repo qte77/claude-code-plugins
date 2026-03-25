@@ -1,0 +1,26 @@
+name: go-test
+permissions:
+  contents: read
+on:
+  push:
+  pull_request:
+    types: [closed]
+    branches: [main]
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: Verify dependencies
+        run: go mod verify
+      - name: Run tests
+        run: go test -race -coverprofile=coverage.out -count=1 ./...
+      - name: Coverage summary
+        run: go tool cover -func=coverage.out
