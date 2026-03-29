@@ -122,6 +122,11 @@ format as session `.jsonl` files.
 `~/.claude/projects/<path>/memory/MEMORY.md` — persistent per-project knowledge
 loaded at conversation start.
 
+## Tool Results (Detached Outputs)
+
+`~/.claude/projects/<path>/<session-uuid>/tool-results/<id>.txt` — large tool
+outputs (1KB–138KB) stored externally. Referenced from `assistant` JSONL entries.
+
 ## Path Encoding
 
 Project paths are URL-encoded with dashes:
