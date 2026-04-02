@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-# Deploy workspace rules, scripts, and base settings (copy-if-not-exists)
+# Deploy workspace rules and project settings (copy-if-not-exists)
 
 PLUGIN_DIR="$CLAUDE_PLUGIN_ROOT"
 DEPLOYED=()
@@ -16,20 +16,13 @@ for rule in "$PLUGIN_DIR/rules/"*.md; do
   fi
 done
 
-# 2. Statusline → .claude/scripts/
-mkdir -p .claude/scripts
-if [ ! -f ".claude/scripts/statusline.sh" ]; then
-  cp "$PLUGIN_DIR/scripts/statusline.sh" ".claude/scripts/statusline.sh"
-  DEPLOYED+=("script: statusline.sh")
-fi
-
-# 3. Base settings → .claude/settings.json (only if missing)
+# 2. Project settings → .claude/settings.json (only if missing)
 if [ ! -f ".claude/settings.json" ]; then
-  cp "$PLUGIN_DIR/settings/settings-base.json" ".claude/settings.json"
-  DEPLOYED+=("settings: settings.json (base)")
+  cp "$PLUGIN_DIR/settings/settings-project.json" ".claude/settings.json"
+  DEPLOYED+=("settings: settings.json (project)")
 fi
 
-# 4. Report
+# 3. Report
 if [ ${#DEPLOYED[@]} -gt 0 ]; then
   echo "# Workspace Setup"
   echo ""
