@@ -2,10 +2,10 @@
 
 # qte77-claude-code-utils
 
-Claude Code plugin marketplace — 13 plugins, 31 skills from production workflows.
+Claude Code plugin marketplace — 17 plugins, 36 skills from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-58f4c2.svg)](LICENSE)
-![Version](https://img.shields.io/badge/version-3.0.0-58f4c2.svg)
+![Version](https://img.shields.io/badge/version-3.3.0-58f4c2.svg)
 [![CodeQL](https://github.com/qte77/claude-code-utils-plugin/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/claude-code-utils-plugin/actions/workflows/codeql.yaml)
 [![CodeFactor](https://www.codefactor.io/repository/github/qte77/claude-code-utils-plugin/badge/main)](https://www.codefactor.io/repository/github/qte77/claude-code-utils-plugin/overview/main)
 
@@ -27,7 +27,7 @@ Claude Code plugin marketplace — 13 plugins, 31 skills from production workflo
 # 1. Add the marketplace
 claude plugin marketplace add qte77/claude-code-utils-plugin
 
-# 2. Install all 13 plugins (pick ONE workspace plugin)
+# 2. Install all plugins (pick ONE workspace plugin)
 claude plugin install python-dev@qte77-claude-code-utils
 claude plugin install commit-helper@qte77-claude-code-utils
 claude plugin install codebase-tools@qte77-claude-code-utils
@@ -39,6 +39,9 @@ claude plugin install ralph@qte77-claude-code-utils
 claude plugin install embedded-dev@qte77-claude-code-utils
 claude plugin install cc-meta@qte77-claude-code-utils
 claude plugin install market-research@qte77-claude-code-utils
+claude plugin install tdd-core@qte77-claude-code-utils
+claude plugin install docs-governance@qte77-claude-code-utils
+claude plugin install gha-dev@qte77-claude-code-utils
 claude plugin install workspace-setup@qte77-claude-code-utils    # OR workspace-sandbox
 
 # 3. Verify
@@ -62,8 +65,12 @@ claude plugin list
 | **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, KiCad PCB audit |
 | **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` | Cross-project synthesis + CC context window compaction (ACE-FCA) |
 | **market-research** | `researching-market` `researching-industry-landscape` `analyzing-source-project` `analyzing-contradictions` `synthesizing-research` `validating-product-market-fit` `developing-gtm-strategy` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix, contradiction analysis |
-| **workspace-setup** | — | Deploys rules, statusline, and base settings via SessionStart hook |
-| **workspace-sandbox** | — | Deploys rules, statusline, sandbox settings, and .gitignore via SessionStart hook |
+| **tdd-core** | `testing-tdd` | Language-agnostic TDD methodology (Red-Green-Refactor, AAA, anti-patterns) |
+| **docs-governance** | `enforcing-doc-hierarchy` `maintaining-agents-md` | Documentation authority audit + agent governance file maintenance |
+| **gha-dev** | `creating-gha` | GitHub Actions workflow creation and Marketplace publishing |
+| **rust-dev** | — | Rust implementation, testing, review skills + scaffold adapter (unreleased) |
+| **workspace-setup** | — | Deploys rules, statusline, governance files, and base settings via SessionStart hook |
+| **workspace-sandbox** | — | Deploys rules, statusline, governance files, sandbox settings, and .gitignore via SessionStart hook |
 
 Skills activate automatically based on task context.
 
