@@ -3,14 +3,14 @@ title: Testing Strategy
 version: 6.0.0
 applies-to: Agents and humans
 purpose: High-level testing strategy aligned with KISS/DRY/YAGNI
-see-also: tdd-best-practices.md, bdd-best-practices.md
+see-also: tdd-best-practices.md
 ---
 
 **Purpose**: Python-specific testing tools and when to use each.
 
 > Language-agnostic testing strategy (what to test, mocking, organization)
 > is in the `tdd-core` plugin. This file extends it with Python tools
-> (pytest, Hypothesis, inline-snapshot, pytest-bdd).
+> (pytest, Hypothesis, inline-snapshot).
 
 ## Core Principles
 
@@ -64,11 +64,9 @@ Each tool answers a different testing question. Pick the right one:
 | **pytest** | Does this logic produce the right result? | Known, specific | Manual `assert` | TDD, unit tests, integration tests |
 | **Hypothesis** | Does this hold for ALL inputs? | Generated, random | Property invariants | Edge cases, math, parsers |
 | **inline-snapshot** | Does this output still look the same? | Known, specific | Auto-captured structure | Regression, contracts, model dumps |
-| **pytest-bdd** | Does this meet acceptance criteria? | Scenario-driven | Given-When-Then | Stakeholder validation |
 
 **One-line rule**: pytest for **logic**, Hypothesis for
-**properties**, inline-snapshot for **structure**,
-pytest-bdd for **behavior specs**.
+**properties**, inline-snapshot for **structure**.
 
 ### TDD with pytest + Hypothesis (Primary)
 
@@ -148,20 +146,6 @@ def test_result_with_timestamp():
 
 **Constraint**: Standard `pytest` runs validate snapshots normally.
 No changes needed to `make validate` or CI.
-
-### BDD: Stakeholder Collaboration (Optional)
-
-**BDD** (see `bdd-best-practices.md`) - Different approach from TDD:
-
-- **TDD**: Developer-driven, Red-Green-Refactor, all test levels
-- **BDD**: Stakeholder-driven, Given-When-Then, acceptance criteria
-  in plain language
-
-**When to use BDD**:
-
-- User-facing features requiring stakeholder validation
-- Complex acceptance criteria needing plain-language documentation
-- Collaboration between technical and non-technical team members
 
 ### Test Levels: Unit vs Integration
 
@@ -276,9 +260,6 @@ tests/
 ├── properties/            # Property tests (hypothesis)
 │   ├── test_math_props.py
 │   └── test_validation_props.py
-├── acceptance/            # BDD scenarios (optional)
-│   ├── features/*.feature
-│   └── step_defs/
 └── conftest.py           # Shared fixtures
 ```
 
@@ -314,11 +295,9 @@ Before writing a test, ask:
    - **pytest** (default) - Unit tests, business logic, known edge cases
    - **Hypothesis** - Unknown edge cases (any input), numeric invariants
    - **inline-snapshot** - Complex output structures, model dumps, contracts
-   - **pytest-bdd** (optional) - Acceptance criteria, stakeholder communication
 
 ## References
 
 - TDD practices: `tdd-best-practices.md`
-- BDD practices: `bdd-best-practices.md`
 - [Hypothesis Documentation](https://hypothesis.readthedocs.io/)
 - [inline-snapshot Documentation](https://15r10nk.github.io/inline-snapshot/)

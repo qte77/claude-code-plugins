@@ -1,6 +1,6 @@
 ---
 name: testing-python
-description: Writes tests following TDD (using pytest and Hypothesis) and BDD best practices. Use when writing unit tests, integration tests, or BDD scenarios.
+description: Writes tests following TDD Red-Green-Refactor (pytest + Hypothesis). Tests behavior, not implementation. Use when writing unit tests, integration tests, or property tests.
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
@@ -22,17 +22,14 @@ Writes **focused, behavior-driven tests** following project testing strategy.
 
 **Python-specific documentation**: `references/`
 
-- `references/testing-strategy.md` - Python tools (pytest, Hypothesis, inline-snapshot, pytest-bdd)
+- `references/testing-strategy.md` - Python tools (pytest, Hypothesis, inline-snapshot)
 - `references/tdd-best-practices.md` - Python TDD examples (extends tdd-core)
-- `references/bdd-best-practices.md` - BDD methodology with pytest-bdd
 
-## Quick Decision
+## Approach
 
-**TDD (default)**: Use pytest for known cases, Hypothesis for edge cases. Works at unit/integration/acceptance levels.
+**TDD only**: pytest for known cases, Hypothesis for edge cases, inline-snapshot for regression. Tests assert observable behavior — inputs produce expected outputs/side-effects. No Gherkin, no feature files, no step definitions.
 
-**BDD (optional)**: Use Given-When-Then for stakeholder collaboration on acceptance criteria.
-
-See `references/testing-strategy.md` for full methodology comparison.
+See `references/testing-strategy.md` for tool selection guide.
 
 ## TDD Essentials (Quick Reference)
 
