@@ -29,7 +29,7 @@
     {
       "name": "cpp-desktop",
       "source": "./plugins/cpp-desktop",
-      "description": "C++ desktop GUI development with wxWidgets, GTK, Qt — implement, review, analyze",
+      "description": "C++ desktop GUI development with wxWidgets, GTK, Qt \u2014 implement, review, analyze",
       "version": "1.0.0"
     },
     {
@@ -60,7 +60,7 @@
       "name": "docs-generator",
       "source": "./plugins/docs-generator",
       "description": "Document generation for writeups, tech specs (ADR/RFC/design docs), and reports with pandoc PDF output",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "ralph",
@@ -72,7 +72,7 @@
       "name": "embedded-dev",
       "source": "./plugins/embedded-dev",
       "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
-      "version": "1.2.0"
+      "version": "1.2.1"
     },
     {
       "name": "workspace-setup",
@@ -114,7 +114,7 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.1.0"
+      "version": "1.1.1"
     },
     {
       "name": "tdd-core",
@@ -146,25 +146,25 @@
     {
       "name": "simplify",
       "source": "./plugins/simplify",
-      "description": "Post-review code simplification — KISS, DRY, YAGNI enforcement",
-      "version": "1.0.0"
+      "description": "Post-review code simplification \u2014 KISS, DRY, YAGNI enforcement",
+      "version": "1.0.1"
     },
     {
       "name": "security-audit",
       "source": "./plugins/security-audit",
-      "description": "Code security audit — OWASP Top 10, dependency vulnerabilities, secrets detection",
-      "version": "1.0.0"
+      "description": "Code security audit \u2014 OWASP Top 10, dependency vulnerabilities, secrets detection",
+      "version": "1.0.1"
     },
     {
       "name": "makefile-core",
       "source": "./plugins/makefile-core",
       "description": "Skills and linting for consistent, rigorous Makefiles across projects",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "planning",
       "source": "./plugins/planning",
-      "description": "Feature and refactor planning agents — detailed implementation plans with phased steps, dependencies, risks, and success criteria",
+      "description": "Feature and refactor planning agents \u2014 detailed implementation plans with phased steps, dependencies, risks, and success criteria",
       "version": "1.0.0"
     }
   ]
