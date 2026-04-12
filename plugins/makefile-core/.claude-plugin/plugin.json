@@ -1,9 +1,15 @@
 {
   "name": "makefile-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Skills and linting for consistent, rigorous Makefiles across projects",
   "author": {
     "name": "Claude Code Utils Contributors"
   },
-  "keywords": ["makefile", "make", "build", "automation", "lint"]
+  "keywords": [
+    "makefile",
+    "make",
+    "build",
+    "automation",
+    "lint"
+  ]
 }

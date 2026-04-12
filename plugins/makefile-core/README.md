@@ -20,3 +20,9 @@ Skills and linting for consistent, rigorous Makefiles across projects.
 # Standalone lint
 bash plugins/makefile-core/skills/creating-makefile/references/lint-makefile.sh
 ```
+
+## Install
+
+```bash
+claude plugin install makefile-core@qte77-claude-code-utils
+```

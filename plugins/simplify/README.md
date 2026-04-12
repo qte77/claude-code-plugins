@@ -24,3 +24,9 @@ KISS/DRY/YAGNI enforcement.
 /simplify              # Review staged changes
 /simplify src/foo.py   # Review specific file
 ```
+
+## Install
+
+```bash
+claude plugin install simplify@qte77-claude-code-utils
+```

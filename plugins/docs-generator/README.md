@@ -5,6 +5,8 @@ Academic/technical writeup generation with IEEE citations. PDF export via pandoc
 ## Skills
 
 - **generating-writeup** — Generates academic/technical writeups with IEEE citations and pandoc PDF output
+- **generating-tech-spec** — Generates technical specifications (ADR, RFC, design docs) with structured sections and decision rationale
+- **generating-report** — Generates structured reports (project status, analysis, findings) with executive summary and recommendations
 
 ## Demo
 

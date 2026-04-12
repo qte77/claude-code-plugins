@@ -18,3 +18,9 @@ Skills for creating and publishing GitHub Actions to the Marketplace.
 ## Settings
 
 Grants Bash permissions for: `gh`, `bats`, `shellcheck`, `actionlint`.
+
+## Install
+
+```bash
+claude plugin install gha-dev@qte77-claude-code-utils
+```
