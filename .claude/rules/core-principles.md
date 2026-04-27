@@ -1,49 +1,31 @@
 # Core Principles
 
 **MANDATORY for ALL tasks.** These principles override all other guidance when
-conflicts arise.
+conflicts arise. Every decision optimizes for user value, clarity, and usability.
 
-## User-Centric Principles
+## Code Quality
 
-**User Experience, User Joy, User Success** - Every decision optimizes for
-user value, clarity, and usability.
+- **KISS (Keep It Simple, Stupid)** — simplest solution that works.
+- **DRY (Don't Repeat Yourself)** — single source of truth; reference, don't duplicate.
+- **AHA (Avoid Hasty Abstractions)** — three similar lines beats a premature abstraction; extract only when the pattern is stable.
+- **YAGNI (You Aren't Gonna Need It)** — build for the requested behavior, not for imagined future ones.
 
-## Code Quality Principles
+## Execution
 
-**KISS (Keep It Simple, Stupid)** - Simplest solution that works. Clear > clever.
+- **Reuse and extend** — use existing patterns and dependencies; extend rather than rebuild.
+- **Consistency and coherence** — validate changes against established conventions; spot inconsistencies before they compound.
+- **Concise and focused** — minimal code/text for the task; touch only task-related code.
+- **Root-cause and first-principles** — solve root problems, not symptoms; understand the "why" before patching.
 
-**DRY (Don't Repeat Yourself)** - Single source of truth. Reference, don't duplicate.
+## Decision
 
-**AHA (Avoid Hasty Abstractions)** - Prefer duplication over the wrong abstraction.
-Wait until the pattern is stable before extracting. A bad abstraction costs more
-than repeated code.
+- **Rigor and sufficiency** — research enough to decide with confidence, then move.
+- **High-impact quick wins** — prioritize must-do tasks; ship fast, iterate.
 
-**YAGNI (You Aren't Gonna Need It)** - Implement only what's requested. No
-speculative features.
+## Communication
 
-## Execution Principles
-
-**Concise and Focused** - Minimal code/text for task. Touch only task-related code.
-
-**Reuse and Extend** - Use existing patterns and dependencies. Don't rebuild.
-
-**Prevent Incoherence** - Spot inconsistencies. Validate against existing patterns.
-
-**Resolve Ambiguity** - Clarify vague requirements before acting.
-
-## Decision Principles
-
-**Rigor and Sufficiency** - Research enough to decide confidently. No more, no less.
-
-**Clarity** - Communicate so the reader can act without re-reading. Name things
-for what they are; state decisions and reasons plainly; prefer concrete examples
-over abstract framing.
-
-**High-Impact Quick Wins** - Prioritize must-do tasks. Ship fast, iterate.
-
-**Actionable and Concrete** - Specific deliverables. Measurable outcomes.
-
-**Root-Cause and First-Principles** - Understand the "why". Solve root problems.
+- **Clarity** — name things for what they are; state decisions and reasons plainly; prefer concrete examples over abstract framing.
+- **Actionable and concrete** — specific deliverables, measurable outcomes.
 
 ## Before Starting Any Task
 
@@ -59,9 +41,9 @@ over abstract framing.
 
 Before finishing, ask yourself:
 
-- **Did we forget anything?** - Check requirements thoroughly
-- **High-ROI enhancements?** - Suggest opportunities (don't implement)
-- **Something to delete?** - Remove obsolete/unnecessary code
+- **Did we forget anything?** — check requirements thoroughly
+- **High-ROI enhancements?** — suggest opportunities (don't implement)
+- **Something to delete?** — remove obsolete/unnecessary code
 
 **IMPORTANT**: Do NOT alter files based on this review. Only output
 suggestions to the user.
