@@ -12,10 +12,10 @@ conflicts arise. Every decision optimizes for user value, clarity, and usability
 
 ## Execution
 
-- **Match existing patterns; ask before diverging.** Reuse what's there; clarify vague requirements before acting.
+- **Reuse and extend** — use existing patterns and dependencies; extend rather than rebuild.
 - **Consistency and coherence** — validate changes against established conventions; spot inconsistencies before they compound.
-- **Touch only task-related code.** Minimal diff for the task.
-- **Root-cause and first-principles.** Solve root problems, not symptoms; understand the "why" before patching.
+- **Concise and focused** — minimal code/text for the task; touch only task-related code.
+- **Root-cause and first-principles** — solve root problems, not symptoms; understand the "why" before patching.
 
 ## Decision
 
