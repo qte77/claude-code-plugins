@@ -5,20 +5,26 @@ conflicts arise. Every decision optimizes for user value, clarity, and usability
 
 ## Code Quality
 
-- **KISS, DRY** — simplest solution that works; single source of truth.
-- **AHA** — three similar lines beats a premature abstraction; extract only when the pattern is stable.
-- **YAGNI** — build for the requested behavior, not for imagined future ones.
+- **KISS (Keep It Simple, Stupid)** — simplest solution that works.
+- **DRY (Don't Repeat Yourself)** — single source of truth; reference, don't duplicate.
+- **AHA (Avoid Hasty Abstractions)** — three similar lines beats a premature abstraction; extract only when the pattern is stable.
+- **YAGNI (You Aren't Gonna Need It)** — build for the requested behavior, not for imagined future ones.
 
 ## Execution
 
 - **Match existing patterns; ask before diverging.** Reuse what's there, validate against established conventions, clarify vague requirements before acting.
 - **Touch only task-related code.** Minimal diff for the task.
-- **Solve root causes, not symptoms.** Understand the "why" before patching.
+- **Root-cause and first-principles.** Solve root problems, not symptoms; understand the "why" before patching.
+
+## Decision
+
+- **Rigor and sufficiency** — research enough to decide confidently; stop there.
+- **High-impact quick wins** — prioritize must-do tasks; ship fast, iterate.
 
 ## Communication
 
 - **Clarity** — name things for what they are; state decisions and reasons plainly; prefer concrete examples over abstract framing.
-- **Actionable and Concrete** — specific deliverables, measurable outcomes.
+- **Actionable and concrete** — specific deliverables, measurable outcomes.
 
 ## Before Starting Any Task
 
