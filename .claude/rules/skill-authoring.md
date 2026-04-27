@@ -19,7 +19,8 @@ new skills; this rule **tightens its defaults** for this repo:
 - `skill-creator` has no `content-hash` or `stability` concept; **this repo
   requires hash regeneration for `stability: stable` skills** (CI-enforced).
 - `skill-creator` scaffolds `references/` as canonical pattern; **this repo
-  makes it mandatory** (not just default).
+  requires it whenever extraction is triggered by the 150-line cap** (see
+  "SKILL.md body size" below).
 
 ## SKILL.md body size
 
@@ -54,8 +55,9 @@ always loaded for every skill) and improve skill auto-activation matching.
 
 ## References subdirectory
 
-Reference files MUST live in `plugins/<name>/skills/<skill-name>/references/`
-(plural, lowercase). Inside each file:
+When extraction is triggered by the 150-line cap, reference files MUST live in
+`plugins/<name>/skills/<skill-name>/references/` (plural, lowercase). Inside
+each file:
 
 - No YAML frontmatter required (existing `mas-design` references use it by
   convention, but `hardening-codebase` and `cc-meta` references do not —
