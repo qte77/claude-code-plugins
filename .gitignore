@@ -1,1 +1,5 @@
 temp/
+
+# Auto-memory seed deployed by cc-meta's SessionStart hook — per-contributor,
+# not part of the repo's tracked tree.
+MEMORY.md
