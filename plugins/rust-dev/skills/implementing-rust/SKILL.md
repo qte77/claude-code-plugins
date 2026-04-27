@@ -48,6 +48,6 @@ Before completing any task:
 
 ```bash
 cargo test && cargo clippy -- -D warnings && cargo fmt --check
-```
+```text
 
 All tests, lints, and formatting must pass.

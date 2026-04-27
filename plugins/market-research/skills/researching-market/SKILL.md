@@ -48,7 +48,7 @@ Write to `results/phase-1b/`:
 
 ### `market-analysis.md`
 
-```
+```text
 # Market Analysis
 
 ## Market Sizing

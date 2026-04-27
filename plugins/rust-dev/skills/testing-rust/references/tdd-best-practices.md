@@ -5,6 +5,8 @@ based-on: Industry research 2025-2026
 see-also: testing-strategy.md
 ---
 
+# TDD Best Practices
+
 **Purpose**: Rust-specific TDD examples with cargo test, proptest, and mockall.
 
 > Language-agnostic TDD principles (cycle, AAA, anti-patterns) are in
@@ -31,7 +33,7 @@ fn test_order_calculator_sums_item_prices() {
     // ASSERT
     assert_eq!(total, 25);
 }
-```
+```javascript
 
 ## Rust-Specific TDD: Newtype with Validation
 
@@ -59,7 +61,7 @@ impl Email {
         }
     }
 }
-```
+```javascript
 
 **REFACTOR** — improve without breaking tests.
 
@@ -104,7 +106,7 @@ fn test_cache_returns_stored_value() {
     cache.insert("key", "value");
     assert_eq!(cache.get("key"), Some("value"));
 }
-```
+```javascript
 
 ### unwrap() masking failures
 
@@ -139,4 +141,4 @@ cargo watch -x test                              # Watch mode
 cargo test test_email_rejects_missing_at_sign     # Single test
 cargo test -- --nocapture                         # Show output
 cargo test && cargo clippy -- -D warnings         # Pre-commit
-```
+```text

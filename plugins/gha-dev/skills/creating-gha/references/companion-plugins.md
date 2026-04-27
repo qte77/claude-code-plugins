@@ -44,7 +44,7 @@ Install with `claude plugin install <name>@qte77-claude-code-utils`.
 claude plugin install tdd-core@qte77-claude-code-utils
 claude plugin install commit-helper@qte77-claude-code-utils
 claude plugin install simplify@qte77-claude-code-utils
-```
+```bash
 
 **Python-based action** (full):
 

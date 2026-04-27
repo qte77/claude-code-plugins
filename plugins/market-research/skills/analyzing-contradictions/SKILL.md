@@ -56,7 +56,7 @@ Write to `results/phase-4/`:
 
 ### `contradiction-analysis.md`
 
-```
+```text
 # Contradiction Analysis
 
 ## Cross-Phase Contradictions

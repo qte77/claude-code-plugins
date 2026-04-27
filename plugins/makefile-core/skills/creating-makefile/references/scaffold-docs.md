@@ -9,7 +9,7 @@ NODE_VERSION ?= 22.11.0
 NODE_DIR     := $(HOME)/.local/share/node
 NODE_BIN     := $(NODE_DIR)/bin
 LOCAL_BIN    := $(HOME)/.local/bin
-```
+```bash
 
 ## Recipes
 

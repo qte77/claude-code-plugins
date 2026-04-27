@@ -47,7 +47,7 @@ Write to `results/phase-3/`:
 
 ### `gtm-strategy.md`
 
-```
+```text
 # GTM Strategy
 
 ## Target Segments

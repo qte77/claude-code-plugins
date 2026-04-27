@@ -12,4 +12,4 @@ Code security auditing plugin with three skills for repo-wide audits. For diff-s
 
 ```bash
 claude plugin install security-audit@qte77-claude-code-plugins
-```
+```text

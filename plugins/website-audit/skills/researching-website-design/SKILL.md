@@ -40,7 +40,7 @@ never seen a website?"
 1. [Company] - [URL] - Authority: [H/M/L]
    Cites: [Studies/sources referenced]
    Cross-refs: [Shared sources with other sites]
-```
+```yaml
 
 ### Design Breakthroughs (Max 3)
 
@@ -59,7 +59,7 @@ COLORS: Primary #HEX [effect], Accent #HEX [effect]
 TYPOGRAPHY: Headers [font/weight], Body [font/size]
 HEADLINES: "[Pattern]" - [User psychology]
 CTAS: "[Button text]" - [Action driver]
-```
+```yaml
 
 ### Contrarian Insights
 
@@ -75,7 +75,7 @@ Evidence: [Sources]
 ELIMINATE: [Element hurting UX]
 SIMPLIFY: [Over-complex pattern]
 ADOPT: [Underused effective pattern]
-```
+```text
 
 ## Rules
 

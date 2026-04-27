@@ -35,7 +35,7 @@ grep -rn '@test\s\+TEST-[0-9]\{3\}' --include='*.c' test/
 # Extract functions without any requirement tag (dead code candidates)
 # Two-pass: find function definitions, then exclude those with @requirement
 grep -rn '^\w.*\s\+\w\+(.*)\s*{' --include='*.c' src/ | grep -v 'static\s\+inline'
-```
+```text
 
 ## Reconciliation Algorithm
 
@@ -95,7 +95,7 @@ FUNCTION reconcile(requirements_file, source_dirs, test_dirs):
 
     # Step 8: Generate coverage matrix
     RETURN build_matrix(sw_reqs, code_req_tags, test_tags)
-```
+```text
 
 ### Output Categories
 
@@ -115,7 +115,7 @@ FUNCTION reconcile(requirements_file, source_dirs, test_dirs):
 | SW-REQ-001  | EMV filter init...     | src/emv.c:42  | TEST-001| ✓ OK   |
 | SW-REQ-002  | Power monitor...       | —             | —       | ✗ MISS |
 | SW-REQ-003  | WiFi credential...     | src/wifi.c:87 | —       | ~ TEST |
-```
+```yaml
 
 Legend: `✓ OK` = implemented + tested, `✗ MISS` = not implemented, `~ TEST` = implemented but untested
 

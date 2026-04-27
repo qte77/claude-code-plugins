@@ -3,6 +3,8 @@ title: Agent Learning Documentation
 description: Non-obvious patterns that prevent repeated mistakes across sprints
 ---
 
+# Agent Learnings
+
 ## Template
 
 - **Context**: When/where this applies
@@ -24,6 +26,6 @@ description: Non-obvious patterns that prevent repeated mistakes across sprints
   concurrency:
     group: gh-pages-paint
     cancel-in-progress: false
-  ```
+  ```text
 
 - **References**: qte77/gha-contribution-ascii PR #77; failed run 23672476504.

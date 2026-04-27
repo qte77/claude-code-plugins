@@ -50,6 +50,6 @@ Before completing any task:
 
 ```bash
 npx tsc --noEmit && npx vitest run && npx eslint .
-```
+```text
 
 All type checks, tests, and lints must pass.

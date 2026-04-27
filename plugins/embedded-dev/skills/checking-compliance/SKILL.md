@@ -54,7 +54,7 @@ Read these before proceeding:
   - Clause 6.3: Electric shock
 - [ ] EMC 2014/30/EU — EN 55032:2015+A1:2020
   ...
-```
+```text
 
 ### Requirements File
 

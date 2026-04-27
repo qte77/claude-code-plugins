@@ -34,7 +34,7 @@ cppcheck \
     --xml \
     --output-file=reports/misra-report.xml \
     src/
-```
+```bash
 
 ### ESP-IDF Specific Flags
 
@@ -63,7 +63,7 @@ check_tool = cppcheck
 check_flags =
     cppcheck: --addon=misra.py --std=c11 --enable=all
 check_severity = high, medium
-```
+```yaml
 
 ## clang-tidy Configuration
 
@@ -87,7 +87,7 @@ clang-tidy \
     -checks='clang-analyzer-*,bugprone-*,cert-*,misc-*' \
     -p build/ \
     src/**/*.c
-```
+```text
 
 ## Deviation Documentation
 
@@ -102,7 +102,7 @@ Rationale:      Technical justification for why the rule
 Risk:           Low / Medium / High
 Approved by:    Name, Role
 Date:           YYYY-MM-DD
-```
+```text
 
 In code, mark with inline comment:
 
@@ -128,9 +128,9 @@ Every function implementing a requirement must include:
  * @param name  Parameter description
  * @return      Return value description
  */
-```
+```javascript
 
-**Rules:**
+### Rules:
 
 - `@requirement`, `@parent`, `@test` are mandatory for every tagged function
 - `@status` and `@version` are optional but recommended

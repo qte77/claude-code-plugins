@@ -7,6 +7,8 @@ version: 1.0.0
 see-also: core-principles-with-examples.md
 ---
 
+# Plugin Implementation Template
+
 Complete implementation template for a MAS evaluator plugin. Copy and adapt. Follows the six core principles documented in `core-principles-with-examples.md`.
 
 ```python
@@ -79,4 +81,4 @@ class MyPlugin(EvaluatorPlugin):
 
     def _compute(self, context: PluginContext) -> float:
         ...
-```
+```text

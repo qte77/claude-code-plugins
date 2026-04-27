@@ -38,7 +38,7 @@ runs:
       run: |
         uv sync --frozen --no-dev --project "${{ github.action_path }}"
         uv run --project "${{ github.action_path }}" python "${{ github.action_path }}/src/app.py"
-```
+```bash
 
 ### Key patterns
 
@@ -93,7 +93,7 @@ Dev tools go in `[dependency-groups]`, not `[project.optional-dependencies]`:
 [dependency-groups]
 dev = ["pytest>=8.0", "ruff>=0.9"]
 lint = ["ruff>=0.9"]
-```
+```bash
 
 - `uv sync --frozen` installs all groups (including dev)
 - `uv sync --frozen --no-dev` installs only `[project] dependencies`
@@ -148,7 +148,7 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
 ...
-```
+```text
 
 ## File Layout
 
@@ -165,7 +165,7 @@ my-python-action/
     test.yml           # pytest CI
     ruff.yml           # ruff lint + format check
   README.md            # usage with @v1, inputs table, version badge
-```
+```bash
 
 ## Gotchas
 

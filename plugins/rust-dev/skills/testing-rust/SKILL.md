@@ -50,7 +50,7 @@ fn test_order_calculator_sums_item_prices() {
     // ASSERT
     assert_eq!(total, 25);
 }
-```
+```text
 
 ## proptest Priorities (Edge Cases within TDD)
 
@@ -87,7 +87,7 @@ cargo test test_order               # Filter by name
 cargo test --lib                    # Unit tests only
 cargo test --test integration       # Integration tests only
 cargo watch -x test                 # Watch mode (cargo-watch)
-```
+```text
 
 ## Quality Gates
 

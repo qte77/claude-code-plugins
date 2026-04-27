@@ -13,7 +13,7 @@ see-also: platformio-patterns.md
 
 ## Project Structure
 
-```
+```text
 project/
   CMakeLists.txt              # Top-level: cmake_minimum_required + project()
   sdkconfig                   # Generated menuconfig output
@@ -43,7 +43,7 @@ idf_component_register(
     REQUIRES driver esp_timer
     PRIV_REQUIRES unity
 )
-```
+```text
 
 ## FreeRTOS Patterns
 
@@ -73,7 +73,7 @@ sensor_data_t received;
 if (xQueueReceive(data_queue, &received, portMAX_DELAY) == pdTRUE) {
     process(received);
 }
-```
+```text
 
 ### Event Groups
 
@@ -101,7 +101,7 @@ if (result != ESP_OK) {
 
 // Or for fatal errors:
 ESP_ERROR_CHECK(some_critical_function());
-```
+```bash
 
 ## Build Commands
 
@@ -123,7 +123,7 @@ CONFIG_ESP_SYSTEM_EVENT_TASK_STACK_SIZE=4096
 CONFIG_LOG_DEFAULT_LEVEL_INFO=y
 CONFIG_PARTITION_TABLE_CUSTOM=y
 CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
-```
+```text
 
 ## References
 

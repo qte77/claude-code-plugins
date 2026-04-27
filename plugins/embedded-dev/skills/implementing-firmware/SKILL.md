@@ -44,7 +44,7 @@ Read these before proceeding:
     * @param ...
     * @return ...
     */
-   ```
+   ```bash
 
 4. **Create test stubs** in `test/` with matching `@test TEST-NNN` references
 5. **Lint with cppcheck:**

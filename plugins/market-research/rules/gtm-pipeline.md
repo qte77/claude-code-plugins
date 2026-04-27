@@ -5,7 +5,7 @@ for the market-research pipeline.
 
 ## Phase Dependency Graph
 
-```
+```text
 Phase 0  (analyzing-source-project)      ─┐
 Phase 1A (researching-industry-landscape) ─┤→ Phase 1B (researching-market)
                                             │      │
@@ -39,7 +39,7 @@ Phase 1A (researching-industry-landscape) ─┤→ Phase 1B (researching-market
 When teams mode is available (`CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`), dispatch
 Phase 0 and Phase 1A as parallel subagents:
 
-```
+```text
 Task 1: /analyzing-source-project    → results/phase-0/
 Task 2: /researching-industry-landscape → results/phase-1a/
 Task 3: /researching-market          → blockedBy: [Task 1, Task 2] → results/phase-1b/

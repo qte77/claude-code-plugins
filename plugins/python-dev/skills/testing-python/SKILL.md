@@ -48,7 +48,7 @@ def test_order_processor_calculates_total():
 
     # ASSERT
     assert total == 25.00
-```
+```text
 
 ## Hypothesis Priorities (Edge Cases within TDD)
 
@@ -84,7 +84,7 @@ make test_rerun        # Rerun failed tests (fast iteration)
 make validate          # Full pre-commit validation
 pytest tests/ -v       # Verbose
 pytest -k test_user_   # Filter by name
-```
+```bash
 
 ## Quality Gates
 

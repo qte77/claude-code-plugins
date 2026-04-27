@@ -62,7 +62,7 @@ This ensures true parallel execution. Each agent prompt must include:
 
 Use TaskCreate for each dispatched unit to give the user visibility:
 
-```
+```yaml
 TaskCreate: "worker-auth: implement OAuth module" — status: in_progress
 TaskCreate: "worker-docs: write API reference" — status: in_progress
 ```

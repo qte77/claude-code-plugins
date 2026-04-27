@@ -5,7 +5,7 @@ quality gates, and escalation rules between phases.
 
 ## Retry Configuration
 
-```
+```yaml
 max_retries: 2
 ```
 
@@ -32,7 +32,7 @@ Escalate to human review when:
 - Phase 5 synthesis confidence rating is Low for more than 50% of major claims.
 
 Escalation output format:
-```
+```yaml
 ESCALATION: [phase-name]
 Failed criteria:
 - [criterion 1]
@@ -52,7 +52,7 @@ summary but may proceed.
 To skip validation for a phase (e.g. for rapid prototyping), add the phase slug
 to a `skip_validation` list in `config/mode.md`:
 
-```
+```yaml
 skip_validation:
   - phase-1a
 ```

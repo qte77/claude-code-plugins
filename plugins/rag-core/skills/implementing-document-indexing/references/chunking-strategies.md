@@ -17,7 +17,7 @@ Split documents at heading boundaries to preserve semantic coherence.
 
 ```python
 HEADING_PATTERN = re.compile(r"^(#{1,6})\s+(.+)$", re.MULTILINE)
-```
+```python
 
 For non-Markdown sources, map structural elements to heading levels:
 
@@ -66,7 +66,7 @@ When a single section exceeds the token budget, split further.
 
 ```python
 SENTENCE_END = re.compile(r"(?<=[.!?])\s+(?=[A-Z])")
-```
+```python
 
 Never split:
 

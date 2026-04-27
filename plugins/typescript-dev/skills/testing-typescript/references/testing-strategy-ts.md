@@ -6,6 +6,8 @@ purpose: TypeScript-specific testing tools and when to use each
 see-also: tdd-best-practices-ts.md
 ---
 
+# Testing Strategy TS
+
 **Purpose**: TypeScript-specific testing tools and when to use each.
 
 > Language-agnostic testing strategy (what to test, mocking, organization)
@@ -70,7 +72,7 @@ describe('calculateTotal', () => {
     expect(calculateTotal(items)).toBe(25);
   });
 });
-```
+```python
 
 ## Component Tests with @testing-library/react
 
@@ -106,7 +108,7 @@ await screen.findByText('Loaded');
 await waitFor(() => {
   expect(screen.queryByText('Loading...')).not.toBeInTheDocument();
 });
-```
+```python
 
 ## API Mocking with MSW
 
@@ -136,7 +138,7 @@ import { vi, describe, it, expect } from 'vitest';
 vi.mock('./api', () => ({
   fetchUser: vi.fn().mockResolvedValue({ id: '1', name: 'Alice' }),
 }));
-```
+```python
 
 Always call `vi.restoreAllMocks()` in `afterEach`.
 
@@ -158,7 +160,7 @@ export default defineConfig({
 ```typescript
 // src/test/setup.ts
 import '@testing-library/jest-dom/vitest';
-```
+```text
 
 ## Test Organization
 
@@ -184,7 +186,7 @@ describe('OrderCalculator', () => {
   it('sums item prices', () => { ... });
   it('applies percentage discount', () => { ... });
 });
-```
+```text
 
 ## Decision Checklist
 

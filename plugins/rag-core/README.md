@@ -15,4 +15,4 @@ Document indexing and hybrid retrieval for RAG pipelines.
 
 ```bash
 claude plugin install rag-core@qte77-claude-code-plugins
-```
+```text

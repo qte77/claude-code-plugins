@@ -23,4 +23,4 @@ Grants Bash permissions for: `gh`, `bats`, `shellcheck`, `actionlint`.
 
 ```bash
 claude plugin install gha-dev@qte77-claude-code-plugins
-```
+```text

@@ -12,4 +12,4 @@ C++ desktop application development with wxWidgets, GTK, and Qt frameworks.
 
 ```bash
 claude plugin install cpp-desktop@qte77-claude-code-plugins
-```
+```text

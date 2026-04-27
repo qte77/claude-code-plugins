@@ -51,7 +51,7 @@ Write to `results/phase-5/`:
 
 ### `synthesis.md`
 
-```
+```text
 # GTM Research Synthesis
 
 ## Executive Summary

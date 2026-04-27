@@ -24,9 +24,9 @@ append-only archive for compound cross-session learning.
 | 1 | `input-path` | no | `bigpicture.md` | Path to bigpicture synthesis output |
 | 2 | `hub-path` | no | `docs/learnings/cc-bigpicture/` | Directory for learnings hub |
 
-**Examples:**
+### Examples:
 
-```
+```text
 /persisting-bigpicture-learnings
 /persisting-bigpicture-learnings ~/.claude/bigpicture.md
 /persisting-bigpicture-learnings bigpicture.md docs/learnings/cc-bigpicture/
@@ -34,7 +34,7 @@ append-only archive for compound cross-session learning.
 
 ## Output Structure
 
-```
+```text
 docs/learnings/cc-bigpicture/
 ├── latest.md          # Always the most recent synthesis
 └── archive/
@@ -68,7 +68,7 @@ docs/learnings/cc-bigpicture/
 
 Runs after `/synthesizing-cc-bigpicture`. Chain the two skills:
 
-```
+```text
 /synthesizing-cc-bigpicture all 7d bigpicture.md
 /persisting-bigpicture-learnings bigpicture.md docs/learnings/cc-bigpicture/
 ```

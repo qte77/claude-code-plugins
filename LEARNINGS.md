@@ -5,6 +5,8 @@ scope: qte77/claude-code-plugins
 updated: 2026-04-11
 ---
 
+# Learnings
+
 Non-obvious knowledge captured over multiple sessions. Newer sections appended; older sections preserved verbatim.
 
 ## Plugin manifest schemas
@@ -121,7 +123,7 @@ Non-obvious knowledge captured over multiple sessions. Newer sections appended; 
    Cherry-picked from [upstream-repo](https://github.com/...) (MIT License, Nk stars) via issue #<N>.
    Original path: `<path>`.
    Adapted: <describe local changes>
-   ```
+   ```bash
 
 4. **Overlap audit** — before importing, compare the upstream artifact against existing skills in this repo. If it duplicates behavior, don't cherry-pick; close the tracking issue as "covered by existing X".
 5. **Decide host plugin** per the agents convention above.

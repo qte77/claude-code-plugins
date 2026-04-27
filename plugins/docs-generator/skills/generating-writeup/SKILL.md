@@ -56,7 +56,7 @@ make -f $CLAUDE_PLUGIN_ROOT/Makefile pandoc_run \
   INPUT_FILES="$$(printf '%s\036' $$dir/*.md)" \
   OUTPUT_FILE="$$dir/output.pdf" \
   BIBLIOGRAPHY="$$dir/09a_bibliography.bib"
-```
+```bash
 
 With custom citation style:
 
@@ -74,7 +74,7 @@ Full writeup build (content generation + PDF):
 ```bash
 make -f $CLAUDE_PLUGIN_ROOT/Makefile writeup \
   WRITEUP_DIR=docs/write-up/<topic>
-```
+```bash
 
 ## Section Numbering (MANDATORY)
 

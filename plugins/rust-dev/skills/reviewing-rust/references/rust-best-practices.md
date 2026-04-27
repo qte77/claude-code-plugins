@@ -6,6 +6,8 @@ purpose: Security-first Rust coding standards with type safety and ownership pat
 see-also: testing-strategy.md, tdd-best-practices.md
 ---
 
+# Rust Best Practices
+
 ## Security (Non-Negotiable)
 
 ### No Unsafe Unless Justified
@@ -15,7 +17,7 @@ see-also: testing-strategy.md, tdd-best-practices.md
 ```rust
 // SAFETY: `ptr` is non-null and exclusively owned for the duration of this call
 unsafe { std::ptr::write(ptr, value) };
-```
+```yaml
 
 Prefer safe abstractions (`Vec`, `Box`, `Arc`) over raw pointers. Run `cargo clippy` and `cargo audit` on every build.
 
@@ -60,7 +62,7 @@ impl FromStr for Email {
         }
     }
 }
-```
+```text
 
 ## Type System
 
@@ -87,7 +89,7 @@ enum ConnectionState {
     Connected { stream: TcpStream },
     Failed { reason: String },
 }
-```
+```text
 
 ### Option and Result Instead of Null/Exceptions
 
@@ -117,7 +119,7 @@ pub enum AppError {
     #[error("invalid input: {0}")]
     InvalidInput(String),
 }
-```
+```javascript
 
 ### anyhow for Binaries
 
@@ -146,7 +148,7 @@ fn store_user(user: User) { self.users.push(user); }
 // Clone only when ownership transfer is genuinely needed
 let owned = user.name.clone();
 spawn(async move { use_owned(owned).await });
-```
+```text
 
 ## Traits
 
@@ -174,7 +176,7 @@ for item in items {
 while let Some(res) = set.join_next().await {
     handle(res?);
 }
-```
+```text
 
 ### Timeout Handling
 
@@ -203,7 +205,7 @@ async fn login(user: &User, password: &str) -> Result<Token, AppError> {
     info!(token_expiry = %token.expires_at, "login successful");
     Ok(token)
 }
-```
+```text
 
 Never use `println!` for logging in production code.
 

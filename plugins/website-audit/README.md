@@ -14,7 +14,7 @@ Try it out after installing:
 
 ```text
 /auditing-website-accessibility https://example.com
-```
+```bash
 
 This will run a WCAG 2.1 AA compliance audit against the target URL,
 producing findings with severity levels and implementable code fixes.

@@ -80,7 +80,7 @@ Parse `$ARGUMENTS`:
 
 Output a findings table per target:
 
-```
+```yaml
 ## <repo-name>
 
 | # | Check | Level | Status | Notes |
@@ -91,7 +91,7 @@ Summary: X/Y required pass, Z/W recommended pass.
 
 ### Batch Summary
 
-```
+```text
 | Repo | Required | Recommended | Top Issue |
 |------|----------|-------------|-----------|
 ```

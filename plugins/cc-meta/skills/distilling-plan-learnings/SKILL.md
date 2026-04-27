@@ -24,9 +24,9 @@ that compounds project knowledge over time.
 | 1 | `time-range` | no | `7d` | E.g. `7d`, `30d`, `this-week`. Filter plans by modification time. |
 | 2 | `output-path` | no | `docs/learnings/from-plans.md` | Where to write/append output. |
 
-**Examples:**
+### Examples:
 
-```
+```text
 /distilling-plan-learnings                          # Last 7 days → docs/learnings/from-plans.md
 /distilling-plan-learnings 30d                      # Last 30 days
 /distilling-plan-learnings 7d ./my-learnings.md     # Custom output path
@@ -34,7 +34,7 @@ that compounds project knowledge over time.
 
 ## Data Source
 
-```
+```text
 ~/.claude/
 ├── plans/*.md                       # Plan mode files (filtered by mtime)
 ```
@@ -96,7 +96,7 @@ that compounds project knowledge over time.
 - <pattern>: <context and implication>
 
 ---
-```
+```text
 
 ## Common Pitfalls
 

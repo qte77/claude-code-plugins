@@ -32,7 +32,7 @@ Key clauses:
 
 Applies to all electrical/electronic equipment that may generate or be affected by electromagnetic disturbance.
 
-**Harmonized standards:**
+### Harmonized standards:
 
 - **EN 55032:2015+A1:2020** — Electromagnetic compatibility of multimedia equipment — Emission requirements
   - Class A: Commercial/industrial environment
@@ -48,7 +48,7 @@ Applies to all electrical/electronic equipment that may generate or be affected 
 
 Applies to equipment that intentionally transmits/receives radio waves (Wi-Fi, Bluetooth, Zigbee, LoRa, cellular).
 
-**Harmonized standards:**
+### Harmonized standards:
 
 - ETSI EN 300 328 (2.4 GHz wideband)
 - ETSI EN 301 893 (5 GHz RLAN)
@@ -95,7 +95,7 @@ Intentional radiators (devices with radio transmitters):
 
 ## Decision Matrix
 
-```
+```text
 Device has radio? ──► YES ──► RED (EU) + FCC Part 15.247+ (US)
        │
        NO

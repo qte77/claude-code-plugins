@@ -17,7 +17,7 @@ Claude Code meta-skills for cross-project synthesis and session intelligence.
 
 ```bash
 /summarizing-session-end  # Triggered automatically by SessionEnd hook
-```
+```text
 
 ## SessionEnd Hook Configuration
 
@@ -43,7 +43,7 @@ Add to your `.claude/settings.json` to auto-trigger session summaries:
 /synthesizing-cc-bigpicture Agents-eval              # Single project
 /synthesizing-cc-bigpicture Agents-eval 7d           # Single project, last 7 days
 /synthesizing-cc-bigpicture all 30d ./bigpicture.md  # All projects, 30 days, custom output
-```
+```bash
 
 ## Install
 

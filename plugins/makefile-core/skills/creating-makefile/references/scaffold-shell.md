@@ -28,7 +28,7 @@ validate: lint test ## Full validation (lint + test)
 
 clean: ## Remove artifacts
     rm -rf tmp/ coverage/
-```
+```bash
 
 ## Notes
 

@@ -30,7 +30,7 @@ class TreeNode:
                 children=filtered_children,
             )
         return None
-```
+```python
 
 ### Building the Tree
 
@@ -72,7 +72,7 @@ import numpy as np
 
 dimension = 384  # all-MiniLM-L6-v2 output dimension
 index = faiss.IndexFlatIP(dimension)
-```
+```python
 
 ### Operations
 
@@ -108,14 +108,14 @@ class ChunkMetadata:
     heading_path: list[str]
     content: str         # original text for display
     token_count: int
-```
+```text
 
 Store as JSON lines alongside the FAISS index:
 
 ```
 index.faiss          # FAISS binary index
 metadata.jsonl       # one JSON object per vector, same order
-```
+```text
 
 ## Hybrid Retrieval Pipeline
 
@@ -140,7 +140,7 @@ Query
   |
   v
 5. Rank and return (re-rank by relevance, return top-n)
-```
+```python
 
 ### Step Details
 

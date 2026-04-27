@@ -45,7 +45,7 @@ Write to `results/phase-1a/`:
 
 ### `competitor-map.md`
 
-```
+```text
 # Industry Landscape
 
 ## Competitor Profiles

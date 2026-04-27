@@ -14,7 +14,7 @@ Try it out after installing:
 
 ```text
 /generating-writeup quantum computing IEEE
-```
+```bash
 
 This will generate a structured writeup on the given topic with IEEE-style
 citations, BibTeX bibliography, and a pandoc command to produce the final PDF.
@@ -49,4 +49,4 @@ make -f $CLAUDE_PLUGIN_ROOT/Makefile setup_pdf_converter
 
 ```bash
 claude plugin install docs-generator@qte77-claude-code-plugins
-```
+```text

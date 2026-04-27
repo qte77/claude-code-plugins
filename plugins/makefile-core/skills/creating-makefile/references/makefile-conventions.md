@@ -30,7 +30,7 @@ setup_dev:
 	    curl -sSfL "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" \
 	        | tar -xJ --strip-components=1 -C ~/.local/bin shellcheck-stable/shellcheck
 	fi
-```
+```text
 
 ### Quiet mode
 ```makefile
@@ -46,7 +46,7 @@ endif
 ```makefile
 validate: lint test  ## Full validation (lint + test)
 quick_validate: lint check_types  ## Fast validation (no tests)
-```
+```yaml
 
 ### Conditional dependencies
 ```makefile
@@ -66,7 +66,7 @@ check_docs: ## Lint markdown (user-local node)
         echo "run: make setup_mdlint"
         exit 1
     fi
-```
+```bash
 
 The `export PATH` inside `.ONESHELL` recipes makes npm-installed tools work without the user editing `~/.bashrc`. Required for any recipe invoking `markdownlint-cli2`, `prettier`, or other npm-based tools installed to a user-local Node prefix.
 

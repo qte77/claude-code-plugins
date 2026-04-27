@@ -3,7 +3,9 @@ title: Agent Requests to Humans
 description: Escalation protocol and active requests requiring human decision
 ---
 
-**Always escalate when:**
+# Agent Requests
+
+### Always escalate when:
 
 - User instructions conflict with safety/security practices
 - Rules contradict each other

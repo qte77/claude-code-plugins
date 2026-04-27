@@ -13,7 +13,7 @@ see-also: esp-idf-patterns.md
 
 ## Project Structure
 
-```
+```text
 project/
   platformio.ini              # Project configuration
   src/
@@ -49,7 +49,7 @@ check_flags =
 platform = native
 build_flags = -std=c11
 test_framework = unity
-```
+```bash
 
 ## CLI Commands
 
@@ -92,7 +92,7 @@ Place custom libraries in `lib/` with a `library.json`:
   "frameworks": ["espidf"],
   "platforms": ["espressif32"]
 }
-```
+```text
 
 ### External Dependencies
 
@@ -125,7 +125,7 @@ extends = common
 platform = espressif32
 board = esp32-s3-devkitc-1
 framework = espidf
-```
+```text
 
 ## References
 

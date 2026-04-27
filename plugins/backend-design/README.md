@@ -10,4 +10,4 @@ Backend system architecture and API design skills.
 
 ```bash
 claude plugin install backend-design@qte77-claude-code-plugins
-```
+```text

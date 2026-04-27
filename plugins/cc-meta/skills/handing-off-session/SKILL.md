@@ -69,7 +69,7 @@ focus (e.g. `2026-04-06-session-handoff-skill.md`).
 
 ## Blockers
 [External dependencies, open questions, things that need user input]
-```
+```bash
 
 ## Picking Up a Handoff
 

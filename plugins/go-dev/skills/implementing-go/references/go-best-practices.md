@@ -6,6 +6,8 @@ purpose: Security-first Go coding standards with concurrency and error handling 
 see-also: testing-strategy.md, tdd-best-practices.md
 ---
 
+# GO Best Practices
+
 ## Security (Non-Negotiable)
 
 ### Input Validation
@@ -27,7 +29,7 @@ func (r *CreateUserRequest) Validate() error {
     }
     return nil
 }
-```
+```text
 
 ### SQL Injection Prevention
 
@@ -50,7 +52,7 @@ var req CreateUserRequest
 if err := dec.Decode(&req); err != nil {
     return fmt.Errorf("invalid request body: %w", err)
 }
-```
+```text
 
 ### Secrets Management
 
@@ -79,7 +81,7 @@ func loadConfig(path string) (*Config, error) {
     }
     return &cfg, nil
 }
-```
+```text
 
 ### Sentinel Errors
 
@@ -110,7 +112,7 @@ var ve *ValidationError
 if errors.As(err, &ve) {
     log.Printf("field %s failed: %s", ve.Field, ve.Message)
 }
-```
+```text
 
 Never ignore errors. When an error truly cannot occur, document why.
 
@@ -134,7 +136,7 @@ Always use two-value form:
 if store, ok := repo.(CacheableStore); ok {
     store.Invalidate(id)
 }
-```
+```text
 
 ### Generics (Go 1.21+)
 
@@ -162,7 +164,7 @@ Pass `context.Context` as the first parameter. Never store in a struct:
 func (s *Service) FetchUser(ctx context.Context, id string) (*User, error) {
     return s.db.QueryRowContext(ctx, "SELECT ...", id)
 }
-```
+```text
 
 Always give goroutines a way to stop:
 
@@ -195,7 +197,7 @@ for _, item := range items {
     }(item)
 }
 wg.Wait()
-```
+```python
 
 Prefer channels for communication; mutexes for state protection.
 
@@ -227,7 +229,7 @@ myapp/
 ├── pkg/                   # Reusable packages (only if truly needed)
 ├── go.mod
 └── go.sum
-```
+```javascript
 
 - `cmd/` — wires dependencies, exits on error
 - `internal/` — default location; cannot be imported externally

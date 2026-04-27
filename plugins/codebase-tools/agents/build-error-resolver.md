@@ -25,7 +25,7 @@ npx tsc --noEmit --pretty
 npx tsc --noEmit --pretty --incremental false   # Show all errors
 npm run build
 npx eslint . --ext .ts,.tsx,.js,.jsx
-```
+```bash
 
 ## Workflow
 
@@ -59,7 +59,7 @@ For each error:
 
 ## DO and DON'T
 
-**DO:**
+### DO:
 
 - Add type annotations where missing
 - Add null checks where needed
@@ -68,7 +68,7 @@ For each error:
 - Update type definitions
 - Fix configuration files
 
-**DON'T:**
+### DON'T:
 
 - Refactor unrelated code
 - Change architecture

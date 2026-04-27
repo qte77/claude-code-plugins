@@ -23,9 +23,9 @@ compound learning. Converts raw session data into actionable improvements.
 | 1 | `time-range` | no | `7d` | Period to scan. E.g. `7d`, `30d`, `this-week`. |
 | 2 | `output-path` | no | `docs/patterns/session-patterns.md` | Where to write findings. |
 
-**Examples:**
+### Examples:
 
-```
+```text
 /mining-session-patterns                    # Last 7 days, default output
 /mining-session-patterns 30d                # Last 30 days
 /mining-session-patterns 7d ./patterns.md   # Custom output path
@@ -33,7 +33,7 @@ compound learning. Converts raw session data into actionable improvements.
 
 ## Data Source
 
-```
+```text
 ~/.claude/projects/*/*.jsonl    # Session transcripts
 ```
 
@@ -89,7 +89,7 @@ to respect context budget.
 
 ## Recommended Actions
 - <Concrete improvement derived from patterns above>
-```
+```text
 
 ## Quality Check
 

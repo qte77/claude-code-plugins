@@ -47,7 +47,7 @@ VERBOSE ?= 0
 ifeq ($(VERBOSE),0)
   # quiet flags per tool
 endif
-```
+```bash
 
 ## Conventions
 

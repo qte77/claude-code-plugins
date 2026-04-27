@@ -16,4 +16,4 @@ Rust implementation, testing, and code review skills, deploys cargo permissions 
 
 ```bash
 claude plugin install rust-dev@qte77-claude-code-plugins
-```
+```text

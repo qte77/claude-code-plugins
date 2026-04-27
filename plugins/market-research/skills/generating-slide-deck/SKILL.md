@@ -79,7 +79,7 @@ Write to `results/phase-6/`:
 
 ### `slide-deck.md`
 
-```
+```text
 # [Product Name] — [Audience Type] Deck
 
 ---

@@ -24,7 +24,7 @@ The standard markdown template for `bigpicture.md` output. Every synthesis run s
 ## TODOs & DONEs
 ## Blockers & Stale Items
 ## Mode Transitions Needed
-```
+```text
 
 ## Notes
 

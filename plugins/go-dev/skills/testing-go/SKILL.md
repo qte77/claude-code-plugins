@@ -49,7 +49,7 @@ func TestOrderCalculator_Total_SumsItemPrices(t *testing.T) {
     // ASSERT
     assert.Equal(t, 25.00, total)
 }
-```
+```text
 
 ## Table-Driven Tests (Go Idiom)
 
@@ -93,7 +93,7 @@ See `references/testing-strategy.md` -> "Patterns to Remove" for full list.
 TestUserService_Create_ReturnsIDOnSuccess
 TestValidateEmail_MissingAt
 TestCalculateTotal_EmptyItems
-```
+```bash
 
 ## Execution
 

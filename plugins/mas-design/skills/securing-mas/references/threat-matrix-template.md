@@ -7,6 +7,8 @@ version: 1.0.0
 see-also: mas-security.md
 ---
 
+# Threat Matrix Template
+
 For each new feature, document threats with cross-framework mapping. Use this matrix as a starting template — add rows for feature-specific concerns.
 
 | Concern | ATLAS Technique | MAESTRO Layer | NIST Function | ISO Control |

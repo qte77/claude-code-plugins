@@ -74,7 +74,7 @@ and CMake best practices. No over-engineering.
   else()
     # Linux/Unix
   endif()
-  ```
+  ```bash
 
 ## Platform Compilation
 

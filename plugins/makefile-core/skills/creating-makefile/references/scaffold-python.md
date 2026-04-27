@@ -13,7 +13,7 @@ RUFF_QUIET :=
 PYTEST_QUIET :=
 PYRIGHT_QUIET :=
 endif
-```
+```bash
 
 ## Recipes
 

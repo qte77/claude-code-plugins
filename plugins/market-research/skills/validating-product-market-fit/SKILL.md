@@ -58,7 +58,7 @@ Write to `results/phase-2/`:
 
 ### `pmf-assessment.md`
 
-```
+```text
 # Product-Market Fit Assessment
 
 ## PMF Score: [X.X] / 10

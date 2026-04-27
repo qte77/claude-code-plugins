@@ -7,6 +7,8 @@ version: 1.0.0
 see-also: maestro-7-layer-checklist.md
 ---
 
+# Security Testing Patterns
+
 Test security controls explicitly — don't assume they work. Each test names the MAESTRO layer it covers.
 
 ```python
@@ -31,4 +33,4 @@ def test_error_message_safety():
         EvalContext(data="trigger_error")
     )
     assert "secret" not in result.error.lower()
-```
+```text

@@ -25,7 +25,7 @@ and proper release flow.
 
 See `references/marketplace-checklist.md` for full reference.
 
-**Required `action.yaml` fields:**
+### Required `action.yaml` fields:
 - `name` — unique on Marketplace (check before using)
 - `description` — shown in search results
 - `branding` — `icon` (Feather icon name) + `color` (white/yellow/blue/green/orange/red/purple/gray-dark)
@@ -36,7 +36,7 @@ Pick the layout that matches the action's language:
 
 **Shell-based** (composite with inline `run:` or `scripts/*.sh`):
 
-```
+```text
 action.yaml           # composite action definition + branding
 scripts/              # extracted shell logic (when inline run: grows too large)
 tests/unit/           # BATS test files
@@ -46,7 +46,7 @@ README.md             # usage example with @vN, inputs table, version badge
 
 **Python-based** (composite calling `uv run`):
 
-```
+```bash
 action.yaml           # composite action definition + branding
 src/                  # Python source (app.py entry point)
 tests/                # pytest tests
@@ -60,7 +60,7 @@ See `references/python-gha-patterns.md` for the full Python walkthrough.
 
 ## TDD Workflow
 
-**RED — infra tests first:**
+### RED — infra tests first:
 
 ```bash
 # tests/unit/test_action.bats
@@ -69,15 +69,15 @@ See `references/python-gha-patterns.md` for the full Python walkthrough.
 @test "action.yaml has description field" { grep -q "^description:" action.yaml; }
 @test "action.yaml has branding" { grep -q "^branding:" action.yaml; }
 @test "action.yaml has runs.using composite" { grep -q "using: composite" action.yaml; }
-```
+```bash
 
 Run: `bats tests/unit/` — all must fail first.
 
-**GREEN — implement to pass:**
+### GREEN — implement to pass:
 
 Write `action.yaml` with required fields. Add `scripts/` and steps. Run `bats tests/unit/` — all pass.
 
-**VALIDATE:**
+### VALIDATE:
 
 ```bash
 actionlint
@@ -104,7 +104,7 @@ Never `git push` directly to main.
 actionlint
 shellcheck scripts/*.sh
 bats tests/unit/
-```
+```bash
 
 All must pass before PR creation.
 

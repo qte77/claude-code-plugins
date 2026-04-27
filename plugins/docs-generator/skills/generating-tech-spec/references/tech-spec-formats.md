@@ -65,7 +65,7 @@ Chosen option: "<Option N>", because <justification>.
 ## More Information
 
 <Links to related ADRs, issues, or documents.>
-```
+```yaml
 
 ## RFC — Request for Comments
 
@@ -186,7 +186,7 @@ reviewers: <Comma-separated names>
 ## Open Questions
 
 <Unresolved design decisions.>
-```
+```yaml
 
 ## Proposal
 

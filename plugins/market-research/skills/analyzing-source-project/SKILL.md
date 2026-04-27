@@ -46,7 +46,7 @@ Write to `results/phase-0/`:
 
 ### `capability-profile.md`
 
-```
+```text
 # Source Project Capability Profile
 
 ## Project: [name]

@@ -24,7 +24,7 @@ forcing uniform content.
 ```bash
 # Copy skeleton into a new project
 cp ~/.claude/plugins/cache/qte77/claude-code-plugins/plugins/docs-governance/templates/*.md ./
-```
+```bash
 
 ## Install
 

@@ -6,6 +6,8 @@ purpose: Modern React patterns with functional components, hooks, and accessibil
 see-also: typescript-best-practices.md, vite-conventions.md
 ---
 
+# React Best Practices
+
 ## Components
 
 ### Functional Components Only
@@ -23,7 +25,7 @@ export function UserCard({ user, onSelect }: UserCardProps) {
     </button>
   );
 }
-```
+```javascript
 
 Always type props with an interface. Never use class components.
 
@@ -51,7 +53,7 @@ function useDebounce<T>(value: T, delay: number): T {
   }, [value, delay]);
   return debounced;
 }
-```
+```javascript
 
 ### useEffect Dependency Arrays
 
@@ -79,7 +81,7 @@ const handleSubmit = useCallback((data: FormData) => {
 
 // DON'T use for: simple values, inline functions in non-memoized components
 // Premature memoization adds complexity without benefit
-```
+```javascript
 
 ## State Management
 
@@ -107,7 +109,7 @@ async function createAction(formData: FormData) {
   'use server';
   await saveToDb(formData);
 }
-```
+```javascript
 
 ## Keys
 
@@ -131,7 +133,7 @@ async function createAction(formData: FormData) {
 
 // BAD — div soup
 <div onClick={toggle}>Menu</div>
-```
+```javascript
 
 ### Required Practices
 

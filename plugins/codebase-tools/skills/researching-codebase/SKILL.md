@@ -65,7 +65,7 @@ files_examined: <count>
 
 - Constraint with evidence (`path:line`)
 
-```
+```text
 
 ## Evidence Requirements
 

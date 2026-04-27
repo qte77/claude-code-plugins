@@ -6,7 +6,7 @@
 
 Controls output verbosity and depth.
 
-```
+```yaml
 style: concise
 ```
 
@@ -18,7 +18,7 @@ Options:
 
 Controls risk tolerance and ambition of recommendations.
 
-```
+```yaml
 approach: conservative
 ```
 

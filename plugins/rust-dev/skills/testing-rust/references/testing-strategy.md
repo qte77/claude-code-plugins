@@ -6,6 +6,8 @@ purpose: Rust-specific testing tools and when to use each
 see-also: tdd-best-practices.md
 ---
 
+# Testing Strategy
+
 **Purpose**: Rust-specific testing tools and when to use each.
 
 > Language-agnostic testing strategy (what to test, mocking, organization)
@@ -72,7 +74,7 @@ mod tests {
         assert_eq!(add(2, 3), 5);
     }
 }
-```
+```text
 
 `#[cfg(test)]` excludes test code from release builds.
 
@@ -102,7 +104,7 @@ proptest! {
         prop_assert!(result <= max);
     }
 }
-```
+```javascript
 
 ## Snapshot Testing with insta
 
@@ -142,7 +144,7 @@ fn test_user_service_returns_not_found() {
     let service = UserService::new(mock);
     assert!(service.get_user(99).is_err());
 }
-```
+```text
 
 Always set `.times()` — unverified calls pass silently without it.
 
@@ -175,7 +177,7 @@ tests/
 test_order_calculator_sums_items()
 test_user_parser_rejects_empty_email()
 test_score_always_in_bounds()  // property test
-```
+```text
 
 ## Decision Checklist
 

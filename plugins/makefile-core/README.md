@@ -22,7 +22,7 @@ Skills and linting for consistent, rigorous Makefiles across projects.
 
 # Standalone lint
 bash plugins/makefile-core/skills/creating-makefile/references/lint-makefile.sh
-```
+```bash
 
 ## Extending
 

@@ -17,7 +17,7 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 validated_links: YYYY-MM-DD
 ---
-```
+```text
 
 - `title` — descriptive, matches the `# H1` heading
 - `purpose` — one line, used for relevance matching and context decisions

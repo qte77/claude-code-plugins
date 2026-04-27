@@ -6,6 +6,8 @@ purpose: Go-specific testing tools and when to use each
 see-also: tdd-best-practices.md
 ---
 
+# Testing Strategy
+
 **Purpose**: Go-specific testing tools and when to use each.
 
 > Language-agnostic testing strategy (what to test, mocking, organization)
@@ -85,7 +87,7 @@ func TestValidateAge(t *testing.T) {
         })
     }
 }
-```
+```text
 
 ## testify: assert vs require
 
@@ -123,7 +125,7 @@ func TestParseRoundTrip(t *testing.T) {
         }
     })
 }
-```
+```text
 
 ## Mocking with Interfaces (No Framework)
 
@@ -155,7 +157,7 @@ mypackage/
 ├── service.go
 ├── service_test.go      # same package or _test suffix
 └── testdata/            # golden files, fixtures
-```
+```text
 
 Use `t.Helper()` in test helpers so failures point to callers.
 

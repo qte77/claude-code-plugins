@@ -7,6 +7,8 @@ version: 1.0.0
 see-also: maestro-7-layer-checklist.md
 ---
 
+# Common Vulnerabilities
+
 Vulnerable vs secure code patterns for each MAESTRO layer's highest-impact vulnerability class.
 
 ## Prompt Injection (Layer 1 — Model)
@@ -15,7 +17,7 @@ Vulnerable vs secure code patterns for each MAESTRO layer's highest-impact vulne
 
 ```python
 prompt = f"Evaluate: {user_input}"
-```
+```text
 
 **Secure**:
 
@@ -30,7 +32,7 @@ result = agent.run(EvalContext(text=user_input))
 ```python
 def evaluate(self, context: dict) -> dict:
     return {"score": context["data"]}
-```
+```python
 
 **Secure**:
 
@@ -49,7 +51,7 @@ def evaluate(
 def evaluate(self, context):
     while True:  # Infinite loop
         process(context)
-```
+```python
 
 **Secure**:
 
@@ -65,7 +67,7 @@ def evaluate(self, context):
 
 ```python
 api_key = "sk-1234..."  # Hardcoded
-```
+```text
 
 **Secure**:
 

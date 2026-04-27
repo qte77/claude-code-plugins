@@ -1,6 +1,8 @@
+# README
+
 <!-- markdownlint-disable MD033 -->
 
-# qte77-claude-code-plugins
+## qte77-claude-code-plugins
 
 Claude Code plugin marketplace — 25 plugins, 60 skills, 2 agents from production workflows.
 
@@ -15,7 +17,7 @@ Claude Code plugin marketplace — 25 plugins, 60 skills, 2 agents from producti
 claude plugin marketplace add qte77/claude-code-plugins
 claude plugin install workspace-setup@qte77-claude-code-plugins
 claude plugin install python-dev@qte77-claude-code-plugins
-```
+```bash
 
 <details>
 
@@ -102,7 +104,7 @@ Add to `.claude/settings.json` so teammates get marketplace access:
     }
   }
 }
-```
+```bash
 
 Each member installs plugins individually with `claude plugin install`.
 
@@ -123,7 +125,7 @@ make validate   # Validate plugin structure + JSON syntax
 make sync       # Sync .claude/ SoT into plugin dirs
 make check_sync # Verify all copies match SoT
 make lint_md    # Lint markdown files
-```
+```bash
 
 ### Standalone install and DRY
 

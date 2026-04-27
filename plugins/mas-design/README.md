@@ -13,7 +13,7 @@ Try it out after installing:
 
 ```text
 /securing-mas review the current project for MAESTRO, ATLAS, and NIST AI RMF compliance
-```
+```bash
 
 This will audit your multi-agent system design against four complementary
 frameworks — OWASP MAESTRO (7-layer threat model), MITRE ATLAS (adversarial

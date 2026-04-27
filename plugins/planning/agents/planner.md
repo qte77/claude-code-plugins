@@ -5,6 +5,8 @@ tools: ["Read", "Grep", "Glob"]
 model: opus
 ---
 
+# Planner
+
 You are an expert planning specialist focused on creating comprehensive, actionable implementation plans.
 
 ## Your Role
@@ -91,7 +93,7 @@ Create detailed steps with:
 ## Success Criteria
 - [ ] Criterion 1
 - [ ] Criterion 2
-```
+```javascript
 
 ## Best Practices
 

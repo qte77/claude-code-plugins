@@ -1,6 +1,6 @@
 # GHA Marketplace Checklist
 
-**First-party references:**
+### First-party references:
 
 - [Creating a composite action](https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action) — official guide for `runs: using: composite`
 - [Publishing actions to GitHub Marketplace](https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace) — Marketplace listing requirements, branding, and publish flow
@@ -23,7 +23,7 @@ runs:
   steps:
     - shell: bash
       run: echo "hello"
-```
+```python
 
 ## README Requirements
 
@@ -80,7 +80,7 @@ GH_TOKEN="${GH_PAT}" gh pr merge NUM --squash \
   --subject "PR feat: my change (#NUM)" \
   --body "* feat: my change"
 # Note: GITHUB_TOKEN from Codespaces lacks merge permission; use PAT.
-```
+```bash
 
 ## Version Tags
 
@@ -96,7 +96,7 @@ With `bump-my-version` (use `commit=false tag=false` — let the workflow tag):
 [tool.bumpversion]
 commit = false
 tag = false
-```
+```bash
 
 ## Gotchas
 

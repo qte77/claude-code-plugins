@@ -7,6 +7,8 @@ version: 1.0.0
 see-also: plugin-implementation-template.md
 ---
 
+# Plugin Testing Strategy
+
 Test plugins in isolation with mocked context. Two minimum test classes: happy path and error handling. Both assert on the structured `PluginResult` — never expect exceptions to propagate.
 
 ```python
@@ -24,4 +26,4 @@ def test_plugin_error_handling():
     result = plugin.evaluate(context)
     # Structured error, not exception
     assert result.error is not None
-```
+```text

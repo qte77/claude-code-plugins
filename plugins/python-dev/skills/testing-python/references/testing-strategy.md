@@ -6,6 +6,8 @@ purpose: High-level testing strategy aligned with KISS/DRY/YAGNI
 see-also: tdd-best-practices.md
 ---
 
+# Testing Strategy
+
 **Purpose**: Python-specific testing tools and when to use each.
 
 > Language-agnostic testing strategy (what to test, mocking, organization)
@@ -136,7 +138,7 @@ def test_result_with_timestamp():
         "score": 0.85,
         "timestamp": IsDatetime(),  # Not managed by snapshot
     })
-```
+```bash
 
 **Commands**:
 
@@ -227,7 +229,7 @@ def test_order_repository_saves_order(tmp_path):
     repo = OrderRepository(db)
     order = repo.save(Order(total=100))
     assert repo.get(order.id).total == 100
-```
+```text
 
 ### Priority Test Areas
 
@@ -261,7 +263,7 @@ tests/
 │   ├── test_math_props.py
 │   └── test_validation_props.py
 └── conftest.py           # Shared fixtures
-```
+```bash
 
 ## Running Tests
 

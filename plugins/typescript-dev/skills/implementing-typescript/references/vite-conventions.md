@@ -6,6 +6,8 @@ purpose: Vite project structure, configuration, and deployment conventions
 see-also: typescript-best-practices.md, react-best-practices.md
 ---
 
+# Vite Conventions
+
 ## Project Structure
 
 ```text
@@ -23,7 +25,7 @@ see-also: typescript-best-practices.md, react-best-practices.md
 ├── vite.config.ts
 ├── tsconfig.json
 └── package.json
-```
+```python
 
 ## Configuration
 
@@ -52,7 +54,7 @@ Configure in both `vite.config.ts` and `tsconfig.json`:
     "paths": { "@/*": ["./src/*"] }
   }
 }
-```
+```javascript
 
 Use `@/` prefix for all internal imports: `import { Button } from '@/components/Button'`.
 
@@ -77,7 +79,7 @@ interface ImportMetaEnv {
 .env                # Shared defaults
 .env.local          # Local overrides (gitignored)
 .env.production     # Production values
-```
+```yaml
 
 Never prefix secrets with `VITE_` — they are embedded in the client bundle.
 
@@ -97,7 +99,7 @@ export default defineConfig({
 ```bash
 npx vite build          # Output to dist/
 npx vite preview        # Preview production build locally
-```
+```python
 
 ## Tailwind CSS v4 (Vite Plugin)
 
@@ -113,7 +115,7 @@ export default defineConfig({
 ```css
 /* src/index.css — v4 uses @import instead of @tailwind directives */
 @import 'tailwindcss';
-```
+```text
 
 No `tailwind.config.js` needed in v4 — configure via CSS `@theme`.
 

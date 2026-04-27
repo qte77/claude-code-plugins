@@ -44,7 +44,7 @@ grep -rn "find_package\|pkg_check_modules" CMakeLists.txt */CMakeLists.txt 2>/de
 
 # Include graph (most-included headers)
 grep -rh '#include "' src/ include/ 2>/dev/null | sort | uniq -c | sort -rn | head -20
-```
+```text
 
 ## Architecture Assessment
 

@@ -30,7 +30,7 @@ Read these before proceeding:
 
    ```bash
    kicad-cli sch erc --output erc-report.json --format json <schematic.kicad_sch>
-   ```
+   ```bash
 
 4. **Run DRC** on PCB:
 
@@ -70,7 +70,7 @@ kicad-cli <version>
 
 ## Recommendations
 ...
-```
+```text
 
 ## Rules
 

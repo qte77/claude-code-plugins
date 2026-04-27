@@ -38,7 +38,7 @@ Read these before proceeding:
    - **Dead code candidates:** Functions without any requirement tag
 5. **Output coverage matrix:**
 
-   ```
+   ```text
    | Requirement | Code File:Line | Test ID | Status |
    |-------------|---------------|---------|--------|
    | SW-REQ-001  | src/emv.c:42  | TEST-001| OK     |
@@ -65,7 +65,7 @@ Read these before proceeding:
 
 ## Coverage Matrix
 ...
-```
+```text
 
 ## Rules
 

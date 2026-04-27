@@ -15,7 +15,7 @@ version: 1.0.0
 ```bash
 kicad-cli version
 # Expected: 8.x or later (CLI introduced in KiCad 8)
-```
+```bash
 
 ## Electrical Rules Check (ERC)
 
@@ -52,7 +52,7 @@ kicad-cli sch erc \
   ],
   "violation_count": 1
 }
-```
+```bash
 
 ### Common ERC Violations
 
@@ -103,7 +103,7 @@ kicad-cli pcb drc \
   "unconnected_count": 0,
   "violation_count": 1
 }
-```
+```bash
 
 ### Common DRC Violations
 
@@ -137,7 +137,7 @@ kicad-cli pcb export drill \
 
 ### Expected Output Files
 
-```
+```text
 gerbers/
   project-F_Cu.gbr          # Front copper
   project-B_Cu.gbr          # Back copper
@@ -159,7 +159,7 @@ kicad-cli sch export bom \
     --output bom.csv \
     --fields "Reference,Value,Footprint,MPN,Manufacturer" \
     project.kicad_sch
-```
+```text
 
 ## References
 

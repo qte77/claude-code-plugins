@@ -5,6 +5,8 @@ created: 2026-03-01
 updated: 2026-04-04
 ---
 
+# CC Plugin Enhancement Analysis
+
 ## Plugin Structure
 
 ```text
@@ -17,7 +19,7 @@ plugin-name/
 ├── scripts/                     # Helper scripts
 ├── .mcp.json                    # MCP server definitions
 └── README.md
-```
+```text
 
 All component directories at plugin root — not inside `.claude-plugin/`.
 

@@ -49,7 +49,7 @@ it('calculates order total from item prices', () => {
   // ASSERT
   expect(total).toBe(25);
 });
-```
+```javascript
 
 ## Component Testing Priorities
 
@@ -87,7 +87,7 @@ npx vitest run                      # Single run
 npx vitest run src/utils            # Filter by path
 npx vitest run --reporter=verbose   # Verbose output
 npx vitest --ui                     # Browser UI
-```
+```text
 
 ## Quality Gates
 

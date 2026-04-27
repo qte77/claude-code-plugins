@@ -50,6 +50,6 @@ suggestions to the user.
 
 ## When in Doubt
 
-**STOP. Ask the user.**
+### STOP. Ask the user.
 
 Don't assume, don't over-engineer, don't add complexity.

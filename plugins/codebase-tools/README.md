@@ -17,4 +17,4 @@ Codebase research, context compaction, and build/quality support with ACE-FCA pr
 
 ```bash
 claude plugin install codebase-tools@qte77-claude-code-plugins
-```
+```text

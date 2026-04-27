@@ -6,6 +6,8 @@ purpose: Type-safe TypeScript coding standards with strict mode and modern patte
 see-also: react-best-practices.md, vite-conventions.md
 ---
 
+# Typescript Best Practices
+
 ## Strict Mode (Non-Negotiable)
 
 ### tsconfig.json Essentials
@@ -22,7 +24,7 @@ see-also: react-best-practices.md, vite-conventions.md
     "skipLibCheck": true
   }
 }
-```
+```yaml
 
 All projects must use `strict: true`. Never disable individual strict checks.
 
@@ -37,7 +39,7 @@ const config = {
 function throwEnvError(name: string): never {
   throw new Error(`Missing environment variable: ${name}`);
 }
-```
+```javascript
 
 Never hardcode credentials in source code.
 
@@ -54,7 +56,7 @@ function parse(input: unknown): User {
   if (!isUser(input)) throw new TypeError('Invalid user data');
   return input;
 }
-```
+```javascript
 
 ### Type Guards Over Casts
 
@@ -78,7 +80,7 @@ type RequestState =
   | { status: 'loading' }
   | { status: 'success'; data: User[] }
   | { status: 'error'; error: string };
-```
+```javascript
 
 The compiler enforces exhaustive handling with `switch` on `status`.
 
@@ -90,7 +92,7 @@ const name = user?.profile?.displayName ?? 'Anonymous';
 
 // Use strict null checks — never assume values exist
 function getItem(id: string): Item | undefined { ... }
-```
+```javascript
 
 ## Error Handling
 
@@ -106,7 +108,7 @@ function parseConfig(raw: string): Result<Config> {
     return { ok: false, error: new Error('Invalid config JSON') };
   }
 }
-```
+```javascript
 
 ### Try/Catch (for unexpected errors)
 
@@ -128,7 +130,7 @@ export function createUser(data: UserInput): User { ... }
 export type { User, UserInput };
 
 // Avoid default exports (harder to refactor, inconsistent naming)
-```
+```python
 
 ### Import Order
 
@@ -141,7 +143,7 @@ import { z } from 'zod';
 import { createUser } from '@/services/user';
 // 4. Types
 import type { User } from '@/types';
-```
+```javascript
 
 ## Generics
 
@@ -151,7 +153,7 @@ function groupBy<T, K extends string>(items: T[], key: (item: T) => K): Record<K
 
 // Inferred generics — let TypeScript infer when possible
 const result = groupBy(users, (u) => u.role);
-```
+```javascript
 
 ## Async Patterns
 
@@ -174,7 +176,7 @@ const [user, orders, prefs] = results.map((r) =>
 ```typescript
 const controller = new AbortController();
 const res = await fetch(url, { signal: controller.signal });
-```
+```text
 
 ## Common Mistakes
 

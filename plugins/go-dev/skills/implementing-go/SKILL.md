@@ -48,6 +48,6 @@ Before completing any task:
 
 ```bash
 go test ./... && go vet ./... && golangci-lint run
-```
+```text
 
 All tests, vet checks, and linting must pass.

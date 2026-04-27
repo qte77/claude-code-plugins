@@ -43,6 +43,6 @@ Based on [Bande-a-Bonnot/Boucle-framework](https://github.com/Bande-a-Bonnot/Bou
 
 ```bash
 claude plugin install workspace-sandbox@qte77-claude-code-plugins
-```
+```text
 
 For defaults without sandbox, use `workspace-setup` instead.

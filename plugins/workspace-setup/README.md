@@ -33,6 +33,6 @@ Based on [Bande-a-Bonnot/Boucle-framework](https://github.com/Bande-a-Bonnot/Bou
 
 ```bash
 claude plugin install workspace-setup@qte77-claude-code-plugins
-```
+```text
 
 For sandbox settings, use `workspace-sandbox` instead.

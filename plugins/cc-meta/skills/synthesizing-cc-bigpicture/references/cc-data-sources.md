@@ -15,6 +15,6 @@ Full layout of the `~/.claude/` directory as consumed by `synthesizing-cc-bigpic
 ├── plans/*.md                       # Plan mode files
 ├── tasks/<session-or-team-name>/    # Tasks (*.json, skip .lock/.highwatermark)
 └── teams/<team-name>/               # config.json + inboxes/<member>.json
-```
+```text
 
 **Critical:** Never bulk-read full `.jsonl` transcripts. Use `history.jsonl` for discovery and first+last 5 lines of each session transcript for metadata only.

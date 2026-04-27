@@ -24,7 +24,7 @@ Run these commands using the Bash tool to gather context:
 
 Use the Read tool to check `.gitmessage` for commit message format and syntax.
 
-**The commit message body MUST include (concisely — no padding, no redundancy):**
+### The commit message body MUST include (concisely — no padding, no redundancy):
 
 1. **What changed**: bullet points per file or logical group
 2. **Symbols added/removed** (when applicable): functions, classes, tests
@@ -36,7 +36,7 @@ Keep the message laser-focused. Do not repeat the subject line in the body.
 
 ## Step 3: Pause for Approval
 
-**Please review the commit message.**
+### Please review the commit message.
 
 - **Approve**: "yes", "y", "commit", "go ahead"
 - **Edit**: Provide your preferred message

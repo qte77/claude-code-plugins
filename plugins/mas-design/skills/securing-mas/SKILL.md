@@ -36,7 +36,7 @@ NIST AI RMF (risk framework — how to govern/map/measure/manage)
       |  operationalized by
       v
 ISO 42001 + 23894 (certifiable management system + risk methodology)
-```
+```bash
 
 Use all four layers together: ATLAS enumerates attack vectors, MAESTRO maps
 them to MAS-specific controls, NIST AI RMF structures governance, and ISO

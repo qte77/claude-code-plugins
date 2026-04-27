@@ -7,6 +7,8 @@ version: 1.0.0
 see-also: mas-design-principles.md
 ---
 
+# Core Principles With Examples
+
 Each plugin follows six principles. This file expands each with a worked code example.
 
 ## Stateless Reducer Pattern
@@ -19,7 +21,7 @@ def evaluate(self, context: TierContext) -> TierResult:
     # All inputs from context parameter
     # All outputs in return value
     return TierResult(...)
-```
+```python
 
 ## Own Context Window
 
@@ -45,7 +47,7 @@ class TierResult(BaseModel):
     score: float = Field(ge=0.0, le=1.0)
     reasoning: str
     metrics: dict[str, float]
-```
+```python
 
 ## Own Control Flow
 

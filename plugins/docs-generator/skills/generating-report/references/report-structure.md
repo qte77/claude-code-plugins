@@ -59,7 +59,7 @@ period: YYYY-MM-DD to YYYY-MM-DD
 | Metric | Previous | Current | Target |
 |--------|----------|---------|--------|
 | <Metric 1> | <Value> | <Value> | <Value> |
-```
+```yaml
 
 ## Assessment Report
 
@@ -185,7 +185,7 @@ severity: SEV-1 | SEV-2 | SEV-3 | SEV-4
 ## Lessons Learned
 
 <Key takeaways for the team and organization.>
-```
+```yaml
 
 ## Executive Summary
 

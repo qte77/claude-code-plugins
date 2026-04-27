@@ -15,7 +15,7 @@ Embedded firmware development plugin covering the full compliance-to-traceabilit
 
 The skills form a lifecycle pipeline. Each skill's output feeds the next:
 
-```
+```text
 checking-compliance → implementing-firmware → tracing-requirements
                       auditing-pcb-design (standalone)
 ```
@@ -30,4 +30,4 @@ clang-tidy, clang-format, sqlite3, doxygen) via copy-if-not-exists.
 
 ```bash
 claude plugin install embedded-dev@qte77-claude-code-plugins
-```
+```text

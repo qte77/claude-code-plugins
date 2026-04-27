@@ -19,7 +19,7 @@ sentence-transformers, store in FAISS, and retrieve via hybrid search.
 
 ## Architecture Overview
 
-```
+```text
 Document --> Parser --> Pages --> TreeIndex (PageIndex)
                                      |
                                      v
@@ -86,7 +86,7 @@ class TreeNode:
     children: list[TreeNode]
 
     def filter(self, predicate: Callable) -> TreeNode | None: ...
-```
+```text
 
 ## Dependencies
 
@@ -113,6 +113,6 @@ dependencies = [
 
 ```bash
 make validate
-```
+```text
 
 All type checks, linting, and tests must pass.
