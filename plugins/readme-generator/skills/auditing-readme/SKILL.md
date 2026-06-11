@@ -23,6 +23,29 @@ Parse `$ARGUMENTS`:
 - `account <username>` — audit a GitHub user profile README
 - `org <orgname>` — audit an organization profile README
 
+## Workflow Mode (batch `repos` scope)
+
+When scope is `repos` with **more than ~3 targets** and the **Workflow tool is available**,
+fan the audit out in parallel instead of looping turn-by-turn:
+
+1. Resolve the glob to a concrete list: `gh repo list <owner> --json nameWithOwner`, filtered by pattern.
+2. Drive the bundled workflow (its instruction to call Workflow is the opt-in — no `ultracode` needed):
+
+   ```
+   Workflow({
+     scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/audit-repos.js",
+     args: { repos: ["owner/a", "owner/b"],
+             skillPath: "${CLAUDE_PLUGIN_ROOT}/skills/auditing-readme/SKILL.md" }
+   })
+   ```
+
+   `args` is delivered to the script as a JSON string (the script parses it). Alternatively pass
+   `{ owner, pattern, skillPath }` and let the workflow's Discover phase resolve the list.
+3. Render the returned `perRepo` findings and `consistency` observations with the Phase 4 format.
+
+Fall back to the inline Phases 2–4 (one repo at a time) when the Workflow tool is unavailable.
+The workflow's agents are **read-only**, so the only permission to pre-grant is the Workflow tool.
+
 ## Phase 2: Fetch READMEs
 
 - Local repos: read README.md directly
