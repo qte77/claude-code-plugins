@@ -64,6 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **cc-meta**: `subagent transcripts` as `synthesizing-cc-bigpicture` data source; workflow updated with dedicated bullet (#98)
 - **cc-meta**: 4-tier progressive retrieval for `synthesizing-cc-bigpicture` (metadata → summaries → deep reads → full scan) in `references/progressive-retrieval.md` (#99)
 - **codebase-tools**: `hardening-codebase` skill — 7-phase quality tightening workflow (audit → tighten → fix → tests → review → refactor → ship) with language-specific lint progressions and 3-agent review framework (#102)
+- **readme-generator**: `auditing-readme` batch `repos` scope can now drive a bundled dynamic workflow (`workflows/audit-repos.js`) — fans the README checklist across many repos in parallel via `Workflow({scriptPath, args})`, then runs one cross-repo consistency pass. The skill gates to the workflow when the Workflow tool is available and falls back to the inline per-repo loop otherwise; workflow agents are read-only. First demonstration that a marketplace plugin can ship a dynamic workflow (referenced by `scriptPath`, since `workflows/` is not a plugin component). Plugin version 1.0.1 → 1.1.0 (#162)
 
 #### New agents (#38-#112)
 
