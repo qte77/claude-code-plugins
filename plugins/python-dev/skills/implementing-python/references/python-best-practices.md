@@ -274,12 +274,10 @@ async def process_multiple_items(items: list[str]) -> list[dict]:
 
 For comprehensive testing guidance, see:
 
-- **[testing-strategy.md](testing-strategy.md)** - What to test,
-  TDD/BDD approach, mocking strategy, test organization
-- **[tdd-best-practices.md](tdd-best-practices.md)** - Red-Green-Refactor
+- **[testing-strategy.md](../../testing-python/references/testing-strategy.md)** - What to test,
+  TDD approach, mocking strategy, test organization
+- **[tdd-best-practices.md](../../testing-python/references/tdd-best-practices.md)** - Red-Green-Refactor
   cycle, AAA structure, test patterns
-- **[bdd-best-practices.md](bdd-best-practices.md)** - Given-When-Then
-  scenarios for stakeholder collaboration
 
 For all make recipes and validation commands, see the project's CONTRIBUTING.md.
 

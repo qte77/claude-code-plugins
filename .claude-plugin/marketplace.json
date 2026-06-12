@@ -12,7 +12,7 @@
       "name": "python-dev",
       "source": "./plugins/python-dev",
       "description": "Python implementation, testing, code review skills, and scaffold adapter for Ralph loop",
-      "version": "2.1.3"
+      "version": "2.1.4"
     },
     {
       "name": "commit-helper",
@@ -48,7 +48,7 @@
       "name": "mas-design",
       "source": "./plugins/mas-design",
       "description": "Multi-agent system plugin design and OWASP MAESTRO security framework",
-      "version": "1.1.1"
+      "version": "1.1.2"
     },
     {
       "name": "website-audit",
@@ -72,7 +72,7 @@
       "name": "embedded-dev",
       "source": "./plugins/embedded-dev",
       "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "name": "workspace-setup",

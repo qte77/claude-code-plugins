@@ -135,6 +135,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **marketplace**: Use github source for `cc-voice` plugin (installable from external repo, not local path) (#80)
 - **python-dev**: `testing-python/SKILL.md` content-hash drift from #94 merge — CI `verify-skill-hashes` would have blocked next PR; regenerated via `.github/scripts/compute-skill-hashes.sh --update` as part of #107
+- **broken md links** (`lint / links` green): repaired cross-skill references in `mas-design` (`mas-security.md` ↔ `mas-design-principles.md` now use `../../<skill>/references/` paths); repointed `python-dev` `python-best-practices.md` testing links to `testing-python/references/` and dropped the BDD link (skill is TDD-only); removed the rotted EU Blue Guide URL from `embedded-dev` `compliance-standards.md`. Added `.lycheeignore` for the FCC page (HTTP/2 crawler error, valid for humans) and governance/template files that forward-reference consumer-repo `CONTRIBUTING.md`/`README.md`. Plugin versions: mas-design 1.1.1 → 1.1.2, python-dev 2.1.3 → 2.1.4, embedded-dev 1.2.2 → 1.2.3 (#163)
 
 ### Removed
 

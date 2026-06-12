@@ -113,6 +113,5 @@ Always applicable: RoHS + REACH (EU)
 
 ## References
 
-- [EU Blue Guide 2022 — Implementation of EU product rules](https://single-market-economy.ec.europa.eu/single-market/goods/blue-guide_en)
 - [FCC Equipment Authorization](https://www.fcc.gov/engineering-technology/laboratory-division/general/equipment-authorization)
 - [IEC 62368-1 overview](https://www.iec.ch/homepage)
