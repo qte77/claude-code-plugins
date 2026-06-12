@@ -4,7 +4,7 @@ Code security auditing plugin with three skills for repo-wide audits. For diff-s
 
 ## Skills
 
-- **auditing-code-security** — OWASP Top 10 vulnerability audit with structured findings
+- **auditing-code-security** — OWASP Top 10 vulnerability audit with structured findings; full-codebase scope can fan the ten categories out as a parallel dynamic workflow (`workflows/audit-owasp.js`)
 - **scanning-dependencies** — Dependency vulnerability scanning, license compliance, supply chain risk
 - **detecting-secrets** — Secrets and credential detection across files and git history
 

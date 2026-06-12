@@ -153,7 +153,7 @@
       "name": "security-audit",
       "source": "./plugins/security-audit",
       "description": "Code security audit \u2014 OWASP Top 10, dependency vulnerabilities, secrets detection",
-      "version": "1.0.2"
+      "version": "1.1.0"
     },
     {
       "name": "makefile-core",
