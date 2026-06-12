@@ -102,7 +102,7 @@ v1.0](https://genai.owasp.org/resource/multi-agentic-system-threat-modeling-guid
 ## Security Checklist
 
 For design quality checks, see the [Design
-Checklist](mas-design-principles.md#agentplugin-design-checklist).
+Checklist](../../designing-mas-plugins/references/mas-design-principles.md#agentplugin-design-checklist).
 
 ### Input Validation
 
