@@ -1,0 +1,19 @@
+# Links excluded from the `lint / links` (lychee) check — valid by design but
+# unverifiable in CI. Read additively on top of the shared qte77/.github
+# lychee.toml. Each line is a regex matched against the (resolved) link.
+
+# External pages valid for human readers but unreliable for the CI crawler —
+# statuses/timeouts not covered by the shared accept list (200/202/204/301/401/403/429):
+# the FCC page returns an HTTP/2 protocol error, insta.rs intermittently returns
+# 503, and the awwwards.com design showcase stalls the crawler until timeout.
+https://www\.fcc\.gov/engineering-technology/laboratory-division/general/equipment-authorization
+https://insta\.rs
+https://www\.awwwards\.com
+
+# Governance & template files forward-reference sibling CONTRIBUTING.md / README.md
+# that exist in the CONSUMER repo, not in this source tree. They are deployed by
+# workspace-setup / workspace-sandbox and docs-governance/templates via
+# copy-on-init, so the relative links resolve only after deployment.
+CONTRIBUTING\.md$
+governance/README\.md$
+templates/README\.md$

@@ -64,6 +64,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **cc-meta**: `subagent transcripts` as `synthesizing-cc-bigpicture` data source; workflow updated with dedicated bullet (#98)
 - **cc-meta**: 4-tier progressive retrieval for `synthesizing-cc-bigpicture` (metadata → summaries → deep reads → full scan) in `references/progressive-retrieval.md` (#99)
 - **codebase-tools**: `hardening-codebase` skill — 7-phase quality tightening workflow (audit → tighten → fix → tests → review → refactor → ship) with language-specific lint progressions and 3-agent review framework (#102)
+- **readme-generator**: `auditing-readme` batch `repos` scope can now drive a bundled dynamic workflow (`workflows/audit-repos.js`) — fans the README checklist across many repos in parallel via `Workflow({scriptPath, args})`, then runs one cross-repo consistency pass. The skill gates to the workflow when the Workflow tool is available and falls back to the inline per-repo loop otherwise; workflow agents are read-only. First demonstration that a marketplace plugin can ship a dynamic workflow (referenced by `scriptPath`, since `workflows/` is not a plugin component). Plugin version 1.0.1 → 1.1.0 (#162)
+- **security-audit**: `auditing-code-security` full-codebase scope can now drive a bundled dynamic workflow (`workflows/audit-owasp.js`) — fans the ten OWASP categories (A01–A10) out across read-only agents in parallel, each returning structured findings rendered with the skill's Output Format. The skill gates to the workflow when the Workflow tool is available and falls back to the inline per-category scan otherwise. Second plugin-bundled workflow; the edited stable skill gains a `content-hash`. Plugin version 1.0.2 → 1.1.0 (#164)
 
 #### New agents (#38-#112)
 
@@ -134,6 +136,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **marketplace**: Use github source for `cc-voice` plugin (installable from external repo, not local path) (#80)
 - **python-dev**: `testing-python/SKILL.md` content-hash drift from #94 merge — CI `verify-skill-hashes` would have blocked next PR; regenerated via `.github/scripts/compute-skill-hashes.sh --update` as part of #107
+- **broken md links** (`lint / links` green): repaired cross-skill references in `mas-design` (`mas-security.md` ↔ `mas-design-principles.md` now use `../../<skill>/references/` paths); repointed `python-dev` `python-best-practices.md` testing links to `testing-python/references/` and dropped the BDD link (skill is TDD-only); removed the rotted EU Blue Guide URL from `embedded-dev` `compliance-standards.md`. Added `.lycheeignore` for the FCC page (HTTP/2 crawler error, valid for humans) and governance/template files that forward-reference consumer-repo `CONTRIBUTING.md`/`README.md`. Plugin versions: mas-design 1.1.1 → 1.1.2, python-dev 2.1.3 → 2.1.4, embedded-dev 1.2.2 → 1.2.3 (#163)
 
 ### Removed
 

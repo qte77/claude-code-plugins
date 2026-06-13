@@ -1,12 +1,12 @@
 ---
 name: auditing-website-accessibility
-description: Audits website accessibility for WCAG 2.1 AA compliance, generating findings and code fixes. Use when reviewing accessibility, keyboard navigation, screen reader compatibility, or inclusive design.
+description: Audits website accessibility for WCAG 2.2 AA compliance, generating findings and code fixes. Use when reviewing accessibility, keyboard navigation, screen reader compatibility, or inclusive design.
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
   argument-hint: [url-or-file-path]
   stability: stable
-  content-hash: sha256:cfa2bbf458a6ad84cdd89cddbe69e4862cf20e2f320d3675df2b40554cf7cd9f
+  content-hash: sha256:74f858aeef05a3248b1ec5f9d9a36d4867c364e3150c262879e1593a3302e47b
   last-verified-cc-version: 1.0.34
 ---
 
@@ -14,7 +14,7 @@ metadata:
 
 **Target**: $ARGUMENTS
 
-Conducts focused accessibility audits against WCAG 2.1 AA and generates
+Conducts focused accessibility audits against WCAG 2.2 AA and generates
 implementable code fixes. No over-analysis.
 
 ## WCAG Quick Reference
@@ -90,8 +90,8 @@ Group fixes by: Keyboard Navigation, Screen Readers, Visual, Forms/Tables.
 
 ## Further Reading
 
-- [WCAG 2.1 Specification](https://www.w3.org/TR/WCAG21/)
-- [Understanding WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/)
-- [WCAG Techniques](https://www.w3.org/WAI/WCAG21/Techniques/)
+- [WCAG 2.2 Specification](https://www.w3.org/TR/WCAG22/)
+- [Understanding WCAG 2.2](https://www.w3.org/WAI/WCAG22/Understanding/)
+- [WCAG Techniques](https://www.w3.org/WAI/WCAG22/Techniques/)
 - [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - [axe-core Rules](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)

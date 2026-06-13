@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [file-or-directory]
   stability: stable
+  content-hash: sha256:1fe9fc0023ad3221ad15390f00036732376243b3f77f8137ebab5824ee1747d8
 ---
 
 # OWASP Top 10 Code Security Audit
@@ -26,6 +27,26 @@ metadata:
 3. **Record findings** in the output table
 4. **Assign severity** (Critical / High / Medium / Low / Info)
 5. **Propose remediation** for each finding
+
+## Workflow Mode (full-codebase scope)
+
+When auditing a **whole codebase or many modules** and the **Workflow tool is
+available**, fan the ten OWASP categories out in parallel instead of scanning
+them one after another:
+
+```
+Workflow({
+  scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/audit-owasp.js",
+  args: { scope: "<dir>",
+          skillPath: "${CLAUDE_PLUGIN_ROOT}/skills/auditing-code-security/SKILL.md" }
+})
+```
+
+`args` reaches the script as a JSON string (the script parses it). One read-only
+agent scans the scope per category (A01–A10) and returns structured findings;
+render them with the Output Format below. Fall back to the inline per-category
+scan (steps 1–5) when the Workflow tool is unavailable. The agents are
+read-only, so the only permission to pre-grant is the Workflow tool.
 
 ## OWASP Top 10 Checklist
 
