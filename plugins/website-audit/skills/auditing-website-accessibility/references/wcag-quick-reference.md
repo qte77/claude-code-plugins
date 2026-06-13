@@ -1,7 +1,8 @@
-# WCAG 2.1 AA Quick Reference
+# WCAG 2.2 AA Quick Reference
 
-Condensed checklist for auditing against WCAG 2.1 Level A and AA success
-criteria. Organized by principle (POUR).
+Condensed checklist for auditing against WCAG 2.2 Level A and AA success
+criteria. Organized by principle (POUR). WCAG 2.2 adds the criteria marked
+"new in 2.2" below and removes 4.1.1 Parsing (now obsolete).
 
 ## 1. Perceivable
 
@@ -70,6 +71,8 @@ criteria. Organized by principle (POUR).
 - **2.4.5 Multiple Ways** (AA) — Multiple paths to pages (nav, search, sitemap)
 - **2.4.6 Headings and Labels** (AA) — Headings and labels are descriptive
 - **2.4.7 Focus Visible** (AA) — Keyboard focus indicator is visible
+- **2.4.11 Focus Not Obscured (Minimum)** (AA, new in 2.2) — Focused element
+  not entirely hidden by sticky headers/footers
 
 ### Input Modalities (2.5)
 
@@ -80,6 +83,10 @@ criteria. Organized by principle (POUR).
 - **2.5.3 Label in Name** (A) — Accessible name contains visible label text
 - **2.5.4 Motion Actuation** (A) — Motion-triggered actions have UI
   alternatives
+- **2.5.7 Dragging Movements** (AA, new in 2.2) — Drag actions have a
+  single-pointer alternative
+- **2.5.8 Target Size (Minimum)** (AA, new in 2.2) — Targets at least
+  24x24 CSS px, or have adequate spacing
 
 ## 3. Understandable
 
@@ -95,6 +102,8 @@ criteria. Organized by principle (POUR).
 - **3.2.2 On Input** (A) — Input doesn't trigger unexpected context change
 - **3.2.3 Consistent Navigation** (AA) — Navigation consistent across pages
 - **3.2.4 Consistent Identification** (AA) — Same function = same label
+- **3.2.6 Consistent Help** (A, new in 2.2) — Help mechanisms appear in a
+  consistent order across pages
 
 ### Input Assistance (3.3)
 
@@ -103,6 +112,10 @@ criteria. Organized by principle (POUR).
 - **3.3.3 Error Suggestion** (AA) — Suggested corrections for errors
 - **3.3.4 Error Prevention (Legal/Financial)** (AA) — Submissions
   reversible, checked, or confirmed
+- **3.3.7 Redundant Entry** (A, new in 2.2) — Don't ask for the same
+  information twice in a process
+- **3.3.8 Accessible Authentication (Minimum)** (AA, new in 2.2) — No
+  cognitive-function test without an alternative
 
 ## 4. Robust
 
