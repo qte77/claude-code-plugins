@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Claude Code utility plugins for development, architecture, auditing, documentation, market research, and CC meta-skills",
-    "version": "3.6.0"
+    "version": "3.7.0"
   },
   "plugins": [
     {
@@ -53,8 +53,8 @@
     {
       "name": "website-audit",
       "source": "./plugins/website-audit",
-      "description": "Website design research, usability audit, and WCAG accessibility audit skills",
-      "version": "1.0.2"
+      "description": "Website SEO/GEO, design research, usability, and WCAG accessibility audit skills",
+      "version": "1.1.0"
     },
     {
       "name": "docs-generator",
