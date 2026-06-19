@@ -4,6 +4,8 @@
 
 Claude Code plugin marketplace — 25 plugins, 60 skills, 2 agents from production workflows.
 
+**Write-up:** the plugin layer of an open agentic coding harness — [An Open Agentic Coding Harness](https://qte77.github.io/open-agentic-coding-harness/).
+
 [![License](https://img.shields.io/badge/license-Apache--2.0-58f4c2.svg)](LICENSE)
 ![Version](https://img.shields.io/badge/version-3.3.0-58f4c2.svg)
 [![CodeQL](https://github.com/qte77/claude-code-plugins/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/claude-code-plugins/actions/workflows/codeql.yaml)
