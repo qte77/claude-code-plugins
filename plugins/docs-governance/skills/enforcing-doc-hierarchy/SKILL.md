@@ -16,11 +16,17 @@ violations with user approval.
 
 ## Phase 1: Discover
 
-Read the project's hierarchy declaration. Look for (in order):
+The authoritative hierarchy lives where the
+[qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md)
+(SoT) places it: `CONTRIBUTING.md`'s `## Documentation hierarchy` statement. The canon's model is
+`README` = the project contract, `CONTRIBUTING` = conventions + the hierarchy statement,
+`AGENTS` = behavioural rules, `CLAUDE` = a one-line `@AGENTS.md` pointer (never a copy).
 
-1. `CONTRIBUTING.md` — "Documentation Hierarchy" section (table or list)
+Read the project's declaration, looking in order:
+
+1. `CONTRIBUTING.md` — `## Documentation hierarchy` section (canonical location; table or list)
 2. `AGENTS.md` — "Key references" or "Information sources" section
-3. `README.md` — "Documentation" section (links to authoritative docs)
+3. `README.md` — "Documentation" / "Refs" section (links to authoritative docs)
 
 Extract:
 
@@ -28,7 +34,8 @@ Extract:
 - **Authority map**: which doc owns which content type
 - **Anti-redundancy rule**: stated or implied (default: no duplication across docs)
 
-If no hierarchy is declared, report that as the first finding and stop.
+If no hierarchy is declared, report that as the first finding and stop. Treat the canon model above
+as the expected baseline and flag deviations from it.
 
 ## Phase 2: Audit
 

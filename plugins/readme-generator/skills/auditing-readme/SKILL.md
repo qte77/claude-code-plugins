@@ -55,18 +55,24 @@ The workflow's agents are **read-only**, so the only permission to pre-grant is 
 
 ## Phase 3: Run Checklist
 
-### Base Repo Checklist
+### Base Repo Checklist — qte77 doc-structure canon
+
+Derives from the [canon contract](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md)
+(SoT) — audit against it, never redefine it.
 
 | # | Check | Level | Pass Condition |
 |---|-------|-------|----------------|
-| R1 | Title | required | H1 heading exists, matches repo name |
-| R2 | Description | required | Non-empty text within 3 lines of H1 |
-| R3 | Version badge | recommended | `![Version]` badge present |
-| R3b | Standard badge set | recommended | For GHA repos: version, license, CI status, CodeFactor, CodeQL, Dependabot, ruff/pytest or BATS (applicable subset) |
-| R4 | Install/Usage | required | Section with heading containing "install", "usage", "quick start", or "getting started" |
-| R5 | License | required | Section containing "license" with link to `LICENSE` (not `LICENSE.md`) |
-| R6 | Internal links valid | required | All `[text](relative-path)` links resolve to existing files |
-| R7 | LICENSE file name | required | License file must be named `LICENSE` (not `LICENSE.md`) |
+| C1 | Hero | required | H1 name + one-line tagline (what · who-for · positioning); optional wordmark is theme-aware + self-hosted |
+| C2 | Section order | required | Value-first: Hero → Badges → What → How → Why → Refs → License → \<tail\> |
+| C3 | Badges | required | Order License → Version → CI; License & Version shields.io static `blue`; Version linked to `CHANGELOG.md`; status badges native color; left-aligned, no `<p align="center">` |
+| C4 | What | required | `## What` present, ≤ ~7 reader-value bullets |
+| C5 | How | required | `## How` minimal run example + link out to `docs/` |
+| C6 | Why | required | `## Why` 2–4 lines (incumbent → gap → differentiation) |
+| C7 | Refs | required | `## Refs` links only, no prose |
+| C8 | License | required | `## License` SPDX id + link to `LICENSE` (not `LICENSE.md`) |
+| C9 | Front-door | recommended | each section answers its one question; depth links out to `docs/`, not inlined |
+| C10 | Screenshots | optional | if present: collapsed `<details>` at bottom of What, theme-aware, self-hosted at `assets/images/` |
+| C11 | Links valid | required | all `[text](relative-path)` links resolve; LICENSE file named `LICENSE` (not `LICENSE.md`) |
 
 ### GHA Extension (if `action.yml`/`action.yaml` exists)
 
@@ -121,13 +127,15 @@ Summary: X/Y required pass, Z/W recommended pass.
 
 ### Consistency Checks (batch only)
 
-- Input table column order consistent?
-- Badge style/placement consistent?
-- Section naming consistent?
+- Section order matches the canon (Hero → Badges → What → How → Why → Refs → License → tail)?
+- Badge order/colors consistent (License → Version → CI; static `blue` / native status)?
+- Canon section names used (`## What` / `## How` / `## Why` / `## Refs`, not `## Resources`)?
 - License format consistent (`LICENSE` not `LICENSE.md`)?
 
 ## Rules
 
 - Never modify files during an audit — read-only
 - Report facts, not opinions
+- **Derive from the canon; never invent divergent structure** — qte77/qte77
+  `docs/doc-structure.md` is authoritative
 - License file MUST be `LICENSE` (not `LICENSE.md`) — flag as FAIL if `.md` variant used

@@ -1,0 +1,20 @@
+# Local lychee config for the `lint / links` check.
+#
+# The shared qte77/.github lint workflow only fetches its own lychee.toml when a
+# repo has none, so this file replaces it — it MIRRORS the shared `accept` list
+# (keep in sync) and adds repo-specific file-level excludes. URL-level excludes
+# live in .lycheeignore (read additively).
+
+# Bot-blocking / rate-limiting / redirect status codes treated as success
+# (mirrors qte77/.github/lychee.toml).
+accept = [200, 202, 204, 301, 401, 403, 429]
+
+# Skeleton & template files carry placeholder / forward-reference links
+# (docs/*, CONTRIBUTING.md, README.md, assets/images/*) that resolve only in a
+# consumer repo after deployment — never in this source tree. Exclude the files
+# wholesale rather than each placeholder link.
+exclude_path = [
+  "plugins/docs-governance/templates",
+  "plugins/workspace-setup/governance",
+  "plugins/workspace-sandbox/governance",
+]

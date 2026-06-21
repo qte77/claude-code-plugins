@@ -57,7 +57,7 @@ If no scope is given, default to `repo` for the current working directory.
 
 ## Phase 3: Apply Template
 
-See `references/readme-templates.md` for the four template snippets and per-scope conventions (GitHub Action, Library/Application, Account, Organization).
+See `references/readme-templates.md` for the four template snippets and per-scope conventions (GitHub Action, Library/Application, Account, Organization). Repo READMEs follow the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md): value-first order Hero → Badges → What → How → Why → Refs → License → tail; badges License → Version → CI (static `blue` / native status, Version linked to `CHANGELOG.md`).
 
 Pick the template matching the scope detected in Phase 1 and the project type detected in Phase 2.
 
@@ -76,3 +76,4 @@ Pick the template matching the scope detected in Phase 1 and the project type de
 - Prefer brevity — every sentence should earn its place
 - For org READMEs: omit private repos unless the user explicitly asks
 - License file is always `LICENSE` (never `LICENSE.md`)
+- Repo READMEs derive from the qte77 doc-structure canon — never invent a divergent structure
