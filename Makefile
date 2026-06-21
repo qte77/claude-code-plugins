@@ -3,7 +3,7 @@
 
 .SILENT:
 .ONESHELL:
-.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts sync_refs check_sync help
+.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts sync_refs sync_canon sync_governance check_sync help
 .DEFAULT_GOAL := help
 
 
@@ -28,7 +28,18 @@ setup_npm_tools:  ## Install markdownlint for linting skill markdown
 # MARK: sync
 
 
-sync: sync_rules sync_scripts sync_refs  ## Sync .claude/ SoT into plugin dirs
+sync: sync_rules sync_scripts sync_refs sync_canon sync_governance  ## Sync .claude/ SoT into plugin dirs
+
+CANON_README_URL := https://raw.githubusercontent.com/qte77/qte77/main/docs/templates/README.template.md
+DG_README := plugins/docs-governance/templates/README.md
+
+define DG_README_HEADER
+<!-- DERIVED — do not hand-edit. Source of truth:
+     https://raw.githubusercontent.com/qte77/qte77/main/docs/templates/README.template.md
+     Regenerate with 'make sync'; verify with 'make check_sync'. Tracking: qte77/claude-code-plugins#170 -->
+<!-- @sync:begin (content below mirrors the SoT verbatim) -->
+endef
+export DG_README_HEADER
 
 sync_rules:  ## Sync rules from .claude/rules/ to plugin copies (all consumers use symlinks; this is a no-op kept for the `sync` target wiring)
 	@true
@@ -40,6 +51,15 @@ sync_refs:  ## Sync shared references within plugins (implementing → reviewing
 	cp plugins/python-dev/skills/implementing-python/references/python-best-practices.md plugins/python-dev/skills/reviewing-code/references/
 	cp plugins/rust-dev/skills/implementing-rust/references/rust-best-practices.md plugins/rust-dev/skills/reviewing-rust/references/
 	cp plugins/go-dev/skills/implementing-go/references/go-best-practices.md plugins/go-dev/skills/reviewing-go/references/
+
+sync_canon:  ## Regenerate docs-governance README template from the qte77 doc-structure canon
+	printf '%s\n' "$$DG_README_HEADER" > $(DG_README)
+	curl -fsSL $(CANON_README_URL) >> $(DG_README)
+	echo "Synced $(DG_README) from the qte77 canon."
+
+sync_governance:  ## Mirror docs-governance templates into the workspace-setup deploy set
+	cp $(DG_README) plugins/workspace-setup/governance/README.md
+	cp plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-setup/governance/CONTRIBUTING.md
 
 check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@echo "Checking sync..."
@@ -61,6 +81,10 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@diff -q plugins/python-dev/skills/implementing-python/references/python-best-practices.md plugins/python-dev/skills/reviewing-code/references/python-best-practices.md
 	@diff -q plugins/rust-dev/skills/implementing-rust/references/rust-best-practices.md plugins/rust-dev/skills/reviewing-rust/references/rust-best-practices.md
 	@diff -q plugins/go-dev/skills/implementing-go/references/go-best-practices.md plugins/go-dev/skills/reviewing-go/references/go-best-practices.md
+	@echo "Checking canon + governance sync..."
+	@canon=$$(mktemp); curl -fsSL "$(CANON_README_URL)" -o "$$canon"; awk 'f{print} /@sync:begin/{f=1}' "$(DG_README)" | diff -q - "$$canon" || { echo "ERROR: $(DG_README) drifted from the qte77 canon — run 'make sync'"; rm -f "$$canon"; exit 1; }; rm -f "$$canon"
+	@diff -q "$(DG_README)" plugins/workspace-setup/governance/README.md
+	@diff -q plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-setup/governance/CONTRIBUTING.md
 	@echo "All copies in sync."
 
 

@@ -1,19 +1,16 @@
-# Links excluded from the `lint / links` (lychee) check — valid by design but
-# unverifiable in CI. Read additively on top of the shared qte77/.github
-# lychee.toml. Each line is a regex matched against the (resolved) link.
+# URL-level excludes for the `lint / links` (lychee) check, read additively on
+# top of the local lychee.toml. Each line is a regex matched against the
+# (resolved) link. Skeleton/template FILES are excluded wholesale via
+# `exclude_path` in lychee.toml; these patterns cover the remaining
+# by-design / CI-hostile links.
 
 # External pages valid for human readers but unreliable for the CI crawler —
-# statuses/timeouts not covered by the shared accept list (200/202/204/301/401/403/429):
-# the FCC page returns an HTTP/2 protocol error, insta.rs intermittently returns
-# 503, and the awwwards.com design showcase stalls the crawler until timeout.
+# statuses/timeouts not in the accept list: the FCC page returns an HTTP/2 error,
+# insta.rs intermittently returns 503, awwwards.com stalls until timeout.
 https://www\.fcc\.gov/engineering-technology/laboratory-division/general/equipment-authorization
 https://insta\.rs
 https://www\.awwwards\.com
 
-# Governance & template files forward-reference sibling CONTRIBUTING.md / README.md
-# that exist in the CONSUMER repo, not in this source tree. They are deployed by
-# workspace-setup / workspace-sandbox and docs-governance/templates via
-# copy-on-init, so the relative links resolve only after deployment.
+# Root AGENTS.md forward-references a repo-root CONTRIBUTING.md (governance
+# convention) that resolves in consumer repos, not in this marketplace source.
 CONTRIBUTING\.md$
-governance/README\.md$
-templates/README\.md$
