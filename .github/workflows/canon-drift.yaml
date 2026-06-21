@@ -1,0 +1,62 @@
+name: Canon Drift Check
+
+# Weekly guard that the docs-governance derived templates still match the qte77
+# doc-structure canon (SoT). The make check_sync diff-guard runs only locally;
+# this gives it CI teeth. Opens a single sticky issue on drift.
+
+on:
+  schedule:
+    - cron: "0 8 * * 1" # Mondays 08:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    name: Diff derived templates against the qte77 canon
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Compare derived templates against the canon SoT
+        id: drift
+        shell: bash
+        run: |
+          set -uo pipefail
+          base="https://raw.githubusercontent.com/qte77/qte77/main/docs/templates"
+          status=0
+          : > drift.md
+          compare() {
+            src="$1"; dst="$2"
+            canon="$(mktemp)"
+            if ! curl -fsSL "$base/$src" -o "$canon"; then
+              printf '### Could not fetch %s from the canon\n\n' "$src" >> drift.md
+              status=1; return
+            fi
+            if ! awk 'f{print} /@sync:begin/{f=1}' "$dst" | diff -u - "$canon" > "$canon.diff" 2>&1; then
+              printf '### %s drifted from %s\n\n```diff\n' "$dst" "$src" >> drift.md
+              cat "$canon.diff" >> drift.md
+              printf '```\n\n' >> drift.md
+              status=1
+            fi
+          }
+          compare README.template.md plugins/docs-governance/templates/README.md
+          compare CONTRIBUTING.template.md plugins/docs-governance/templates/CONTRIBUTING.md
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Open issue on drift
+        if: steps.drift.outputs.status != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$(gh issue list --state open --search 'Canon drift in:title' --json number --jq 'length')" != "0" ]; then
+            echo "An open canon-drift issue already exists; skipping."
+            exit 0
+          fi
+          gh issue create \
+            --title "Canon drift: docs-governance templates differ from the qte77 canon" \
+            --body-file drift.md
