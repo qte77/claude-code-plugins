@@ -1,61 +1,64 @@
+<!-- DERIVED — do not hand-edit. Source of truth:
+     https://raw.githubusercontent.com/qte77/qte77/main/docs/templates/CONTRIBUTING.template.md
+     Regenerate with 'make sync'; verify with 'make check_sync'. Tracking: qte77/claude-code-plugins#170 -->
+<!-- @sync:begin (content below mirrors the SoT verbatim) -->
+<!--
+  Canonical CONTRIBUTING skeleton for qte77 repos. Copy to your repo root and fill in.
+  Contract & rules: https://github.com/qte77/qte77/blob/main/docs/doc-structure.md
+  Keep the `## Documentation hierarchy` statement (the doc-hierarchy SoT lives here). Keep
+  `## Releasing` only if the repo cuts versioned releases; trim sections that don't apply.
+-->
+
 # Contributing
 
-Technical workflows, coding standards, and command references for this project.
-For behavioral rules and decision frameworks, see [AGENTS.md](AGENTS.md).
+For agent behavioural rules see [AGENTS.md](AGENTS.md).
 
 ## Documentation hierarchy
 
-One audience per file; no duplication. Derived from the
-[qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md).
+One audience per file — reference, don't duplicate (estate contract: [doc-structure.md](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md)):
 
 | File | Audience | Owns |
 | --- | --- | --- |
-| `README.md` | users / evaluators | the project contract (value-first front door) |
-| `CONTRIBUTING.md` | contributors | commands, conventions, this hierarchy statement |
-| `AGENTS.md` | AI agents | behavioural rules, decision framework |
-| `CLAUDE.md` | Claude Code loader | a one-line `@AGENTS.md` pointer — never a copy |
+| [README.md](README.md) | users / evaluators | what this is, why, how — the front door |
+| CONTRIBUTING.md (this file) | contributors | workflow, commands, conventions, releasing |
+| [AGENTS.md](AGENTS.md) | AI agents | behavioural rules, decision frameworks (`CLAUDE.md` loads the same) |
+| [CHANGELOG.md](CHANGELOG.md) | everyone | notable changes by version |
 
-## Development Setup
+## Commands
 
-<!-- Project-specific setup commands. Common patterns:
-- `make setup` — install dev dependencies
-- `make setup_claude_code` — install Claude Code CLI
-- Document any required env vars or external services
--->
+```bash
+# the repo's build / test / lint entry points, e.g.
+make help
+markdownlint $(git ls-files '*.md')
+lychee --offline $(git ls-files '*.md')
+```
 
-## Testing
+## Conventional Commits
 
-<!-- Test framework and commands. Examples:
-- `make test_all` — run full test suite
-- `make test_single FILE=<path>` — run a specific test
-- Coverage thresholds and how to view reports
--->
+`feat`, `fix`, `docs`, `chore`, `refactor`. Optional scope: `feat(SCOPE): ...`. PR titles match.
 
-## Code Style
+## Branches
 
-<!-- Lint and format commands. Examples:
-- `make ruff` (Python) / `make fmt` (Go) / `npm run lint` (TS)
-- Static type checking command
-- Style guide reference (PEP 8, Google style, etc.)
--->
+- `feat/TOPIC`, `fix/TOPIC`, `docs/TOPIC`, `chore/TOPIC`
+- Squash-merge is default. Force-push only with `--force-with-lease`, never to `main`.
 
-## Pre-commit Checklist
+## CHANGELOG
 
-1. <!-- format/lint command -->
-2. <!-- type-check command -->
-3. <!-- test command -->
-4. Update documentation if patterns changed
-5. Update CHANGELOG.md for non-trivial changes
+Add an entry under `[Unreleased]` for any consumer-visible change; lead with the file path. (Or use `changelog.d/` fragments via `make changelog_new` if the repo uses scriv.)
 
-## Pull Requests
+## Releasing
 
-- **Title**: Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`)
-- **Body**: detailed summary of purpose + test plan checklist
-- Link related issues by number
-- Provide screenshots for UI changes
+<!-- For repos that cut versioned releases. Delete this section for profile / docs / action-only repos. -->
 
-## Documentation
+Semi-automatic: a **human-authored** bump PR (so the merge is a real-user event → no bot `action_required` gotcha), automatic tag, one-command publish. SemVer; the version source of truth lives in the package manifest, mirrored in the README version badge (`-blue`).
 
-- Apply [markdownlint rules](https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md)
-- Use ISO 8601 timestamps (`YYYY-MM-DDTHH:MM:SSZ`)
-- Update AGENTS.md when introducing new agent patterns
+1. Release PR: bump with the repo's tool (`uv run bump-my-version bump PART`, `npm version PART --no-git-tag-version`, …), update the README badge, and roll `## [Unreleased]` → `## [X.Y.Z] - DATE` in `CHANGELOG.md` (or `scriv collect`).
+2. Merge → `tag-release` tags `vX.Y.Z` on the version change.
+3. Optionally run `publish-release` for a GitHub Release from the matching `CHANGELOG.md` block. Tag-only is fine.
+
+## Pre-merge
+
+1. `markdownlint` clean
+2. `lychee --offline` clean
+3. CHANGELOG `[Unreleased]` updated
+4. Conventional Commits title

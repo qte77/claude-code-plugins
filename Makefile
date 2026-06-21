@@ -41,6 +41,17 @@ define DG_README_HEADER
 endef
 export DG_README_HEADER
 
+CANON_CONTRIBUTING_URL := https://raw.githubusercontent.com/qte77/qte77/main/docs/templates/CONTRIBUTING.template.md
+DG_CONTRIBUTING := plugins/docs-governance/templates/CONTRIBUTING.md
+
+define DG_CONTRIBUTING_HEADER
+<!-- DERIVED — do not hand-edit. Source of truth:
+     https://raw.githubusercontent.com/qte77/qte77/main/docs/templates/CONTRIBUTING.template.md
+     Regenerate with 'make sync'; verify with 'make check_sync'. Tracking: qte77/claude-code-plugins#170 -->
+<!-- @sync:begin (content below mirrors the SoT verbatim) -->
+endef
+export DG_CONTRIBUTING_HEADER
+
 sync_rules:  ## Sync rules from .claude/rules/ to plugin copies (all consumers use symlinks; this is a no-op kept for the `sync` target wiring)
 	@true
 
@@ -52,10 +63,12 @@ sync_refs:  ## Sync shared references within plugins (implementing → reviewing
 	cp plugins/rust-dev/skills/implementing-rust/references/rust-best-practices.md plugins/rust-dev/skills/reviewing-rust/references/
 	cp plugins/go-dev/skills/implementing-go/references/go-best-practices.md plugins/go-dev/skills/reviewing-go/references/
 
-sync_canon:  ## Regenerate docs-governance README template from the qte77 doc-structure canon
+sync_canon:  ## Regenerate docs-governance README + CONTRIBUTING templates from the qte77 doc-structure canon
 	printf '%s\n' "$$DG_README_HEADER" > $(DG_README)
 	curl -fsSL $(CANON_README_URL) >> $(DG_README)
-	echo "Synced $(DG_README) from the qte77 canon."
+	printf '%s\n' "$$DG_CONTRIBUTING_HEADER" > $(DG_CONTRIBUTING)
+	curl -fsSL $(CANON_CONTRIBUTING_URL) >> $(DG_CONTRIBUTING)
+	echo "Synced $(DG_README) and $(DG_CONTRIBUTING) from the qte77 canon."
 
 sync_governance:  ## Mirror docs-governance templates into the workspace-setup deploy set
 	cp $(DG_README) plugins/workspace-setup/governance/README.md
@@ -83,6 +96,7 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@diff -q plugins/go-dev/skills/implementing-go/references/go-best-practices.md plugins/go-dev/skills/reviewing-go/references/go-best-practices.md
 	@echo "Checking canon + governance sync..."
 	@canon=$$(mktemp); curl -fsSL "$(CANON_README_URL)" -o "$$canon"; awk 'f{print} /@sync:begin/{f=1}' "$(DG_README)" | diff -q - "$$canon" || { echo "ERROR: $(DG_README) drifted from the qte77 canon — run 'make sync'"; rm -f "$$canon"; exit 1; }; rm -f "$$canon"
+	@canon=$$(mktemp); curl -fsSL "$(CANON_CONTRIBUTING_URL)" -o "$$canon"; awk 'f{print} /@sync:begin/{f=1}' "$(DG_CONTRIBUTING)" | diff -q - "$$canon" || { echo "ERROR: $(DG_CONTRIBUTING) drifted from the qte77 canon — run 'make sync'"; rm -f "$$canon"; exit 1; }; rm -f "$$canon"
 	@diff -q "$(DG_README)" plugins/workspace-setup/governance/README.md
 	@diff -q plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-setup/governance/CONTRIBUTING.md
 	@echo "All copies in sync."

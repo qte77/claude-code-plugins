@@ -5,6 +5,8 @@ compatibility: Designed for Claude Code
 metadata:
   argument-hint: [file-directory-or-full]
   allowed-tools: Read, Grep, Glob, Edit, Bash
+  stability: stable
+  content-hash: sha256:45fb467089ea1670daaa473897dd3b9b108beaf39e4319b851fdce2d678024eb
 ---
 
 # Enforce Documentation Hierarchy
