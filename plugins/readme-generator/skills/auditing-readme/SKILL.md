@@ -5,6 +5,8 @@ compatibility: Designed for Claude Code
 metadata:
   argument-hint: <scope> [target-or-glob]
   allowed-tools: Read, Grep, Glob, Bash, WebFetch, Agent
+  stability: stable
+  content-hash: sha256:5862812c4909f9f641e1c0b1f63f1d2d722677f68ecafa2304dc8f2e18bbd1ce
 ---
 
 # Audit README
@@ -64,7 +66,7 @@ Derives from the [canon contract](https://github.com/qte77/qte77/blob/main/docs/
 |---|-------|-------|----------------|
 | C1 | Hero | required | H1 name + one-line tagline (what · who-for · positioning); optional wordmark is theme-aware + self-hosted |
 | C2 | Section order | required | Value-first: Hero → Badges → What → How → Why → Refs → License → \<tail\> |
-| C3 | Badges | required | Order License → Version → CI; License & Version shields.io static `blue`; Version linked to `CHANGELOG.md`; status badges native color; left-aligned, no `<p align="center">` |
+| C3 | Badges | required | Order License → Version → CI; License & Version shields.io static `blue`; License label carries the SPDX id (e.g. `License: Apache-2.0`, not bare `license-MIT`); Version linked to `CHANGELOG.md`; status badges native color; left-aligned, no `<p align="center">` |
 | C4 | What | required | `## What` present, ≤ ~7 reader-value bullets |
 | C5 | How | required | `## How` minimal run example + link out to `docs/` |
 | C6 | Why | required | `## Why` 2–4 lines (incumbent → gap → differentiation) |
@@ -129,6 +131,7 @@ Summary: X/Y required pass, Z/W recommended pass.
 
 - Section order matches the canon (Hero → Badges → What → How → Why → Refs → License → tail)?
 - Badge order/colors consistent (License → Version → CI; static `blue` / native status)?
+- Version badge linked to `CHANGELOG.md` (flag a bare `![Version](…)`)?
 - Canon section names used (`## What` / `## How` / `## Why` / `## Refs`, not `## Resources`)?
 - License format consistent (`LICENSE` not `LICENSE.md`)?
 

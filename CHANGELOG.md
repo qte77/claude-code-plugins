@@ -124,6 +124,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **readme-generator**: `auditing-readme` + `writing-readme` rewritten to the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md) — value-first order (Hero → Badges → What → How → Why → Refs → License → tail), badges License → Version → CI (static `blue` / native status, Version linked to `CHANGELOG.md`), `## Refs` not `## Resources`, front-door rule. Plugin 1.1.0 → 1.2.0 (#170)
 - **docs-governance**: `enforcing-doc-hierarchy` discovery now points at the canon's `## Documentation hierarchy` statement (owned by `CONTRIBUTING.md`) (#170)
 - **README**: dogfooded to the canon — What (Plugins) before How (Install), new `## Why`, How fragments collapsed into one section, `Resources` → `Refs`, badges fixed to static `blue` + Version linked to `CHANGELOG.md` (closes #170)
+- **docs-governance**: `templates/CONTRIBUTING.md` now derived verbatim from the upstream `CONTRIBUTING.template.md` canon (provenance header + `@sync:begin` sentinel + `make check_sync` diff-guard), replacing the hand-written copy — closes the remote-drift gap left by #170; `enforcing-doc-hierarchy` opted into `stability: stable` (content-hash CI guard). Plugin 1.5.0 → 1.6.0 (#170 follow-up)
+- **readme-generator**: `auditing-readme` C3 now requires the SPDX id in the License badge label (`License: Apache-2.0`, not bare `license-MIT`); batch Consistency Checks flag an unlinked Version badge; skill opted into `stability: stable`. Plugin 1.2.0 → 1.2.1 (#170 follow-up)
+- **workspace-setup**: `governance/CONTRIBUTING.md` re-synced from the canon-derived template. Plugin 1.4.0 → 1.4.1 (#170 follow-up)
 
 ### Fixed
 
