@@ -69,6 +69,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **docs-governance**: `templates/README.md` — value-first README skeleton derived verbatim from the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md) with a `make check_sync` diff-guard; `templates/CONTRIBUTING.md` gains a `## Documentation hierarchy` statement. Plugin 1.4.0 → 1.5.0 (#170)
 - **workspace-setup**: SessionStart deploy set now includes canon-derived `README.md` + `CONTRIBUTING.md` skeletons. Plugin 1.3.12 → 1.4.0 (#170)
 - **Makefile / lychee**: `sync_canon` + `sync_governance` targets and `check_sync` diff-guards keep the canon-derived copies in sync with qte77/qte77; `lychee.toml` (mirrors shared `accept`) excludes skeleton/template files from link-checking (#170)
+- **CI / canon-drift**: `.github/workflows/canon-drift.yaml` — weekly diff of the docs-governance derived templates against the qte77 canon, opening a sticky issue on drift (gives the local `make check_sync` guard CI teeth) (#170 follow-up)
+- **CI / dependabot**: `.github/dependabot.yml` — weekly grouped SHA-bump PRs for GitHub Actions, keeping the SHA-pinned actions from #172 current
+- **CONTRIBUTING.md** (repo root): canon-structured contributor guide that owns the `## Documentation hierarchy` statement; removes the `.lycheeignore` CONTRIBUTING.md forward-ref workaround
 
 #### New agents (#38-#112)
 
@@ -144,6 +147,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Fixes (#38-#112)
 
 - **marketplace**: Use github source for `cc-voice` plugin (installable from external repo, not local path) (#80)
+- **marketplace**: `name` corrected `qte77-claude-code-utils` → `qte77-claude-code-plugins` to match every README / `gha-dev` install instruction; `gha-dev` `companion-plugins.md` examples updated. gha-dev 1.2.0 → 1.2.1
 - **python-dev**: `testing-python/SKILL.md` content-hash drift from #94 merge — CI `verify-skill-hashes` would have blocked next PR; regenerated via `.github/scripts/compute-skill-hashes.sh --update` as part of #107
 - **broken md links** (`lint / links` green): repaired cross-skill references in `mas-design` (`mas-security.md` ↔ `mas-design-principles.md` now use `../../<skill>/references/` paths); repointed `python-dev` `python-best-practices.md` testing links to `testing-python/references/` and dropped the BDD link (skill is TDD-only); removed the rotted EU Blue Guide URL from `embedded-dev` `compliance-standards.md`. Added `.lycheeignore` for the FCC page (HTTP/2 crawler error, valid for humans) and governance/template files that forward-reference consumer-repo `CONTRIBUTING.md`/`README.md`. Plugin versions: mas-design 1.1.1 → 1.1.2, python-dev 2.1.3 → 2.1.4, embedded-dev 1.2.2 → 1.2.3 (#163)
 

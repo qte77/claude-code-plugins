@@ -1,7 +1,7 @@
 # Companion Plugins
 
-Plugins from `qte77-claude-code-utils` that complement GHA development.
-Install with `claude plugin install <name>@qte77-claude-code-utils`.
+Plugins from `qte77-claude-code-plugins` that complement GHA development.
+Install with `claude plugin install <name>@qte77-claude-code-plugins`.
 
 ## By workflow phase
 
@@ -41,19 +41,19 @@ Install with `claude plugin install <name>@qte77-claude-code-utils`.
 **Shell-based action** (minimal):
 
 ```bash
-claude plugin install tdd-core@qte77-claude-code-utils
-claude plugin install commit-helper@qte77-claude-code-utils
-claude plugin install simplify@qte77-claude-code-utils
+claude plugin install tdd-core@qte77-claude-code-plugins
+claude plugin install commit-helper@qte77-claude-code-plugins
+claude plugin install simplify@qte77-claude-code-plugins
 ```
 
 **Python-based action** (full):
 
 ```bash
-claude plugin install python-dev@qte77-claude-code-utils
-claude plugin install tdd-core@qte77-claude-code-utils
-claude plugin install commit-helper@qte77-claude-code-utils
-claude plugin install simplify@qte77-claude-code-utils
-claude plugin install security-audit@qte77-claude-code-utils
+claude plugin install python-dev@qte77-claude-code-plugins
+claude plugin install tdd-core@qte77-claude-code-plugins
+claude plugin install commit-helper@qte77-claude-code-plugins
+claude plugin install simplify@qte77-claude-code-plugins
+claude plugin install security-audit@qte77-claude-code-plugins
 ```
 
 ## Global rules

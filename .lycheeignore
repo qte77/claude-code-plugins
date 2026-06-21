@@ -10,7 +10,3 @@
 https://www\.fcc\.gov/engineering-technology/laboratory-division/general/equipment-authorization
 https://insta\.rs
 https://www\.awwwards\.com
-
-# Root AGENTS.md forward-references a repo-root CONTRIBUTING.md (governance
-# convention) that resolves in consumer repos, not in this marketplace source.
-CONTRIBUTING\.md$
