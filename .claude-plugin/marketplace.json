@@ -1,5 +1,5 @@
 {
-  "name": "qte77-claude-code-utils",
+  "name": "qte77-claude-code-plugins",
   "owner": {
     "name": "qte77"
   },
@@ -114,7 +114,7 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.0"
+      "version": "1.2.1"
     },
     {
       "name": "tdd-core",
