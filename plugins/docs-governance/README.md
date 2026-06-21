@@ -14,7 +14,8 @@ Audit and maintain documentation hierarchy and agent governance files.
 - `AGENTS.md` — agent behavioral rules and decision framework
 - `AGENT_LEARNINGS.md` — pattern discovery log (with promotion path)
 - `AGENT_REQUESTS.md` — escalations to humans
-- `CONTRIBUTING.md` — technical workflows and command reference
+- `CONTRIBUTING.md` — technical workflows, command reference, and the `## Documentation hierarchy` statement
+- `README.md` — value-first front door, derived verbatim from the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md) and kept in sync via `make check_sync`
 
 **Pattern: copy on init, diverge freely.** Templates provide a consistent
 structural skeleton; project-specific content is filled in per repo. After

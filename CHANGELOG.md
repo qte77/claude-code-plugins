@@ -66,6 +66,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **codebase-tools**: `hardening-codebase` skill — 7-phase quality tightening workflow (audit → tighten → fix → tests → review → refactor → ship) with language-specific lint progressions and 3-agent review framework (#102)
 - **readme-generator**: `auditing-readme` batch `repos` scope can now drive a bundled dynamic workflow (`workflows/audit-repos.js`) — fans the README checklist across many repos in parallel via `Workflow({scriptPath, args})`, then runs one cross-repo consistency pass. The skill gates to the workflow when the Workflow tool is available and falls back to the inline per-repo loop otherwise; workflow agents are read-only. First demonstration that a marketplace plugin can ship a dynamic workflow (referenced by `scriptPath`, since `workflows/` is not a plugin component). Plugin version 1.0.1 → 1.1.0 (#162)
 - **security-audit**: `auditing-code-security` full-codebase scope can now drive a bundled dynamic workflow (`workflows/audit-owasp.js`) — fans the ten OWASP categories (A01–A10) out across read-only agents in parallel, each returning structured findings rendered with the skill's Output Format. The skill gates to the workflow when the Workflow tool is available and falls back to the inline per-category scan otherwise. Second plugin-bundled workflow; the edited stable skill gains a `content-hash`. Plugin version 1.0.2 → 1.1.0 (#164)
+- **docs-governance**: `templates/README.md` — value-first README skeleton derived verbatim from the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md) with a `make check_sync` diff-guard; `templates/CONTRIBUTING.md` gains a `## Documentation hierarchy` statement. Plugin 1.4.0 → 1.5.0 (#170)
+- **workspace-setup**: SessionStart deploy set now includes canon-derived `README.md` + `CONTRIBUTING.md` skeletons. Plugin 1.3.12 → 1.4.0 (#170)
+- **Makefile / lychee**: `sync_canon` + `sync_governance` targets and `check_sync` diff-guards keep the canon-derived copies in sync with qte77/qte77; `lychee.toml` (mirrors shared `accept`) excludes skeleton/template files from link-checking (#170)
 
 #### New agents (#38-#112)
 
@@ -118,6 +121,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **market-research**: Front-loaded all 8 skill descriptions with action verbs (Assess/Map/Integrate/Score/Develop/Detect/Synthesize/Generate) per skill-authoring convention; phase labels moved to suffix so ordering info is preserved. Plugin version 1.0.1 → 1.0.2.
 - **ralph**: Front-loaded `generating-interactive-userstory-md` description (verb-led "Build UserStory.md interactively..."). Plugin version 1.0.2 → 1.0.3.
 - **readme-generator**: `writing-readme` SKILL.md 197 → 70 lines (under the 150-line cap); extracted four README template snippets (GitHub Action, Library/Application, Account, Organization) and per-scope conventions to `references/readme-templates.md`. Description tightened from 290 → 225 chars and front-loaded with action verb. Plugin version 1.0.0 → 1.0.1.
+- **readme-generator**: `auditing-readme` + `writing-readme` rewritten to the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md) — value-first order (Hero → Badges → What → How → Why → Refs → License → tail), badges License → Version → CI (static `blue` / native status, Version linked to `CHANGELOG.md`), `## Refs` not `## Resources`, front-door rule. Plugin 1.1.0 → 1.2.0 (#170)
+- **docs-governance**: `enforcing-doc-hierarchy` discovery now points at the canon's `## Documentation hierarchy` statement (owned by `CONTRIBUTING.md`) (#170)
+- **README**: dogfooded to the canon — What (Plugins) before How (Install), new `## Why`, How fragments collapsed into one section, `Resources` → `Refs`, badges fixed to static `blue` + Version linked to `CHANGELOG.md` (closes #170)
 
 ### Fixed
 

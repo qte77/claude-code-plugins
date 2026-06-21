@@ -1,92 +1,112 @@
 # README templates
 
-Template snippets for the four scopes handled by `writing-readme`.
+Template snippets for the four scopes handled by `writing-readme`. Repo READMEs
+follow the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md)
+(SoT) — derive from it, never redefine it here.
 
-## Repo README — GitHub Action
+- **Canon repo order (value-first):** Hero → Badges → What → How → Why → Refs → License → \<tail\>.
+- **Badges:** License → Version → CI; License & Version are shields.io static `blue` (Version
+  linked to `CHANGELOG.md`); status badges keep the service's native color; left-aligned on
+  consecutive lines, no `<p align="center">`.
+- **Front-door rule:** each section answers its one question; depth links out to `docs/`, never inlined.
+- **Screenshots (optional):** collapsed `<details>` at the bottom of What, theme-aware, self-hosted
+  at `assets/images/`.
+
+## Repo README — canon skeleton (library / application / generic)
 
 ```markdown
 # repo-name
 
-![Version](https://img.shields.io/badge/version-X.Y.Z-8A2BE2)
-![License](https://img.shields.io/badge/license-Apache--2.0-blue)
-![Test Action](https://github.com/owner/repo/actions/workflows/test-action.yaml/badge.svg)
-![CodeFactor](https://www.codefactor.io/repository/github/owner/repo/badge)
-![CodeQL](https://github.com/owner/repo/actions/workflows/codeql.yaml/badge.svg)
-![Dependabot](https://img.shields.io/badge/dependabot-enabled-025e8c)
-<!-- Add ruff/pytest badges for Python actions, BATS badge for shell actions -->
+> repo-name is what-it-does for who — one-line positioning.
 
-One-line description.
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-X.Y.Z-blue.svg)](CHANGELOG.md)
+[![CI](https://github.com/owner/repo/actions/workflows/ci.yaml/badge.svg)](https://github.com/owner/repo/actions/workflows/ci.yaml)
 
-## Inputs
+## What
+
+- capability for the reader
+- capability
+- capability
+
+## How
+
+\`\`\`bash
+install && run
+\`\`\`
+
+See [docs/](docs/) for full setup.
+
+## Why
+
+The problem and what makes this different (incumbent → gap → how we differ).
+
+## Refs
+
+- [docs/architecture.md](docs/architecture.md) — how it's built
+- [CONTRIBUTING.md](CONTRIBUTING.md) — workflow
+- [CHANGELOG.md](CHANGELOG.md) — changes
+
+## License
+
+SPDX-id — see [LICENSE](LICENSE).
+```
+
+## Repo README — GitHub Action (tail variant)
+
+Same canon order; the Action's Inputs/Outputs/Usage are the repo-type `<tail>` under How.
+
+```markdown
+# repo-name
+
+> repo-name is what-it-does for who — one-line positioning.
+
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-X.Y.Z-blue.svg)](CHANGELOG.md)
+[![CI](https://github.com/owner/repo/actions/workflows/test-action.yaml/badge.svg)](https://github.com/owner/repo/actions/workflows/test-action.yaml)
+[![CodeFactor](https://www.codefactor.io/repository/github/owner/repo/badge)](https://www.codefactor.io/repository/github/owner/repo)
+<!-- status badges use native color; add CodeQL / ruff / BATS after CI as applicable -->
+
+## What
+
+- what the action does, for the reader (1–3 bullets)
+
+## How
+
+\`\`\`yaml
+- uses: owner/repo@vX
+  with:
+    input_name: value
+\`\`\`
+
+### Inputs
 
 | Name | Required | Default | Description |
 |------|----------|---------|-------------|
 | ... | ... | ... | ... |
 
-## Outputs
+### Outputs
 
 | Name | Description |
 |------|-------------|
 | ... | ... |
 
-## Usage
+## Refs
 
-\`\`\`yaml
-name: Example
-on: [push]
-jobs:
-  example:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: owner/repo@vX
-        with:
-          input_name: value
-\`\`\`
-
-## What it does
-
-1. Step one
-2. Step two
-3. Step three
+- [CHANGELOG.md](CHANGELOG.md) — changes
 
 ## License
 
-[License-Type](LICENSE)
+SPDX-id — see [LICENSE](LICENSE).
 ```
 
-**Conventions:**
-
-- Input table columns: Name | Required | Default | Description (this order)
-- Version badge immediately after H1
-- Usage section has a complete, copy-pasteable workflow
-- "What it does" uses numbered steps
-- License links to `LICENSE` file (never `LICENSE.md`)
-
-## Repo README — Library/Application
-
-```markdown
-# repo-name
-
-One-line description.
-
-## Installation
-
-\`\`\`bash
-install command
-\`\`\`
-
-## Quick Start
-
-\`\`\`python
-minimal usage example
-\`\`\`
-
-## License
-
-[License-Type](LICENSE)
-```
+**Conventions:** Input table columns `Name | Required | Default | Description` (this order); badges
+License → Version → CI (static `blue` / native status); License links to `LICENSE` (never `LICENSE.md`).
 
 ## Account Profile README
+
+Profile repos use the profile `<tail>` (focus · projects · tools); no version/CI badges — a License
+badge only, or omit the badge row.
 
 ```markdown
 # Display Name

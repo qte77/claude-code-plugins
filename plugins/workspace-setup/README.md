@@ -12,6 +12,8 @@ Self-contained — all CC-specific files bundled in the plugin, no external depe
 - **governance/AGENTS.md** → `AGENTS.md` — agent behavioral rules and decision framework
 - **governance/AGENT_LEARNINGS.md** → `AGENT_LEARNINGS.md` — pattern discovery template
 - **governance/AGENT_REQUESTS.md** → `AGENT_REQUESTS.md` — human escalation protocol
+- **governance/README.md** → `README.md` — value-first front door, derived from the [qte77 doc-structure canon](https://github.com/qte77/qte77/blob/main/docs/doc-structure.md)
+- **governance/CONTRIBUTING.md** → `CONTRIBUTING.md` — technical workflows + the `## Documentation hierarchy` statement
 
 All files use copy-if-not-exists (won't overwrite).
 
