@@ -2,7 +2,7 @@
 
 # qte77-claude-code-plugins
 
-Claude Code plugin marketplace — 25 plugins, 60 skills, 2 agents from production workflows.
+Claude Code plugin marketplace — 25 plugins, 61 skills, 2 agents from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-3.6.0-blue.svg)](CHANGELOG.md)
@@ -24,7 +24,7 @@ Claude Code plugin marketplace — 25 plugins, 60 skills, 2 agents from producti
 | **planning** | `planner` (agent) | Feature/refactor planning with phased steps, dependencies, risks |
 | **backend-design** | `designing-backend` | System architecture and API design |
 | **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO security |
-| **security-audit** | `auditing-code-security` `detecting-secrets` `scanning-dependencies` | OWASP Top 10, secrets detection, dependency scanning |
+| **security-audit** | `auditing-code-security` `detecting-secrets` `scanning-dependencies` `triaging-security-report` | OWASP Top 10, secrets detection, dependency scanning, report triage |
 | **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` `summarizing-session-end` `distilling-plan-learnings` `handing-off-session` `orchestrating-parallel-workers` `persisting-bigpicture-learnings` `mining-session-patterns` | Cross-project synthesis, context compaction, session intelligence |
 | **market-research** | `analyzing-source-project` `researching-industry-landscape` `researching-market` `validating-product-market-fit` `developing-gtm-strategy` `analyzing-contradictions` `synthesizing-research` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix |
 | **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC), reports with pandoc PDF |

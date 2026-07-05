@@ -1,12 +1,13 @@
 # security-audit
 
-Code security auditing plugin with three skills for repo-wide audits. For diff-scoped security review, use Claude Code's built-in `/security-review` command instead.
+Code security auditing plugin with four skills for repo-wide audits. For diff-scoped security review, use Claude Code's built-in `/security-review` command instead.
 
 ## Skills
 
 - **auditing-code-security** — OWASP Top 10 vulnerability audit with structured findings; full-codebase scope can fan the ten categories out as a parallel dynamic workflow (`workflows/audit-owasp.js`)
 - **scanning-dependencies** — Dependency vulnerability scanning, license compliance, supply chain risk
 - **detecting-secrets** — Secrets and credential detection across files and git history
+- **triaging-security-report** — Verify an external/AI-generated security report against the actual code before acting: four-way verdicts (CONFIRMED / OVERSTATED / FALSE-POSITIVE / FABRICATED), deployment-context severity re-rating, salvage-the-kernels close-out
 
 ## Install
 

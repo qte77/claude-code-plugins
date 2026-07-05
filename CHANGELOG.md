@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **security-audit** (1.2.0): `triaging-security-report` skill — verify an external/AI-generated
+  security report against the actual code before acting; four-way verdict rubric
+  (CONFIRMED / OVERSTATED / FALSE-POSITIVE / FABRICATED), deployment-context severity re-rating,
+  trusted-input precedents, salvage-the-kernels close-out (#188)
+
 <!-- Pre-#37 entries (preserved) -->
 
 - **market-research**: New plugin with 8 skills — GTM pipeline with teams mode parallel dispatch, 2x2 strategy matrix, contradiction analysis, slide deck generation
