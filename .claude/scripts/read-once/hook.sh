@@ -10,6 +10,11 @@ TTL="${READ_ONCE_TTL:-1200}"
 DIFF_ENABLED="${READ_ONCE_DIFF:-0}"
 DIFF_MAX="${READ_ONCE_DIFF_MAX:-40}"
 
+# Check if required binaries are available, otherwise degrade to no-op
+for bin in jq md5sum realpath stat; do
+  command -v "$bin" >/dev/null 2>&1 || exit 0
+done
+
 [ "${READ_ONCE_DISABLED:-0}" = "1" ] && exit 0
 
 mkdir -p "$CACHE_DIR"
