@@ -172,6 +172,12 @@
       "source": "./plugins/planning",
       "description": "Feature and refactor planning agents \u2014 detailed implementation plans with phased steps, dependencies, risks, and success criteria",
       "version": "1.0.1"
+    },
+    {
+      "name": "web-recon",
+      "source": "./plugins/web-recon",
+      "description": "Authorized web/API reconnaissance & attack-surface assessment \u2014 endpoint enumeration, auth-posture matrix, BOLA/BFLA, gate classification; drives the web-recon-kit harness",
+      "version": "0.1.0"
     }
   ]
 }
