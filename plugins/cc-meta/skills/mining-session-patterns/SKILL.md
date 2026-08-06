@@ -4,7 +4,7 @@ description: Extract actionable patterns from Claude Code session JSONL files. S
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Glob, Grep, Write
-  argument-hint: [time-range] [output-path]
+  argument-hint: "[time-range] [output-path]"
   context: fork
   stability: development
 ---

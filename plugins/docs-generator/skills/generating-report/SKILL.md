@@ -4,7 +4,7 @@ description: Generates structured reports including status updates, assessments,
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
-  argument-hint: [report-type] [topic]
+  argument-hint: "[report-type] [topic]"
   stability: stable
   content-hash: sha256:ed0c11638e37e07dcd465265198d17598dbfc1e9fd6c0d764cc28801733949ec
   last-verified-cc-version: 1.0.34

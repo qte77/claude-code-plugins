@@ -4,7 +4,7 @@ description: Persist bigpicture synthesis as dated snapshots in a learnings hub.
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Glob
-  argument-hint: [input-path] [hub-path]
+  argument-hint: "[input-path] [hub-path]"
   context: inline
   stability: development
 ---

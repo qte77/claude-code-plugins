@@ -4,7 +4,7 @@ description: Synthesizes a living big-picture meta-plan from Claude Code session
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob
-  argument-hint: [project-name] [time-range] [output-path]
+  argument-hint: "[project-name] [time-range] [output-path]"
   context: fork
 ---
 
