@@ -7,6 +7,7 @@ Website design research, usability audit, and WCAG accessibility audit skills.
 - **researching-website-design** — Analyzes industry websites for design patterns, layout, typography, and content strategies
 - **auditing-website-usability** — Audits website usability for UX optimization, covering forms, navigation, and microcopy
 - **auditing-website-accessibility** — Audits website accessibility for WCAG 2.1 AA compliance, generating findings and code fixes
+- **verifying-design-canvas** — Pulls a Claude Design canvas straight from claude.ai/design and verifies a live deployed app matches it: theme tokens, DOM/accessibility structure, and every interactive role/tab state
 
 ## Demo
 
