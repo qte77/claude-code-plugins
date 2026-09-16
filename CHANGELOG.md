@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   straight from `claude.ai/design` via the `DesignSync` tool and verifies a live deployed app
   actually matches it (theme tokens, accessibility-tree structure, every interactive role/tab
   state), rather than trusting a text-only diff or a possibly-stale published Artifact snapshot.
+  Also covers capability-backed canvases: stub `window.claude` for a structural-only check, or
+  fall back to an authenticated live render when the capability's actual content needs verifying.
 
 ### Changed
 

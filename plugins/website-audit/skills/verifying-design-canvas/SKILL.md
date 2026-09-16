@@ -69,7 +69,37 @@ tags, an inline `<script type="text/x-dc">`) — it is generally NOT directly op
 page; prefer comparing it at the text/section level (step 2) plus reading its embedded script for
 sample-data intent, rather than trying to render it raw.
 
-## 4. Exercise every interactive state, not just the default render
+## 4. Handle capability-backed canvases separately from pure-mockup ones
+
+Some canvases declare a runtime **capability** (live/connected data, saved state, a viewer-count,
+an ask-Claude question — anything backed by `window.claude.*` calls, per the platform's own
+capability list). A bare local render (the `file://` "Bundled Page" from step 3) has no
+`window.claude` object at all — those calls either throw, or, if the canvas defensively guards
+them, silently fall back to an empty/loading state. Either way, that section is **not** rendering
+its real content in a local-only comparison.
+
+Check for this before trusting a local-render screenshot as a full substitute:
+
+- **Scan the pulled source first** (step 1/2's `get_file`/`Artifact read` output) for a
+  `capabilities` declaration or `window.claude.` calls. None found → the local `file://` render
+  from step 3 is a complete substitute, skip the rest of this step.
+- **Some found, and only structural fidelity matters** (layout, spacing, typography, DOM/aria
+  shape) — inject a no-op polyfill before the page's own scripts run
+  (`page.add_init_script(...)` on Patchright/Playwright: define `window.claude` with stub
+  `getData`/`setData`/`complete`/etc. that resolve to `null`/no-op) so capability-driven sections
+  render their empty/default state instead of crashing. Good enough for the accessibility-tree and
+  computed-CSS checks in step 3; the capability region's actual *content* is still unverified.
+- **The capability-populated content itself needs verifying** (not just structure around it) —
+  only the real backend can serve that, so fall back to an authenticated `claude.ai` session
+  driving the live hosted canvas/Artifact URL for that specific region. Scope this to the
+  capability-bearing section only; keep using the local render for everything else — the auth
+  overhead isn't worth paying for the whole page when most of it doesn't need it.
+
+Carry this distinction into step 7's report: state plainly whether a capability region was
+structure-checked only (stubbed) or content-verified (live), don't let a stubbed pass read as a
+full match.
+
+## 5. Exercise every interactive state, not just the default render
 
 **This is the step that's easy to skip and easy to get burned by.** A canvas with a role
 picker, tab bar, or mode toggle can mock a COMPLETELY different screen per state — read the
@@ -78,7 +108,7 @@ canvas's own script for state branches (e.g. `role==='X' ? screenA : screenB`,
 whatever's on screen by default. A "looks fine" verdict from two passes that only checked the
 default state can still miss a whole screen mocked behind a non-default toggle.
 
-## 5. Judge sample data on its own terms — real substitute vs. no substitute
+## 6. Judge sample data on its own terms — real substitute vs. no substitute
 
 Canvas scripts routinely carry realistic-looking but 100% fake sample data (per-role `hooks`/
 `fit`/`prep` text, hardcoded metrics, a `toast(...)` call with no real backend behind it even in
@@ -94,7 +124,7 @@ handler code for that interaction:
   per-role copy with a genuine score), build against that instead of porting the sample text
   verbatim — this is the normal "don't fabricate content" rule, not a new one.
 
-## 6. Report precisely
+## 7. Report precisely
 
 State exactly what was compared (which URLs/files, which viewports, which interactive states),
 give the concrete matching/mismatching values (not "looks the same" — the actual computed color,
