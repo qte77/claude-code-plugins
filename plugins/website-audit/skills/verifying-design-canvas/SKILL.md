@@ -65,9 +65,15 @@ A canvas artifact/`.dc.html` renders standalone: if it's a self-contained "Bundl
 `Artifact read`), open it via a plain `file://` URL — it self-unpacks (wait for the "Unpacking..."
 overlay to clear, several seconds) with no network dependency. A raw `.dc.html` from
 `DesignSync.get_file` is a live-editor source format (`<sc-if>`/`<sc-for>`/`{{ }}` template
-tags, an inline `<script type="text/x-dc">`) — it is generally NOT directly openable as a static
-page; prefer comparing it at the text/section level (step 2) plus reading its embedded script for
-sample-data intent, rather than trying to render it raw.
+tags, an inline `<script type="text/x-dc">`) — **verified via a real `file://` load** (sfclarity's
+`docs/design-refs/sf-clarity-mobile.dc.html`, 133KB): it does not fail to open, and it is not a
+blank page. It loads (200), CSS/layout/chrome render correctly, but every dynamic slot shows the
+raw template token instead of bound content (`{{ ev.time }}`, `{{ ev.title }}`,
+`[[ x for x in ev.going ]]` visible verbatim in the screenshot) — the templating engine that
+binds `{{ }}`/`[[ ]]` never runs on a bare load. Don't mistake a clean-looking render for a
+working one; screenshot it and actually read the text before trusting it. Prefer comparing it at
+the text/section level (step 2) plus reading its embedded script for sample-data intent, rather
+than trying to verify visual fidelity off a raw-source render.
 
 ## 4. Handle capability-backed canvases separately from pure-mockup ones
 
