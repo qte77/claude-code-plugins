@@ -17,6 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **website-audit** (1.2.1): `verifying-design-canvas` — folded in four lessons from a real
+  design-fidelity run against a live canvas: `get_file`'s 256 KiB cap truncates silently (always
+  fetch `.dc.html`, never the compiled bundle); Cloudflare's bot challenge blocks headless
+  `claude.ai/design` access even with a captured session cookie + solved `cf_clearance`, so
+  `DesignSync` is the only working path; a committed mirror draws static-analysis noise that
+  should be excluded at the repo's scan config, not hand-fixed in a file that gets wholesale
+  replaced; a "recently refreshed" note is not proof of current freshness.
 - **website-audit** (1.2.0): new `verifying-design-canvas` skill — pulls a Claude Design canvas
   straight from `claude.ai/design` via the `DesignSync` tool and verifies a live deployed app
   actually matches it (theme tokens, accessibility-tree structure, every interactive role/tab
