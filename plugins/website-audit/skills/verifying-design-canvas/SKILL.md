@@ -166,3 +166,23 @@ the actual aria diff), and separate **real gaps** (a screen state exists in the 
 live equivalent and no real data to back it) from **correct, deliberate omissions** (fake content
 properly left out, matching a no-fabrication discipline). Conflating the two either overstates a
 bug or understates a real gap.
+
+**When the human needs to see the evidence, not just read about it: publish the screenshots as a
+viewable page, don't only describe them in text.** A screenshot saved to a local/temp path and
+opened with the Read tool renders for the model only — in a CLI/terminal session there is no inline
+image display, so a live human reader never sees the file no matter how precisely you describe it
+("the button is transparent, the heading is Cormorant Garamond" is not the same as *them* seeing
+it). Confirmed this session: several rounds of screenshot-then-describe left the human unable to
+verify anything themselves, indistinguishable on their end from a fabricated description, until the
+actual images were published as a page.
+
+Build a small evidence page instead (the Artifact tool, or the equivalent on your platform): embed
+each screenshot as a `data:image/png;base64,...` URI (a local file path is not reachable from a
+published page), one pair per screen (light/dark or canvas-vs-live), each captioned with the
+*specific claim it proves* — not "Settings screenshot" but "outlined active-segment state, both
+themes, replacing the old filled background." Keep the page itself utilitarian — a caption + image
+grid, not a designed showcase — the evidence is the point, not the page. Note the capture
+tool/target/timestamp in the header so the page states its own provenance instead of asking the
+reader to trust it. This is a report artifact, not a deliverable — use it whenever "does this
+actually match" needs to survive past your own turn, not just whenever a screenshot happens to
+exist.
