@@ -1,6 +1,6 @@
 ---
 name: verifying-design-canvas
-description: Pull a Claude Design canvas (.dc.html) straight from claude.ai/design and verify a live deployed app actually matches it — theme tokens, DOM/accessibility structure, and every interactive role/tab state, not just the default view. Use when asked "does the site match the design", "is the design source stale", or before/after building a UI from a design-refs canvas.
+description: Verify a live deployed app matches its Claude Design canvas (.dc.html): theme tokens, DOM/a11y structure, every interactive state — not just default view. Building instead of verifying? See artifact-design.
 ---
 
 # Verifying a design canvas against a live app
@@ -10,6 +10,12 @@ whether a repo's committed `docs/design-refs/*.dc.html` mirror has drifted from 
 Learned the hard way: a text-level or default-state-only diff misses real gaps — an interactive
 canvas can mock an entire screen that only appears in a non-default state (a role selection, a
 tab, a toggle), and a document diff alone won't render it.
+
+**Related skills:** `artifact-design`, `artifact-diagramming`, and `artifact-capabilities` are
+built into the Artifact/Claude Design runtime (not part of this plugin, and not guaranteed present
+in every environment) and cover *creating* a canvas or Artifact — its layout, diagrams, and
+capability wiring. This skill only verifies an *existing* canvas against what's actually deployed;
+reach for those instead when the task is building or designing, not checking.
 
 ## 1. Pull the canvas straight from source (not a stale local copy)
 
@@ -76,8 +82,8 @@ source every time this task is asked, even right after a previous refresh.
 
 A text diff of markup only tells you the *source* matches; it does not tell you the *rendered app*
 matches, and it cannot see runtime-only differences (a role toggle, a live matchMedia fork, a
-loading/empty state). Drive a real headless browser (Patchright, Playwright, or a polyfetch-style
-scripting substrate that exposes the live `Page`) for:
+loading/empty state). Drive a real headless browser — this repo's own `polyfetch` (+ patchright
+chromium), or Patchright/Playwright directly if `polyfetch` isn't available — for:
 
 - **Screenshots** — full-page, at every distinct viewport/breakpoint the app forks on.
 - **The accessibility tree** (`page.locator("body").aria_snapshot()` on Patchright/Playwright) —
