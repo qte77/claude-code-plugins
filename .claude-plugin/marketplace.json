@@ -54,7 +54,7 @@
       "name": "website-audit",
       "source": "./plugins/website-audit",
       "description": "Website SEO/GEO, design research, usability, and WCAG accessibility audit skills",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "name": "docs-generator",
@@ -158,7 +158,7 @@
     {
       "name": "makefile-core",
       "source": "./plugins/makefile-core",
-      "description": "Skills and linting for consistent, rigorous Makefiles across projects — auto-detects project type, extensible via scaffold-*.md references",
+      "description": "Skills and linting for consistent, rigorous Makefiles across projects \u2014 auto-detects project type, extensible via scaffold-*.md references",
       "version": "1.2.0"
     },
     {

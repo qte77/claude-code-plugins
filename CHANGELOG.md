@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **website-audit** (1.2.3): `verifying-design-canvas` — trimmed the frontmatter description to
+  the repo's 250-char cap (was 366), added a "Related skills" note distinguishing this
+  verification skill from the built-in `artifact-design`/`artifact-diagramming`/
+  `artifact-capabilities` creation skills, and named `polyfetch` (this repo's own e2e substrate,
+  per `.claude/rules/unattended-execution.md`) explicitly instead of a generic "polyfetch-style"
+  hedge.
 - **website-audit** (1.2.2): `verifying-design-canvas` — added publishing comparison screenshots
   as a viewable page (embedded base64, captioned per specific claim) as an explicit technique for
   step 7 ("Report precisely"): a screenshot opened via the Read tool renders for the model only, so
