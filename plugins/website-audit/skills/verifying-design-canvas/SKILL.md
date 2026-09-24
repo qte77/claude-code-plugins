@@ -1,6 +1,6 @@
 ---
 name: verifying-design-canvas
-description: Verify a live deployed app matches its Claude Design canvas (.dc.html): theme tokens, DOM/a11y structure, every interactive state — not just default view. Building instead of verifying? See artifact-design.
+description: "Verify a live deployed app matches its Claude Design canvas (.dc.html): theme tokens, DOM/a11y structure, every interactive state — not just default view. Building instead of verifying? See artifact-design."
 ---
 
 # Verifying a design canvas against a live app
