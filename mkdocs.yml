@@ -1,29 +1,12 @@
-site_name: Claude Code Utils
-site_description: Claude Code plugin marketplace — 10 plugins, 15 skills from production workflows.
+site_name: qte77-claude-code-plugins
+site_description: Claude Code plugin marketplace — skills, agents, and hooks from production workflows.
 repo_url: https://github.com/qte77/claude-code-plugins
 repo_name: qte77/claude-code-plugins
 
 theme:
   name: material
 
-nav:
-  - Home: README.md
-  - Plugins:
-      - python-dev: plugins/python-dev/README.md
-      - commit-helper: plugins/commit-helper/README.md
-      - codebase-tools: plugins/codebase-tools/README.md
-      - backend-design: plugins/backend-design/README.md
-      - mas-design: plugins/mas-design/README.md
-      - website-audit: plugins/website-audit/README.md
-      - docs-generator: plugins/docs-generator/README.md
-      - ralph: plugins/ralph/README.md
-      - workspace-setup: plugins/workspace-setup/README.md
-      - workspace-sandbox: plugins/workspace-sandbox/README.md
-  - Analysis:
-      - Plugin Enhancement: docs/analysis/CC-plugin-enhancement-analysis.md
-      - Session Summaries: docs/analysis/CC-stop-hook-session-summaries.md
-      - Agent Orchestration: docs/analysis/CC-agent-teams-orchestration.md
-      - Fast Mode: docs/analysis/CC-fast-mode-analysis.md
-      - Skills Adoption: docs/analysis/CC-skills-Ralph-adoption-plan.md
-      - MAS Benchmarks: docs/analysis/benchmark_mas_best_practices.md
-  - Changelog: CHANGELOG.md
+# No `nav:` — generated from docs/ so new plugins appear without edits.
+# README, CHANGELOG, LICENSE and plugins/*/README.md are staged into docs/ by `make docs_stage`.
+exclude_docs: |
+  plans/

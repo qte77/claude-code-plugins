@@ -3,3 +3,10 @@ temp/
 # Auto-memory seed deployed by cc-meta's SessionStart hook — per-contributor,
 # not part of the repo's tracked tree.
 MEMORY.md
+
+# MkDocs: staged by `make docs_stage` (copies of tracked sources) + build output.
+docs/index.md
+docs/CHANGELOG.md
+docs/LICENSE
+docs/plugins/
+site/
