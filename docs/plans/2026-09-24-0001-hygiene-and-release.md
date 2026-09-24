@@ -1,0 +1,60 @@
+# 0001 — Repo hygiene, Pages deploy, release flow
+
+## Status (read first)
+
+**Shipped:** #212 (verifying-design-canvas description ≤250, polyfetch named) · #198 (argument-hint
+quoting in 7 skills + verifying-design-canvas description quoting; cc-meta 1.15.3, docs-generator
+1.0.4, website-audit 1.2.4) · #194 (web-recon plugin 0.1.0) · #208 (dependabot GHA group) · the
+Pages deploy fix + release workflows + README rows (#214).
+
+**Next, in order:** the remaining-work table below, top to bottom. Phase A (agent) rows first;
+owner rows are batched into one sitting.
+
+**Loop:** branch per topic → fix → `make validate && make check_sync` +
+`bash .github/scripts/compute-skill-hashes.sh --check` + YAML-parse all SKILL.md frontmatter →
+push → CI green → owner squash-merges (`gh pr merge N --squash --delete-branch --admin`; branch
+protection needs 1 review and the Claude Code classifier blocks agent merge-without-review) →
+strike the row in the same PR.
+
+**Owner gates:** every merge; the plan-file rule landing in `qte77/qte77` (unblocks #207/#197/#200);
+keep/cut decisions (#157, #158, #125, #177/#178, #185); #167 ruleset change.
+
+**Commands:** gh needs `env -u GH_TOKEN -u GITHUB_TOKEN` (stale env token). Local docs build:
+`make docs_stage && uvx --from "mkdocs<2.0" --with mkdocs-material mkdocs build --strict`.
+Bump dry-run: `uvx bump-my-version==1.5.1 bump minor --dry-run -vv --no-commit --no-tag --allow-dirty`.
+
+**Watch-outs:** an unquoted colon followed by a space in a SKILL.md `description:` breaks YAML (bit #212). Any change under
+`plugins/<name>/` needs plugin.json + marketplace.json bumps (CI-enforced). Actions must be
+SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `verified_allowed`
+(if it `startup_failure`s, add it to `patterns_allowed`). Tags are immutable — never delete.
+
+## Source map
+
+| What | Where |
+| --- | --- |
+| Docs staging | `Makefile` `docs_stage`; `mkdocs.yml` (no nav, `exclude_docs: plans/`); `.gitignore` |
+| Pages deploy | `.github/workflows/deploy-mkdocs-ghpages.yaml` (setup-uv + uvx mkdocs) |
+| Root version | `.claude-plugin/marketplace.json` `metadata.version`; `.bumpversion.toml` |
+| Release callers | `.github/workflows/{bump-version,tag-release,publish-release}.yaml` → `qte77/.github@613b950` |
+| Plugin version gate | `.github/workflows/check-plugin-versions.yaml`; `.claude/rules/plugin-versioning.md` |
+| Skill rules | `.claude/rules/skill-authoring.md`; hash script `.github/scripts/compute-skill-hashes.sh` (body only) |
+| research-cross-check | removed from #198; source = #198's first commit (`plugins/cc-meta/workflows/research-cross-check.js`) |
+| read-once hook | `.claude/scripts/read-once/hook.sh` (symlinked into workspace-setup/-sandbox) |
+| Settings templates | `plugins/workspace-{setup,sandbox}/settings/*.json` |
+
+## Remaining work
+
+| # | Item | Gate | Done-when |
+| --- | --- | --- | --- |
+| 1 | ~~#213 Pages deploy + release workflows + README rows/badge~~ — shipped (#214) | — | — |
+| 2 | Verify Pages live after merge; close #213 | agent | deploy run `success`; `https://qte77.github.io/claude-code-plugins/` 200 |
+| 3 | First release: dispatch Bump Version (minor → 3.8.0), merge PR, confirm tag, dispatch Publish Release | owner | `gh release view v3.8.0` exists |
+| 4 | #180: `research-cross-check.js` as its own PR, hardcoded default consumer path removed; cc-meta minor bump | agent | PR green |
+| 5 | #155, #183, #186, #150 (cc-meta MEMORY.md path, colon-syntax allow rules, read-once binary guards, hash-script hard-fail) | agent | one PR, CI green |
+| 6 | #184: drop ghost `simplify` from marketplace.json (`plugins/doc-pipeline/` is untracked local-only) | agent | `claude plugin validate .` + install test green |
+| 7 | #151 remnant: add `plugins/workspace-sandbox/governance/{CONTRIBUTING,README}.md` (mirror workspace-setup) | agent | lychee green; close #151 |
+| 8 | #175: `stability: stable` for 13 mature skills (commit-helper/committing-staged-with-message, docs-governance/maintaining-agents-md, ralph ×2 excl. generating-prd-json-from-prd-md, market-research ×8, readme-generator/writing-readme) + hash regen | agent | hash check green |
+| 9 | security-audit `scanning-dependencies`: `pip-audit` → `uvx pip-audit`; patch bump | agent | PR green |
+| 10 | #179, #192, #160, #182, #161 (mechanical additions) | agent | one PR each, green |
+| 11 | Plan-file rule (local `/workspaces/.claude/rules/unattended-execution.md`) lands in `qte77/qte77`; then #207 close, #197 rework (drop handoff template, dated plan, rebase, 1.6.0), #200 rebase-or-close | owner | rule on qte77/qte77 main |
+| 12 | Decisions: #157, #158, #125, #177/#178, #185, #167 | owner | decision recorded on each issue |

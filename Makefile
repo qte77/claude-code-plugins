@@ -3,7 +3,7 @@
 
 .SILENT:
 .ONESHELL:
-.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts sync_refs sync_canon sync_governance check_sync help
+.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts sync_refs sync_canon sync_governance check_sync docs_stage help
 .DEFAULT_GOAL := help
 
 
@@ -132,6 +132,22 @@ test_install:  ## Test marketplace add + install first plugin, then clean up
 	claude plugin uninstall "$$FIRST_PLUGIN@$$MARKETPLACE" || true
 	claude plugin marketplace remove "$$MARKETPLACE" || true
 	echo "Test install succeeded."
+
+
+# MARK: docs
+
+
+docs_stage:  ## Stage README/CHANGELOG/LICENSE + plugin READMEs into docs/ for mkdocs
+	rm -rf docs/plugins
+	mkdir -p docs/plugins
+	cp README.md docs/index.md
+	cp CHANGELOG.md docs/CHANGELOG.md
+	cp LICENSE docs/LICENSE
+	for f in plugins/*/README.md; do
+		name=$$(basename "$$(dirname "$$f")")
+		cp "$$f" "docs/plugins/$$name.md"
+	done
+	echo "Staged docs into docs/ (gitignored)."
 
 
 # MARK: help

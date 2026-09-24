@@ -1,0 +1,22 @@
+name: Publish Release
+
+# Dispatched manually after tag-release.yaml has created the v{version} tag on main. Publishes the
+# GitHub Release from CHANGELOG.md's `## [version]` block (rolled by the bump). Manual on purpose:
+# a tag pushed with GITHUB_TOKEN does not trigger other workflows. Never overwrites a Release.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to publish (defaults to the latest vX.Y.Z tag)"
+        required: false
+        type: string
+        default: ""
+
+jobs:
+  publish:
+    uses: qte77/.github/.github/workflows/publish-release.yml@613b950b4045cc099ca23f8b7344459c3dc22cb3 # qte77/.github#43
+    with:
+      tag: ${{ inputs.tag }}
+    permissions:
+      contents: write

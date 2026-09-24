@@ -11,12 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-<!-- Entries below cover PRs since #37. Older entries at the top of each
-     section were written pre-#37; newer entries are appended. Full backfill
-     completed 2026-04-11. -->
-
 ### Added
 
+- **Release workflows**: `bump-version.yaml`, `tag-release.yaml`, `publish-release.yaml` call the
+  shared `qte77/.github` reusables for the root marketplace version; `.bumpversion.toml` bumps
+  `metadata.version`, the README badge, and rolls `[Unreleased]` into a dated section. See
+  CONTRIBUTING.md "Releases". New `make docs_stage` target.
 - **web-recon** (0.1.0): new plugin — `web-recon` skill drives the
   [web-recon-kit](https://github.com/qte77/web-recon-kit) harness for authorized web/API
   attack-surface assessment (passive enumeration, auth-posture matrix, BOLA/BFLA, cron checks),
@@ -53,6 +53,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Pages deploy** (#213): never succeeded since it was added (0/120 runs) — `mkdocs.yml` nav pointed
+  outside `docs/` and at 5 deleted analysis docs. Docs are now staged into `docs/` at build time, the
+  nav is generated, and the build uses `uv`. Stale counts dropped from `site_description`.
+- **README**: badge 3.6.0 -> 3.7.0 (matches `metadata.version`); added the missing
+  `readme-generator` and `website-audit` rows.
 - **cc-meta** (1.15.3), **docs-generator** (1.0.4): quote multi-argument `argument-hint`
   values (e.g. `"[time-range] [output-path]"`) in 7 SKILL.md files — unquoted `[a] [b]` is invalid
   YAML (`expected <block end>, but found '['`), so the frontmatter failed to parse.
