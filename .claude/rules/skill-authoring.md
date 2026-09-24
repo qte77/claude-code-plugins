@@ -8,7 +8,7 @@ as the canonical agent exemplar.
 
 ## Tooling pointer
 
-Anthropic publishes [`skill-creator`](https://claude.com/plugins/skill-creator)
+Anthropic publishes [`skill-creator`](https://github.com/anthropics/skills/tree/main/skills/skill-creator)
 (source: [anthropics/skills](https://github.com/anthropics/skills)) as an
 **installable plugin** (not bundled by default with Claude Code). It scaffolds
 `SKILL.md` + `references/scripts/assets/` subdirs and runs an automated
