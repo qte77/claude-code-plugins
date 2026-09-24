@@ -5,7 +5,7 @@
 **Shipped:** #212 (verifying-design-canvas description ≤250, polyfetch named) · #198 (argument-hint
 quoting in 7 skills + verifying-design-canvas description quoting; cc-meta 1.15.3, docs-generator
 1.0.4, website-audit 1.2.4) · #194 (web-recon plugin 0.1.0) · #208 (dependabot GHA group) · the
-Pages deploy fix + release workflows + README rows (PR for `fix/pages-deploy-and-release-flow`).
+Pages deploy fix + release workflows + README rows (#214).
 
 **Next, in order:** the remaining-work table below, top to bottom. Phase A (agent) rows first;
 owner rows are batched into one sitting.
@@ -46,7 +46,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 
 | # | Item | Gate | Done-when |
 | --- | --- | --- | --- |
-| 1 | ~~#213 Pages deploy + release workflows + README rows/badge~~ — shipped (this PR) | — | — |
+| 1 | ~~#213 Pages deploy + release workflows + README rows/badge~~ — shipped (#214) | — | — |
 | 2 | Verify Pages live after merge; close #213 | agent | deploy run `success`; `https://qte77.github.io/claude-code-plugins/` 200 |
 | 3 | First release: dispatch Bump Version (minor → 3.8.0), merge PR, confirm tag, dispatch Publish Release | owner | `gh release view v3.8.0` exists |
 | 4 | #180: `research-cross-check.js` as its own PR, hardcoded default consumer path removed; cc-meta minor bump | agent | PR green |
