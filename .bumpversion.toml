@@ -1,0 +1,28 @@
+# Root (marketplace) version — independent of per-plugin versions.
+# Driven by .github/workflows/bump-version.yaml (qte77/.github reusable, --no-commit --no-tag);
+# tag-release.yaml tags v{version} on main once the bump PR merges.
+[tool.bumpversion]
+current_version = "3.7.0"
+commit = false
+tag = false
+
+# Anchored on the metadata block (`}}` = literal `}` in the format string) so a plugin sharing the same version string is never touched.
+[[tool.bumpversion.files]]
+filename = ".claude-plugin/marketplace.json"
+search = """"version": "{current_version}"
+  }},
+  "plugins": ["""
+replace = """"version": "{new_version}"
+  }},
+  "plugins": ["""
+
+[[tool.bumpversion.files]]
+filename = "README.md"
+search = "version-{current_version}-blue"
+replace = "version-{new_version}-blue"
+
+# Roll [Unreleased] into a dated section; publish-release.yml extracts notes from `## [X.Y.Z]`.
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.md"
+search = "## [Unreleased]"
+replace = "## [Unreleased]\n\n## [{new_version}] - {now:%Y-%m-%d}"

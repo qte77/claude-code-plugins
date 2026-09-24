@@ -1,0 +1,21 @@
+name: Tag Release
+
+# Thin caller of the estate reusable (qte77/.github): when a push to main changes the root
+# marketplace version (the squash-merge of a bump PR), create the annotated v{version} tag.
+# The regex matches the 4-space-indented metadata "version" (first match); plugin entries are
+# indented 6, so plugin-only bumps leave it unchanged and the job exits 0.
+# Never deletes: fails if the tag already exists (qte77/.github#23).
+
+on:
+  push:
+    branches: [main]
+    paths: [.claude-plugin/marketplace.json]
+
+jobs:
+  tag:
+    uses: qte77/.github/.github/workflows/tag-release.yml@613b950b4045cc099ca23f8b7344459c3dc22cb3 # qte77/.github#43
+    with:
+      version_file: .claude-plugin/marketplace.json
+      version_regex: '^    "version": "([^"]+)"'
+    permissions:
+      contents: write

@@ -5,7 +5,7 @@
 Claude Code plugin marketplace — 26 plugins, 66 skills, 2 agents from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-3.6.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.7.0-blue.svg)](CHANGELOG.md)
 [![CodeQL](https://github.com/qte77/claude-code-plugins/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/claude-code-plugins/actions/workflows/codeql.yaml)
 [![CodeFactor](https://www.codefactor.io/repository/github/qte77/claude-code-plugins/badge/main)](https://www.codefactor.io/repository/github/qte77/claude-code-plugins/overview/main)
 

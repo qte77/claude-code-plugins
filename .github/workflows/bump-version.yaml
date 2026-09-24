@@ -1,0 +1,29 @@
+name: Bump Version
+
+# Thin caller of the estate reusable (qte77/.github). Bumps the ROOT marketplace version
+# (.bumpversion.toml: marketplace.json metadata.version, README badge, CHANGELOG [Unreleased] roll)
+# with --no-commit --no-tag, then opens a PR. tag-release.yaml tags v{version} on main after merge.
+# Per-plugin versions are separate and bumped by hand per .claude/rules/plugin-versioning.md.
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: "[major|minor|patch]"
+        required: true
+        default: patch
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
+
+jobs:
+  bump:
+    uses: qte77/.github/.github/workflows/bump-version.yml@613b950b4045cc099ca23f8b7344459c3dc22cb3 # qte77/.github#43
+    with:
+      bump_type: ${{ inputs.bump_type }}
+      bump_my_version_pin: "1.5.1"
+    permissions:
+      contents: write
+      pull-requests: write
