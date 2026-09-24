@@ -1,0 +1,8 @@
+{
+  "name": "web-recon",
+  "version": "0.1.0",
+  "description": "Authorized web/API reconnaissance & attack-surface assessment — endpoint enumeration, auth-posture matrix, BOLA/BFLA, gate classification; drives the web-recon-kit harness",
+  "author": {
+    "name": "qte77"
+  }
+}
