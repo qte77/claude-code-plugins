@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **web-recon** (0.1.0): new plugin — `web-recon` skill drives the
+  [web-recon-kit](https://github.com/qte77/web-recon-kit) harness for authorized web/API
+  attack-surface assessment (passive enumeration, auth-posture matrix, BOLA/BFLA, cron checks),
+  with a mandatory authorization gate.
 - **website-audit** (1.2.3): `verifying-design-canvas` — trimmed the frontmatter description to
   the repo's 250-char cap (was 366), added a "Related skills" note distinguishing this
   verification skill from the built-in `artifact-design`/`artifact-diagramming`/

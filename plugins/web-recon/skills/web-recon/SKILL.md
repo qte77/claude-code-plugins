@@ -1,6 +1,6 @@
 ---
 name: web-recon
-description: Authorized web/API reconnaissance & attack-surface assessment. Use when asked to recon, enumerate, map the attack surface of, or security-assess a site/API the user owns or is authorized to test — route/endpoint enumeration, auth-posture mapping, cross-tenant BOLA/BFLA, cron & secret checks. Drives the web-recon-kit harness (config-driven via scope.toml). Requires explicit authorization; refuses unauthorized targets.
+description: Recon and assess the attack surface of a web app/API you own or are authorized to test — endpoint enumeration, auth-posture matrix, BOLA/BFLA, cron checks, via web-recon-kit. Refuses unauthorized targets.
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Write, Edit, Bash, WebFetch
@@ -27,8 +27,9 @@ run against a third party "just to see."
 
 ## 1. Set up the target profile
 
-- Ensure a `web-recon-kit` checkout is available (git submodule / sibling clone), plus a
-  `polyfetch-scrape` checkout for the browser tier.
+- Ensure a `web-recon-kit` checkout is available, then run `make setup`, plus
+  `make setup-browser` for the browser tier (installs polyfetch from GitHub + chromium via
+  `uv sync --extra browser`).
 - `cp scope.example.toml scope.toml`, then fill in:
   - `base_url`; `[identities.*].env` (env-var NAMES holding the API keys — keys live in `.env`,
     never in `scope.toml`);
@@ -36,9 +37,9 @@ run against a third party "just to see."
 
 ## 2. Passive enumeration (no auth)
 
-- `make inventory POLY=<polyfetch>` — mine `/api/*` endpoints from the JS bundles.
-- `make recon POLY=<polyfetch>` — render each route, classify its gate (public / client-side /
-  server-middleware), capture screenshots.
+- `make inventory` — mine `/api/*` endpoints from the JS bundles.
+- `make recon` — render each route, classify its gate (public / client-side /
+  server-middleware), capture screenshots. Both need `make setup-browser`.
 - Record anything reachable without authentication.
 
 ## 3. API testing (owner identity)
