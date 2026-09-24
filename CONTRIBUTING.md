@@ -24,7 +24,21 @@ make sync         # sync shared refs + the qte77 doc-structure canon into plugin
 make check_sync   # verify all copies match their source (incl. the canon diff-guard)
 make lint_md      # markdownlint (--fix)
 make test_install # marketplace add + install + cleanup
+make docs_stage   # stage README/CHANGELOG/plugin READMEs into docs/ for mkdocs (gitignored)
 ```
+
+## Releases
+
+The root marketplace version (`.claude-plugin/marketplace.json` `metadata.version`) is separate from
+per-plugin versions (see [Plugin versioning](#plugin-versioning)). To cut a release:
+
+1. Run the **Bump Version** workflow (`workflow_dispatch`, `patch`/`minor`/`major`). It updates
+   `metadata.version`, the README badge, and rolls `CHANGELOG.md` `[Unreleased]` into
+   `## [X.Y.Z] - date` (see `.bumpversion.toml`), then opens a PR.
+2. Merge that PR. **Tag Release** tags `vX.Y.Z` on `main` automatically.
+3. Run the **Publish Release** workflow to create the GitHub Release from the CHANGELOG block.
+
+All three call the shared `qte77/.github` reusable workflows. Tags are never deleted or moved.
 
 ## Conventional Commits
 

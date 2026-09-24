@@ -29,6 +29,8 @@ Claude Code plugin marketplace — 26 plugins, 66 skills, 2 agents from producti
 | **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` `summarizing-session-end` `distilling-plan-learnings` `handing-off-session` `orchestrating-parallel-workers` `persisting-bigpicture-learnings` `mining-session-patterns` | Cross-project synthesis, context compaction, session intelligence |
 | **market-research** | `analyzing-source-project` `researching-industry-landscape` `researching-market` `validating-product-market-fit` `developing-gtm-strategy` `analyzing-contradictions` `synthesizing-research` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix |
 | **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC), reports with pandoc PDF |
+| **readme-generator** | `writing-readme` `auditing-readme` | Generate and audit README.md files for repos, accounts, and orgs |
+| **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` `auditing-website-seo-geo` `verifying-design-canvas` | Design research, usability, WCAG 2.2, SEO/GEO audits, design-canvas fidelity checks |
 | **docs-governance** | `enforcing-doc-hierarchy` `maintaining-agents-md` | Documentation hierarchy audit + agent governance |
 | **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` `generating-prd-md-from-userstory-md` | PRD pipeline for the Ralph loop |
 | **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, KiCad PCB audit |
