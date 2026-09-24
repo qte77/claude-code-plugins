@@ -4,7 +4,7 @@ description: Extracts decisions, rejected alternatives, and patterns from recent
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write
-  argument-hint: [time-range] [output-path]
+  argument-hint: "[time-range] [output-path]"
   context: fork
   stability: development
 ---

@@ -36,7 +36,7 @@
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
       "description": "Claude Code meta-skills for cross-project synthesis, context compaction, session intelligence, and memory seed template",
-      "version": "1.15.2"
+      "version": "1.15.3"
     },
     {
       "name": "backend-design",
@@ -54,13 +54,13 @@
       "name": "website-audit",
       "source": "./plugins/website-audit",
       "description": "Website SEO/GEO, design research, usability, and WCAG accessibility audit skills",
-      "version": "1.2.3"
+      "version": "1.2.4"
     },
     {
       "name": "docs-generator",
       "source": "./plugins/docs-generator",
       "description": "Document generation for writeups, tech specs (ADR/RFC/design docs), and reports with pandoc PDF output",
-      "version": "1.0.3"
+      "version": "1.0.4"
     },
     {
       "name": "ralph",

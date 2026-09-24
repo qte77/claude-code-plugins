@@ -49,6 +49,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **cc-meta** (1.15.3), **docs-generator** (1.0.4): quote multi-argument `argument-hint`
+  values (e.g. `"[time-range] [output-path]"`) in 7 SKILL.md files — unquoted `[a] [b]` is invalid
+  YAML (`expected <block end>, but found '['`), so the frontmatter failed to parse.
+- **website-audit** (1.2.4): quote the `verifying-design-canvas` description — the 1.2.3 trim
+  introduced an unquoted colon followed by a space (`.dc.html): theme`), which YAML reads
+  as a nested mapping.
 - **workspace-setup** (1.5.1): `link-claude-home.sh` now verifies the symlink actually points at the
   configured persisted target, not just that some symlink exists at `~/.claude` — a stale link (e.g.
   after a path or account change) previously read as "already linked" and was never corrected.
