@@ -2,19 +2,23 @@
 
 ## Status (read first)
 
-**Shipped:** #212 (verifying-design-canvas description ≤250, polyfetch named) · #198 (argument-hint
-quoting in 7 skills + verifying-design-canvas description quoting; cc-meta 1.15.3, docs-generator
-1.0.4, website-audit 1.2.4) · #194 (web-recon plugin 0.1.0) · #208 (dependabot GHA group) · the
-Pages deploy fix + release workflows + README rows (#214).
+**Shipped (v3.8.0 released 2026-09-25, first GitHub Release):** #212 · #198 · #194 · #208 · #214 Pages
+deploy + release workflows · #215 cross-checking-research · #216 hash gate / MEMORY.md seed / read-once /
+allow rules · #217 ghost simplify · #218 sandbox governance · #219 Makefile fail-fast · #220 13 skills
+stable · #221 pip-audit env · #222 web-recon README · #223 MADR carve-out · #224 ci-status-checks rule
+· #225 PR-template fallback · #226 TS strict defaults · #227 triaging-issues · #228 docs-site link ·
+PR #229 bump 3.8.0 (tag `v3.8.0`, Release published, Pages redeployed).
 
 **Next, in order:** the remaining-work table below, top to bottom. Phase A (agent) rows first;
 owner rows are batched into one sitting.
 
-**Loop:** branch per topic → fix → `make validate && make check_sync` +
-`bash .github/scripts/compute-skill-hashes.sh --check` + YAML-parse all SKILL.md frontmatter →
-push → CI green → owner squash-merges (`gh pr merge N --squash --delete-branch --admin`; branch
-protection needs 1 review and the Claude Code classifier blocks agent merge-without-review) →
-strike the row in the same PR.
+**Loop:** branch per topic → fix → `make validate && make check_sync && make test_install` (fail-fast
+since #219) + `bash .github/scripts/compute-skill-hashes.sh --check` + markdownlint-cli2 on every changed
+`.md` incl. CHANGELOG → push → CI green → `gh pr merge N --squash --delete-branch --admin` (ruleset: 0
+reviews, required check CodeFactor, signed commits; the Claude Code auto-mode classifier blocks agent
+merge-without-review, so it needs a normal permission prompt) → strike the row in the same PR.
+Release: dispatch Bump Version → merge the bump PR (only CodeFactor reports on GITHUB_TOKEN PRs; it is
+the only required check) → Tag Release runs → dispatch Publish Release.
 
 **Owner gates:** every merge; the plan-file rule landing in `qte77/qte77` (unblocks #207/#197/#200);
 keep/cut decisions (#157, #158, #125, #177/#178, #185); #167 ruleset change.
@@ -48,7 +52,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | --- | --- | --- | --- |
 | 1 | ~~#213 Pages deploy + release workflows + README rows/badge~~ — shipped (#214) | — | — |
 | 2 | ~~Verify Pages live after merge; close #213~~ — done: run 36005276222 success, site serves, #213 closed | — | — |
-| 3 | First release: dispatch Bump Version (minor → 3.8.0), merge PR, confirm tag, dispatch Publish Release | owner | `gh release view v3.8.0` exists |
+| 3 | ~~First release~~ — v3.8.0: bump #229 → tag `v3.8.0` on ec1e774 → Release published (first ever) | — | — |
 | 4 | ~~#180: `research-cross-check.js` as its own skill + workflow, no hardcoded paths; cc-meta 1.16.0~~ — shipped (#215) | — | — |
 | 5 | ~~#155, #186, #150 + #183 allow-rule part~~ — shipped (#216) | — | — |
 | 5b | #183 remainder: decide policy for `ask` git:commit and `deny` git:push (fixing the syntax activates them for fresh consumers) + the issue's governance decision points | owner | policy recorded on #183, then a syntax PR |
@@ -61,3 +65,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 10 | ~~Mechanical additions~~ — shipped: #160 (#223) · #192 (#224) · #161 (#225) · #182 (#226) · #179 (#227) | — | — |
 | 11 | Plan-file rule (local `/workspaces/.claude/rules/unattended-execution.md`) lands in `qte77/qte77`; then #207 close, #197 rework (drop handoff template, dated plan, rebase, 1.6.0), #200 rebase-or-close | owner | rule on qte77/qte77 main |
 | 12 | Decisions: #157, #158, #125, #177/#178, #185, #167 | owner | decision recorded on each issue |
+| 13 | #175 remainder: re-evaluate the 12 held skills once #157/#158/#161/#125/#187 are decided | agent (after 12) | each held skill either `stable` + hash or its hold reason recorded |
+| 14 | P2 backlog: #187 (stale `last-verified-cc-version` sweep), #206 (Content-Signal + llms.txt check), #127 (sh-dev plugin), #126 (handoff Stop hook, after #157/#158) | agent | one PR each, green |
+| 15 | Deferred (low ROI / author-deferred / spike): #48 goals.json, #75 cc-voice STT, #101 Graphify eval, #190 OWASP LLM tracking (explicitly YAGNI) | owner | revisit when a consumer task needs one |
+| — | Excluded (other author): #199; PRs #200/#201 (see row 11) | — | — |

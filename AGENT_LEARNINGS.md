@@ -41,3 +41,18 @@ description: Non-obvious patterns that prevent repeated mistakes across sprints
   ```
 
 - **References**: `plugins/readme-generator/workflows/audit-repos.js` (#162), `plugins/security-audit/workflows/audit-owasp.js`; `.claude/rules/skill-authoring.md`.
+
+### Lint every changed `.md` (CHANGELOG included) with markdownlint-cli2 before pushing
+
+- **Context**: Docs/CHANGELOG edits in this repo; CI runs markdownlint via the `qte77/.github` reusable.
+- **Problem**: Two PRs in arc 0001 failed CI on CHANGELOG entries (MD038 space inside a code span,
+  MD034 bare URL) because only the "main" files were linted locally. A local run also floods MD013/MD060
+  (CI's config differs), which hides the real hits.
+- **Solution**: Lint all changed `.md` plus CHANGELOG; treat everything except MD013/MD060 as real.
+- **Example**:
+
+  ```bash
+  npm exec --yes --package=markdownlint-cli2 -- markdownlint-cli2 $(git diff --name-only origin/main -- '*.md') CHANGELOG.md
+  ```
+
+- **References**: #198 (MD038), #228 (MD034); plan `docs/plans/2026-09-24-0001-hygiene-and-release.md`.
