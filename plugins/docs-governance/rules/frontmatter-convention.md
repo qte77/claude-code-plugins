@@ -76,3 +76,15 @@ false MD041 (first-line-heading) and MD003 (heading-style) errors.
 
 - No `sources:` key in frontmatter — sources go in the Sources section at end of file
 - Sources section uses reference-style links (`[key]: url` at bottom)
+
+## ADR Exception (MADR 3.x)
+
+Files under `docs/adr/` follow [MADR 3.x](https://adr.github.io/madr/) and
+diverge from the rules above:
+
+- The Sources section is named **`## More Information`** (MADR 3.x canonical
+  field), not `## Sources`.
+- The bare-URL format `- name: <url>` is the established ADR precedent and
+  is preserved (reference-style links are not required for ADRs).
+- All other frontmatter rules (required fields, line-1 frontmatter, no HTML
+  comments above `---`) still apply.
