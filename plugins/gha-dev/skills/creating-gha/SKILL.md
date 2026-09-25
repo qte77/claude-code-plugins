@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [action-name]
   stability: stable
-  content-hash: sha256:5d5683baa92da58b39ce8ca29333e569fc8641cf6d792a53448a863b9b304d34
+  content-hash: sha256:bdc823c2b0682c2503187bb49947658927f0ba9b2b5e6fcd02ccac15efe24622
 ---
 
 # Creating GitHub Actions
@@ -20,7 +20,7 @@ and proper release flow.
 
 - `references/marketplace-checklist.md` — action.yaml fields, signed commits, release flow, gotchas
 - `references/python-gha-patterns.md` — full Python composite action walkthrough (uv, pyproject.toml, CI)
-- `references/companion-plugins.md` — companion plugins by workflow phase (tdd-core, python-dev, simplify, security-audit, commit-helper, makefile-core)
+- `references/companion-plugins.md` — companion plugins by workflow phase (tdd-core, python-dev, security-audit, commit-helper, makefile-core; built-in `/simplify`)
 
 ## Marketplace Requirements
 

@@ -24,7 +24,7 @@ Install with `claude plugin install <name>@qte77-claude-code-plugins`.
 
 | Plugin | Skill | When to use |
 |--------|-------|-------------|
-| **simplify** | `simplifying-code` | Post-implementation KISS/DRY/YAGNI review |
+| *(built-in)* | `/simplify` | Post-implementation reuse/quality review — ships with Claude Code, no install |
 | **security-audit** | `auditing-code-security` | OWASP Top 10 checks on action code |
 | **security-audit** | `scanning-dependencies` | Audit dependencies in pyproject.toml / uv.lock |
 | **security-audit** | `detecting-secrets` | Ensure no tokens or credentials in action source |
@@ -43,7 +43,6 @@ Install with `claude plugin install <name>@qte77-claude-code-plugins`.
 ```bash
 claude plugin install tdd-core@qte77-claude-code-plugins
 claude plugin install commit-helper@qte77-claude-code-plugins
-claude plugin install simplify@qte77-claude-code-plugins
 ```
 
 **Python-based action** (full):
@@ -52,7 +51,6 @@ claude plugin install simplify@qte77-claude-code-plugins
 claude plugin install python-dev@qte77-claude-code-plugins
 claude plugin install tdd-core@qte77-claude-code-plugins
 claude plugin install commit-helper@qte77-claude-code-plugins
-claude plugin install simplify@qte77-claude-code-plugins
 claude plugin install security-audit@qte77-claude-code-plugins
 ```
 
