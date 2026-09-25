@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **README**: link to the docs site (https://qte77.github.io/claude-code-plugins/), live since
+  the Pages deploy fix (#214).
 - **planning** (1.1.0): new `triaging-issues` skill (#179) — read-only GitHub issue triage: cluster
   by concern, score ROI × effort × risk from the actual code, output a P0–P3 plan with execution
   order, quick wins, and close candidates that each need file-level evidence. Ported from
