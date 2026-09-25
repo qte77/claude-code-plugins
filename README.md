@@ -2,7 +2,7 @@
 
 # qte77-claude-code-plugins
 
-Claude Code plugin marketplace — 26 plugins, 67 skills, 2 agents from production workflows.
+Claude Code plugin marketplace — 26 plugins, 68 skills, 2 agents from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-3.7.0-blue.svg)](CHANGELOG.md)
@@ -21,7 +21,7 @@ Claude Code plugin marketplace — 26 plugins, 67 skills, 2 agents from producti
 | **tdd-core** | `testing-tdd` | Language-agnostic TDD methodology (Red-Green-Refactor, AAA) |
 | **commit-helper** | `committing-staged-with-message` `creating-pr-from-branch` | Conventional commits + PR creation with approval workflow |
 | **codebase-tools** | `researching-codebase` `hardening-codebase` `build-error-resolver` (agent) | Codebase research, 9-phase quality hardening (architecture, docs, 4-agent review), build error resolution |
-| **planning** | `planner` (agent) | Feature/refactor planning with phased steps, dependencies, risks |
+| **planning** | `triaging-issues` `planner` (agent) | Feature/refactor planning with phased steps, dependencies, risks; GitHub issue triage (ROI × feasibility) |
 | **backend-design** | `designing-backend` | System architecture and API design |
 | **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO security |
 | **security-audit** | `auditing-code-security` `detecting-secrets` `scanning-dependencies` `triaging-security-report` | OWASP Top 10, secrets detection, dependency scanning, report triage |

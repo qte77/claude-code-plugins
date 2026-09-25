@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **planning** (1.1.0): new `triaging-issues` skill (#179) — read-only GitHub issue triage: cluster
+  by concern, score ROI × effort × risk from the actual code, output a P0–P3 plan with execution
+  order, quick wins, and close candidates that each need file-level evidence. Ported from
+  polyfetch-scrape's `/analyze-issues`.
 - **commit-helper** (1.2.0): `creating-pr-from-branch` finds PR templates in any local location/case
   and falls back to the owner-level `<owner>/.github` default (#161) — GitHub applies that one only in
   the web UI, never to `gh pr create --body`.
