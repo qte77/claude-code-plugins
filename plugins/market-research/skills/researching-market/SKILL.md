@@ -3,7 +3,8 @@ name: researching-market
 description: Integrate Phase 0 and Phase 1A outputs into TAM/SAM/SOM sizing, buyer personas, and market entry signals. Run after `analyzing-source-project` and `researching-industry-landscape` (Phase 1B).
 compatibility: Designed for Claude Code
 metadata:
-  stability: development
+  stability: stable
+  content-hash: sha256:819ae5b2832a196b24bae3e49bacc55794487a5a233c7912e638170ec9cfc8e0
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
   argument-hint: [market-or-product-category]
 ---

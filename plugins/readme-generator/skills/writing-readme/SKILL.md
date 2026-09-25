@@ -5,6 +5,8 @@ compatibility: Designed for Claude Code
 metadata:
   argument-hint: <scope> [target]
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebFetch, Agent
+  stability: stable
+  content-hash: sha256:ac8830d64c179b095cb8713a541ea88ffeb5fcd32ad15f2ac6fa10e7cc5991d6
 ---
 
 # Write README

@@ -5,7 +5,8 @@ compatibility: Designed for Claude Code
 metadata:
   allowed-tools: AskUserQuestion, Read, Write, WebFetch, WebSearch
   disable-model-invocation: true
-  stability: development
+  stability: stable
+  content-hash: sha256:e36675831972045ce779f241dc6efedcbc399ee3c0238bd531291c5b2647f704
 ---
 
 # User Story Builder

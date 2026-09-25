@@ -18,7 +18,7 @@
       "name": "commit-helper",
       "source": "./plugins/commit-helper",
       "description": "Generate conventional commit messages and pull requests with approval workflow",
-      "version": "1.1.1"
+      "version": "1.1.2"
     },
     {
       "name": "codebase-tools",
@@ -66,7 +66,7 @@
       "name": "ralph",
       "source": "./plugins/ralph",
       "description": "PRD-to-JSON conversion, interactive user story builder, and PRD generation for the Ralph loop",
-      "version": "1.0.3"
+      "version": "1.0.4"
     },
     {
       "name": "embedded-dev",
@@ -90,13 +90,13 @@
       "name": "docs-governance",
       "source": "./plugins/docs-governance",
       "description": "Audit and maintain documentation hierarchy and agent governance files",
-      "version": "1.6.0"
+      "version": "1.6.1"
     },
     {
       "name": "market-research",
       "source": "./plugins/market-research",
       "description": "GTM market research pipeline with teams mode parallel dispatch and configurable 2x2 strategy matrix",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "rust-dev",
@@ -159,7 +159,7 @@
       "name": "readme-generator",
       "source": "./plugins/readme-generator",
       "description": "Generate and audit README.md files for repos, GitHub accounts, and organizations",
-      "version": "1.2.1"
+      "version": "1.2.2"
     },
     {
       "name": "planning",

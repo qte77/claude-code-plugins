@@ -51,6 +51,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **#175 stability sweep**: 13 mature skills now `stability: stable` + `content-hash` (guarded by
+  `verify-skill-hashes`): commit-helper 1.1.2, docs-governance 1.6.1, ralph 1.0.4 (2),
+  readme-generator 1.2.2, market-research 1.0.3 (8). 52 of 67 skills are now hash-guarded.
 - **workspace-setup** (1.5.2): decided not to build `~/.claude.json` rebuild-persistence — closed #203.
   Warning wording updated from "no recommended fix yet" to reflect that this is final, not pending.
 

@@ -5,6 +5,8 @@ compatibility: Designed for Claude Code
 metadata:
   argument-hint: [audit|sync|promote|full]
   allowed-tools: Read, Grep, Glob, Edit
+  stability: stable
+  content-hash: sha256:7aed6247ed8472ddf5d9d0387f039e54b3bd51c5a57f924464f625808fe75661
 ---
 
 # Maintain Agent Governance Files

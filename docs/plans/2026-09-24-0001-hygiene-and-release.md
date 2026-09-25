@@ -55,7 +55,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 6 | ~~#184: drop ghost `simplify`; gha-dev → built-in `/simplify`~~ — shipped (#217) | — | — |
 | 7 | ~~#151 remnant: workspace-sandbox governance README + CONTRIBUTING~~ — shipped (#218) | — | — |
 | 7b | ~~Makefile fail-fast (`.SHELLFLAGS := -ec`)~~ — shipped (#219) | — | — |
-| 8 | #175: `stability: stable` for 13 mature skills (commit-helper/committing-staged-with-message, docs-governance/maintaining-agents-md, ralph ×2 excl. generating-prd-json-from-prd-md, market-research ×8, readme-generator/writing-readme) + hash regen | agent | hash check green |
+| 8 | ~~#175: 13 mature skills `stable` + hash~~ — shipped (#220); 12 held (cc-meta ×7, creating-pr-from-branch, hardening-codebase, testing-tdd, implementing-document-indexing, verifying-design-canvas) — revisit after #157/#158/#161/#125/#187 | — | — |
 | 9 | security-audit `scanning-dependencies`: `pip-audit` → `uvx pip-audit`; patch bump | agent | PR green |
 | 9b | web-recon `README.md`: drop the `polyfetch-scrape` checkout line (15, 22), point to `make setup-browser`; patch bump 0.1.1 (drift missed in #194) | agent | PR green |
 | 10 | #179, #192, #160, #182, #161 (mechanical additions) | agent | one PR each, green |
