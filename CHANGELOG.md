@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **commit-helper** (1.2.0): `creating-pr-from-branch` finds PR templates in any local location/case
+  and falls back to the owner-level `<owner>/.github` default (#161) — GitHub applies that one only in
+  the web UI, never to `gh pr create --body`.
 - **workspace-setup** (1.5.4), **workspace-sandbox** (1.3.14): new shared rule `ci-status-checks.md`
   (#192) — clear a stuck `CodeFactor: ERROR` by updating the branch from main, never with empty
   "nudge" commits; never `--admin`-merge past a failing/absent check. Promoted from qte77/qte77
