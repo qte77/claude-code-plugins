@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.8.0] - 2026-09-25
+
 ### Added
 
 - **README**: link to the docs site ([qte77.github.io/claude-code-plugins](https://qte77.github.io/claude-code-plugins/)), live since
