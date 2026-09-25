@@ -63,7 +63,7 @@ Tighten one level at a time. Fix violations before tightening further.
 | Python | complexipy | 15/function | `complexipy app/ --max-complexity 15` |
 | Rust | clippy `cognitive_complexity` | 25 (default) | built into clippy |
 | C/C++ | clang-tidy `readability-function-cognitive-complexity` | 25 | configurable |
-| TypeScript | eslint `complexity` | 20 | cyclomatic, not cognitive |
+| TypeScript | eslint `complexity` + `sonarjs/cognitive-complexity` | 12 cyclomatic / 15 cognitive | matches typescript-dev defaults (validated in agenthud-agui-a2ui #113/#116) |
 
 ## Snapshot Testing
 

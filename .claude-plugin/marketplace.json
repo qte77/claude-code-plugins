@@ -24,7 +24,7 @@
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
       "description": "Isolated codebase research, quality hardening, and build error resolution via skills and agents",
-      "version": "1.4.3"
+      "version": "1.4.4"
     },
     {
       "name": "cpp-desktop",
