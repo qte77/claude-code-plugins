@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [feature-name]
   stability: stable
+  content-hash: sha256:1b61b3bc20ef766f02226ebf253ee51faf98eb4d5454b74fbeca22ac4747026b
 ---
 
 # TypeScript Implementation

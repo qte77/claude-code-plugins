@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [action-name]
   stability: stable
+  content-hash: sha256:5d5683baa92da58b39ce8ca29333e569fc8641cf6d792a53448a863b9b304d34
 ---
 
 # Creating GitHub Actions

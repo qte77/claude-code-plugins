@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Write, Edit, Glob, Grep, Bash
   argument-hint: [feature-or-component]
   stability: stable
+  content-hash: sha256:4fdd42d49c686f7983e44accff97977741957768915408d403c050ce82380fb8
 ---
 
 # C++ Desktop Implementation

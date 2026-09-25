@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
   argument-hint: [file-or-directory]
   stability: stable
+  content-hash: sha256:e3c44dc62159fe501bb2d9ffd531773daf004d180c40f554efbb775b2fd8ce9d
 ---
 
 # Review Context

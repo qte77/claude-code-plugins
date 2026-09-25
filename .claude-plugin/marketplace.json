@@ -30,7 +30,7 @@
       "name": "cpp-desktop",
       "source": "./plugins/cpp-desktop",
       "description": "C++ desktop GUI development with wxWidgets, GTK, Qt \u2014 implement, review, analyze",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "cc-meta",
@@ -102,19 +102,19 @@
       "name": "rust-dev",
       "source": "./plugins/rust-dev",
       "description": "Rust implementation, testing, and code review skills, deploys cargo permissions via SessionStart hook",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "go-dev",
       "source": "./plugins/go-dev",
       "description": "Go implementation, testing, and code review skills, deploys go tool permissions via SessionStart hook",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.1"
+      "version": "1.2.2"
     },
     {
       "name": "tdd-core",
@@ -141,7 +141,7 @@
       "name": "typescript-dev",
       "source": "./plugins/typescript-dev",
       "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "simplify",
@@ -153,7 +153,7 @@
       "name": "security-audit",
       "source": "./plugins/security-audit",
       "description": "Code security audit \u2014 OWASP Top 10, dependency vulnerabilities, secrets detection, security-report triage",
-      "version": "1.2.0"
+      "version": "1.2.1"
     },
     {
       "name": "makefile-core",

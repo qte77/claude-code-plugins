@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Bash
   argument-hint: [directory-or-question]
   stability: stable
+  content-hash: sha256:73911acf495be13fcdd664cfce578c042f761c2386a1cbf0afcc9d31a6f300d9
 ---
 
 # C++ Codebase Analysis
