@@ -59,6 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **web-recon** (0.1.1): README "Requires" now matches web-recon-kit's current setup
+  (`make setup` / `make setup-browser`); the separate polyfetch-scrape checkout is gone (missed in #194).
 - **security-audit** (1.2.2): `scanning-dependencies` Python command is now
   `uv run --with pip-audit pip-audit --skip-editable --format=json`, matching the uv-first estate.
   Bare `uvx pip-audit` would audit only pip-audit's own tool env (28 pkgs vs the project's 68 in a
