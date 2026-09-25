@@ -5,7 +5,8 @@ compatibility: Designed for Claude Code
 metadata:
   disable-model-invocation: true
   allowed-tools: Read, Write
-  stability: development
+  stability: stable
+  content-hash: sha256:ec9fcb1f7c496c6ea8dfd10499729bfbc4ff258fe367bf36a69ac287d7dc58a6
 ---
 
 # Generate PRD.md from UserStory.md
