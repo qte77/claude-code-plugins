@@ -141,7 +141,7 @@
       "name": "typescript-dev",
       "source": "./plugins/typescript-dev",
       "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
-      "version": "1.0.2"
+      "version": "1.1.0"
     },
     {
       "name": "security-audit",

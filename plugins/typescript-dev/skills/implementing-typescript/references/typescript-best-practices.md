@@ -15,6 +15,7 @@ see-also: react-best-practices.md, vite-conventions.md
   "compilerOptions": {
     "strict": true,
     "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
     "moduleResolution": "bundler",
     "module": "ESNext",
     "target": "ES2022",
@@ -23,6 +24,45 @@ see-also: react-best-practices.md, vite-conventions.md
   }
 }
 ```
+
+`exactOptionalPropertyTypes` distinguishes `{ x: undefined }` from `{}` and catches real gaps.
+Enable it, but expect a few third-party interop fixes (e.g. passing `undefined` to an SDK's optional
+`abortSignal`).
+
+### ESLint (type-checked)
+
+Type-blind `eslint .` silently skips `no-floating-promises` and the `no-unsafe-*` rules. Use the
+type-checked configs with `projectService`, plus a complexity gate (cyclomatic ≤ 12, cognitive ≤ 15):
+
+```js
+// eslint.config.js
+import js from "@eslint/js";
+import tseslint from "typescript-eslint";
+import sonarjs from "eslint-plugin-sonarjs";
+
+export default tseslint.config(
+  { ignores: ["node_modules/", "dist/"] },
+  js.configs.recommended,
+  ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
+  {
+    files: ["src/**/*.ts", "test/**/*.ts"],
+    languageOptions: {
+      parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname },
+    },
+    plugins: { sonarjs },
+    rules: {
+      complexity: ["error", 12],
+      "sonarjs/cognitive-complexity": ["error", 15],
+    },
+  },
+  { files: ["**/*.js"], extends: [tseslint.configs.disableTypeChecked] },
+);
+```
+
+Common per-project opt-outs (judgment calls, not defaults): `@typescript-eslint/no-non-null-assertion`
+(deliberate, guarded `!`) and `@typescript-eslint/no-confusing-void-expression` (idiomatic React
+`onClick={() => setX(v)}` handlers).
 
 All projects must use `strict: true`. Never disable individual strict checks.
 
@@ -192,7 +232,7 @@ const res = await fetch(url, { signal: controller.signal });
 
 ### Type Safety
 - [ ] No `any` types in production code
-- [ ] `strict: true` enabled
+- [ ] `strict: true` + `noUncheckedIndexedAccess` + `exactOptionalPropertyTypes` enabled
 - [ ] No type assertions without justification
 - [ ] Discriminated unions for state variants
 
@@ -206,4 +246,4 @@ const res = await fetch(url, { signal: controller.signal });
 - [ ] Unit tests for new logic
 - [ ] `npx tsc --noEmit` passes
 - [ ] `npx vitest run` passes
-- [ ] `npx eslint .` passes
+- [ ] `npx eslint .` passes (type-checked config; complexity ≤ 12 / cognitive ≤ 15)

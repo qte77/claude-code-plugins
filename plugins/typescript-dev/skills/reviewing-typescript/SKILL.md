@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
   argument-hint: [file-or-directory]
   stability: stable
-  content-hash: sha256:4fcfdc4912d25cc19d1bee32d280f821264ac58a7ec5d0e6205f66708f922a00
+  content-hash: sha256:b285fa9c65674635325a88669c5f6662ef5059d788e570b57ded2804eaf7b57e
 ---
 
 # Review Context
@@ -80,7 +80,7 @@ async correctness, comprehensive testing
 
 **Structural Health**:
 
-- [ ] No function exceeds cognitive complexity threshold
+- [ ] No function exceeds cyclomatic complexity 12 (`complexity`) or cognitive complexity 15 (`sonarjs/cognitive-complexity`)
 - [ ] No copy-paste duplication across modules
 - [ ] Barrel exports used sparingly and intentionally
 
