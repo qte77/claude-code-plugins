@@ -61,6 +61,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **typescript-dev** (1.1.0, #182): defaults now type-checked ESLint (`strictTypeChecked` +
+  `stylisticTypeChecked` + `projectService`), a complexity gate (cyclomatic ≤ 12, `sonarjs`
+  cognitive ≤ 15), and `exactOptionalPropertyTypes` (with an interop caveat). Validated in
+  agenthud-agui-a2ui #113/#115/#116. **codebase-tools** (hardening checklist): TS complexity row
+  reconciled (was 20, cyclomatic only).
 - **#175 stability sweep**: 13 mature skills now `stability: stable` + `content-hash` (guarded by
   `verify-skill-hashes`): commit-helper 1.1.2, docs-governance 1.6.1, ralph 1.0.4 (2),
   readme-generator 1.2.2, market-research 1.0.3 (8). 52 of 67 skills are now hash-guarded.

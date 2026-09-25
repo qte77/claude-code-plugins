@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [feature-name]
   stability: stable
-  content-hash: sha256:1b61b3bc20ef766f02226ebf253ee51faf98eb4d5454b74fbeca22ac4747026b
+  content-hash: sha256:d2cac197cd70af4f908c5301064dc42bdc1fa79e68c7c3a236e7c97ae521a99e
 ---
 
 # TypeScript Implementation
@@ -50,7 +50,7 @@ See `references/vite-conventions.md` for Vite project conventions.
 Before completing any task:
 
 ```bash
-npx tsc --noEmit && npx vitest run && npx eslint .
+npx tsc --noEmit && npx vitest run && npx eslint .   # eslint: type-checked config, see references
 ```
 
 All type checks, tests, and lints must pass.
