@@ -49,7 +49,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 1 | ~~#213 Pages deploy + release workflows + README rows/badge~~ — shipped (#214) | — | — |
 | 2 | ~~Verify Pages live after merge; close #213~~ — done: run 36005276222 success, site serves, #213 closed | — | — |
 | 3 | First release: dispatch Bump Version (minor → 3.8.0), merge PR, confirm tag, dispatch Publish Release | owner | `gh release view v3.8.0` exists |
-| 4 | #180: `research-cross-check.js` as its own PR, hardcoded default consumer path removed; cc-meta minor bump | agent | PR green |
+| 4 | ~~#180: `research-cross-check.js` as its own skill + workflow, no hardcoded paths; cc-meta 1.16.0~~ — shipped (#215) | — | — |
 | 5 | #155, #183, #186, #150 (cc-meta MEMORY.md path, colon-syntax allow rules, read-once binary guards, hash-script hard-fail) | agent | one PR, CI green |
 | 6 | #184: drop ghost `simplify` from marketplace.json (`plugins/doc-pipeline/` is untracked local-only) | agent | `claude plugin validate .` + install test green |
 | 7 | #151 remnant: add `plugins/workspace-sandbox/governance/{CONTRIBUTING,README}.md` (mirror workspace-setup) | agent | lychee green; close #151 |
