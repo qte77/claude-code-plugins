@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
   argument-hint: [project-root]
   stability: stable
-  content-hash: sha256:2b319fdd8b0bcd32967af70309484b07633b96826901b444f0c3272d698d44ad
+  content-hash: sha256:a9ff14d899f3ffba809dd64536fd8a9f2cdd04ce72a99cfa9890a2fd06daf95f
 ---
 
 # Dependency Vulnerability Scan
@@ -34,7 +34,7 @@ metadata:
 | Ecosystem | Manifest | Lock File | Scanner Command |
 |-----------|----------|-----------|-----------------|
 | Node.js | `package.json` | `package-lock.json` | `npm audit --json` |
-| Python | `pyproject.toml` / `requirements.txt` | `uv.lock` / `requirements.txt` | `pip-audit --format=json` |
+| Python | `pyproject.toml` / `requirements.txt` | `uv.lock` / `requirements.txt` | `uv run --with pip-audit pip-audit --skip-editable --format=json` (runs in the project env — bare `uvx pip-audit` audits only its own tool env) |
 | Rust | `Cargo.toml` | `Cargo.lock` | `cargo audit --json` |
 | Go | `go.mod` | `go.sum` | `govulncheck ./...` |
 

@@ -56,7 +56,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 7 | ~~#151 remnant: workspace-sandbox governance README + CONTRIBUTING~~ — shipped (#218) | — | — |
 | 7b | ~~Makefile fail-fast (`.SHELLFLAGS := -ec`)~~ — shipped (#219) | — | — |
 | 8 | ~~#175: 13 mature skills `stable` + hash~~ — shipped (#220); 12 held (cc-meta ×7, creating-pr-from-branch, hardening-codebase, testing-tdd, implementing-document-indexing, verifying-design-canvas) — revisit after #157/#158/#161/#125/#187 | — | — |
-| 9 | security-audit `scanning-dependencies`: `pip-audit` → `uvx pip-audit`; patch bump | agent | PR green |
+| 9 | ~~security-audit `scanning-dependencies` → `uv run --with pip-audit … --skip-editable` (not bare `uvx`: audits only its own env)~~ — shipped (PR_NUM) | — | — |
 | 9b | web-recon `README.md`: drop the `polyfetch-scrape` checkout line (15, 22), point to `make setup-browser`; patch bump 0.1.1 (drift missed in #194) | agent | PR green |
 | 10 | #179, #192, #160, #182, #161 (mechanical additions) | agent | one PR each, green |
 | 11 | Plan-file rule (local `/workspaces/.claude/rules/unattended-execution.md`) lands in `qte77/qte77`; then #207 close, #197 rework (drop handoff template, dated plan, rebase, 1.6.0), #200 rebase-or-close | owner | rule on qte77/qte77 main |
