@@ -31,8 +31,23 @@ If no commits ahead of base, stop and inform the user.
 - Multiple commits: synthesize a summary title (`type[(scope)]: description`)
 - Keep under 72 characters
 
-**Body**: Check for `.github/pull_request_template.md`. If it exists, populate
-its sections. If not, use this minimal format:
+**Body**: Use the first PR template found, then populate its sections:
+
+1. **Local repo** — `pull_request_template.md` (any case) in `.github/`, the repo root, or
+   `docs/`; or a file in `.github/PULL_REQUEST_TEMPLATE/` (ask which one if several).
+2. **Owner-level default** — the `<owner>/.github` repo. GitHub applies it only in the web UI,
+   never to `gh pr create --body`, so fetch it explicitly. The contents API is case-sensitive:
+   try both spellings, and skip on 404 (no repo or no file):
+
+   ```bash
+   OWNER=$(gh repo view --json owner --jq .owner.login)
+   for f in PULL_REQUEST_TEMPLATE.md pull_request_template.md; do
+     t=$(gh api "repos/$OWNER/.github/contents/.github/$f" --jq .content 2>/dev/null) \
+       && { printf '%s' "$t" | base64 -d; break; }
+   done
+   ```
+
+3. **Last resort** — this minimal format:
 
 ```markdown
 ## Summary
