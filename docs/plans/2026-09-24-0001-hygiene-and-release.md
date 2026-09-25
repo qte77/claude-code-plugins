@@ -54,7 +54,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 5b | #183 remainder: decide policy for `ask` git:commit and `deny` git:push (fixing the syntax activates them for fresh consumers) + the issue's governance decision points | owner | policy recorded on #183, then a syntax PR |
 | 6 | ~~#184: drop ghost `simplify`; gha-dev → built-in `/simplify`~~ — shipped (#217) | — | — |
 | 7 | ~~#151 remnant: workspace-sandbox governance README + CONTRIBUTING~~ — shipped (#218) | — | — |
-| 7b | Makefile: `.ONESHELL` without `-e` — `check_sync`/`validate` guards never fail (subshell `exit 1`, bare `diff -q`, trailing `echo`); set `.SHELLFLAGS := -ec` | agent | drifted copy makes `make check_sync` exit non-zero |
+| 7b | ~~Makefile fail-fast (`.SHELLFLAGS := -ec`)~~ — shipped (#219) | — | — |
 | 8 | #175: `stability: stable` for 13 mature skills (commit-helper/committing-staged-with-message, docs-governance/maintaining-agents-md, ralph ×2 excl. generating-prd-json-from-prd-md, market-research ×8, readme-generator/writing-readme) + hash regen | agent | hash check green |
 | 9 | security-audit `scanning-dependencies`: `pip-audit` → `uvx pip-audit`; patch bump | agent | PR green |
 | 9b | web-recon `README.md`: drop the `polyfetch-scrape` checkout line (15, 22), point to `make setup-browser`; patch bump 0.1.1 (drift missed in #194) | agent | PR green |

@@ -3,6 +3,9 @@
 
 .SILENT:
 .ONESHELL:
+# .ONESHELL runs each recipe as ONE script: without -e only the last line's exit code
+# counted, so failing guards (diff -q, test -L || (exit 1)) were silently ignored.
+.SHELLFLAGS := -ec
 .PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts sync_refs sync_canon sync_governance check_sync docs_stage help
 .DEFAULT_GOAL := help
 
