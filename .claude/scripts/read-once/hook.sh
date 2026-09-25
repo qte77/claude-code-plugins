@@ -12,6 +12,11 @@ DIFF_MAX="${READ_ONCE_DIFF_MAX:-40}"
 
 [ "${READ_ONCE_DISABLED:-0}" = "1" ] && exit 0
 
+# Degrade to a no-op (never block Read) on hosts missing a required binary.
+for bin in jq md5sum realpath stat; do
+  command -v "$bin" >/dev/null 2>&1 || exit 0
+done
+
 mkdir -p "$CACHE_DIR"
 
 # Parse tool input from stdin
