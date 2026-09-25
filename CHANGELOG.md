@@ -56,6 +56,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Makefile**: recipes now fail fast (`.SHELLFLAGS := -ec`). Under `.ONESHELL` only the last line's
+  exit code counted, so `make validate` passed with a broken plugin JSON and `make check_sync`
+  passed with drifted copies or broken symlinks (subshell `exit 1`, bare `diff -q`).
 - **workspace-sandbox** (#151): governance now ships `README.md` + `CONTRIBUTING.md` (mirrored from
   the docs-governance canon templates by `make sync_governance`, guarded by `make check_sync`), so the
   deployed `AGENTS.md` links resolve — parity with workspace-setup.
