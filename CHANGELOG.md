@@ -59,6 +59,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **security-audit** (1.2.2): `scanning-dependencies` Python command is now
+  `uv run --with pip-audit pip-audit --skip-editable --format=json`, matching the uv-first estate.
+  Bare `uvx pip-audit` would audit only pip-audit's own tool env (28 pkgs vs the project's 68 in a
+  test run) — a silent false negative.
 - **Makefile**: recipes now fail fast (`.SHELLFLAGS := -ec`). Under `.ONESHELL` only the last line's
   exit code counted, so `make validate` passed with a broken plugin JSON and `make check_sync`
   passed with drifted copies or broken symlinks (subshell `exit 1`, bare `diff -q`).
