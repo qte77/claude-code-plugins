@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **docs-governance** (1.6.2): `frontmatter-convention` rule gains an **ADR Exception (MADR 3.x)** —
+  `docs/adr/` uses `## More Information` and bare `- name: <url>` sources (#160; upstreamed from
+  doc-pipeline-engine's local carve-out).
 - **cc-meta** (1.16.0): new `cross-checking-research` skill + bundled `workflows/research-cross-check.js`
   (#180) — bidirectional consumer-repo ↔ research-hub cross-check (pull cites/adoptions, push drafted
   findings). Paths are required args; no hardcoded repo defaults; read-only agents.
