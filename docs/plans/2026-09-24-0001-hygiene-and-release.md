@@ -58,6 +58,6 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 8 | ~~#175: 13 mature skills `stable` + hash~~ — shipped (#220); 12 held (cc-meta ×7, creating-pr-from-branch, hardening-codebase, testing-tdd, implementing-document-indexing, verifying-design-canvas) — revisit after #157/#158/#161/#125/#187 | — | — |
 | 9 | ~~security-audit `scanning-dependencies` → `uv run --with pip-audit … --skip-editable` (not bare `uvx`: audits only its own env)~~ — shipped (#221) | — | — |
 | 9b | ~~web-recon README setup drift~~ — shipped (#222) | — | — |
-| 10 | Mechanical additions: ~~#160~~ (#223) · ~~#192~~ (#224) · ~~#161~~ (PR_NUM) · #182 · #179 | agent | one PR each, green |
+| 10 | Mechanical additions: ~~#160~~ (#223) · ~~#192~~ (#224) · ~~#161~~ (#225) · #182 · #179 | agent | one PR each, green |
 | 11 | Plan-file rule (local `/workspaces/.claude/rules/unattended-execution.md`) lands in `qte77/qte77`; then #207 close, #197 rework (drop handoff template, dated plan, rebase, 1.6.0), #200 rebase-or-close | owner | rule on qte77/qte77 main |
 | 12 | Decisions: #157, #158, #125, #177/#178, #185, #167 | owner | decision recorded on each issue |
