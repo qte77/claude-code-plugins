@@ -1,7 +1,7 @@
 {
   "name": "planning",
-  "version": "1.0.1",
-  "description": "Feature and refactor planning agents — detailed implementation plans with phased steps, dependencies, risks, and success criteria",
+  "version": "1.1.0",
+  "description": "Planning — feature/refactor planning agent and GitHub issue triage (ROI × feasibility → P0–P3 plan)",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["planning", "feature-planning", "implementation-plan", "refactoring", "architecture", "step-breakdown"]
 }

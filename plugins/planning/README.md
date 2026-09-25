@@ -1,6 +1,10 @@
 # planning
 
-Planning agents for feature implementation and refactoring. Forward-looking, per-feature plans — distinct from the retrospective and cross-project synthesis skills in `cc-meta`.
+Planning agents and skills for feature implementation, refactoring, and backlog triage. Forward-looking, per-feature plans — distinct from the retrospective and cross-project synthesis skills in `cc-meta`.
+
+## Skills
+
+- **triaging-issues** — Triages open GitHub issues by ROI × feasibility: clusters by concern, scores each from the actual code, and proposes a P0–P3 plan with execution order, quick wins, and evidenced close candidates. Read-only.
 
 ## Agents
 
@@ -11,6 +15,7 @@ Planning agents for feature implementation and refactoring. Forward-looking, per
 | Task | Use |
 |---|---|
 | "Help me plan how to add feature X" | `planner` (this plugin) |
+| "Triage the issues" / "What should we work on next?" | `triaging-issues` (this plugin) |
 | "What am I working on across all my projects?" | `synthesizing-cc-bigpicture` (cc-meta) |
 | "What did I learn from my recent plans?" | `distilling-plan-learnings` (cc-meta) |
 | "Log what happened in this session" | `summarizing-session-end` (cc-meta) |
