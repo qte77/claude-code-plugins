@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **workspace-setup** (1.5.4), **workspace-sandbox** (1.3.14): new shared rule `ci-status-checks.md`
+  (#192) — clear a stuck `CodeFactor: ERROR` by updating the branch from main, never with empty
+  "nudge" commits; never `--admin`-merge past a failing/absent check. Promoted from qte77/qte77
+  `AGENT_LEARNINGS.md` (compound-learning step 3).
 - **docs-governance** (1.6.2): `frontmatter-convention` rule gains an **ADR Exception (MADR 3.x)** —
   `docs/adr/` uses `## More Information` and bare `- name: <url>` sources (#160; upstreamed from
   doc-pipeline-engine's local carve-out).

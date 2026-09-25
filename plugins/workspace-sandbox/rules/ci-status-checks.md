@@ -1,0 +1,1 @@
+../../../.claude/rules/ci-status-checks.md
