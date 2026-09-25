@@ -3,7 +3,8 @@ name: developing-gtm-strategy
 description: Develop customer segmentation, channel selection, and a 90-day launch plan from Phase 2 PMF assessment. Run after `validating-product-market-fit` (Phase 3).
 compatibility: Designed for Claude Code
 metadata:
-  stability: development
+  stability: stable
+  content-hash: sha256:835ecc37e55cf1711983bc72e61a20f6c6709d949db7190893c0e42faa4a45eb
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [product-name]
 ---

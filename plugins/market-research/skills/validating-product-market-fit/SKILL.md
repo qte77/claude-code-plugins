@@ -3,7 +3,8 @@ name: validating-product-market-fit
 description: Score product-market fit from Phase 1B market analysis; produce PMF score, evidence matrix, and risk register. Run after `researching-market` (Phase 2).
 compatibility: Designed for Claude Code
 metadata:
-  stability: development
+  stability: stable
+  content-hash: sha256:c17ca6e85aa960668bb6178e66951d95a29d37369f91e71cc535078237877ee7
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [product-name-or-hypothesis]
 ---
