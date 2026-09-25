@@ -114,7 +114,7 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "name": "tdd-core",
@@ -142,12 +142,6 @@
       "source": "./plugins/typescript-dev",
       "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
       "version": "1.0.2"
-    },
-    {
-      "name": "simplify",
-      "source": "./plugins/simplify",
-      "description": "Post-review code simplification \u2014 KISS, DRY, YAGNI enforcement",
-      "version": "1.0.1"
     },
     {
       "name": "security-audit",

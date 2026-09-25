@@ -56,6 +56,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **marketplace** (#184): removed the ghost `simplify` entry (plugin deleted in #119; `claude plugin
+  install simplify@…` failed). **gha-dev** (1.2.3): companion-plugins reference now points at the
+  built-in `/simplify` instead of the removed plugin.
 - **CI** (#150): `compute-skill-hashes.sh --check` now fails on stable skills with no `content-hash`
   (15 of 39 bypassed the gate), and `--update` inserts a missing hash instead of silently doing
   nothing. Backfilled: cpp-desktop 1.0.2, gha-dev 1.2.2, go-dev 1.0.2, rust-dev 1.0.2,
