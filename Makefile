@@ -70,9 +70,11 @@ sync_canon:  ## Regenerate docs-governance README + CONTRIBUTING templates from 
 	curl -fsSL $(CANON_CONTRIBUTING_URL) >> $(DG_CONTRIBUTING)
 	echo "Synced $(DG_README) and $(DG_CONTRIBUTING) from the qte77 canon."
 
-sync_governance:  ## Mirror docs-governance templates into the workspace-setup deploy set
-	cp $(DG_README) plugins/workspace-setup/governance/README.md
-	cp plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-setup/governance/CONTRIBUTING.md
+sync_governance:  ## Mirror docs-governance templates into the workspace-setup + workspace-sandbox deploy sets
+	for p in workspace-setup workspace-sandbox; do
+		cp $(DG_README) plugins/$$p/governance/README.md
+		cp plugins/docs-governance/templates/CONTRIBUTING.md plugins/$$p/governance/CONTRIBUTING.md
+	done
 
 check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@echo "Checking sync..."
@@ -99,6 +101,8 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@canon=$$(mktemp); curl -fsSL "$(CANON_CONTRIBUTING_URL)" -o "$$canon"; awk 'f{print} /@sync:begin/{f=1}' "$(DG_CONTRIBUTING)" | diff -q - "$$canon" || { echo "ERROR: $(DG_CONTRIBUTING) drifted from the qte77 canon — run 'make sync'"; rm -f "$$canon"; exit 1; }; rm -f "$$canon"
 	@diff -q "$(DG_README)" plugins/workspace-setup/governance/README.md
 	@diff -q plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-setup/governance/CONTRIBUTING.md
+	@diff -q "$(DG_README)" plugins/workspace-sandbox/governance/README.md
+	@diff -q plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-sandbox/governance/CONTRIBUTING.md
 	@echo "All copies in sync."
 
 

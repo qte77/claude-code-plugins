@@ -56,6 +56,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **workspace-sandbox** (#151): governance now ships `README.md` + `CONTRIBUTING.md` (mirrored from
+  the docs-governance canon templates by `make sync_governance`, guarded by `make check_sync`), so the
+  deployed `AGENTS.md` links resolve — parity with workspace-setup.
 - **marketplace** (#184): removed the ghost `simplify` entry (plugin deleted in #119; `claude plugin
   install simplify@…` failed). **gha-dev** (1.2.3): companion-plugins reference now points at the
   built-in `/simplify` instead of the removed plugin.
