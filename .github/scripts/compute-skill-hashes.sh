@@ -60,19 +60,27 @@ frontmatter_has_value() {
   ' "$file"
 }
 
-# Replace content-hash line inside frontmatter.
+# Replace the content-hash line inside frontmatter, or insert it after
+# "  stability: stable" when the skill has none yet.
 update_content_hash() {
   local file="$1"
   local new_hash="$2"
-  local tmp
+  local tmp has_hash=0
   tmp="$(mktemp)"
 
-  awk -v new_hash="sha256:${new_hash}" '
+  if awk '/^---$/{c++} c==2{exit} c==1 && /^  content-hash: /{f=1} END{exit !f}' "$file"; then
+    has_hash=1
+  fi
+
+  awk -v new_hash="sha256:${new_hash}" -v has_hash="$has_hash" '
     /^---$/ { delim_count++ }
-    delim_count <= 2 && /^  content-hash: / {
+    delim_count == 1 && has_hash && /^  content-hash: / {
       sub(/^  content-hash: .*/, "  content-hash: " new_hash)
     }
     { print }
+    delim_count == 1 && !has_hash && /^  stability: stable$/ {
+      print "  content-hash: " new_hash
+    }
   ' "$file" > "$tmp"
 
   mv "$tmp" "$file"
@@ -130,7 +138,8 @@ for skill_file in $SKILL_PATTERN; do
   declared_hash="${declared#sha256:}"
 
   if [[ "$declared_hash" == "PENDING" || -z "$declared_hash" ]]; then
-    echo "SKIP (no hash yet): $skill_file"
+    echo "MISSING: $skill_file (stable skills must carry a content-hash)"
+    (( mismatches++ )) || true
     continue
   fi
 
@@ -147,7 +156,7 @@ done
 if [[ "$MODE" == "--check" ]]; then
   if [[ $mismatches -gt 0 ]]; then
     echo ""
-    echo "ERROR: ${mismatches} stable SKILL.md file(s) have mismatched content hashes."
+    echo "ERROR: ${mismatches} stable SKILL.md file(s) have missing or mismatched content hashes."
     echo "If you intentionally changed a stable skill, update its content-hash by running:"
     echo "  bash .github/scripts/compute-skill-hashes.sh --update"
     exit 1

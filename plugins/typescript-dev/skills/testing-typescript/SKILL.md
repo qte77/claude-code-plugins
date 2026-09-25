@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [test-scope or component-name]
   stability: stable
+  content-hash: sha256:9d120f8a107caa25d18f6a308f85fb8ddaf7d09c4b57c3b62d2c414fba14c6cf
 ---
 
 # TypeScript Testing

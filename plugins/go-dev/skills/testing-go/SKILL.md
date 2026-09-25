@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [test-scope or component-name]
   stability: stable
+  content-hash: sha256:4ff8b1bda32cad71300ab72691e0df08e7d8e991ea8bcb20b764b98d55e5d353
 ---
 
 # Go Testing

@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [test-scope or component-name]
   stability: stable
+  content-hash: sha256:05ca1842234b8ba0cdd00693b47ee16fec6d4b15d498c867d29cd74a44779ff0
 ---
 
 # Rust Testing

@@ -56,6 +56,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **CI** (#150): `compute-skill-hashes.sh --check` now fails on stable skills with no `content-hash`
+  (15 of 39 bypassed the gate), and `--update` inserts a missing hash instead of silently doing
+  nothing. Backfilled: cpp-desktop 1.0.2, gha-dev 1.2.2, go-dev 1.0.2, rust-dev 1.0.2,
+  security-audit 1.2.1, typescript-dev 1.0.2.
+- **cc-meta** (1.16.1, #155): the SessionStart seed no longer drops an untracked `MEMORY.md` into
+  git working trees.
+- **workspace-setup** (1.5.3), **workspace-sandbox** (1.3.12): read-once hook degrades to a no-op when
+  `jq`/`md5sum`/`realpath`/`stat` is missing instead of failing every Read (#186); the 6 dead
+  `Bash(git:add:*)`-style allow rules in the settings templates now use the matching
+  `Bash(git add:*)` form (#183 — the `ask` commit / `deny` push rules are left for a policy decision).
 - **Pages deploy** (#213): never succeeded since it was added (0/120 runs) — `mkdocs.yml` nav pointed
   outside `docs/` and at 5 deleted analysis docs. Docs are now staged into `docs/` at build time, the
   nav is generated, and the build uses `uv`. Stale counts dropped from `site_description`.

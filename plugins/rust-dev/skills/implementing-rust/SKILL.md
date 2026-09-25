@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [feature-name]
   stability: stable
+  content-hash: sha256:482c79e5df4fb86ef1f81118f527b72b64d60704b01de8664819e9099c4baf78
 ---
 
 # Rust Implementation

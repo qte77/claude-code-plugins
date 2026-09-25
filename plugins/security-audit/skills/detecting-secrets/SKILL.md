@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Bash
   argument-hint: [file-or-directory]
   stability: stable
+  content-hash: sha256:bd93017a3c7d2155542ad5032c2cdc04d664355f1dab85892967dc7ffc794f4b
 ---
 
 # Secrets and Credential Detection

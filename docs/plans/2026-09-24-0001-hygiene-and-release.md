@@ -50,7 +50,8 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 2 | ~~Verify Pages live after merge; close #213~~ — done: run 36005276222 success, site serves, #213 closed | — | — |
 | 3 | First release: dispatch Bump Version (minor → 3.8.0), merge PR, confirm tag, dispatch Publish Release | owner | `gh release view v3.8.0` exists |
 | 4 | ~~#180: `research-cross-check.js` as its own skill + workflow, no hardcoded paths; cc-meta 1.16.0~~ — shipped (#215) | — | — |
-| 5 | #155, #183, #186, #150 (cc-meta MEMORY.md path, colon-syntax allow rules, read-once binary guards, hash-script hard-fail) | agent | one PR, CI green |
+| 5 | ~~#155, #186, #150 + #183 allow-rule part~~ — shipped (#216) | — | — |
+| 5b | #183 remainder: decide policy for `ask` git:commit and `deny` git:push (fixing the syntax activates them for fresh consumers) + the issue's governance decision points | owner | policy recorded on #183, then a syntax PR |
 | 6 | #184: drop ghost `simplify` from marketplace.json (`plugins/doc-pipeline/` is untracked local-only) | agent | `claude plugin validate .` + install test green |
 | 7 | #151 remnant: add `plugins/workspace-sandbox/governance/{CONTRIBUTING,README}.md` (mirror workspace-setup) | agent | lychee green; close #151 |
 | 8 | #175: `stability: stable` for 13 mature skills (commit-helper/committing-staged-with-message, docs-governance/maintaining-agents-md, ralph ×2 excl. generating-prd-json-from-prd-md, market-research ×8, readme-generator/writing-readme) + hash regen | agent | hash check green |

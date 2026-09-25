@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [feature-name]
   stability: stable
+  content-hash: sha256:efb2236c389be7d5d5311931961aeb3044c4ff360740706b80446fd0a74f7ae5
 ---
 
 # Go Implementation

@@ -76,7 +76,8 @@ After modifying any stable SKILL.md body, regenerate hashes:
 bash .github/scripts/compute-skill-hashes.sh --update
 ```
 
-The `verify-skill-hashes` CI workflow blocks PRs with stale hashes.
+The `verify-skill-hashes` CI workflow blocks PRs with stale **or missing** hashes — marking a
+skill `stability: stable` fails CI until `--update` inserts its hash.
 
 ## Agents convention
 

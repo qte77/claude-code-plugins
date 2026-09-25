@@ -1,6 +1,6 @@
 {
   "name": "security-audit",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Code security auditing — OWASP Top 10, dependency scanning, secrets detection, security-report triage",
   "author": {
     "name": "qte77"

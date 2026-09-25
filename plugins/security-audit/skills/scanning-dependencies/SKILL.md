@@ -6,6 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
   argument-hint: [project-root]
   stability: stable
+  content-hash: sha256:2b319fdd8b0bcd32967af70309484b07633b96826901b444f0c3272d698d44ad
 ---
 
 # Dependency Vulnerability Scan
