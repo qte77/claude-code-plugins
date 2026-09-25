@@ -2,7 +2,7 @@
 # Driven by .github/workflows/bump-version.yaml (qte77/.github reusable, --no-commit --no-tag);
 # tag-release.yaml tags v{version} on main once the bump PR merges.
 [tool.bumpversion]
-current_version = "3.7.0"
+current_version = "3.8.0"
 commit = false
 tag = false
 
