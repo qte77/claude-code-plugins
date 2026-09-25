@@ -12,6 +12,7 @@ Claude Code meta-skills for cross-project synthesis and session intelligence.
 - **persisting-bigpicture-learnings** — Persists bigpicture synthesis as dated snapshots in a learnings hub. Maintains latest pointer + append-only archive for cross-session compound learning.
 - **mining-session-patterns** — Extracts actionable patterns from session JSONL files: error-fix sequences, tool failure rates, and cost signals for compound learning.
 - **orchestrating-parallel-workers** — Fan out tasks to parallel background agents with independent context windows. Decomposes work into independent units, dispatches via Agent tool, tracks progress, and collects results.
+- **cross-checking-research** — Cross-checks a consumer repo against a research hub both ways: pulls hub concepts/sources to cite or adopt, pushes the repo's reusable findings back as ready-to-PR drafts. Drives the bundled `workflows/research-cross-check.js`.
 
 ## Usage
 

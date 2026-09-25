@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **cc-meta** (1.16.0): new `cross-checking-research` skill + bundled `workflows/research-cross-check.js`
+  (#180) — bidirectional consumer-repo ↔ research-hub cross-check (pull cites/adoptions, push drafted
+  findings). Paths are required args; no hardcoded repo defaults; read-only agents.
 - **Release workflows**: `bump-version.yaml`, `tag-release.yaml`, `publish-release.yaml` call the
   shared `qte77/.github` reusables for the root marketplace version; `.bumpversion.toml` bumps
   `metadata.version`, the README badge, and rolls `[Unreleased]` into a dated section. See
