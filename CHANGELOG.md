@@ -69,6 +69,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **`make lint_md`** runs markdownlint-cli2 0.22.0 (CI's version) over all markdown with the repo
+  config, check-only (`FIX=1` to fix). New `.markdownlint.jsonc` mirrors the shared qte77/.github config
+  plus the MD025 override; `make check_sync` fails if it drifts from the shared config.
 - **typescript-dev** (1.1.0, #182): defaults now type-checked ESLint (`strictTypeChecked` +
   `stylisticTypeChecked` + `projectService`), a complexity gate (cyclomatic ≤ 12, `sonarjs`
   cognitive ≤ 15), and `exactOptionalPropertyTypes` (with an interop caveat). Validated in
@@ -82,6 +85,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **CI markdown lint coverage**: the lint job only matched `*.{md,markdown}` at the repo root (8 files);
+  `.markdownlint-cli2.jsonc` now adds `**/*.{md,markdown}` (229 files). The 181 pre-existing errors are
+  fixed (blank lines around lists/headings/fences, code-fence languages, hard tabs, heading order);
+  20 plugins patch-bumped, 16 stable-skill hashes regenerated.
+- **docs-governance** (1.6.3): `frontmatter-convention` required config adds
+  `"MD025": { "front_matter_title": "" }` — the rule mandates `title:` plus a matching `# H1`, which
+  otherwise fails MD025 in every conforming file.
 - **web-recon** (0.1.1): README "Requires" now matches web-recon-kit's current setup
   (`make setup` / `make setup-browser`); the separate polyfetch-scrape checkout is gone (missed in #194).
 - **security-audit** (1.2.2): `scanning-dependencies` Python command is now
