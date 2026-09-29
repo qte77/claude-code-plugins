@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **CI**: `check-readme-inventory.yaml` (+ `make check_sync`) fails a PR when README's
+  "N plugins, M skills, K agents" line or its plugin table drifts from `marketplace.json` and the files
+  on disk — it drifted three times in arc 0001.
 - **README**: link to the docs site ([qte77.github.io/claude-code-plugins](https://qte77.github.io/claude-code-plugins/)), live since
   the Pages deploy fix (#214).
 - **planning** (1.1.0): new `triaging-issues` skill (#179) — read-only GitHub issue triage: cluster
