@@ -1,0 +1,25 @@
+name: Check README Inventory
+
+# README's "N plugins, M skills, K agents" line and plugin table drifted three times in arc 0001;
+# fail the PR instead of finding it later.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "plugins/**"
+      - "README.md"
+      - ".claude-plugin/marketplace.json"
+      - ".github/scripts/check-readme-inventory.py"
+      - ".github/workflows/check-readme-inventory.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  readme-inventory:
+    name: README counts + plugin rows match the marketplace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: python3 .github/scripts/check-readme-inventory.py

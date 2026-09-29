@@ -70,4 +70,5 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 15 | Deferred (low ROI / author-deferred / spike): #48 goals.json, #75 cc-voice STT, #101 Graphify eval, #190 OWASP LLM tracking (explicitly YAGNI) | owner | revisit when a consumer task needs one |
 | 16 | ~~Lint all markdown in CI (was root-only, 8 files) + fix 181 errors + align `make lint_md`~~ — shipped (#232) | — | — |
 | 17 | Upstream the MD025 override to qte77/.github `.markdownlint.jsonc` (then this repo's copy can drop it); drop doc-pipeline-engine's local frontmatter-convention copy | owner | shared config has MD025; local copy removed |
+| 18 | ~~README inventory guard (counts + plugin rows vs marketplace)~~ — shipped (#233) | — | — |
 | — | Excluded (other author): #199; PRs #200/#201 (see row 11) | — | — |

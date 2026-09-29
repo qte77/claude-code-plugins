@@ -114,6 +114,7 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@diff -q "$(DG_README)" plugins/workspace-sandbox/governance/README.md
 	@diff -q plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-sandbox/governance/CONTRIBUTING.md
 	@python3 .github/scripts/check-markdownlint-config.py "$(MDL_SHARED_CONFIG_URL)"
+	@python3 .github/scripts/check-readme-inventory.py
 	@echo "All copies in sync."
 
 
