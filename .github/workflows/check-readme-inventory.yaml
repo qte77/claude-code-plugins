@@ -10,6 +10,8 @@ on:
       - "plugins/**"
       - "README.md"
       - ".claude-plugin/marketplace.json"
+      - ".github/scripts/check-readme-inventory.py"
+      - ".github/workflows/check-readme-inventory.yaml"
 
 permissions:
   contents: read
