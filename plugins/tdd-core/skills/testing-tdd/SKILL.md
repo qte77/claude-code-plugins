@@ -33,7 +33,7 @@ Writes **focused, behavior-driven tests** following the TDD Red-Green-Refactor c
 
 Every test has three phases:
 
-```
+```text
 ARRANGE — Set up test data and dependencies
 ACT     — Execute the behavior under test
 ASSERT  — Verify the outcome
@@ -42,12 +42,14 @@ ASSERT  — Verify the outcome
 ## What to Test (KISS/DRY/YAGNI)
 
 **High-Value** (test these):
+
 - Business logic — algorithms, calculations, decision rules
 - Integration points — API handling, external service interactions
 - Edge cases — empty inputs, error propagation, boundary conditions
 - Contracts — response formats, data transformations
 
 **Avoid** (skip these):
+
 - Library behavior — framework internals, third-party validation
 - Trivial assertions — existence checks, type checks, default values
 - Implementation details — internal state, private methods

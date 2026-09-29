@@ -4,7 +4,7 @@ description: Score product-market fit from Phase 1B market analysis; produce PMF
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:c17ca6e85aa960668bb6178e66951d95a29d37369f91e71cc535078237877ee7
+  content-hash: sha256:36d5115fa26dc55eac0465fab8e4ac6ae9e168105cc6a9e5f3135bdf0c9eac87
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [product-name-or-hypothesis]
 ---
@@ -19,6 +19,7 @@ dimensions using evidence from prior phases.
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — Overall PMF score + top 3 evidence points + top 2 risks
 - `detailed` — Full per-dimension scoring, evidence matrix, risk register with mitigations
 - `conservative` — Weight negative evidence heavily; set high evidence bar
@@ -59,7 +60,7 @@ Write to `results/phase-2/`:
 
 ### `pmf-assessment.md`
 
-```
+```markdown
 # Product-Market Fit Assessment
 
 ## PMF Score: [X.X] / 10

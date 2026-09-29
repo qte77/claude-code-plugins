@@ -6,7 +6,7 @@ metadata:
   argument-hint: [file-directory-or-full]
   allowed-tools: Read, Grep, Glob, Edit, Bash
   stability: stable
-  content-hash: sha256:45fb467089ea1670daaa473897dd3b9b108beaf39e4319b851fdce2d678024eb
+  content-hash: sha256:383614403588863ce9c72a4d41628573c7e17debf41c6a11b30c0538baa6e2b2
 ---
 
 # Enforce Documentation Hierarchy
@@ -79,9 +79,11 @@ Detect violations across the scope. For each finding, record:
 
    **a) If `markdownlint-cli` is available** (`npx markdownlint-cli --version`
    succeeds): run it with the project config and parse output:
-   ```
+
+   ```bash
    npx markdownlint-cli -c .markdownlint.json <scope> 2>&1
    ```
+
    Map results to violation types: MD012 → double blanks (fix during align),
    MD053 → `unused-link-def`, MD022/MD058 → spacing issues from prior
    directive removal. Report rule ID + line + message.

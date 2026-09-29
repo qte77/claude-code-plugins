@@ -18,31 +18,31 @@
       "name": "commit-helper",
       "source": "./plugins/commit-helper",
       "description": "Generate conventional commit messages and pull requests with approval workflow",
-      "version": "1.2.0"
+      "version": "1.2.1"
     },
     {
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
       "description": "Isolated codebase research, quality hardening, and build error resolution via skills and agents",
-      "version": "1.4.4"
+      "version": "1.4.5"
     },
     {
       "name": "cpp-desktop",
       "source": "./plugins/cpp-desktop",
       "description": "C++ desktop GUI development with wxWidgets, GTK, Qt \u2014 implement, review, analyze",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
       "description": "Claude Code meta-skills for cross-project synthesis, context compaction, session intelligence, and memory seed template",
-      "version": "1.16.1"
+      "version": "1.16.2"
     },
     {
       "name": "backend-design",
       "source": "./plugins/backend-design",
       "description": "Backend system architecture and API design skills",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "mas-design",
@@ -54,13 +54,13 @@
       "name": "website-audit",
       "source": "./plugins/website-audit",
       "description": "Website SEO/GEO, design research, usability, and WCAG accessibility audit skills",
-      "version": "1.2.4"
+      "version": "1.2.5"
     },
     {
       "name": "docs-generator",
       "source": "./plugins/docs-generator",
       "description": "Document generation for writeups, tech specs (ADR/RFC/design docs), and reports with pandoc PDF output",
-      "version": "1.0.4"
+      "version": "1.0.5"
     },
     {
       "name": "ralph",
@@ -72,7 +72,7 @@
       "name": "embedded-dev",
       "source": "./plugins/embedded-dev",
       "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
-      "version": "1.2.3"
+      "version": "1.2.4"
     },
     {
       "name": "workspace-setup",
@@ -90,43 +90,43 @@
       "name": "docs-governance",
       "source": "./plugins/docs-governance",
       "description": "Audit and maintain documentation hierarchy and agent governance files",
-      "version": "1.6.2"
+      "version": "1.6.3"
     },
     {
       "name": "market-research",
       "source": "./plugins/market-research",
       "description": "GTM market research pipeline with teams mode parallel dispatch and configurable 2x2 strategy matrix",
-      "version": "1.0.3"
+      "version": "1.0.4"
     },
     {
       "name": "rust-dev",
       "source": "./plugins/rust-dev",
       "description": "Rust implementation, testing, and code review skills, deploys cargo permissions via SessionStart hook",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "go-dev",
       "source": "./plugins/go-dev",
       "description": "Go implementation, testing, and code review skills, deploys go tool permissions via SessionStart hook",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.3"
+      "version": "1.2.4"
     },
     {
       "name": "tdd-core",
       "source": "./plugins/tdd-core",
       "description": "Language-agnostic TDD methodology: Red-Green-Refactor, Arrange-Act-Assert, testing strategy",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "rag-core",
       "source": "./plugins/rag-core",
       "description": "Document indexing and hybrid retrieval with heading-boundary chunking, FAISS vector store, and PageIndex tree filtering",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "cc-voice",
@@ -141,31 +141,31 @@
       "name": "typescript-dev",
       "source": "./plugins/typescript-dev",
       "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
-      "version": "1.1.0"
+      "version": "1.1.1"
     },
     {
       "name": "security-audit",
       "source": "./plugins/security-audit",
       "description": "Code security audit \u2014 OWASP Top 10, dependency vulnerabilities, secrets detection, security-report triage",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "name": "makefile-core",
       "source": "./plugins/makefile-core",
       "description": "Skills and linting for consistent, rigorous Makefiles across projects \u2014 auto-detects project type, extensible via scaffold-*.md references",
-      "version": "1.2.0"
+      "version": "1.2.1"
     },
     {
       "name": "readme-generator",
       "source": "./plugins/readme-generator",
       "description": "Generate and audit README.md files for repos, GitHub accounts, and organizations",
-      "version": "1.2.2"
+      "version": "1.2.3"
     },
     {
       "name": "planning",
       "source": "./plugins/planning",
       "description": "Planning — feature/refactor planning agent and GitHub issue triage (ROI × feasibility → P0–P3 plan)",
-      "version": "1.1.0"
+      "version": "1.1.1"
     },
     {
       "name": "web-recon",

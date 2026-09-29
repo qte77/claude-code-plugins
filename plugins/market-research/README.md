@@ -19,7 +19,7 @@ Replicates the `qte77/agentic-market-research-to-gtm` workflow as a modern Claud
 
 ## Pipeline
 
-```
+```text
 Phase 0  (analyzing-source-project)      ─┐
 Phase 1A (researching-industry-landscape) ─┤→ Phase 1B → Phase 2 → Phase 3 → Phase 4 → Phase 5 → Phase 6
 ```

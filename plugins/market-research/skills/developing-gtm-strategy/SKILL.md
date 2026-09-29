@@ -4,7 +4,7 @@ description: Develop customer segmentation, channel selection, and a 90-day laun
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:835ecc37e55cf1711983bc72e61a20f6c6709d949db7190893c0e42faa4a45eb
+  content-hash: sha256:aba8abd399d1b9d2af36338ff5fc9da2831dd5773d4e5dc972efa1daf6af3a4c
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [product-name]
 ---
@@ -20,6 +20,7 @@ milestones.
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — Top segment, top 2 channels, 90-day milestones (bullet list)
 - `detailed` — Full ICP profiles, channel analysis matrix, sequenced roadmap
 - `conservative` — Proven channels (inbound, direct sales, partnerships); minimize burn
@@ -48,7 +49,7 @@ Write to `results/phase-3/`:
 
 ### `gtm-strategy.md`
 
-```
+```markdown
 # GTM Strategy
 
 ## Target Segments

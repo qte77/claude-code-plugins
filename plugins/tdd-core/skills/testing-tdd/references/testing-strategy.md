@@ -50,12 +50,14 @@ decision checklist. Language-agnostic.
 ## Test Levels: Unit vs Integration
 
 **Unit Tests**:
+
 - Test single component in isolation
 - Fast execution (<10ms per test)
 - No external dependencies (databases, APIs, file I/O)
 - Use mocks/fakes for dependencies
 
 **Integration Tests**:
+
 - Test multiple components working together
 - May involve I/O (slower execution)
 - Use real or in-memory services
@@ -64,17 +66,20 @@ decision checklist. Language-agnostic.
 ## Mocking Strategy
 
 **When to use mocks**:
+
 - External APIs you don't control (payment gateways, third-party)
 - Slow operations (file I/O, network calls) in unit tests
 - Non-deterministic dependencies (time, random, UUIDs)
 - Error scenarios hard to reproduce (network timeouts, rate limits)
 
 **When to use real services**:
+
 - In-memory alternatives exist (SQLite for DB, etc.)
 - Integration tests validating actual behavior
 - Your own services/components (test real interactions)
 
 **Mock safety rules**:
+
 - Constrain mocks to real interfaces (typed mocks, spec=)
 - Bare untyped mocks accept any method silently — dangerous
 - Update mocks when interfaces change
@@ -102,7 +107,7 @@ tests/
 
 Name describes behavior, not method:
 
-```
+```text
 // Unit tests
 "calculates total from items"
 "returns empty array for unknown user"

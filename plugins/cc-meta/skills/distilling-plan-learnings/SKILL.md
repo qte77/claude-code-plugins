@@ -26,7 +26,7 @@ that compounds project knowledge over time.
 
 **Examples:**
 
-```
+```text
 /distilling-plan-learnings                          # Last 7 days → docs/learnings/from-plans.md
 /distilling-plan-learnings 30d                      # Last 30 days
 /distilling-plan-learnings 7d ./my-learnings.md     # Custom output path
@@ -34,7 +34,7 @@ that compounds project knowledge over time.
 
 ## Data Source
 
-```
+```text
 ~/.claude/
 ├── plans/*.md                       # Plan mode files (filtered by mtime)
 ```

@@ -35,6 +35,7 @@ cross-contamination between unrelated tasks.
 ### 1. Decompose
 
 Split the user request into independent work units. Each unit must be:
+
 - Self-contained (no dependency on other units)
 - Well-scoped (clear input, clear expected output)
 - Worth isolating (non-trivial enough to justify agent overhead)
@@ -54,6 +55,7 @@ For each unit, define:
 
 Launch all agents in a **single message with multiple Agent tool calls**.
 This ensures true parallel execution. Each agent prompt must include:
+
 - Full context needed (file paths, requirements, constraints)
 - Expected output format and location
 - No references to other agents or their work
@@ -62,7 +64,7 @@ This ensures true parallel execution. Each agent prompt must include:
 
 Use TaskCreate for each dispatched unit to give the user visibility:
 
-```
+```text
 TaskCreate: "worker-auth: implement OAuth module" — status: in_progress
 TaskCreate: "worker-docs: write API reference" — status: in_progress
 ```
@@ -72,6 +74,7 @@ Update tasks as agents complete via TaskUpdate.
 ### 5. Collect
 
 After all agents finish:
+
 - Read each agent's output
 - Validate completeness and correctness
 - Synthesize a summary for the user

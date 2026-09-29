@@ -4,7 +4,7 @@ description: Synthesize all prior research into a unified GTM narrative. Run aft
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:3880098d33e4c0d10569f2d46d0422097b163f44752cd3e33ad2d3d03cebf14d
+  content-hash: sha256:a8c1dc87f705a039a21f114e8b7f28a7f8518948388e7ed17f573ff5949b2160
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [optional-synthesis-focus]
 ---
@@ -20,6 +20,7 @@ This output drives Phase 6 slide deck generation.
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — Executive summary (1 page), key findings table, single recommended path
 - `detailed` — Full integrated narrative, alternative scenarios, confidence annotations
 - `conservative` — Lead with validated evidence; clearly separate confirmed from inferred
@@ -52,7 +53,7 @@ Write to `results/phase-5/`:
 
 ### `synthesis.md`
 
-```
+```markdown
 # GTM Research Synthesis
 
 ## Executive Summary

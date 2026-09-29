@@ -251,22 +251,26 @@ myapp/
 ## Pre-Commit Checklist
 
 ### Security
+
 - [ ] No hardcoded credentials
 - [ ] All user input validated at boundaries
 - [ ] SQL queries use parameterized statements
 - [ ] JSON decoder uses `DisallowUnknownFields()` for untrusted input
 
 ### Error Handling
+
 - [ ] All errors handled or documented as ignored
 - [ ] `fmt.Errorf("context: %w", err)` used for wrapping
 - [ ] Sentinel errors for public APIs
 
 ### Concurrency
+
 - [ ] Every goroutine has a stop signal
 - [ ] `context.Context` passed as first param, not stored
 - [ ] Shared state protected by mutex or channels
 
 ### Code Quality
+
 - [ ] `slog` used for logging
 - [ ] Dependencies injected via interfaces
 - [ ] `go vet ./...` passes

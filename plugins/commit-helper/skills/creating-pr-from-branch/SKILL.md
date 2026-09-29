@@ -27,6 +27,7 @@ If no commits ahead of base, stop and inform the user.
 ## Step 2: Generate PR Title and Body
 
 **Title**: Derive from commits using conventional commit format.
+
 - Single commit: use commit subject as-is
 - Multiple commits: synthesize a summary title (`type[(scope)]: description`)
 - Keep under 72 characters
@@ -60,6 +61,7 @@ If no commits ahead of base, stop and inform the user.
 ```
 
 **Body guidelines:**
+
 - Fill template checkboxes where applicable (check items that are done)
 - Include `Closes #N` if the branch name contains an issue number
 - Keep it concise — the diff speaks for itself

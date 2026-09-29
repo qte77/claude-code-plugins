@@ -6,11 +6,12 @@
 
 Controls output verbosity and depth.
 
-```
+```yaml
 style: concise
 ```
 
 Options:
+
 - `concise` — Bullet points, executive summaries, key findings only. Faster execution.
 - `detailed` — Full narrative analysis, supporting evidence, extended recommendations.
 
@@ -18,11 +19,12 @@ Options:
 
 Controls risk tolerance and ambition of recommendations.
 
-```
+```yaml
 approach: conservative
 ```
 
 Options:
+
 - `conservative` — Proven playbooks, de-risked recommendations, incremental moves.
 - `ambitious` — First-mover positioning, aggressive expansion, contrarian bets.
 

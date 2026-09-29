@@ -13,7 +13,7 @@ see-also: platformio-patterns.md
 
 ## Project Structure
 
-```
+```text
 project/
   CMakeLists.txt              # Top-level: cmake_minimum_required + project()
   sdkconfig                   # Generated menuconfig output

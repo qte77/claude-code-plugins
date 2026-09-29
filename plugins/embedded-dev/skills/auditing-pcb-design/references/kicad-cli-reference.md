@@ -137,7 +137,7 @@ kicad-cli pcb export drill \
 
 ### Expected Output Files
 
-```
+```text
 gerbers/
   project-F_Cu.gbr          # Front copper
   project-B_Cu.gbr          # Back copper

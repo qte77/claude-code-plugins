@@ -13,7 +13,7 @@ see-also: esp-idf-patterns.md
 
 ## Project Structure
 
-```
+```text
 project/
   platformio.ini              # Project configuration
   src/

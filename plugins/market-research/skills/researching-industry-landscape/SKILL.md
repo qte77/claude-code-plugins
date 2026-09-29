@@ -4,7 +4,7 @@ description: Map competitive intelligence and industry landscape; produce a comp
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:9dfdbe95474fa694e84e8b22b8fcb8af48a2b4961dbfa232b79c2ff696b46b0d
+  content-hash: sha256:63b5d0505a4eb7efa5c9bab7a80fa3542178874fb2ed02ba3d4887d8146e5bf9
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
   argument-hint: [industry-or-product-category]
 ---
@@ -19,6 +19,7 @@ intelligence that feeds Phase 1B (researching-market).
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — Top 5 competitors, one-line summary per player, key whitespace only
 - `detailed` — Full competitor profiles, market map, trend analysis
 - `conservative` — Focus on established market leaders and proven segments
@@ -46,7 +47,7 @@ Write to `results/phase-1a/`:
 
 ### `competitor-map.md`
 
-```
+```markdown
 # Industry Landscape
 
 ## Competitor Profiles

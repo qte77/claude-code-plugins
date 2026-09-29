@@ -4,7 +4,7 @@ description: Generate an investor or stakeholder presentation from Phase 5 synth
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:3993381bf4451482a8a49403105640e8c39851a8f99b6b4bf81a4421941a8287
+  content-hash: sha256:b5fd7c159f176dc92aaab3f6c8ec224123bb6e9277404a480c8a1f3072fe682a
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [audience-type]
 ---
@@ -19,6 +19,7 @@ investor or stakeholder presentation from the synthesized GTM research.
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — 8-10 slides, one data point per slide, minimal text
 - `detailed` — 12-15 slides, supporting evidence slides, appendix section
 - `conservative` — Data-led narrative, proof-before-vision structure
@@ -35,6 +36,7 @@ Read `config/mode.md` before starting:
 Adapt based on audience from `config/comments_gtm.md`:
 
 ### Investor Deck (default)
+
 1. Title — Product name + one-liner
 2. Problem — Pain point with market evidence
 3. Solution — How the product solves it
@@ -47,6 +49,7 @@ Adapt based on audience from `config/comments_gtm.md`:
 10. Ask / Next Steps
 
 ### Enterprise Buyer Deck
+
 1. Executive Summary
 2. Problem Statement
 3. Solution Overview
@@ -57,6 +60,7 @@ Adapt based on audience from `config/comments_gtm.md`:
 8. Next Steps
 
 ### Internal Leadership Deck
+
 1. Opportunity Summary
 2. Market Analysis
 3. PMF Assessment
@@ -80,7 +84,7 @@ Write to `results/phase-6/`:
 
 ### `slide-deck.md`
 
-```
+```markdown
 # [Product Name] — [Audience Type] Deck
 
 ---

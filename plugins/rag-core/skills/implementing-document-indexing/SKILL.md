@@ -19,7 +19,7 @@ sentence-transformers, store in FAISS, and retrieve via hybrid search.
 
 ## Architecture Overview
 
-```
+```text
 Document --> Parser --> Pages --> TreeIndex (PageIndex)
                                      |
                                      v

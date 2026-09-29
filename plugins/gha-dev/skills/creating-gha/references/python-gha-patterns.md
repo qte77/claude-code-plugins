@@ -152,7 +152,7 @@ jobs:
 
 ## File Layout
 
-```
+```text
 my-python-action/
   action.yaml          # composite action with branding
   pyproject.toml       # PEP 735, ruff, bump-my-version

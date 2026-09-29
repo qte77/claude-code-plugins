@@ -44,7 +44,7 @@ minimal code to make it pass. Not the other way around.
 
 Structure every test in three phases:
 
-```
+```text
 // ARRANGE — Set up test data
 items = [{ price: 10, qty: 2 }, { price: 5, qty: 1 }]
 processor = new OrderProcessor()
@@ -69,6 +69,7 @@ boundaries), then success cases.
 ### 5. Descriptive Test Names
 
 Name describes behavior:
+
 - Good: `"returns 404 for unknown user"`
 - Bad: `"test service response"`
 
@@ -84,7 +85,7 @@ Name describes behavior:
 
 ### Testing implementation details
 
-```
+```text
 // BAD — Tests internal structure
 assert(service._internalClient instanceof SomeLibrary)
 
@@ -114,6 +115,7 @@ update or delete tests that reference the old interface.
 ## When to Use TDD
 
 **Use TDD for**:
+
 - Business logic (calculations, algorithms, rules)
 - Data transformations (model conversions, parsing)
 - Edge case handling (empty inputs, nulls, boundaries)
@@ -121,6 +123,7 @@ update or delete tests that reference the old interface.
 - Component behavior (renders, callbacks, state changes)
 
 **Consider alternatives for**:
+
 - Simple CRUD operations
 - UI layouts and styling (use visual testing)
 - Exploratory prototypes (add tests after direction is clear)

@@ -23,16 +23,18 @@
 ## Patterns
 
 ### Idempotent setup
+
 ```makefile
 setup_dev:
-	if ! command -v shellcheck > /dev/null 2>&1; then
-	    mkdir -p ~/.local/bin
-	    curl -sSfL "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" \
-	        | tar -xJ --strip-components=1 -C ~/.local/bin shellcheck-stable/shellcheck
-	fi
+ if ! command -v shellcheck > /dev/null 2>&1; then
+     mkdir -p ~/.local/bin
+     curl -sSfL "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" \
+         | tar -xJ --strip-components=1 -C ~/.local/bin shellcheck-stable/shellcheck
+ fi
 ```
 
 ### Quiet mode
+
 ```makefile
 VERBOSE ?= 0
 ifeq ($(VERBOSE),0)
@@ -43,17 +45,20 @@ endif
 ```
 
 ### Validation chain
+
 ```makefile
 validate: lint test  ## Full validation (lint + test)
 quick_validate: lint check_types  ## Fast validation (no tests)
 ```
 
 ### Conditional dependencies
+
 ```makefile
 setup_all: setup_dev setup_cad setup_slicer  ## Install all
 ```
 
 ### User-local Node.js tools
+
 ```makefile
 NODE_DIR := $(HOME)/.local/share/node
 NODE_BIN := $(NODE_DIR)/bin
