@@ -60,12 +60,14 @@ false MD041 (first-line-heading) and MD003 (heading-style) errors.
 ```json
 {
   "MD013": false,
-  "MD041": { "front_matter_title": "^\\s*title\\s*[:=]" }
+  "MD041": { "front_matter_title": "^\\s*title\\s*[:=]" },
+  "MD025": { "front_matter_title": "" }
 }
 ```
 
 - `MD013: false` — disables line length globally (no inline disable/enable comments needed)
 - `MD041.front_matter_title` — tells markdownlint to recognize `title:` in frontmatter as the first heading, preventing false "first line should be a heading" errors
+- `MD025.front_matter_title: ""` — the `title:` must match the `# H1`, so the frontmatter title must not also count as a top-level heading (otherwise every conforming file fails MD025 "multiple top-level headings")
 
 ### Anti-patterns
 

@@ -8,16 +8,16 @@ metadata:
   context: fork
   agent: Explore
   stability: stable
-  content-hash: sha256:a0726df430d19c4dc24580413b05a81905470ed5af7006efaef7f96e226b1c59
+  content-hash: sha256:9db70205b1e48b51850bf2f9031a2ac58fe71a0a0af04b9e8e4c7e0692802c99
   last-verified-cc-version: 1.0.34
 ---
+
+# Backend Architecture
 
 ## Git Context
 
 - Recent changes: !`git log --oneline -3`
 - Current branch: !`git branch --show-current`
-
-# Backend Architecture
 
 **Target**: $ARGUMENTS
 

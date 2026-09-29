@@ -47,7 +47,7 @@ grep -rn '^\w.*\s\+\w\+(.*)\s*{' --include='*.c' src/ | grep -v 'static\s\+inlin
 
 ### Process
 
-```
+```text
 FUNCTION reconcile(requirements_file, source_dirs, test_dirs):
 
     # Step 1: Parse requirements
@@ -109,7 +109,7 @@ FUNCTION reconcile(requirements_file, source_dirs, test_dirs):
 
 ## Coverage Matrix Format
 
-```
+```markdown
 | Requirement | Description (truncated) | Code Location | Test ID | Status |
 |-------------|------------------------|---------------|---------|--------|
 | SW-REQ-001  | EMV filter init...     | src/emv.c:42  | TEST-001| ✓ OK   |

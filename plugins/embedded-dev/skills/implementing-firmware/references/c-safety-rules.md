@@ -93,7 +93,7 @@ clang-tidy \
 
 When a MISRA rule must be deviated, document using this format:
 
-```
+```text
 Deviation ID:   DEV-NNN
 MISRA Rule:     Rule X.Y (Mandatory/Required/Advisory)
 File:           path/file.c:line

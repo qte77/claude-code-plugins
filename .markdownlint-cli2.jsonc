@@ -1,3 +1,7 @@
 {
+  // CI's markdownlint-cli2-action passes only `*.{md,markdown}` (repo root); these globs are
+  // appended so every tracked markdown file is linted, locally and in CI.
+  "globs": ["**/*.{md,markdown}"],
+  "gitignore": true,
   "ignores": ["examples/**"]
 }

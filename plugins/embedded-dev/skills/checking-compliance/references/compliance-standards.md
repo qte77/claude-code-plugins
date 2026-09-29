@@ -95,7 +95,7 @@ Intentional radiators (devices with radio transmitters):
 
 ## Decision Matrix
 
-```
+```text
 Device has radio? ──► YES ──► RED (EU) + FCC Part 15.247+ (US)
        │
        NO

@@ -231,18 +231,21 @@ const res = await fetch(url, { signal: controller.signal });
 ## Pre-Commit Checklist
 
 ### Type Safety
+
 - [ ] No `any` types in production code
 - [ ] `strict: true` + `noUncheckedIndexedAccess` + `exactOptionalPropertyTypes` enabled
 - [ ] No type assertions without justification
 - [ ] Discriminated unions for state variants
 
 ### Code Quality
+
 - [ ] Named exports used consistently
 - [ ] ESM imports with proper ordering
 - [ ] No hardcoded secrets or credentials
 - [ ] All external input validated at boundaries
 
 ### Testing and Validation
+
 - [ ] Unit tests for new logic
 - [ ] `npx tsc --noEmit` passes
 - [ ] `npx vitest run` passes

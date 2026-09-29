@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Bash
   argument-hint: [directory-or-question]
   stability: stable
-  content-hash: sha256:73911acf495be13fcdd664cfce578c042f761c2386a1cbf0afcc9d31a6f300d9
+  content-hash: sha256:0fccb258bd50eb0c465a69a8a9e1f59a74c49ce5f2ec2c3042bfe641b919b5d0
 ---
 
 # C++ Codebase Analysis
@@ -52,16 +52,19 @@ grep -rh '#include "' src/ include/ 2>/dev/null | sort | uniq -c | sort -rn | he
 Evaluate these dimensions:
 
 **Module Boundaries**:
+
 - Are source files organized by feature or by layer?
 - Is there a clear `src/` vs `include/` separation?
 - Are GUI components isolated from business logic?
 
 **Coupling**:
+
 - How many cross-module includes exist?
 - Are there circular dependencies?
 - Is dependency injection or interface abstraction used?
 
 **Build Structure**:
+
 - Single CMakeLists.txt or hierarchical?
 - Are libraries split into reusable targets?
 - Are tests in a separate target?

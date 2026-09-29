@@ -235,17 +235,20 @@ Prefer `pub(crate)` over `pub` for types used only within the crate.
 ## Pre-Commit Checklist
 
 ### Security
+
 - [ ] No hardcoded secrets or credentials
 - [ ] All external input validated at boundaries
 - [ ] Every `unsafe` block has `// SAFETY:` comment
 - [ ] `cargo audit` passes
 
 ### Type Safety
+
 - [ ] Newtypes used for domain IDs and values
 - [ ] `Option`/`Result` used, no sentinel values
 - [ ] `thiserror` (library) or `anyhow` (binary) for errors
 
 ### Code Quality
+
 - [ ] No `unwrap()`/`expect()` in production paths
 - [ ] `?` used for error propagation
 - [ ] No unnecessary `.clone()`
@@ -253,6 +256,7 @@ Prefer `pub(crate)` over `pub` for types used only within the crate.
 - [ ] `tracing` used for logging
 
 ### Testing and Validation
+
 - [ ] Unit tests for new logic
 - [ ] `cargo test` passes
 - [ ] `cargo clippy -- -D warnings` passes

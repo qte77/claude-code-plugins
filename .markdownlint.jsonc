@@ -1,0 +1,20 @@
+{
+  // Mirrors the shared estate config (qte77/.github .markdownlint.jsonc) + ONE override (MD025).
+  // CI only downloads the shared config when a repo has none, so this file is authoritative here.
+  // `make check_sync` verifies every shared key is still present with the same value.
+
+  // Disable line-length check (per project policy)
+  "MD013": false,
+  // Allow inline HTML (used for img/details/summary/picture in READMEs)
+  "MD033": false,
+  // Allow duplicate headings (CHANGELOG repeats Added/Changed/Fixed across versions)
+  "MD024": { "siblings_only": true },
+  // Allow non-H1 first line when frontmatter declares a title
+  "MD041": { "front_matter_title": "^\\s*title\\s*[:=]" },
+  // Enforce padded table style for readability
+  "MD060": { "style": "padded" },
+
+  // Override: docs-governance's frontmatter-convention requires `title:` AND a matching `# H1`,
+  // so the frontmatter title must not count as a second top-level heading.
+  "MD025": { "front_matter_title": "" }
+}

@@ -112,7 +112,7 @@ class ChunkMetadata:
 
 Store as JSON lines alongside the FAISS index:
 
-```
+```text
 index.faiss          # FAISS binary index
 metadata.jsonl       # one JSON object per vector, same order
 ```
@@ -123,7 +123,7 @@ Combines vector similarity search with structural tree filtering.
 
 ### Pipeline Steps
 
-```
+```text
 Query
   |
   v

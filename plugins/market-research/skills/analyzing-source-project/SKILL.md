@@ -4,7 +4,7 @@ description: Assess a source project's technical capabilities. Reads `config/sou
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:0442f2fbb1a1240a59240d2b083a135aa37c12bc2e19d4886109c327aa9839cf
+  content-hash: sha256:e856f199bd04e9ce7b891e33b0506c2d142968bf9df9c4c0e0c7f23f957a8d95
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
   argument-hint: [project-path-or-url]
 ---
@@ -19,6 +19,7 @@ source project that feeds Phase 1B (researching-market).
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — Bullet summaries, 3-5 points per section
 - `detailed` — Full narrative with evidence and code references
 - `conservative` — Focus on proven, documented capabilities
@@ -47,7 +48,7 @@ Write to `results/phase-0/`:
 
 ### `capability-profile.md`
 
-```
+```markdown
 # Source Project Capability Profile
 
 ## Project: [name]

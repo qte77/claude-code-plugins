@@ -4,7 +4,7 @@ description: Detect gaps and contradictions across all prior phases; surface cro
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:6405a9ff7dc486eb272a26e9ded919ccaa686456bc720f6b77af104e12b78d18
+  content-hash: sha256:09aa54c11c2e6368450e5f48f564f8ba85056eb4c3615d6684745c8501a12784
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [optional-focus-area]
 ---
@@ -20,6 +20,7 @@ the GTM strategy.
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — Top 3 contradictions + top 5 objections (brief)
 - `detailed` — Full contradiction register, root cause analysis, resolution roadmap
 - `conservative` — Surface all contradictions regardless of severity; prefer resolution over ignoring
@@ -57,7 +58,7 @@ Write to `results/phase-4/`:
 
 ### `contradiction-analysis.md`
 
-```
+```markdown
 # Contradiction Analysis
 
 ## Cross-Phase Contradictions

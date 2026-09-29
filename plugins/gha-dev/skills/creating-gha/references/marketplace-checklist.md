@@ -106,12 +106,14 @@ tag = false
 - **`bump-my-version` always increments** — for first release, create tag manually via API
 - **Marketplace publish**: must check the box on the GitHub Release page; can't be done via API
 - **Blob overflow**: for large CSVs/generated files exceeding API payload, write to temp file, base64-encode, use `--input` with jq rawfile:
+
   ```bash
   base64 -w0 < large.csv > /tmp/blob.b64
   gh api repos/OWNER/REPO/git/blobs \
     --input <(jq -n --rawfile b /tmp/blob.b64 '{encoding:"base64",content:$b}') \
     --jq '.sha'
   ```
+
 - **S310 pattern**: for Python actions using `urllib.request.urlopen()`, add an `_ensure_https()` guard function that validates URL scheme before opening, then annotate with `# noqa: S310`
 - **Merge via `gh api` silently drops `.github/workflows/`**: use `gh pr merge N --squash` instead — the REST API merge endpoint silently drops workflow file changes
 

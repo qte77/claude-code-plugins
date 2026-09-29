@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [action-name]
   stability: stable
-  content-hash: sha256:bdc823c2b0682c2503187bb49947658927f0ba9b2b5e6fcd02ccac15efe24622
+  content-hash: sha256:785db2705d4b9c01b7939f17988f4a53a3364810f720dff78e854bf0f68628e2
 ---
 
 # Creating GitHub Actions
@@ -27,6 +27,7 @@ and proper release flow.
 See `references/marketplace-checklist.md` for full reference.
 
 **Required `action.yaml` fields:**
+
 - `name` — unique on Marketplace (check before using)
 - `description` — shown in search results
 - `branding` — `icon` (Feather icon name) + `color` (white/yellow/blue/green/orange/red/purple/gray-dark)
@@ -37,7 +38,7 @@ Pick the layout that matches the action's language:
 
 **Shell-based** (composite with inline `run:` or `scripts/*.sh`):
 
-```
+```text
 action.yaml           # composite action definition + branding
 scripts/              # extracted shell logic (when inline run: grows too large)
 tests/unit/           # BATS test files
@@ -47,7 +48,7 @@ README.md             # usage example with @vN, inputs table, version badge
 
 **Python-based** (composite calling `uv run`):
 
-```
+```text
 action.yaml           # composite action definition + branding
 src/                  # Python source (app.py entry point)
 tests/                # pytest tests

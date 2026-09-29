@@ -25,6 +25,7 @@ into a coherent narrative of what you're working on, why, and where you're heade
 | 3 | `output-path` | no | auto | Where to write output. |
 
 **Default output path:**
+
 - `project-name` set: `<decoded-project-path>/docs/bigpicture.md`
 - `all` or omitted: `~/.claude/bigpicture.md`
 - Explicit `output-path`: overrides both.
@@ -34,7 +35,7 @@ directories (`-` → `/` in encoding). Substring match on any path segment.
 
 **Examples:**
 
-```
+```text
 /synthesizing-cc-bigpicture                          # All → ~/.claude/bigpicture.md
 /synthesizing-cc-bigpicture Agents-eval              # Single → project docs/
 /synthesizing-cc-bigpicture Agents-eval 7d           # Single, last 7 days

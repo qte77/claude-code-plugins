@@ -130,6 +130,7 @@ outputs (1KB–138KB) stored externally. Referenced from `assistant` JSONL entri
 ## Path Encoding
 
 Project paths are URL-encoded with dashes:
+
 - `/home/user/myapp` → `-home-user-myapp`
 - `/workspaces/Agents-eval` → `-workspaces-Agents-eval`
 - `C:\Users\name\project` → `C--Users-name-project`

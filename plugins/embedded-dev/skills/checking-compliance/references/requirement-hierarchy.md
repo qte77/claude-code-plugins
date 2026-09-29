@@ -13,7 +13,7 @@ see-also: compliance-standards.md
 
 ## Three-Level Structure
 
-```
+```text
 SYS-REQ (System Requirements)
   └── PRD-REQ (Product Requirements)
         └── SW-REQ (Software Requirements)
@@ -31,7 +31,7 @@ Top-level requirements derived from:
 
 **Example:**
 
-```
+```text
 SYS-REQ-001: Device shall meet EN 55032 Class B conducted emission limits
 SYS-REQ-002: Device shall comply with IEC 62368-1 clause 5.4 fire safety
 SYS-REQ-003: Device shall support Wi-Fi 802.11b/g/n (2.4 GHz)
@@ -45,7 +45,7 @@ Refinement of SYS-REQ into implementation domains (HW/SW/communication).
 
 **Example:**
 
-```
+```text
 PRD-REQ-001: EMI filter on power input shall attenuate >60dB at 150kHz
   parent: SYS-REQ-001
 PRD-REQ-004: Software EMV filter shall limit PWM switching noise
@@ -60,7 +60,7 @@ Module-level requirements assigned to specific software components.
 
 **Example:**
 
-```
+```text
 SW-REQ-015: EMV filter module shall implement configurable low-pass filter
   parent: PRD-REQ-004
   module: components/emv_filter

@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: "[spec-type] [topic]"
   stability: stable
-  content-hash: sha256:71c2abb97fa7b7e910c41f19caed62a94b59b49f66730b5aff2e8ef6ebc8a4ee
+  content-hash: sha256:bfebebda014156697a02550dd54bb946b9ac01aed067bd6ccd6ee7ef63843072
   last-verified-cc-version: 1.0.34
 ---
 
@@ -45,7 +45,7 @@ Read these before proceeding:
 
 ## Output Naming
 
-```
+```text
 ADR:      docs/adr/NNNN-<slug>.md        (e.g., 0003-use-event-sourcing.md)
 RFC:      docs/rfc/NNNN-<slug>.md        (e.g., 0001-api-versioning.md)
 Design:   docs/specs/<date>-<slug>.md    (e.g., 2026-03-01-auth-redesign.md)

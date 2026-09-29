@@ -22,7 +22,7 @@ make help         # list all recipes
 make validate     # plugin structure + JSON syntax
 make sync         # sync shared refs + the qte77 doc-structure canon into plugin dirs
 make check_sync   # verify all copies match their source (incl. the canon diff-guard)
-make lint_md      # markdownlint (--fix)
+make lint_md      # markdownlint-cli2 over ALL markdown, same version+config as CI (FIX=1 to auto-fix)
 make test_install # marketplace add + install + cleanup
 make docs_stage   # stage README/CHANGELOG/plugin READMEs into docs/ for mkdocs (gitignored)
 ```

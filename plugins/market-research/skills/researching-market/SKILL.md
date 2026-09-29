@@ -4,7 +4,7 @@ description: Integrate Phase 0 and Phase 1A outputs into TAM/SAM/SOM sizing, buy
 compatibility: Designed for Claude Code
 metadata:
   stability: stable
-  content-hash: sha256:819ae5b2832a196b24bae3e49bacc55794487a5a233c7912e638170ec9cfc8e0
+  content-hash: sha256:ecc16abb8d05b90eb5b1ca087357cf2090b636b249dfe28b4f4df1070015bcad
   allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
   argument-hint: [market-or-product-category]
 ---
@@ -20,6 +20,7 @@ and buyer analysis.
 ## Mode Awareness
 
 Read `config/mode.md` before starting:
+
 - `concise` — Top-down TAM estimate, one primary persona, bullet entry signals
 - `detailed` — Bottom-up + top-down sizing, 2-3 personas with full profiles, trend projections
 - `conservative` — Use published analyst figures, conservative growth rates
@@ -49,7 +50,7 @@ Write to `results/phase-1b/`:
 
 ### `market-analysis.md`
 
-```
+```markdown
 # Market Analysis
 
 ## Market Sizing

@@ -25,7 +25,7 @@ compound learning. Converts raw session data into actionable improvements.
 
 **Examples:**
 
-```
+```text
 /mining-session-patterns                    # Last 7 days, default output
 /mining-session-patterns 30d                # Last 30 days
 /mining-session-patterns 7d ./patterns.md   # Custom output path
@@ -33,7 +33,7 @@ compound learning. Converts raw session data into actionable improvements.
 
 ## Data Source
 
-```
+```text
 ~/.claude/projects/*/*.jsonl    # Session transcripts
 ```
 

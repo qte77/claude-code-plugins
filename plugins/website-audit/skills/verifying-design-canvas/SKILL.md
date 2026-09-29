@@ -22,7 +22,7 @@ reach for those instead when the task is building or designing, not checking.
 The `DesignSync` tool reads `claude.ai/design` projects directly — the URL form is
 `claude.ai/design/p/<projectId>?file=<name>`.
 
-```
+```text
 DesignSync(method: "get_project", projectId: "<uuid>")   # confirms access + canEdit
 DesignSync(method: "list_files", projectId: "<uuid>")    # find the exact filename (often several:
                                                           # "X.dc.html" the editable source,

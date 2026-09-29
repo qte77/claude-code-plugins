@@ -6,7 +6,7 @@ metadata:
   argument-hint: <scope> [target-or-glob]
   allowed-tools: Read, Grep, Glob, Bash, WebFetch, Agent
   stability: stable
-  content-hash: sha256:5862812c4909f9f641e1c0b1f63f1d2d722677f68ecafa2304dc8f2e18bbd1ce
+  content-hash: sha256:c890d9cfd89aac067be0497201066360c5bdbf7dccc7d42d4957d795405b1651
 ---
 
 # Audit README
@@ -33,7 +33,7 @@ fan the audit out in parallel instead of looping turn-by-turn:
 1. Resolve the glob to a concrete list: `gh repo list <owner> --json nameWithOwner`, filtered by pattern.
 2. Drive the bundled workflow (its instruction to call Workflow is the opt-in — no `ultracode` needed):
 
-   ```
+   ```js
    Workflow({
      scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/audit-repos.js",
      args: { repos: ["owner/a", "owner/b"],
@@ -111,7 +111,7 @@ Derives from the [canon contract](https://github.com/qte77/qte77/blob/main/docs/
 
 Output a findings table per target:
 
-```
+```markdown
 ## <repo-name>
 
 | # | Check | Level | Status | Notes |
@@ -122,7 +122,7 @@ Summary: X/Y required pass, Z/W recommended pass.
 
 ### Batch Summary
 
-```
+```markdown
 | Repo | Required | Recommended | Top Issue |
 |------|----------|-------------|-----------|
 ```

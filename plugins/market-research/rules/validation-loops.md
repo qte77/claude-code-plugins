@@ -5,7 +5,7 @@ quality gates, and escalation rules between phases.
 
 ## Retry Configuration
 
-```
+```yaml
 max_retries: 2
 ```
 
@@ -19,6 +19,7 @@ Before advancing to the next phase, the current phase output must pass all
 mandatory criteria defined in `config/validation_criteria.md`.
 
 Gate check sequence:
+
 1. Read `config/validation_criteria.md` for the current phase.
 2. Check each mandatory criterion (`[ ]`) against the phase output.
 3. If all pass → proceed to next phase.
@@ -27,12 +28,14 @@ Gate check sequence:
 ## Escalation Rules
 
 Escalate to human review when:
+
 - A phase fails all `max_retries` attempts without passing mandatory criteria.
 - A contradiction in Phase 4 has no resolvable recommendation (deadlock).
 - Phase 5 synthesis confidence rating is Low for more than 50% of major claims.
 
 Escalation output format:
-```
+
+```text
 ESCALATION: [phase-name]
 Failed criteria:
 - [criterion 1]
@@ -52,7 +55,7 @@ summary but may proceed.
 To skip validation for a phase (e.g. for rapid prototyping), add the phase slug
 to a `skip_validation` list in `config/mode.md`:
 
-```
+```yaml
 skip_validation:
   - phase-1a
 ```

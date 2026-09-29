@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [file-or-directory]
   stability: stable
-  content-hash: sha256:1fe9fc0023ad3221ad15390f00036732376243b3f77f8137ebab5824ee1747d8
+  content-hash: sha256:ff6c21be83f8cbf0dd2b5abc6e5234ee06f462b4737d1c835c5caf89c048bd12
 ---
 
 # OWASP Top 10 Code Security Audit
@@ -34,7 +34,7 @@ When auditing a **whole codebase or many modules** and the **Workflow tool is
 available**, fan the ten OWASP categories out in parallel instead of scanning
 them one after another:
 
-```
+```js
 Workflow({
   scriptPath: "${CLAUDE_PLUGIN_ROOT}/workflows/audit-owasp.js",
   args: { scope: "<dir>",
