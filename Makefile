@@ -9,6 +9,11 @@
 .PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts sync_refs sync_canon sync_governance check_sync docs_stage help
 .DEFAULT_GOAL := help
 
+# markdownlint-cli2 version used by CI (DavidAnson/markdownlint-cli2-action v23 in the qte77/.github
+# lint reusable) and the shared estate config .markdownlint.jsonc must stay a superset of.
+MDL_CLI2 := markdownlint-cli2@0.22.0
+MDL_SHARED_CONFIG_URL := https://raw.githubusercontent.com/qte77/.github/main/.markdownlint.jsonc
+
 
 # MARK: setup
 
@@ -22,10 +27,10 @@ setup_claude_code:  ## Install Claude Code CLI
 	curl -fsSL https://claude.ai/install.sh | bash
 	echo "Claude Code CLI version: $$(claude --version)"
 
-setup_npm_tools:  ## Install markdownlint for linting skill markdown
+setup_npm_tools:  ## Install markdownlint-cli2 (pinned to CI's version) for `make lint_md`
 	echo "Installing npm dev tools ..."
-	npm install -gs markdownlint-cli
-	echo "markdownlint version: $$(markdownlint --version)"
+	npm install -gs $(MDL_CLI2)
+	echo "markdownlint-cli2 version: $$(markdownlint-cli2 --version | head -1)"
 
 
 # MARK: sync
@@ -108,6 +113,7 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@diff -q plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-setup/governance/CONTRIBUTING.md
 	@diff -q "$(DG_README)" plugins/workspace-sandbox/governance/README.md
 	@diff -q plugins/docs-governance/templates/CONTRIBUTING.md plugins/workspace-sandbox/governance/CONTRIBUTING.md
+	@python3 .github/scripts/check-markdownlint-config.py "$(MDL_SHARED_CONFIG_URL)"
 	@echo "All copies in sync."
 
 
@@ -123,8 +129,8 @@ validate:  ## Validate all plugins (structure + JSON syntax)
 		-exec sh -c 'python3 -m json.tool "$$1" > /dev/null' _ {} \;
 	echo "All JSON files valid."
 
-lint_md:  ## Lint all markdown files in plugins/
-	markdownlint 'plugins/**/*.md' --fix
+lint_md:  ## Lint all markdown exactly like CI (FIX=1 to auto-fix)
+	npx --yes $(MDL_CLI2) $(if $(FIX),--fix) '*.{md,markdown}'  # .markdownlint-cli2.jsonc adds **/*.md
 
 
 # MARK: test
