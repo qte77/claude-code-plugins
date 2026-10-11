@@ -72,6 +72,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **workspace-setup 1.5.5**, **workspace-sandbox 1.3.15**: settings templates now **allow** `git commit` and **ask** before
+  `git push` (#183). The old `ask` commit / `deny` push rules used the inert `Bash(git:commit:*)` colon
+  syntax, so they never applied; fixing them as written would have blocked push for fresh consumers.
 - **`make lint_md`** runs markdownlint-cli2 0.22.0 (CI's version) over all markdown with the repo
   config, check-only (`FIX=1` to fix). New `.markdownlint.jsonc` mirrors the shared qte77/.github config
   plus the MD025 override; `make check_sync` fails if it drifts from the shared config.
