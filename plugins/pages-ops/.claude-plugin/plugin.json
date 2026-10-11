@@ -1,0 +1,7 @@
+{
+  "name": "pages-ops",
+  "version": "0.1.0",
+  "description": "Pull a Claude Design export into a Cloudflare Pages site: patch sync, SRI-pinned self-hosted build, agent-readiness and live checks, deploy",
+  "author": { "name": "Claude Code Utils Contributors" },
+  "keywords": ["cloudflare-pages", "claude-design", "design-sync", "esbuild", "sri", "agent-readiness", "wrangler", "deploy"]
+}
