@@ -10,3 +10,6 @@ docs/CHANGELOG.md
 docs/LICENSE
 docs/plugins/
 site/
+
+# Python bytecode from running plugin script tests
+__pycache__/
