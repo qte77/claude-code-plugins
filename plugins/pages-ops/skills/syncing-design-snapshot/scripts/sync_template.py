@@ -1,13 +1,14 @@
 """Engine for syncing a fetched Claude Design export into a project's own site snapshot.
 
-This is the opposite direction of a design-system `/design-sync` upload: that pushes a repo's
-tokens/components up into the design tool's project; this pulls a design tool's page export back down
-into the repo. Fetching the export itself (`DesignSync get_file`, once per file, into a local directory)
-is a main-session step this skill does not do — point `sync()` at a directory that is already fetched.
+This pulls a design tool's page export down into the repo (the opposite direction of publishing a
+repo's components up to the design system). Fetching the export itself is a main-session step this skill
+does not do — point `sync()` at a directory that is already fetched (see ../SKILL.md: the Artifact tool for a
+Design System artifact, `DesignSync get_file` for a standalone claude.ai/design project).
 
 A project supplies a small config: a target directory (the site's snapshot folder, e.g.
 `packages/<site>/public`) and PATCHES, a list of `(file, original, replacement, why)` tuples.
-`replacement=None` deletes `original` instead of replacing it. Every patch is classified:
+`replacement=None` deletes `original` instead of replacing it; a deletion may add a fifth element, a guard
+phrase (see apply_patches). Every patch is classified:
 
   applied  - `original` was found in the template and replaced
   carried  - the template already contains `replacement` (safe to drop the patch)
@@ -23,7 +24,8 @@ import importlib.util
 import pathlib
 import sys
 
-Patch = tuple[str, str, str | None, str]
+# (file, original, replacement, why) or (file, original, None, why, guard): see apply_patches.
+Patch = tuple[str, ...]
 
 
 def read_template(src: pathlib.Path) -> dict[str, str]:
@@ -36,9 +38,14 @@ def read_template(src: pathlib.Path) -> dict[str, str]:
 
 
 def apply_patches(files: dict[str, str], patches: list[Patch]) -> int:
-    """Applies each (file, old, new, why) patch to `files` in place; returns the failure count."""
+    """Applies each (file, old, new, why[, guard]) patch to `files` in place; returns the failure count.
+
+    A deletion may carry a guard: a phrase of the removed content. It counts as carried only once the guard is
+    gone too, so content the design merely restyled (the exact original no longer matches) fails for review
+    instead of shipping."""
     failed = 0
-    for name, old, new, why in patches:
+    for name, old, new, why, *rest in patches:
+        guard = rest[0] if rest else None
         text = files.get(name)
         if text is None:
             print(f"FAIL     {name}: not in the template ({why})")
@@ -49,7 +56,7 @@ def apply_patches(files: dict[str, str], patches: list[Patch]) -> int:
         # is applied, unless the replacement contains it and is already in place (e.g. an added attribute);
         # a short replacement can also occur elsewhere unpatched, so it alone never means "carried" then.
         if new is None:
-            carried = old not in text
+            carried = old not in text and (guard is None or guard not in text)
         elif old in text:
             carried = old in new and new in text
         else:

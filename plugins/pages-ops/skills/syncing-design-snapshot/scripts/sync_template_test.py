@@ -50,6 +50,24 @@ class ApplyPatchesTest(unittest.TestCase):
         self.assertEqual(failed, 0)
         self.assertEqual(files["index.html"], '<html lang="en">\nbody')
 
+    def test_guarded_deletion_fails_when_the_claim_survives_a_restyle(self):
+        # The design restyled the markup (exact original gone) but the removed claim is still there: the guard
+        # phrase is present, so this must FAIL for review instead of passing as "carried".
+        files = {"a.html": '<p style="font:var(--f)">Award-winning design.</p>'}
+        patch = ("a.html", '<p style="font:serif">Award-winning design.</p>', None, "why", "Award-winning")
+        self.assertEqual(apply_patches(files, [patch]), 1)
+
+    def test_guarded_deletion_is_carried_once_the_claim_is_gone(self):
+        files = {"a.html": "<p>Plain text.</p>"}
+        patch = ("a.html", "<p>Award-winning design.</p>", None, "why", "Award-winning")
+        self.assertEqual(apply_patches(files, [patch]), 0)
+
+    def test_guarded_deletion_still_applies_the_exact_original(self):
+        files = {"a.html": "<p>a</p><p>Award-winning design.</p>"}
+        patch = ("a.html", "<p>Award-winning design.</p>", None, "why", "Award-winning")
+        self.assertEqual(apply_patches(files, [patch]), 0)
+        self.assertEqual(files["a.html"], "<p>a</p>")
+
     def test_fails_when_file_not_in_template(self):
         failed = apply_patches({}, [("missing.html", "old", "new", "why")])
         self.assertEqual(failed, 1)
