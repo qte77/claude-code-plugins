@@ -42,11 +42,23 @@ cap hit, not a small file.
 **Don't try to script around `DesignSync` with a headless browser + captured cookies.** Confirmed
 this session: Cloudflare's bot challenge blocks headless access to `claude.ai/design` even with a
 valid session cookie and an already-solved `cf_clearance` value supplied directly. `DesignSync` (an
-authenticated first-party tool) is the only working path to the live canvas from an agent session —
-not a fallback to reach for only after `DesignSync` is unavailable.
+authenticated first-party tool) is the only working path to a live standalone project from an agent
+session — not a fallback to reach for only after `DesignSync` is unavailable.
 
-If a published Artifact URL (`claude.ai/code/artifact/<id>`) is given instead of a `design/p/`
-project URL, `Artifact(action: "read", url: ...)` works too, but it's a **snapshot at publish
+**Design systems now live in Design System artifacts.** Standalone Claude Design closes on
+14 December 2026 (help-centre article "Migrate from standalone Claude Design to Claude"); migrated
+and new design systems are artifacts of type "Design System" (`claude.ai/artifact/<id>`), with their
+files under `project/` (`design-system.json`, `components/bundle.js`, `templates/<page>/*.dc.html`,
+`templates/_shared/*`). `DesignSync` cannot reach those: `list_projects` shows only standalone
+projects, and a migrated system's standalone original is frozen (edits made in Claude are not
+migrated back). Read the live source with the Artifact tool instead: `action: "list"`,
+`scope: "files"` for the current version and paths, then `action: "read"` with `paths` and an
+`out_dir`. This reads the design system's own current files, so it is the live source, unlike a
+published page snapshot (below); note the version the listing reports, because these systems can
+change several times a day.
+
+If a published Artifact URL (`claude.ai/code/artifact/<id>`) for a page (not a Design System) is
+given instead of a `design/p/` project URL, `Artifact(action: "read", url: ...)` works too, but it's a **snapshot at publish
 time** — a "Bundled Page" with the canvas's HTML/CSS/JS inlined into one self-contained file. Only
 trust it as current if you also pull the live project and confirm the two match (see step 2); a
 canvas can be edited after an Artifact was published and the snapshot goes stale silently.
