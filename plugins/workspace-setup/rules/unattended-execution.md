@@ -1,0 +1,1 @@
+../../../.claude/rules/unattended-execution.md

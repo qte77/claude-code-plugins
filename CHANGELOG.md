@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **workspace-setup** (1.6.0), **workspace-sandbox** (1.4.0): new shared rule
+  `unattended-execution.md` — the arc-template plan artifact, phase shape, per-milestone
+  discipline, quality gates, UI e2e verification, and context-economy constraints for
+  long-running, hands-off agent sessions. Ported from `dntywntme`'s qte77/claude-code-plugins#200,
+  rebased on main with the rule text taken verbatim from the owner's current canonical copy.
+
 ### Changed
 
 - **website-audit** (1.2.6): `verifying-design-canvas` covers design systems that live in Design System artifacts (read with the Artifact tool under `project/`); `DesignSync` stays the route for standalone claude.ai/design projects, which close on 14 December 2026.
