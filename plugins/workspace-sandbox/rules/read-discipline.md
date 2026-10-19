@@ -1,0 +1,1 @@
+../../../.claude/rules/read-discipline.md
