@@ -18,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   discipline, quality gates, UI e2e verification, and context-economy constraints for
   long-running, hands-off agent sessions. Ported from `dntywntme`'s qte77/claude-code-plugins#200,
   rebased on main with the rule text taken verbatim from the owner's current canonical copy.
+- **workspace-setup** (1.7.0), **workspace-sandbox** (1.5.0): new shared rule
+  `read-discipline.md` — read/edit hygiene for agent sessions (blast-radius checks before
+  renames, read-enough-not-more, precise `<file>:<lines>` citations in subagent briefs,
+  verifying subagent findings before acting on them).
 
 ### Changed
 

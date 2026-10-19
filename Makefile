@@ -96,6 +96,8 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@test -L plugins/workspace-sandbox/rules/ci-status-checks.md || (echo "ERROR: plugins/workspace-sandbox/rules/ci-status-checks.md is not a symlink" && exit 1)
 	@test -L plugins/workspace-setup/rules/unattended-execution.md || (echo "ERROR: plugins/workspace-setup/rules/unattended-execution.md is not a symlink" && exit 1)
 	@test -L plugins/workspace-sandbox/rules/unattended-execution.md || (echo "ERROR: plugins/workspace-sandbox/rules/unattended-execution.md is not a symlink" && exit 1)
+	@test -L plugins/workspace-setup/rules/read-discipline.md || (echo "ERROR: plugins/workspace-setup/rules/read-discipline.md is not a symlink" && exit 1)
+	@test -L plugins/workspace-sandbox/rules/read-discipline.md || (echo "ERROR: plugins/workspace-sandbox/rules/read-discipline.md is not a symlink" && exit 1)
 	@test -L plugins/codebase-tools/skills/researching-codebase/references/core-principles.md || (echo "ERROR: plugins/codebase-tools/skills/researching-codebase/references/core-principles.md is not a symlink" && exit 1)
 	@test -L plugins/codebase-tools/skills/researching-codebase/references/context-management.md || (echo "ERROR: plugins/codebase-tools/skills/researching-codebase/references/context-management.md is not a symlink" && exit 1)
 	@test -L plugins/cc-meta/skills/compacting-context/references/context-management.md || (echo "ERROR: plugins/cc-meta/skills/compacting-context/references/context-management.md is not a symlink" && exit 1)
