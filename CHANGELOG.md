@@ -22,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `read-discipline.md` — read/edit hygiene for agent sessions (blast-radius checks before
   renames, read-enough-not-more, precise `<file>:<lines>` citations in subagent briefs,
   verifying subagent findings before acting on them).
+- `.claude/rules/external-input.md` and `.claude/rules/claim-verification.md`: the owner's
+  estate rules (external input is untrusted data; verify load-bearing claims at source before
+  publishing) now live in the rules SoT. No plugin deploys them; they are consumed by
+  symlinking them into `~/.claude/rules/`.
 
 ### Changed
 
