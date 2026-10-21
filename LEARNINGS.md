@@ -38,14 +38,13 @@ Non-obvious knowledge captured over multiple sessions. Newer sections appended; 
 
 - Main is protected by a **ruleset** (`gh api repos/.../rulesets`), not the legacy branch-protection API. `gh api .../branches/main/protection` returns 404 — this is expected. Check `.../rulesets/<id>` instead.
 - Active rules on main: `deletion`, `non_fast_forward`, `required_linear_history`, `required_signatures`, `pull_request` (0 required reviews; methods: squash, rebase).
-- `current_user_can_bypass: "never"` in the ruleset metadata — but **administrator bypass** (via `--admin` flag) is a separate mechanism and still works for the repo owner.
+- `current_user_can_bypass: "never"` in the ruleset metadata.
 
 ### `required_signatures` blocks CLI merges
 
 - `gh pr merge --squash` fails with **"the base branch policy prohibits the merge"** even when the PR is fully green (MERGEABLE + 0 required reviews + all status checks SUCCESS + not draft).
 - Root cause: ruleset requires signatures; PR branch commits are unsigned by default; web UI squash-merge produces a GitHub-signed commit server-side but the CLI path doesn't trigger the same signing flow.
-- **Workaround (verified 2026-04-11):** add `--admin` to the merge command: `gh pr merge <N> --squash --delete-branch --admin`. This works for the repo owner even though the ruleset says nobody can bypass.
-- Alternative: merge via the GitHub web UI (always works).
+- **Workaround:** the owner merges via the GitHub web UI (always works).
 - Do NOT try to retroactively sign PR branch commits — the `non_fast_forward` rule blocks force-pushing rewritten history to protected branches, creating a dead-end.
 
 ### CI: skill integrity (content-hash)
