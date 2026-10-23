@@ -11,8 +11,8 @@
     {
       "name": "python-dev",
       "source": "./plugins/python-dev",
-      "description": "Python implementation, testing, code review skills, and scaffold adapter for Ralph loop",
-      "version": "2.1.4"
+      "description": "Python implementation, testing, and code review skills; deploys uv permissions, and (when `.scaffold` is python) CI workflows, dependabot config, and a Ralph Loop adapter, via SessionStart hook",
+      "version": "2.1.5"
     },
     {
       "name": "commit-helper",
