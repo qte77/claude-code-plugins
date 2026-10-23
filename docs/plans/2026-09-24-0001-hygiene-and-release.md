@@ -22,7 +22,7 @@ GITHUB_TOKEN never run CodeQL). Owner branch `feat/pages-ops` (row 20) is on ori
 
 **Loop:** branch per topic → fix → `make validate && make check_sync && make test_install` (fail-fast
 since #219) + `bash .github/scripts/compute-skill-hashes.sh --check` + markdownlint-cli2 on every changed
-`.md` incl. CHANGELOG → push → CI green → `gh pr merge N --squash --delete-branch --admin` (ruleset: 0
+`.md` incl. CHANGELOG → push → CI green → owner merges (`gh pr merge N --squash --delete-branch`; ruleset: 0
 reviews, required check CodeFactor, signed commits; the Claude Code auto-mode classifier blocks agent
 merge-without-review, so it needs a normal permission prompt) → strike the row in the same PR.
 Release: dispatch Bump Version → merge the bump PR (only CodeFactor reports on GITHUB_TOKEN PRs; it is

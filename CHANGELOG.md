@@ -29,6 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **workspace-setup** (1.7.1), **workspace-sandbox** (1.5.1): `ci-status-checks.md` no longer
+  names the branch-protection override flag; it now says never merge past a failing or absent
+  required check. `LEARNINGS.md`, plan 0001 and the 3.8.0 notes below drop the flag too.
 - **website-audit** (1.2.6): `verifying-design-canvas` covers design systems that live in Design System artifacts (read with the Artifact tool under `project/`); `DesignSync` stays the route for standalone claude.ai/design projects, which close on 14 December 2026.
 
 ## [3.8.0] - 2026-09-25
@@ -49,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the web UI, never to `gh pr create --body`.
 - **workspace-setup** (1.5.4), **workspace-sandbox** (1.3.14): new shared rule `ci-status-checks.md`
   (#192) — clear a stuck `CodeFactor: ERROR` by updating the branch from main, never with empty
-  "nudge" commits; never `--admin`-merge past a failing/absent check. Promoted from qte77/qte77
+  "nudge" commits; never merge past a failing/absent check. Promoted from qte77/qte77
   `AGENT_LEARNINGS.md` (compound-learning step 3).
 - **docs-governance** (1.6.2): `frontmatter-convention` rule gains an **ADR Exception (MADR 3.x)** —
   `docs/adr/` uses `## More Information` and bare `- name: <url>` sources (#160; upstreamed from
