@@ -34,7 +34,8 @@ Note this only covers `~/.claude` itself — `~/.claude.json` (trust/permission 
 ## read-once hook
 
 PreToolUse hook that prevents redundant file re-reads within a session.
-Saves ~2K tokens per blocked re-read (~40% reduction in typical workflows).
+Saves ~2K tokens per blocked re-read; total savings scale with how often a
+session re-reads files it already has (no aggregate figure is measured).
 
 - **Mode**: warn (default) — allows read with advisory; set `READ_ONCE_MODE=deny` to block
 - **TTL**: 1200s (20 min) — cache expires after this; set `READ_ONCE_TTL` to override

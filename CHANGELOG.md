@@ -31,6 +31,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **website-audit** (1.2.6): `verifying-design-canvas` covers design systems that live in Design System artifacts (read with the Artifact tool under `project/`); `DesignSync` stays the route for standalone claude.ai/design projects, which close on 14 December 2026.
 
+### Fixed
+
+- **workspace-setup** (1.7.1), **workspace-sandbox** (1.5.1): the read-once hook keyed its
+  cache directory by `$$`, but each hook invocation is a new process — so the cache was always
+  empty, every `Read` left behind an unused `/tmp` dir, and no repeat read was ever flagged.
+  `compact.sh` cleared a dir keyed the same (wrong) way. Diff mode also blocked a changed-file
+  read without showing a diff (it diffed against `/dev/null`). Both scripts now key the cache by
+  the hook's `session_id`, and diff mode compares against a snapshot taken at the prior read.
+  Added a regression test (`.claude/scripts/read-once/test.sh`, 5/5 against the fix vs. 2/5
+  against the prior version). Both README `read-once hook` sections dropped the unverified
+  "~40% reduction" figure — no benchmark backs it, and the mechanism never actually fired before
+  this fix.
+
 ## [3.8.0] - 2026-09-25
 
 ### Added
