@@ -31,6 +31,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **website-audit** (1.2.6): `verifying-design-canvas` covers design systems that live in Design System artifacts (read with the Artifact tool under `project/`); `DesignSync` stays the route for standalone claude.ai/design projects, which close on 14 December 2026.
 
+### Fixed
+
+- **python-dev** (2.1.5): `setup-python-dev.sh`'s scaffold deploy copied every
+  `scaffold/workflows/*.yaml` into `.github/workflows/`, so `dependabot.yaml` — which is
+  Dependabot config, not a workflow — landed there too (already correctly deployed to
+  `.github/dependabot.yaml` by a separate step). Excluded it from the workflow-copy loop.
+  README now documents the full `.scaffold=python` deploy set; `plugin.json`/`marketplace.json`
+  descriptions aligned to match.
+
 ## [3.8.0] - 2026-09-25
 
 ### Added
