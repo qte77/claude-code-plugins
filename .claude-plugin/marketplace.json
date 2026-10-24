@@ -12,7 +12,7 @@
       "name": "python-dev",
       "source": "./plugins/python-dev",
       "description": "Python implementation, testing, and code review skills; deploys uv permissions, and (when `.scaffold` is python) CI workflows, dependabot config, and a Ralph Loop adapter, via SessionStart hook",
-      "version": "2.1.5"
+      "version": "2.1.6"
     },
     {
       "name": "commit-helper",
@@ -72,19 +72,19 @@
       "name": "embedded-dev",
       "source": "./plugins/embedded-dev",
       "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
-      "version": "1.2.4"
+      "version": "1.2.5"
     },
     {
       "name": "workspace-setup",
       "source": "./plugins/workspace-setup",
       "description": "Deploys workspace rules, statusline, governance files, base settings, and read-once deduplication hook",
-      "version": "1.7.1"
+      "version": "1.7.2"
     },
     {
       "name": "workspace-sandbox",
       "source": "./plugins/workspace-sandbox",
       "description": "Deploys workspace rules, statusline script, eased sandbox settings, and read-once deduplication hook",
-      "version": "1.5.1"
+      "version": "1.5.2"
     },
     {
       "name": "docs-governance",
@@ -102,19 +102,19 @@
       "name": "rust-dev",
       "source": "./plugins/rust-dev",
       "description": "Rust implementation, testing, and code review skills, deploys cargo permissions via SessionStart hook",
-      "version": "1.0.3"
+      "version": "1.0.4"
     },
     {
       "name": "go-dev",
       "source": "./plugins/go-dev",
       "description": "Go implementation, testing, and code review skills, deploys go tool permissions via SessionStart hook",
-      "version": "1.0.3"
+      "version": "1.0.4"
     },
     {
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.4"
+      "version": "1.2.5"
     },
     {
       "name": "tdd-core",
@@ -141,7 +141,7 @@
       "name": "typescript-dev",
       "source": "./plugins/typescript-dev",
       "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
-      "version": "1.1.1"
+      "version": "1.1.2"
     },
     {
       "name": "security-audit",

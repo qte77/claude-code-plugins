@@ -37,6 +37,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **website-audit** (1.2.6): `verifying-design-canvas` covers design systems that live in Design System artifacts (read with the Artifact tool under `project/`); `DesignSync` stays the route for standalone claude.ai/design projects, which close on 14 December 2026.
 - **website-audit** (1.2.7): its own README said WCAG 2.1 AA and omitted `auditing-website-seo-geo`;
   both the skill and the root README already said WCAG 2.2 and listed the skill — aligned.
+- **python-dev** (2.1.6), **rust-dev** (1.0.4), **go-dev** (1.0.4), **typescript-dev** (1.1.2),
+  **embedded-dev** (1.2.5), **gha-dev** (1.2.5), **workspace-setup** (1.7.2),
+  **workspace-sandbox** (1.5.2): SessionStart setup hooks only ever deployed
+  `settings.local.json`/`settings.json` when the file was missing, so template fixes never
+  reached a workspace that already had one. When `jq` is available, the hook now merges the
+  plugin's `permissions.allow` into an existing file (deduped, existing entries kept) instead of
+  skipping it; copy-if-missing stays as the no-jq fallback. Only `permissions.allow` is merged —
+  `deny`/`ask` and every other top-level key in an existing file are left untouched.
 
 ### Fixed
 
