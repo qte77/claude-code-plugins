@@ -30,10 +30,21 @@ if [ ! -f ".gitignore" ]; then
   DEPLOYED+=("gitignore: .gitignore (sandbox phantoms)")
 fi
 
-# 4. Sandbox settings → .claude/settings.json (only if missing)
-if [ ! -f ".claude/settings.json" ]; then
-  cp "$PLUGIN_DIR/settings/settings-sandbox.json" ".claude/settings.json"
+# 4. Sandbox settings → .claude/settings.json (copy-if-not-exists; merge permissions.allow if present)
+SETTINGS_TARGET=".claude/settings.json"
+SETTINGS_SOURCE="$PLUGIN_DIR/settings/settings-sandbox.json"
+if [ ! -f "$SETTINGS_TARGET" ]; then
+  cp "$SETTINGS_SOURCE" "$SETTINGS_TARGET"
   DEPLOYED+=("settings: settings.json (sandbox)")
+elif command -v jq >/dev/null 2>&1; then
+  # Merge permissions.allow into an existing file instead of skipping it — a
+  # copy-if-not-exists never reaches a workspace that already has the file.
+  NEW_ALLOW=$(jq '.permissions.allow // []' "$SETTINGS_SOURCE")
+  MERGED=$(jq -c --argjson new "$NEW_ALLOW" '.permissions.allow = ((.permissions.allow // []) + $new | unique)' "$SETTINGS_TARGET")
+  if [ "$MERGED" != "$(jq -c '.' "$SETTINGS_TARGET")" ]; then
+    echo "$MERGED" | jq '.' > "$SETTINGS_TARGET"
+    DEPLOYED+=("settings: settings.json (sandbox permissions merged)")
+  fi
 fi
 
 # 5. Governance files → project root
