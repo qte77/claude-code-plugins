@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   estate rules (external input is untrusted data; verify load-bearing claims at source before
   publishing) now live in the rules SoT. No plugin deploys them; they are consumed by
   symlinking them into `~/.claude/rules/`.
+- **readme-generator** (1.2.4): added the plugin's own `README.md` (it had none, so it was
+  silently absent from the docs site — `make docs_stage` only picks up `plugins/*/README.md`).
 
 ### Changed
 
@@ -33,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   names the branch-protection override flag; it now says never merge past a failing or absent
   required check. `LEARNINGS.md`, plan 0001 and the 3.8.0 notes below drop the flag too.
 - **website-audit** (1.2.6): `verifying-design-canvas` covers design systems that live in Design System artifacts (read with the Artifact tool under `project/`); `DesignSync` stays the route for standalone claude.ai/design projects, which close on 14 December 2026.
+- **website-audit** (1.2.7): its own README said WCAG 2.1 AA and omitted `auditing-website-seo-geo`;
+  both the skill and the root README already said WCAG 2.2 and listed the skill — aligned.
 
 ### Fixed
 
