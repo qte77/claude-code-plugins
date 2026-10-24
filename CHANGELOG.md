@@ -50,6 +50,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   against the prior version). Both README `read-once hook` sections dropped the unverified
   "~40% reduction" figure — no benchmark backs it, and the mechanism never actually fired before
   this fix.
+- **python-dev** (2.1.5): `setup-python-dev.sh`'s scaffold deploy copied every
+  `scaffold/workflows/*.yaml` into `.github/workflows/`, so `dependabot.yaml` — which is
+  Dependabot config, not a workflow — landed there too (already correctly deployed to
+  `.github/dependabot.yaml` by a separate step). Excluded it from the workflow-copy loop.
+  README now documents the full `.scaffold=python` deploy set; `plugin.json`/`marketplace.json`
+  descriptions aligned to match.
 
 ## [3.8.0] - 2026-09-25
 

@@ -43,11 +43,12 @@ if [ -f ".scaffold" ] && [ "$(cat .scaffold 2>/dev/null)" = "python" ]; then
     done
   fi
 
-  # CI workflows (copy-if-not-exists)
+  # CI workflows (copy-if-not-exists); dependabot.yaml is config, not a workflow — handled below
   if [ -d "$SCAFFOLD_DIR/workflows" ]; then
     mkdir -p .github/workflows
     for wf_file in "$SCAFFOLD_DIR/workflows/"*.yaml; do
       [ -f "$wf_file" ] || continue
+      [ "$(basename "$wf_file")" = "dependabot.yaml" ] && continue
       local_name=".github/workflows/$(basename "$wf_file")"
       if [ ! -f "$local_name" ]; then
         cp "$wf_file" "$local_name"
