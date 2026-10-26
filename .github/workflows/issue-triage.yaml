@@ -11,8 +11,10 @@
 #
 # Security note: no `run:` steps consume issue-controlled fields. The only
 # template expressions used are `github.event.issue.number` (numeric, safe
-# to interpolate in the concurrency key) and `secrets.GITHUB_TOKEN`. All
-# issue body/title parsing happens inside the pinned action.
+# to interpolate in the concurrency key) and the secrets `GITHUB_TOKEN`,
+# `CF_WORKERS_AI_TOKEN` and `LLM_BASE_URL`, passed as action inputs. All
+# issue body/title parsing happens inside the pinned action; since v0.5.0 its
+# public comment shows only fixed-list values, never model free text.
 name: issue-triage
 
 on:
@@ -34,7 +36,7 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-      - uses: qte77/gha-issue-triage@1bf71f215a70a9b19f228e1c190aaf578baa6a59  # v0.4.0
+      - uses: qte77/gha-issue-triage@f7254d606bd002343b73190706b46f43b645f912  # v0.5.0
         with:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           llm-api-key: ${{ secrets.CF_WORKERS_AI_TOKEN }}
