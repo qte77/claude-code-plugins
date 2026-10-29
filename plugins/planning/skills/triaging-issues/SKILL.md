@@ -41,9 +41,8 @@ dependencies (X blocks Y) and duplicates.
 Tier: **P0** do now (high ROI, low effort) · **P1** next · **P2** later / needs scoping ·
 **P3** close or won't-do (with evidence).
 
-For large backlogs, fan out one read-only subagent per cluster (Agent tool; or
-`cc-meta:orchestrating-parallel-workers` if installed) and ground effort estimates by reading the
-relevant code (`codebase-tools:researching-codebase` if installed).
+For large backlogs, fan out one read-only subagent per cluster (Agent tool) and ground effort
+estimates by reading the relevant code (`codebase-tools:researching-codebase` if installed).
 
 ## Step 4: Verify before asserting
 
