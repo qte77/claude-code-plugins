@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **website-audit** (1.2.8): `verifying-design-canvas` describes its verified-example reference
+  by role instead of naming the project.
+
 ## [3.9.0] - 2026-10-26
 
 ### Added
