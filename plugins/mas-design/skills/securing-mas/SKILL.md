@@ -7,7 +7,6 @@ metadata:
   argument-hint: [component-or-feature]
   stability: stable
   content-hash: sha256:94039e17e94bb06a07cb298b68d4b5a02f3ef882ad08837656d1a82d3e0ad8b2
-  last-verified-cc-version: 1.0.34
 ---
 
 # Securing Multi-Agent Systems

@@ -7,7 +7,6 @@ metadata:
   argument-hint: [url-or-file-path]
   stability: stable
   content-hash: sha256:6fc16d33ad7c663af30e578ac2b6fe93b1737781ec4df878ac84c2a52ff3515b
-  last-verified-cc-version: 1.0.34
 ---
 
 # Website SEO & GEO Audit

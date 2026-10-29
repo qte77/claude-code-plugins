@@ -6,7 +6,6 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [module-or-feature]
   stability: development
-  last-verified-cc-version: 1.0.34
 ---
 
 # Document Indexing Implementation

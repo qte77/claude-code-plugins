@@ -12,7 +12,7 @@
       "name": "python-dev",
       "source": "./plugins/python-dev",
       "description": "Python implementation, testing, and code review skills; deploys uv permissions, and (when `.scaffold` is python) CI workflows, dependabot config, and a Ralph Loop adapter, via SessionStart hook",
-      "version": "2.1.6"
+      "version": "2.1.7"
     },
     {
       "name": "commit-helper",
@@ -24,7 +24,7 @@
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
       "description": "Isolated codebase research, quality hardening, and build error resolution via skills and agents",
-      "version": "1.4.5"
+      "version": "1.4.6"
     },
     {
       "name": "cpp-desktop",
@@ -36,31 +36,31 @@
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
       "description": "Claude Code meta-skills for cross-project synthesis, context compaction, session intelligence, and memory seed template",
-      "version": "1.19.0"
+      "version": "1.19.1"
     },
     {
       "name": "backend-design",
       "source": "./plugins/backend-design",
       "description": "Backend system architecture and API design skills",
-      "version": "1.0.3"
+      "version": "1.0.4"
     },
     {
       "name": "mas-design",
       "source": "./plugins/mas-design",
       "description": "Multi-agent system plugin design and OWASP MAESTRO security framework",
-      "version": "1.1.2"
+      "version": "1.1.3"
     },
     {
       "name": "website-audit",
       "source": "./plugins/website-audit",
       "description": "Website SEO/GEO, design research, usability, and WCAG accessibility audit skills",
-      "version": "1.2.7"
+      "version": "1.2.8"
     },
     {
       "name": "docs-generator",
       "source": "./plugins/docs-generator",
       "description": "Document generation for writeups, tech specs (ADR/RFC/design docs), and reports with pandoc PDF output",
-      "version": "1.0.5"
+      "version": "1.0.6"
     },
     {
       "name": "ralph",
@@ -72,7 +72,7 @@
       "name": "embedded-dev",
       "source": "./plugins/embedded-dev",
       "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
-      "version": "1.2.5"
+      "version": "1.2.6"
     },
     {
       "name": "workspace-setup",
@@ -120,13 +120,13 @@
       "name": "tdd-core",
       "source": "./plugins/tdd-core",
       "description": "Language-agnostic TDD methodology: Red-Green-Refactor, Arrange-Act-Assert, testing strategy",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "rag-core",
       "source": "./plugins/rag-core",
       "description": "Document indexing and hybrid retrieval with heading-boundary chunking, FAISS vector store, and PageIndex tree filtering",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "cc-voice",
@@ -153,7 +153,7 @@
       "name": "makefile-core",
       "source": "./plugins/makefile-core",
       "description": "Skills and linting for consistent, rigorous Makefiles across projects \u2014 auto-detects project type, extensible via scaffold-*.md references",
-      "version": "1.2.1"
+      "version": "1.2.2"
     },
     {
       "name": "readme-generator",
