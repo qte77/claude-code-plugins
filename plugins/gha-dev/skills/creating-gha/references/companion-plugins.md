@@ -11,6 +11,7 @@ Install with `claude plugin install <name>@qte77-claude-code-plugins`.
 |--------|-------|-------------|
 | **python-dev** | `implementing-python` | Python-based actions (`src/app.py`) |
 | **python-dev** | `reviewing-code` | Code review before PR |
+| **sh-dev** | `implementing-shell` | Shell-based actions (`scripts/*.sh`): strict mode, usage, exit codes, ShellCheck |
 | **makefile-core** | `creating-makefile` | Adding a Makefile for local dev tasks (lint, test, bump) |
 
 ### Testing
@@ -18,6 +19,7 @@ Install with `claude plugin install <name>@qte77-claude-code-plugins`.
 | Plugin | Skill | When to use |
 |--------|-------|-------------|
 | **tdd-core** | `testing-tdd` | Red-Green-Refactor methodology — applies to both BATS and pytest |
+| **sh-dev** | `testing-shell` | BATS tests for shell-based actions: `run`/`$status`/`$output`, stubbing `gh`/`curl` |
 | **python-dev** | `testing-python` | pytest for Python-based actions |
 
 ### Quality & Security
@@ -41,6 +43,7 @@ Install with `claude plugin install <name>@qte77-claude-code-plugins`.
 **Shell-based action** (minimal):
 
 ```bash
+claude plugin install sh-dev@qte77-claude-code-plugins
 claude plugin install tdd-core@qte77-claude-code-plugins
 claude plugin install commit-helper@qte77-claude-code-plugins
 ```
