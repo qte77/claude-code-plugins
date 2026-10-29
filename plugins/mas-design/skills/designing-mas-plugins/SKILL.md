@@ -7,7 +7,6 @@ metadata:
   argument-hint: [component-name]
   stability: stable
   content-hash: sha256:44f931b696bbfe8ea3acf1d6d3e979d90b86144040f596acd7bf9e865f228627
-  last-verified-cc-version: 1.0.34
 ---
 
 # Designing MAS Plugins

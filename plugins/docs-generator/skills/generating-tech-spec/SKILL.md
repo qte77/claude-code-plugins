@@ -7,7 +7,6 @@ metadata:
   argument-hint: "[spec-type] [topic]"
   stability: stable
   content-hash: sha256:bfebebda014156697a02550dd54bb946b9ac01aed067bd6ccd6ee7ef63843072
-  last-verified-cc-version: 1.0.34
 ---
 
 # Technical Specification Generation
