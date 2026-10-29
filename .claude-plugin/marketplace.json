@@ -36,7 +36,7 @@
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
       "description": "Claude Code meta-skills for cross-project synthesis, context compaction, session intelligence, and memory seed template",
-      "version": "1.16.2"
+      "version": "1.19.0"
     },
     {
       "name": "backend-design",
@@ -165,7 +165,7 @@
       "name": "planning",
       "source": "./plugins/planning",
       "description": "Planning — feature/refactor planning agent and GitHub issue triage (ROI × feasibility → P0–P3 plan)",
-      "version": "1.1.1"
+      "version": "1.1.2"
     },
     {
       "name": "web-recon",

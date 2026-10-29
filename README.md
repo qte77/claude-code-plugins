@@ -2,7 +2,7 @@
 
 # qte77-claude-code-plugins
 
-Claude Code plugin marketplace — 26 plugins, 68 skills, 2 agents from production workflows.
+Claude Code plugin marketplace — 26 plugins, 67 skills, 2 agents from production workflows.
 
 Browse the plugin docs at **[qte77.github.io/claude-code-plugins](https://qte77.github.io/claude-code-plugins/)**
 (rebuilt from the READMEs on every push to `main`).
@@ -29,7 +29,7 @@ Browse the plugin docs at **[qte77.github.io/claude-code-plugins](https://qte77.
 | **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO security |
 | **security-audit** | `auditing-code-security` `detecting-secrets` `scanning-dependencies` `triaging-security-report` | OWASP Top 10, secrets detection, dependency scanning, report triage |
 | **web-recon** | `web-recon` | Authorized web/API attack-surface assessment via [web-recon-kit](https://github.com/qte77/web-recon-kit) (endpoint enum, auth matrix, BOLA/BFLA) |
-| **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` `summarizing-session-end` `distilling-plan-learnings` `handing-off-session` `orchestrating-parallel-workers` `persisting-bigpicture-learnings` `mining-session-patterns` `cross-checking-research` | Cross-project synthesis, context compaction, session intelligence |
+| **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` `summarizing-session-end` `distilling-plan-learnings` `handing-off-session` `persisting-bigpicture-learnings` `mining-session-patterns` `cross-checking-research` | Cross-project synthesis, context compaction, session intelligence |
 | **market-research** | `analyzing-source-project` `researching-industry-landscape` `researching-market` `validating-product-market-fit` `developing-gtm-strategy` `analyzing-contradictions` `synthesizing-research` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix |
 | **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC), reports with pandoc PDF |
 | **readme-generator** | `writing-readme` `auditing-readme` | Generate and audit README.md files for repos, accounts, and orgs |
