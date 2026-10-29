@@ -114,7 +114,13 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.5"
+      "version": "1.2.6"
+    },
+    {
+      "name": "sh-dev",
+      "source": "./plugins/sh-dev",
+      "description": "Shell scripting skills — BATS testing, ShellCheck, and Bash conventions (strict mode, usage, exit codes, DRY_RUN) for hooks, CI helpers and setup scripts",
+      "version": "1.0.0"
     },
     {
       "name": "tdd-core",

@@ -2,7 +2,7 @@
 
 # qte77-claude-code-plugins
 
-Claude Code plugin marketplace — 26 plugins, 68 skills, 2 agents from production workflows.
+Claude Code plugin marketplace — 27 plugins, 70 skills, 2 agents from production workflows.
 
 Browse the plugin docs at **[qte77.github.io/claude-code-plugins](https://qte77.github.io/claude-code-plugins/)**
 (rebuilt from the READMEs on every push to `main`).
@@ -38,6 +38,7 @@ Browse the plugin docs at **[qte77.github.io/claude-code-plugins](https://qte77.
 | **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` `generating-prd-md-from-userstory-md` | PRD pipeline for the Ralph loop |
 | **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, KiCad PCB audit |
 | **gha-dev** | `creating-gha` | GitHub Actions creation and Marketplace publishing |
+| **sh-dev** | `implementing-shell` `testing-shell` | Bash conventions, ShellCheck, BATS testing |
 | **makefile-core** | `creating-makefile` | Makefile scaffolding, linting, and conventions |
 | **rag-core** | `implementing-document-indexing` | Heading-boundary chunking, FAISS, PageIndex hybrid retrieval |
 | **workspace-setup** | — | Deploys rules, statusline, governance, base settings via SessionStart; copyable `~/.claude` rebuild-persistence snippet |
@@ -83,6 +84,7 @@ claude plugin install docs-governance@qte77-claude-code-plugins
 claude plugin install ralph@qte77-claude-code-plugins
 claude plugin install embedded-dev@qte77-claude-code-plugins
 claude plugin install gha-dev@qte77-claude-code-plugins
+claude plugin install sh-dev@qte77-claude-code-plugins
 claude plugin install makefile-core@qte77-claude-code-plugins
 claude plugin install rag-core@qte77-claude-code-plugins
 claude plugin install workspace-setup@qte77-claude-code-plugins    # OR workspace-sandbox
