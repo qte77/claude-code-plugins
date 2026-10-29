@@ -11,10 +11,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **cc-meta** (1.17.0, #48): `synthesizing-cc-bigpicture` reads `goals.json` from a local qte77/qte77
+  checkout and renders a Goal Progress section (one line when no goals are defined).
+- **cc-meta** (1.18.0, #126): Stop hook reminds you once per session to run `/handing-off-session`
+  when the working tree has uncommitted changes (`systemMessage`, no token cost; disable with
+  `CC_META_HANDOFF_REMINDER=0`).
+- **CI**: new `PR Gate` workflow runs `mkdocs build --strict`, `make check_sync` and `make validate`
+  on every PR (#247).
+- **CI**: the docs deploy verifies the live GitHub Pages URL (index 200 and `build.txt` equal to the
+  commit SHA, with retry) and fails on an error or a stale page (#248).
+
 ### Changed
 
+- Per-skill `last-verified-cc-version` removed from 22 SKILL.md files; the README **Compatibility**
+  line is the single tested-against statement (#187). Patch bumps: backend-design, cc-meta,
+  codebase-tools, docs-generator, embedded-dev, makefile-core, mas-design, python-dev, rag-core,
+  tdd-core, website-audit.
 - **website-audit** (1.2.9): `verifying-design-canvas` describes its verified-example reference
   by role instead of naming the project.
+
+### Removed
+
+- **cc-meta** (1.19.0, #157): `orchestrating-parallel-workers`, which the Agent tool's native parallel
+  and background dispatch already covers. **planning** (1.1.2): `triaging-issues` no longer points
+  to it.
 
 ## [3.9.0] - 2026-10-26
 
