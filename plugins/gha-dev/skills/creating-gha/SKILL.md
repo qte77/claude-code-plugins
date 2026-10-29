@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [action-name]
   stability: stable
-  content-hash: sha256:785db2705d4b9c01b7939f17988f4a53a3364810f720dff78e854bf0f68628e2
+  content-hash: sha256:4e77989b5611850e34fead6ec84ebf03caa757a08a63795e59c88fc2b7ad348e
 ---
 
 # Creating GitHub Actions
@@ -20,7 +20,7 @@ and proper release flow.
 
 - `references/marketplace-checklist.md` — action.yaml fields, signed commits, release flow, gotchas
 - `references/python-gha-patterns.md` — full Python composite action walkthrough (uv, pyproject.toml, CI)
-- `references/companion-plugins.md` — companion plugins by workflow phase (tdd-core, python-dev, security-audit, commit-helper, makefile-core; built-in `/simplify`)
+- `references/companion-plugins.md` — companion plugins by workflow phase (tdd-core, sh-dev, python-dev, security-audit, commit-helper, makefile-core; built-in `/simplify`)
 
 ## Marketplace Requirements
 
@@ -74,6 +74,10 @@ See `references/python-gha-patterns.md` for the full Python walkthrough.
 ```
 
 Run: `bats tests/unit/` — all must fail first.
+
+These are the action-specific checks. For general BATS patterns (`setup`/`teardown`, `run` +
+`$status`/`$output`, stubbing `gh`/`curl` on `PATH`) and script conventions, use the companion
+**sh-dev** plugin (`testing-shell`, `implementing-shell`) instead of re-deriving them here.
 
 **GREEN — implement to pass:**
 
