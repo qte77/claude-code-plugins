@@ -7,7 +7,6 @@ metadata:
   argument-hint: [requirements-file-or-directory]
   stability: stable
   content-hash: sha256:42824ff9b1f1482d657d77f24a9d099c0c68448d8d7a4eb33d275347a09f6a29
-  last-verified-cc-version: 1.0.34
 ---
 
 # Requirement Traceability Validation

@@ -7,7 +7,6 @@ metadata:
   argument-hint: [url-or-file-path]
   stability: stable
   content-hash: sha256:0e7c6cbfc6559f5799d96568468a418ca323f0fbd15dc5ed294decd5e56874a8
-  last-verified-cc-version: 1.0.34
 ---
 
 # Website Usability Audit

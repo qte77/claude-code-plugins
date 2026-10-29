@@ -6,7 +6,6 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [feature-or-module-to-test]
   stability: development
-  last-verified-cc-version: 1.0.34
 ---
 
 # Test-Driven Development
