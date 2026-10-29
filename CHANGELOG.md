@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **cc-meta** (1.18.0, #126): Stop hook reminds you once per session to run `/handing-off-session`
   when the working tree has uncommitted changes (`systemMessage`, no token cost; disable with
   `CC_META_HANDOFF_REMINDER=0`).
+- **sh-dev** (1.0.0, #127): new plugin — `implementing-shell` (Bash conventions, ShellCheck) and
+  `testing-shell` (BATS). **gha-dev** (1.2.6): lists sh-dev as a companion and points its BATS section
+  at it.
 - **CI**: new `PR Gate` workflow runs `mkdocs build --strict`, `make check_sync` and `make validate`
   on every PR (#247).
 - **CI**: the docs deploy verifies the live GitHub Pages URL (index 200 and `build.txt` equal to the
