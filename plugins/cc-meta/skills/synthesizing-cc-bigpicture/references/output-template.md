@@ -1,6 +1,6 @@
 # Big-Picture Output Template
 
-The standard markdown template for `bigpicture.md` output. Every synthesis run should produce this structure. Individual sections may be empty if no data is present, but all seven top-level headings should always appear.
+The standard markdown template for `bigpicture.md` output. Every synthesis run should produce this structure. Individual sections may be empty if no data is present, but all eight top-level headings should always appear.
 
 ```markdown
 # Big Picture — <date>
@@ -21,6 +21,9 @@ The standard markdown template for `bigpicture.md` output. Every synthesis run s
 
 ## Cross-Project Connections
 ## Active Plans
+## Goal Progress
+| Goal | KR | Sessions | Plans | PRs | Signal |
+|------|----|----------|-------|-----|--------|
 ## TODOs & DONEs
 ## Blockers & Stale Items
 ## Mode Transitions Needed
@@ -31,4 +34,5 @@ The standard markdown template for `bigpicture.md` output. Every synthesis run s
 - **Reasoning Mode Summary** — one row per active project. `D/C` = Diverge/Converge axis, `S/T` = Strategic/Tactical axis. See `reasoning-modes.md` for classification signals.
 - **Active Work Streams** — one H3 block per project. Skip projects with zero activity in the time range.
 - **Cross-Project Connections** — this is the ONE section allowed to reference projects outside the filter scope when `project-name` is set (as outbound links).
+- **Goal Progress** — one row per key result from `goals.json`; one line instead when no goals are defined or the file is absent. See `goal-progress.md`.
 - **Mode Transitions Needed** — populated only when Alerts fired in the Reasoning Mode Summary (e.g., "Diverging for N sessions without convergence").

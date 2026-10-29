@@ -1,0 +1,142 @@
+=== ISSUE 126
+## Reasoning
+
+Cross-session continuity is a gap in cc-meta workflows. The orchestration skills (handing-off-session, summarizing-session-end) exist but are never triggered automatically. Users forget to run them, losing context between sessions.
+
+A lightweight Stop hook reminder would nudge the user without costing tokens on every stop.
+
+## Goals
+
+- Remind user to run `/handing-off-session` when session ends with in-progress work
+- Zero token cost (no LLM call, just inject context via hookSpecificOutput)
+- Non-blocking — reminder only, not auto-summary
+- Optional — users can disable via settings.local.json
+
+## Implementation suggestion
+
+Add a Stop hook to cc-meta plugin's `hooks/hooks.json`:
+
+```json
+{
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"Stop\",\"additionalContext\":\"Session ending — consider /handing-off-session if work is in progress.\"}}'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Alternatives considered
+
+| Option | Pros | Cons |
+|--------|------|------|
+| **Reminder hook** (recommended) | Zero cost, non-blocking | Easy to ignore |
+| **Auto-summary on Stop** | Automatic, no user action needed | Token cost every stop, even trivial sessions |
+| **Prompt hook with LLM check** | Smart — only fires when work is in progress | Token cost, latency, overkill |
+
+### Notes
+
+- If cc-meta already has a hooks.json, merge into existing Stop array
+- Bump cc-meta version after adding
+- Tested locally in cc-voice-plugin-prototype — works but removed in favor of upstream plugin ownership
+=== ISSUE 157
+## Question
+
+Is the `cc-meta:orchestrating-parallel-workers` skill providing value over a direct `Agent` tool call with `run_in_background: true`?
+
+## Context
+
+The skill description says it "fans out tasks to parallel background agents with independent context windows" — but the built-in `Agent` tool already supports this natively (multiple invocations in one message run concurrently; `run_in_background: true` is available). A skill on top adds:
+
+- Another loading step (skill description in context)
+- Indirection between "I want to fan out" and the actual `Agent` calls
+
+## What to evaluate
+
+1. **What does the skill do that bare `Agent` calls don't?** If the answer is "nothing concrete," it may be deprecation-worthy.
+2. **Is it prescriptive guidance (when/how to parallelize)** that could live in a rule under `.claude/rules/` instead, with zero runtime cost?
+3. **Is it a wrapper around a specific pattern** (e.g., shared task queue, result aggregation, status reporting) that genuinely benefits from being a skill?
+
+## Suggested next steps
+
+- Read the skill's `SKILL.md` and any helper scripts it ships
+- Compare against the equivalent "just call `Agent` N times" pattern
+- Decide: keep, simplify to a rule, or remove
+
+## Origin
+
+Surfaced while planning a 20-PR fan-out across three orgs — recommended this skill to a user, who pushed back asking whether it's actually needed vs. direct `Agent` calls.
+
+=== ISSUE 185
+## Problem: shipped bare model aliases now resolve unpredictably
+
+7 plugin-shipped configs pin models via **bare aliases**, which resolve through the *consumer's* environment — and the maintainer's own environment now redefines them (`ANTHROPIC_DEFAULT_OPUS_MODEL=claude-fable-5`, `ANTHROPIC_DEFAULT_SONNET_MODEL=claude-opus-4-8`, for the opusplan plan/exec split):
+
+| File:line | Value | Resolves to (maintainer env) |
+|---|---|---|
+| `plugins/codebase-tools/agents/build-error-resolver.md:5` | `model: sonnet` | **Opus 4.8** (silent cost upshift) |
+| `plugins/planning/agents/planner.md:5` | `model: opus` | **Fable 5** (silent upshift) |
+| `plugins/cc-meta/skills/compacting-context/SKILL.md:10` | `model: sonnet` | Opus 4.8 |
+| `plugins/commit-helper/skills/creating-pr-from-branch/SKILL.md:6` | `model: haiku` | Haiku (unaffected — no HAIKU override) |
+| `plugins/commit-helper/skills/committing-staged-with-message/SKILL.md:6` | `model: haiku` | Haiku |
+| `plugins/ralph/skills/generating-prd-json-from-prd-md/SKILL.md:7` | `model: haiku` | Haiku |
+| `plugins/docs-generator/Makefile:76,83` | `CC_MODEL=sonnet` example → `claude -p --model` | Opus 4.8 |
+
+(No stale dated model IDs found repo-wide — the only concrete IDs are illustrative examples in schema docs. No `ANTHROPIC_MODEL` in any shipped env block — good; that pattern shadows the `model` field every session and just bit the maintainer's user settings.)
+
+## Two interacting resolution gotchas to document/decide
+
+1. **Bare aliases are environment-relative.** Any consumer using `ANTHROPIC_DEFAULT_*` overrides (a legitimate, doc-sanctioned mechanism) silently re-points every frontmatter alias. `model: sonnet` intending "cheap" can become the priciest model available.
+2. **`CLAUDE_CODE_SUBAGENT_MODEL` beats frontmatter AND per-invocation params** (documented subagent resolution order: env pin > per-invocation `model` param > frontmatter > main model). So (a) with a pin set, all these frontmatter `model:` fields are dead config anyway for subagent-type usage, and (b) with a pin set, a caller *cannot* upshift a synthesis/judge subagent to Fable per-call — which conflicts with the "Fable for synthesis, cheap tier for fan-out" working rule. Skill-metadata `model:` fields may resolve differently — worth verifying what they actually control.
+
+## Proposed policy (decide + apply)
+
+- **Pin explicit model IDs in shipped frontmatter** (e.g. `claude-sonnet-5`, `claude-haiku-4-5-20251001`) instead of bare aliases — shipped artifacts shouldn't inherit consumer alias redefinitions. Trade-off: explicit IDs need bumping on model generations; add to the release checklist.
+- **Document the resolution order** (env pin > per-call > frontmatter > main) in CONTRIBUTING/plugin-authoring docs so authors know when their `model:` field is dead.
+- **Maintainer env decision**: keep `CLAUDE_CODE_SUBAGENT_MODEL` pinned (cheap-by-default, no per-call upshift possible) vs remove it (per-call/frontmatter selection works; fan-out defaults to the main model). Currently pinned to `claude-sonnet-5`.
+
+Found during the 2026-07-05 repo-wide config audit (siblings: #183 permission templates, marketplace-hygiene and skill-staleness issues).
+
+--- github-actions: <!-- gha-issue-triage:summary -->
+### AI triage summary
+
+- **Relevance:** 10/10 — `enhancement` — The issue directly addresses model resolution and configuration practices in shipped plugins, which is central to the repository's scope of maintaining and improving Claude Code plugin workflows.
+- **Feasibility:** `yes`
+- **Complexity:** `medium` — Documenting resolution precedence and updating shipped configs to use explicit model IDs is feasible, but requires careful audit and coordination across plugins, making it moderately complex. (~days)
+
+_Auto-generated. Re-runs when the issue is opened, edited, or labelled._
+=== ISSUE 187
+## 22 SKILL.md files carry `last-verified-cc-version: 1.0.34` — a full major version behind
+
+The verification metadata on most "stable" skills has not been refreshed since CC 1.0.34, while the repo itself records `Tested: CC v2.1.52 (Feb 2026)` elsewhere (`plugins/workspace-sandbox/settings/.gitignore:27`) and current CC is 2.1.x.
+
+Affected plugins (22 SKILL.md files): mas-design, codebase-tools, cc-meta, python-dev, website-audit, tdd-core, embedded-dev, makefile-core, docs-generator, rag-core, backend-design. Examples: `plugins/cc-meta/skills/compacting-context/SKILL.md:13`, `plugins/mas-design/skills/securing-mas/SKILL.md:10`.
+
+**Why it matters:** the field exists to tell consumers "this skill's behavior was checked against this CC version." At 1.0.34 vs 2.1.x it now signals the opposite of confidence — either the skills haven't been exercised in a year of CC releases, or they have and the metadata is dead weight.
+
+**Proposed (mechanical, batchable):**
+1. Re-exercise each skill once on current CC (or accept a spot-check tier), bump `last-verified-cc-version` to the tested version.
+2. Add a release-checklist line: bump the field whenever a skill is touched.
+3. If continuous re-verification is unrealistic, consider replacing the per-skill field with a repo-level "tested against CC x.y.z" statement to avoid 22-file drift.
+
+Related fragility (same audit, no action yet): `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` referenced in `plugins/market-research/rules/gtm-pipeline.md:39` and `plugins/docs-generator/Makefile:79` — experimental flags get renamed/removed without notice; verify on the same pass.
+
+Found during the 2026-07-05 repo-wide config audit (siblings: #183, marketplace-hygiene, model-governance, read-once-hook issues).
+
+--- github-actions: <!-- gha-issue-triage:summary -->
+### AI triage summary
+
+- **Relevance:** 9/10 — `enhancement` — The issue addresses stale verification metadata in SKILL.md files, which directly impacts the reliability and maintainability of the plugin marketplace and aligns with the project's focus on code quality and agent workflows.
+- **Feasibility:** `yes`
+- **Complexity:** `medium` — Refreshing verification metadata for SKILL.md files and updating version fields is a feasible, mechanical batch task, but requires coordinated testing and process changes, making it moderately complex. (~days)
+
+_Auto-generated. Re-runs when the issue is opened, edited, or labelled._
