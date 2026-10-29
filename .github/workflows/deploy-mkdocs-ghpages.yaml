@@ -22,6 +22,8 @@ jobs:
       - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
       - run: make docs_stage
       - run: uvx --from "mkdocs<2.0" --with mkdocs-material mkdocs build --strict
+      # Build marker: the verify step below checks the live site serves this exact build.
+      - run: printf '%s\n' "$GITHUB_SHA" > site/build.txt
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: site
@@ -35,3 +37,21 @@ jobs:
     steps:
       - uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
         id: deployment
+      - name: Verify the live site serves this build
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          set -u
+          url="${PAGE_URL%/}"
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            index=$(curl -s -o /dev/null -w '%{http_code}' "$url/")
+            marker=$(curl -fsS "$url/build.txt?nocache=$attempt" 2>/dev/null | tr -d '[:space:]')
+            if [ "$index" = "200" ] && [ "$marker" = "$GITHUB_SHA" ]; then
+              echo "Live site OK: index 200, build.txt = $GITHUB_SHA"
+              exit 0
+            fi
+            echo "Attempt $attempt: index=$index build.txt='$marker' (want $GITHUB_SHA); retrying in 15s"
+            sleep 15
+          done
+          echo "::error::$url is not serving build $GITHUB_SHA (last index status $index)"
+          exit 1
