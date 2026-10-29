@@ -95,6 +95,8 @@ respect the filter. Apply these rules once, consistently:
    - Session summaries (skip if directory absent)
    - Subagent transcripts (first+last 5 lines, cap 10 most recent by mtime)
    - Project docs (`CHANGELOG.md`, `AGENT_REQUESTS.md`)
+   - Goals (`goals.json` in a local qte77/qte77 checkout; skip if absent) —
+     see `references/goal-progress.md`
 
 6. **Classify reasoning modes** per work stream — diverge/converge and
    strategic/tactical. See `references/reasoning-modes.md` for axis definitions,
@@ -102,6 +104,7 @@ respect the filter. Apply these rules once, consistently:
 
 7. **Synthesize** — Group by project → time clusters. Link plans↔sessions↔tasks.
    Surface blockers, trajectory, recurring themes, cross-project connections.
+   Attribute work to goals/KRs by explicit ID only (`references/goal-progress.md`).
 
 8. **Output** using the template in `references/output-template.md`. Write to
    output path.
@@ -127,3 +130,4 @@ respect the filter. Apply these rules once, consistently:
 - `references/cc-entry-types.md` — JSONL session entry type taxonomy
 - `references/reasoning-modes.md` — diverge/converge and strategic/tactical axes
 - `references/output-template.md` — standard output format
+- `references/goal-progress.md` — `goals.json` source, goal/KR matching, Goal Progress table

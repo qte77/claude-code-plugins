@@ -17,4 +17,7 @@ Full layout of the `~/.claude/` directory as consumed by `synthesizing-cc-bigpic
 └── teams/<team-name>/               # config.json + inboxes/<member>.json
 ```
 
+Outside `~/.claude/`: `goals.json` at the root of a local qte77/qte77 checkout (strategic goals and
+key results) — see `goal-progress.md`.
+
 **Critical:** Never bulk-read full `.jsonl` transcripts. Use `history.jsonl` for discovery and first+last 5 lines of each session transcript for metadata only.
