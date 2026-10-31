@@ -1,0 +1,45 @@
+name: PR Gate
+
+# The documented pre-push gate (make validate, make check_sync, strict docs build) ran only
+# locally or after merge; run it on every PR so breakage shows before merge (#247).
+# make test_install is not run here: it needs an authenticated marketplace add.
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs-build:
+    name: mkdocs build --strict
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+      - run: make docs_stage
+      - run: uvx --from "mkdocs<2.0" --with mkdocs-material mkdocs build --strict
+
+  check-sync:
+    name: make check_sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: make check_sync
+
+  validate:
+    name: make validate
+    runs-on: ubuntu-latest
+    env:
+      CLAUDE_CODE_VERSION: "2.1.312"
+      DISABLE_AUTOUPDATER: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: npm install -g "@anthropic-ai/claude-code@$CLAUDE_CODE_VERSION"
+      - run: make validate
