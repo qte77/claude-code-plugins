@@ -37,6 +37,17 @@ Add to your `.claude/settings.json` to auto-trigger session summaries:
 }
 ```
 
+## Handoff Reminder (Stop hook)
+
+Shipped in `hooks/hooks.json`. When Claude stops and the git working tree has uncommitted changes,
+it shows a one-line reminder to run `/handing-off-session` — at most once per session. It uses
+`systemMessage` (shown to you, not sent to the model), so it costs no tokens and doesn't continue the
+turn. Requires `jq` and `git`; otherwise it does nothing. Disable it in `.claude/settings.local.json`:
+
+```json
+{ "env": { "CC_META_HANDOFF_REMINDER": "0" } }
+```
+
 ## BigPicture Usage
 
 ```bash
