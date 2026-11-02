@@ -38,6 +38,9 @@ per-plugin versions (see [Plugin versioning](#plugin-versioning)). To cut a rele
 2. Merge that PR. **Tag Release** tags `vX.Y.Z` on `main` automatically.
 3. Run the **Publish Release** workflow to create the GitHub Release from the CHANGELOG block.
 
+Before cutting a release, run `make validate` on the current Claude Code release and update the
+README **Compatibility** line (the only tested-against CC version; there is no per-skill field).
+
 All three call the shared `qte77/.github` reusable workflows. Tags are never deleted or moved.
 
 ## Conventional Commits

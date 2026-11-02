@@ -1,6 +1,6 @@
 {
   "name": "python-dev",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Python implementation, testing, and code review skills; deploys uv permissions, and (when `.scaffold` is python) CI workflows, dependabot config, and a Ralph Loop adapter, via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["python", "implementation", "testing", "review", "pytest"]

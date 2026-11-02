@@ -7,7 +7,6 @@ metadata:
   argument-hint: "[project-type-or-makefile-path]"
   stability: stable
   content-hash: sha256:99b10f5578553e5aa4ded222da3c8955c843a3ab52aa3bcd8b007c40ac35a5a4
-  last-verified-cc-version: 1.0.34
 ---
 
 # Creating Makefiles
