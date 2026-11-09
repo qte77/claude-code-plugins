@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Shared rules** (`unattended-execution.md`): never write operator commands (protection-bypass
+  merge flags, token-unsetting wrappers) into repo files; keep them in private memory. Patch bumps:
+  workspace-setup (1.7.3), workspace-sandbox (1.5.3).
+
 ### Fixed
 
 - `.gitignore` lists `.claude/settings.local.json`, which was ignored only by the machine-wide global git ignore
