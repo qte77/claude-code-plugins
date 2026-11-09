@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- `.gitignore` lists `.claude/settings.local.json`, which was ignored only by the machine-wide global git ignore
+
 ### Added
 
 - **cc-meta** (1.17.0, #48): `synthesizing-cc-bigpicture` reads `goals.json` from a local qte77/qte77

@@ -10,3 +10,6 @@ docs/CHANGELOG.md
 docs/LICENSE
 docs/plugins/
 site/
+
+# Personal Claude Code settings, never shared
+.claude/settings.local.json
