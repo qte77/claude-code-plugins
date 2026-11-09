@@ -56,6 +56,12 @@ use case (e.g. the UI-e2e section applies when the project ships a UI).
 
 - **Git:** new branch per topic; commits by topic (`feat`/`fix`/`test`/`docs`/`chore`); push +
   squash-merge ONLY if all CI + test items pass; delete stale remote AND local branches.
+- **No operator commands in repo files:** never write a privileged or machine-specific command
+  into a repo file (docs, plans, skills, CONTRIBUTING, examples, workflow comments). That covers
+  merge flags that bypass branch protection and wrappers that unset auth tokens to work around a
+  local credential clash. The owner approves these per session, for one machine; once written down,
+  they read as the documented procedure for every contributor and agent. Keep them in private
+  memory, and describe the step in repo files in neutral terms ("merge once CI passes").
 - **Docs & issues audit:** CHANGELOG · root README · architecture/ADRs · roadmap · userstory ·
   registries · consumer-facing contract/interface doc (e.g. `docs/CONTRACT.md`, a design-token
   source doc) if the repo has one — updates needed? New **URLs / env vars / CLI switches**
