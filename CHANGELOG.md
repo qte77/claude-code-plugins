@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - `.gitignore` lists `.claude/settings.local.json`, which was ignored only by the machine-wide global git ignore
+- **research-monitor** workflow: `gh issue create --label "research-sync"` failed every scheduled
+  run because the label was never created; the job now runs `gh label create research-sync --force`
+  first, so it self-heals without manual setup.
 
 ### Added
 
