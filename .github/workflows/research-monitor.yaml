@@ -47,6 +47,18 @@ jobs:
           path: research-findings.md
           retention-days: 30
 
+      - name: Ensure research-sync label exists
+        if: steps.compare.outputs.exit_code == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh label create "research-sync" \
+            --description "Opened by the Research Monitor workflow" \
+            --color "0E8A16" \
+            --repo "${REPO}" \
+            --force
+
       - name: Create issue if findings exist
         if: steps.compare.outputs.exit_code == '1'
         env:
