@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **rust-dev** 1.1.0: best-practices reference gains sections on manifest lints, hostile-input tests,
+  dependency checks, WebAssembly and determinism (integer state, no `HashMap` iteration, golden hash
+  native and in wasm, `u64` as signed `BigInt`), and a table of canonical sources; the pre-commit
+  checklist gains two items. Reviewing copy synced.
 - **Shared rules** (`unattended-execution.md`): never write operator commands (protection-bypass
   merge flags, token-unsetting wrappers) into repo files; keep them in private memory. Patch bumps:
   workspace-setup (1.7.3), workspace-sandbox (1.5.3).
