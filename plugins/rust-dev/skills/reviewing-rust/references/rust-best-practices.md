@@ -218,6 +218,74 @@ use crate::config::AppConfig;
 
 Prefer `pub(crate)` over `pub` for types used only within the crate.
 
+## Lints in the Manifest
+
+Set lint levels once in `Cargo.toml` (`[lints]`, or `[workspace.lints]` plus `lints.workspace = true`)
+instead of attributes in every crate root. A strict set for code that must not crash:
+
+```toml
+[lints.rust]
+unsafe_code = "deny"      # "forbid" only if the crate has no FFI or wasm exports
+
+[lints.clippy]
+unwrap_used = "deny"
+expect_used = "deny"
+panic = "deny"
+```
+
+Tests may opt out with `#![cfg_attr(test, allow(clippy::unwrap_used))]`. Run
+`cargo clippy --all-targets -- -D warnings` and `cargo fmt --check` in CI, and keep `rustfmt.toml` and
+`clippy.toml` in the repo root so editors and CI agree.
+
+## Hostile Input
+
+Treat file, network and parameter input as hostile: use `get()` over indexing, clamp sizes, bound
+recursion and loops, and return errors instead of panicking. Keep one test that feeds junk (empty,
+huge, malformed, boundary values) to every public entry point and asserts "no panic", and add a
+regression test for every crash fixed. For parsers and replay formats, add a fuzz target
+(`cargo fuzz`) once the format has real users.
+
+## Dependencies
+
+Run `cargo audit` (RustSec advisories). For a repo-level policy consider `cargo deny`: an allowed
+licence list, `unknown-registry = "deny"`, `unknown-git = "deny"`, and git sources pinned by
+revision. Commit `Cargo.lock` for binaries and for anything that ships a build artifact. Add these
+checks when the first dependency arrives, not before.
+
+## WebAssembly and Determinism
+
+For a simulation that must give identical results on every engine, native and in the browser:
+
+- Keep replayed state integer-only (fixed point). If floats are unavoidable, avoid threads and
+  relaxed SIMD and canonicalise NaNs; the Rust Reference does not specify NaN bit patterns or
+  cross-platform float results, so do not assume them.
+- Never iterate a `HashMap`/`HashSet` in simulation code (order varies); use `BTreeMap` or a sorted `Vec`.
+- Seed one explicit RNG per simulation; never read the clock or OS entropy inside a step.
+- Prove it with one golden result (a hash after N seeded steps) checked by both the native Rust
+  test and a test that runs the built `.wasm`.
+- `u64`/`i64` arguments and results cross to JavaScript as `BigInt`, and a `u64` result arrives
+  signed unless reinterpreted (`BigInt.asUintN(64, x)`). Test at least one value above `i64::MAX`.
+- Exports use `#[unsafe(no_mangle)]` in edition 2024, and the `unsafe_code` lint flags that
+  attribute (checked with `deny`). Use `deny` and allow it on the small exports module only; `forbid`
+  cannot be overridden.
+- The Rust and WebAssembly book is no longer maintained (its working group was sunset); prefer
+  current `wasm-bindgen` and `wasm32-unknown-unknown` documentation and verify tool versions.
+
+## Canonical Sources
+
+| Topic | Source |
+|---|---|
+| API design | Rust API Guidelines (rust-lang.github.io/api-guidelines) |
+| Formatting | Rust Style Guide (doc.rust-lang.org/style-guide) |
+| Lints | Clippy book (doc.rust-lang.org/clippy) and the Cargo `[lints]` reference |
+| Unsafe | The Rustonomicon (doc.rust-lang.org/nomicon; self-described as incomplete) |
+| Performance | The Rust Performance Book (nnethercote.github.io/perf-book) |
+| Dependencies | RustSec advisory database (rustsec.org) and cargo-deny docs |
+| Fuzzing | Rust Fuzz Book (rust-fuzz.github.io/book) |
+| Broad pragmatic guidance | Microsoft Pragmatic Rust Guidelines (microsoft.github.io/rust-guidelines) |
+
+Link these; do not paste their text into a project.
+
 ## Common Mistakes
 
 | Mistake | Impact | Fix |
@@ -240,6 +308,8 @@ Prefer `pub(crate)` over `pub` for types used only within the crate.
 - [ ] All external input validated at boundaries
 - [ ] Every `unsafe` block has `// SAFETY:` comment
 - [ ] `cargo audit` passes
+- [ ] Junk-input test covers every public entry point (no panics)
+- [ ] Deterministic code: no `HashMap` iteration, clock or OS entropy; golden hash checked native and in wasm
 
 ### Type Safety
 
