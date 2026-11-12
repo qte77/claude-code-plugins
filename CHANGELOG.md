@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **README / marketplace.json**: `cc-voice`'s STT was still marked "planned" in the README while
+  `marketplace.json` already said "functional" — reworded to match. Its external source repo was
+  renamed `qte77/cc-voice-plugin-prototype` → `qte77/cc-senses-plugin`; updated the README link and
+  the `marketplace.json` `source.repo` pointer.
+- **README**: "Full setup" install list was missing `readme-generator`, `web-recon` and
+  `website-audit` (present in the main plugin table and in `marketplace.json`, absent from the
+  copy-paste install block).
+
 ### Added
 
 - **rust-dev** 1.1.0: best-practices reference gains sections on manifest lints, hostile-input tests,

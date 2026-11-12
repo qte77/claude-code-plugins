@@ -46,7 +46,7 @@ This line is the single tested-against statement; skills carry no per-skill CC v
 | **rag-core** | `implementing-document-indexing` | Heading-boundary chunking, FAISS, PageIndex hybrid retrieval |
 | **workspace-setup** | — | Deploys rules, statusline, governance, base settings via SessionStart; copyable `~/.claude` rebuild-persistence snippet |
 | **workspace-sandbox** | — | Deploys rules, statusline, sandbox settings via SessionStart |
-| **cc-voice** (external) | — | E2E voice — TTS via PTY proxy, STT planned ([prototype](https://github.com/qte77/cc-voice-plugin-prototype)) |
+| **cc-voice** (external) | — | E2E voice — TTS via PTY proxy (/speak), STT via Moonshine (/listen, functional) ([repo](https://github.com/qte77/cc-senses-plugin)) |
 
 Skills activate automatically based on task context.
 
@@ -80,9 +80,12 @@ claude plugin install planning@qte77-claude-code-plugins
 claude plugin install backend-design@qte77-claude-code-plugins
 claude plugin install mas-design@qte77-claude-code-plugins
 claude plugin install security-audit@qte77-claude-code-plugins
+claude plugin install web-recon@qte77-claude-code-plugins
 claude plugin install cc-meta@qte77-claude-code-plugins
 claude plugin install market-research@qte77-claude-code-plugins
 claude plugin install docs-generator@qte77-claude-code-plugins
+claude plugin install readme-generator@qte77-claude-code-plugins
+claude plugin install website-audit@qte77-claude-code-plugins
 claude plugin install docs-governance@qte77-claude-code-plugins
 claude plugin install ralph@qte77-claude-code-plugins
 claude plugin install embedded-dev@qte77-claude-code-plugins

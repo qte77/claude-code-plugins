@@ -138,7 +138,7 @@
       "name": "cc-voice",
       "source": {
         "source": "github",
-        "repo": "qte77/cc-voice-plugin-prototype"
+        "repo": "qte77/cc-senses-plugin"
       },
       "description": "E2E voice \u2014 TTS via PTY proxy (/speak), STT via Moonshine (/listen, functional).",
       "version": "0.4.0"
