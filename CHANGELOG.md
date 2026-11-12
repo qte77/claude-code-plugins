@@ -31,6 +31,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   merge flags, token-unsetting wrappers) into repo files; keep them in private memory. Patch bumps:
   workspace-setup (1.7.3), workspace-sandbox (1.5.3).
 
+### Changed
+
+- `.github/workflows/issue-triage.yaml`: gha-issue-triage v0.6.0 → v0.7.1 (reads `AGENTS.md` as repo
+  context when there is no `CLAUDE.md` or it imports one; decide-shadow shows `relevance_score` as a 1–10
+  level and logs the raw score).
+
 ### Fixed
 
 - `.gitignore` lists `.claude/settings.local.json`, which was ignored only by the machine-wide global git ignore
