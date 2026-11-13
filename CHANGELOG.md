@@ -23,6 +23,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **rules/ci-status-checks.md**: a required check that never reports (app not enabled, or a run
+  stuck "in progress") blocks merge and auto-merge for good; confirm a check reports before
+  requiring it. `workspace-setup` 1.7.4, `workspace-sandbox` 1.5.4.
 - **rust-dev** 1.1.0: best-practices reference gains sections on manifest lints, hostile-input tests,
   dependency checks, WebAssembly and determinism (integer state, no `HashMap` iteration, golden hash
   native and in wasm, `u64` as signed `BigInt`), and a table of canonical sources; the pre-commit
