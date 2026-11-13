@@ -41,6 +41,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.github/workflows/issue-triage.yaml`: gha-issue-triage v0.6.0 → v0.7.1 (reads `AGENTS.md` as repo
   context when there is no `CLAUDE.md` or it imports one; decide-shadow shows `relevance_score` as a 1–10
   level and logs the raw score).
+- `tag-release.yaml`, `bump-version.yaml` and `publish-release.yaml` re-pinned from
+  `qte77/.github@613b950` to `qte77/.github@a32769a` (main, 2026-11-12, qte77/.github#64). Inputs
+  used by these callers are unchanged at the new pin.
 
 ### Fixed
 

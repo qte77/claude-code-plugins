@@ -20,7 +20,7 @@ on:
 
 jobs:
   bump:
-    uses: qte77/.github/.github/workflows/bump-version.yml@613b950b4045cc099ca23f8b7344459c3dc22cb3 # qte77/.github#43
+    uses: qte77/.github/.github/workflows/bump-version.yml@a32769a925e4d056b5d389ad727f7831973f7161  # main 2026-11-12 (qte77/.github#64)
     with:
       bump_type: ${{ inputs.bump_type }}
       bump_my_version_pin: "1.5.1"
