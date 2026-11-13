@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **CodeQL workflow**: the `github/codeql-action` pins (`33d7b85`) were labelled `# v3`, but that
+  commit is `v4.39.3`; the comments now name the real version.
 - **README / marketplace.json**: `cc-voice`'s STT was still marked "planned" in the README while
   `marketplace.json` already said "functional" — reworded to match. Its external source repo was
   renamed `qte77/cc-voice-plugin-prototype` → `qte77/cc-senses-plugin`; updated the README link and
