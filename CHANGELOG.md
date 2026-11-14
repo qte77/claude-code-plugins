@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **`unattended-execution` rule** (workspace-setup 1.7.5, workspace-sandbox 1.5.5): compaction
+  guidance corrected against the current docs (threshold 60 plus an output cap in user-level `env`;
+  re-onboard with a `SessionStart` hook on matcher `compact`, which `PreCompact` cannot do); new
+  bullets on waiting through notifications instead of polling, serial merges with a changed-lines
+  check on strict repos, running the milestone audit by default, and wording `/goal` conditions so
+  the owner-approved end state can satisfy them.
+
 ### Fixed
 
 - **CodeQL workflow**: the `github/codeql-action` pins (`33d7b85`) were labelled `# v3`, but that
