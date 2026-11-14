@@ -70,6 +70,12 @@ use case (e.g. the UI-e2e section applies when the project ships a UI).
   the live source (the pattern to prefer over a purely hand-maintained doc), does it still pass?
 - **Progress report (concise):** what **shipped** · what's **next** · **overall % of the plan** ·
   **blocked/deferred** (+ what's pre-staged for each).
+- **Run this audit by default** at the end of every milestone, without waiting to be asked.
+- **Goal conditions must be reachable as worded.** A `/goal` stop-hook condition names a terminal
+  state that includes the owner's approved end (e.g. "open signed PR with green CI, or merged on
+  the owner's OK, or dropped with a reason") and excludes owner-gated items explicitly. A condition
+  that the approved path makes impossible ("is an open PR" after the owner says merge) loops the
+  stop hook until the goal is cleared.
 
 ## Quality gates (always)
 
@@ -97,11 +103,24 @@ use case (e.g. the UI-e2e section applies when the project ships a UI).
 - **Compact at phase/milestone boundaries**; durable facts belong in the plan or memory, not only
   in-conversation.
 - **Enforcing compaction in long runs:** the model cannot trigger `/compact`; set
-  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=<pct>` (e.g. 50) to fire auto-compact earlier (main +
-  subagents); in SDK/headless runs `/compact [instructions]` can be sent as a prompt input. Shape
-  WHAT survives via a "what to preserve" section in CLAUDE.md (plan state, shipped list, next
-  steps, branch/PR state); a `PreCompact` hook may archive/block but never trigger or rewrite.
+  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=<pct>` (60 for long PR/CI loops; it can only lower the
+  threshold and applies to main + subagents) and cap tool output with `BASH_MAX_OUTPUT_LENGTH`
+  (e.g. 15000), both in the `env` block of user-level settings so every session gets them
+  ([env vars](https://code.claude.com/docs/en/env-vars)). In SDK/headless runs
+  `/compact [instructions]` can be sent as a prompt input. Shape WHAT survives via a "what to
+  preserve" section in CLAUDE.md (re-read from disk after compaction; path-scoped rules are not).
+  Re-onboard with a `SessionStart` hook, matcher `compact`: its plain stdout becomes context
+  (10,000-character cap), so print a short pointer to the plan Status and the standing rules
+  ([hooks](https://code.claude.com/docs/en/hooks)). A `PreCompact` hook may archive/block but never
+  trigger or rewrite.
 - Redirect verbose command output to files; read back only the relevant slice.
+- **Wait, don't poll:** wait for background agents and commands through their completion
+  notifications or a Monitor until-loop. Re-reading output files by hand and `sleep N; <cmd>`
+  chains waste turns (the latter is blocked outright). Background agents write their results to a
+  file, so a restart doesn't lose them; report them promptly.
+- **Batch branch updates:** in a sweep of sibling PRs on a strict-status repo, each merge makes the
+  others BEHIND. Merge serially, updating each branch right before its merge, and before merging
+  check that its changed lines (ignoring hunk headers and index lines) still match the reviewed ones.
 - **What to preserve during compaction** (the compactor reads this): the current arc + its state
   (newest `docs/plans/` file, items done/in-flight) · this session's shipped list
   (PR numbers + one-liners) · the ordered next steps + done-whens · branch/PR/CI state + anything
