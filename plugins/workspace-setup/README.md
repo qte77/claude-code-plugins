@@ -39,7 +39,8 @@ session re-reads files it already has (no aggregate figure is measured).
 
 - **Mode**: warn (default) — allows read with advisory; set `READ_ONCE_MODE=deny` to block
 - **TTL**: 1200s (20 min) — cache expires after this; set `READ_ONCE_TTL` to override
-- **Diff mode**: set `READ_ONCE_DIFF=1` to show diffs instead of full re-reads for changed files
+- **Diff mode**: set `READ_ONCE_DIFF=1` to show diffs instead of full re-reads for changed files; snapshots skip secret-like files (`.env*`, `*.pem`, `*.key`, `id_*`, `*credential*`) and files over 1 MiB
+- **Cache**: per user under `claude-read-once-<uid>/<session>` in `$XDG_RUNTIME_DIR` (else `$TMPDIR`, else `/tmp`), mode 700; the hook does nothing if that dir is a symlink or not owned by you
 - **PostCompact**: cache clears automatically when CC compacts context
 - **Partial reads**: offset/limit reads always pass through (never cached)
 - **Disable**: set `READ_ONCE_DISABLED=1`
