@@ -44,9 +44,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `claude-read-once-<uid>/<session>` under `$XDG_RUNTIME_DIR` (else `$TMPDIR`, else `/tmp`), created
   with `umask 077` and forced to mode 700. The hook and `compact.sh` do nothing (never block Read,
   never delete) when a cache dir is a symlink or owned by another user. Diff-mode snapshots are
-  written with `install -m 600` and skip secret-like files (`.env*`, `*.pem`, `*.key`, `id_*`,
-  `*credential*`) and files over 1 MiB. `test.sh` covers all of these (15/15; 8 of the new cases
-  fail against the previous hook) (#262).
+  written with `install -m 600` and skip secret-like files (`.env*`, `*.pem`, `*.key`, `*.p12`, `*.pfx`, `id_*`,
+  `*credential*`, `.netrc`, `.npmrc`, `.pgpass`, matched case-insensitively on the requested name
+  and on the resolved symlink target) and files over 1 MiB. Both scripts fail open: invalid input
+  or a failed write exits 0 and writes nothing. `test.sh` covers all of these (25/25; 11 cases
+  fail against the previous hook) (#262). Upgrade note: the old `${TMPDIR:-/tmp}/claude-read-once-<session>`
+  directories are abandoned, not cleaned up, and may hold world-readable snapshots; remove the
+  `${TMPDIR:-/tmp}/claude-read-once-*` directories you own.
 
 ### Added
 
