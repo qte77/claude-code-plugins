@@ -9,6 +9,12 @@ Authorized **web/API reconnaissance & attack-surface assessment** for Claude Cod
 - **web-recon** — end-to-end authorized recon/assessment workflow. Authorization-gated; the
   underlying runners are read-only (GET/OPTIONS), throttled, and never trigger cron/mutation.
 
+## Install
+
+```bash
+claude plugin install web-recon@qte77-claude-code-plugins
+```
+
 ## Requires
 
 - A [web-recon-kit][kit] checkout (the Python engine): `make setup`.
