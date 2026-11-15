@@ -1,5 +1,7 @@
 #!/bin/bash
-set -euo pipefail
+set -Eeuo pipefail
+# Fail open: any failure below ends the hook with 0 and never blocks Read.
+trap 'exit 0' ERR
 # read-once: PreToolUse hook for Read tool deduplication
 # Prevents redundant file re-reads within a session, saving ~2K tokens per blocked read.
 # Source: Bande-a-Bonnot/Boucle-framework (MIT)
@@ -21,7 +23,9 @@ INPUT=$(cat)
 
 # Reason: each hook call is a new process, so a $$-keyed cache was empty on every
 # Read and never caught a repeat. Key the cache by the session instead.
-SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "default"' | tr -cd 'A-Za-z0-9_-')
+# Reason: invalid input must end the hook before anything is written; a trap inside $(...)
+# only leaves the subshell, so each jq call carries its own `|| exit 0`.
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "default"' | tr -cd 'A-Za-z0-9_-') || exit 0
 
 # Reason: the cache sits in a shared temp dir and, with READ_ONCE_DIFF=1, holds file copies.
 # Keep it in a per-user dir with mode 700 and use it only when every level is a real dir we
@@ -38,25 +42,43 @@ for dir in "$CACHE_BASE" "$CACHE_DIR"; do
   [ -L "$dir" ] && exit 0
   mkdir -p "$dir" 2>/dev/null || exit 0
   owned_dir "$dir" || exit 0
-  chmod 700 "$dir"   # mkdir -m does not tighten a dir left by an earlier run
+  chmod 700 "$dir" 2>/dev/null || exit 0   # mkdir -m does not tighten a dir left by an earlier run
 done
 
 # Snapshots (diff mode) skip secret-like files and files over 1 MiB.
 SNAP_MAX_BYTES=1048576
-snapshot() {
-  case "$(basename "$1")" in
-    .env* | *.pem | *.key | id_* | *credential*) rm -f "$2"; return 0 ;;
+# Resolve symlinks without GNU-only flags: follow links with readlink, then cd -P for the dir.
+resolve() {
+  local p="$1" n=0 l
+  while [ -L "$p" ]; do
+    n=$((n + 1)); [ "$n" -le 40 ] || return 1
+    l=$(readlink "$p") || return 1
+    case "$l" in /*) p="$l" ;; *) p="$(dirname "$p")/$l" ;; esac
+  done
+  local d
+  d=$(cd -P "$(dirname "$p")" 2>/dev/null && pwd -P) || return 1
+  printf '%s/%s\n' "$d" "$(basename "$p")"
+}
+secret_name() {
+  case "$(basename "$1" | tr '[:upper:]' '[:lower:]')" in
+    .env* | *.pem | *.key | *.p12 | *.pfx | id_* | *credential* | .netrc | .npmrc | .pgpass) return 0 ;;
   esac
+  return 1
+}
+snapshot() {
+  local real
+  # Judge both the requested name and the resolved target; unresolvable = no snapshot.
+  if ! real=$(resolve "$1") || secret_name "$1" || secret_name "$real"; then rm -f "$2"; return 0; fi
   if [ "$(wc -c < "$1")" -le "$SNAP_MAX_BYTES" ]; then
-    install -m 600 "$1" "$2"
+    install -m 600 "$1" "$2" 2>/dev/null || rm -f "$2"
   else
     rm -f "$2"
   fi
 }
 
-FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
-HAS_OFFSET=$(echo "$INPUT" | jq -r '.tool_input.offset // empty')
-HAS_LIMIT=$(echo "$INPUT" | jq -r '.tool_input.limit // empty')
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty') || exit 0
+HAS_OFFSET=$(echo "$INPUT" | jq -r '.tool_input.offset // empty') || exit 0
+HAS_LIMIT=$(echo "$INPUT" | jq -r '.tool_input.limit // empty') || exit 0
 
 # Partial reads always pass through
 [ -n "$HAS_OFFSET" ] || [ -n "$HAS_LIMIT" ] && exit 0
