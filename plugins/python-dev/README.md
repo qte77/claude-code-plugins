@@ -10,7 +10,7 @@ Python implementation, testing, and code review skills, deploys uv permissions v
 
 ## Deployed files
 
-- **settings.local.json** → `.claude/settings.local.json` — uv permissions (if uv detected, copy-if-not-exists)
+- **settings.local.json** → `.claude/settings.local.json` — uv permissions (if uv detected: copied when missing, otherwise its `permissions.allow` entries are merged in)
 
 When a repo's `.scaffold` file reads `python`, the SessionStart hook also deploys (all
 copy-if-not-exists):

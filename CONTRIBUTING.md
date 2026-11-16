@@ -43,6 +43,16 @@ README **Compatibility** line (the only tested-against CC version; there is no p
 
 All three call the shared `qte77/.github` reusable workflows. Tags are never deleted or moved.
 
+## Repository secrets
+
+[`issue-triage.yaml`](.github/workflows/issue-triage.yaml) triages new and edited issues with
+Cloudflare Workers AI through its OpenAI-compatible endpoint and needs two repository secrets:
+
+- `CF_WORKERS_AI_TOKEN`: a Cloudflare API token with Workers AI access.
+- `LLM_BASE_URL`: the endpoint, `https://api.cloudflare.com/client/v4/accounts/<account-id>/ai/v1`.
+
+Without them the triage job fails; nothing else in CI uses them.
+
 ## Conventional Commits
 
 Per [`.gitmessage`](.gitmessage): `feat`, `fix`, `docs`, `chore`, `ci`, `refactor`,

@@ -31,6 +31,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **README**: "Full setup" install list was missing `readme-generator`, `web-recon` and
   `website-audit` (present in the main plugin table and in `marketplace.json`, absent from the
   copy-paste install block).
+- **python-dev** (2.1.8): README and setup-script comment said `settings.local.json` is copied only
+  when missing; since #260 an existing file gets the uv `permissions.allow` entries merged in.
+- **web-recon** (0.1.2): README gained the `claude plugin install` line the other plugins have.
+- **CONTRIBUTING**: documents the `CF_WORKERS_AI_TOKEN` and `LLM_BASE_URL` secrets that
+  `issue-triage.yaml` needs.
+
+### Security
+
+- **read-once hook** (workspace-setup 1.7.6, workspace-sandbox 1.5.6): the cache moved from a
+  world-default `${TMPDIR:-/tmp}/claude-read-once-<session>` to a per-user
+  `claude-read-once-<uid>/<session>` under `$XDG_RUNTIME_DIR` (else `$TMPDIR`, else `/tmp`), created
+  with `umask 077` and forced to mode 700. The hook and `compact.sh` do nothing (never block Read,
+  never delete) when a cache dir is a symlink or owned by another user. Diff-mode snapshots are
+  written with `install -m 600` and skip secret-like files (`.env*`, `*.pem`, `*.key`, `*.p12`, `*.pfx`, `id_*`,
+  `*credential*`, `.netrc`, `.npmrc`, `.pgpass`, matched case-insensitively on the requested name
+  and on the resolved symlink target) and files over 1 MiB. Both scripts fail open: invalid input
+  or a failed write exits 0 and writes nothing. `test.sh` covers all of these (25/25; 11 cases
+  fail against the previous hook) (#262). Upgrade note: the old `${TMPDIR:-/tmp}/claude-read-once-<session>`
+  directories are abandoned, not cleaned up, and may hold world-readable snapshots; remove the
+  `${TMPDIR:-/tmp}/claude-read-once-*` directories you own.
 
 ### Added
 

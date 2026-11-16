@@ -5,7 +5,7 @@ PLUGIN_DIR="$CLAUDE_PLUGIN_ROOT"
 SCAFFOLD_DIR="$PLUGIN_DIR/scaffold"
 DEPLOYED=()
 
-# Deploy uv permissions to .claude/settings.local.json (copy-if-not-exists)
+# Deploy uv permissions to .claude/settings.local.json (copy if missing, else merge permissions.allow)
 if command -v uv >/dev/null 2>&1; then
   TARGET=".claude/settings.local.json"
   SOURCE="$PLUGIN_DIR/settings/settings.local.json"
