@@ -1,6 +1,6 @@
 # codebase-tools
 
-Codebase research, context compaction, and build/quality support with ACE-FCA principles.
+Codebase research, quality hardening, and build error resolution with ACE-FCA principles. (Context compaction lives in cc-meta: `compacting-context`.)
 
 ## Skills
 

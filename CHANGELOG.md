@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **README / manifest drift** (plan 0001 row 29): `plugin.json` and `marketplace.json` descriptions now match for
+  cpp-desktop (1.0.4), ralph (1.0.5), mas-design, docs-generator, tdd-core and security-audit. `auditing-code-security`
+  lists `Workflow` in its `allowed-tools`, matching its Workflow Mode (security-audit 1.2.4). The codebase-tools README no
+  longer claims context compaction (that is cc-meta's `compacting-context`; 1.4.7). The cc-meta README documents its
+  MEMORY.md SessionStart seed hook (1.19.2). The docs-governance README explains `rules/frontmatter-convention.md`, and
+  `enforcing-doc-hierarchy` now points at it by a path that resolves (1.6.4).
 - **read-once hook** (workspace-setup 1.7.7, workspace-sandbox 1.5.7): when the TTL ran out the hook
   let the read through but kept the old diff-mode snapshot, so the next changed-file diff compared
   against content from before that read; it now refreshes the snapshot there too. READMEs now say a

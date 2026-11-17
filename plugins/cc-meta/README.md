@@ -36,6 +36,13 @@ Add to your `.claude/settings.json` to auto-trigger session summaries:
 }
 ```
 
+## MEMORY.md seed (SessionStart hook)
+
+Shipped in `hooks/hooks.json`. On session start, `hooks/scripts/setup-cc-meta.sh` copies the seed
+template `examples/memory/MEMORY.md` to `MEMORY.md` in the session's working directory if none exists.
+It does nothing inside a git work tree, so it never adds an untracked file to a repository (#155).
+Retirement is tracked in #201.
+
 ## Handoff Reminder (Stop hook)
 
 Shipped in `hooks/hooks.json`. When Claude stops and the git working tree has uncommitted changes,

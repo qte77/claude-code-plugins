@@ -6,7 +6,7 @@ metadata:
   argument-hint: [file-directory-or-full]
   allowed-tools: Read, Grep, Glob, Edit, Bash
   stability: stable
-  content-hash: sha256:383614403588863ce9c72a4d41628573c7e17debf41c6a11b30c0538baa6e2b2
+  content-hash: sha256:f3511128045a12f2123f63cde504f92fb618a591b9b261f5aa490422b29a3afe
 ---
 
 # Enforce Documentation Hierarchy
@@ -133,5 +133,5 @@ Resolve findings with user confirmation. Propose each fix and wait for approval.
 
 ### References
 
-- `rules/frontmatter-convention.md` — required `.markdownlint.json` config
+- `../../rules/frontmatter-convention.md` (the plugin's `rules/` dir) — required `.markdownlint.json` config
   template and anti-patterns for inline directives
