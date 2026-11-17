@@ -101,10 +101,11 @@ if [ -f "$CACHE_FILE" ]; then
   CACHED_TIME=$(sed -n '2p' "$CACHE_FILE")
   NOW=$(date +%s)
 
-  # TTL expired = allow and refresh
+  # TTL expired = allow and refresh (snapshot too, so the next diff is against this read)
   if [ $((NOW - CACHED_TIME)) -ge "$TTL" ]; then
     echo "$CURRENT_MTIME" > "$CACHE_FILE"
     echo "$NOW" >> "$CACHE_FILE"
+    [ "$DIFF_ENABLED" = "1" ] && snapshot "$FILE_PATH" "$CACHE_FILE.snap"
     exit 0
   fi
 
