@@ -7,6 +7,13 @@ Audit and maintain documentation hierarchy and agent governance files.
 - **enforcing-doc-hierarchy** — Audit docs against authority chains, detect broken refs, duplicates, scope creep, and chain breaks
 - **maintaining-agents-md** — Keep AGENTS.md, CONTRIBUTING.md, AGENT_LEARNINGS.md, and AGENT_REQUESTS.md in sync with codebase
 
+## Rules
+
+`rules/frontmatter-convention.md` holds the required `.markdownlint.json` config and the anti-patterns
+for inline lint directives. It is reference material for `enforcing-doc-hierarchy`, which reads it;
+nothing in this plugin installs it into a project's `.claude/rules/`. Copy it there if you want it
+loaded in every session.
+
 ## Templates
 
 `templates/` ships skeleton governance docs for new projects:
