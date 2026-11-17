@@ -1,0 +1,28 @@
+name: Test read-once hook
+
+# .claude/scripts/read-once/test.sh covered the read-once hardening (#262, #291) but only ran
+# locally; run it on PRs that touch the hook so a regression fails before merge.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".claude/scripts/read-once/**"
+      - "plugins/workspace-setup/scripts/read-once/**"
+      - "plugins/workspace-sandbox/scripts/read-once/**"
+      - ".github/workflows/test-read-once.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  read-once:
+    name: read-once test.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run the read-once regression tests
+        run: bash .claude/scripts/read-once/test.sh .claude/scripts/read-once/hook.sh .claude/scripts/read-once/compact.sh
