@@ -2,6 +2,15 @@
 
 ## Status (read first)
 
+**State 2026-11-17 (start here):** v3.9.0 released 2026-10-26. Shipped since the 2026-10-11 session: #265
+(goals.json in bigpicture, row 15), #266 (handoff Stop hook), #267 (retire `orchestrating-parallel-workers`,
+closes #157), #270 (one repo-level verified-CC-version statement, closes #187), #272 (sh-dev plugin), and #290 (read-once
+hardening, closes #262, row 33). #183 closed 2026-10-11, so row 5b is done. Row 29's audit was verified on 2026-11-17: the drift is
+real, item list in the row. New rows: 34 (#291, read-once TTL snapshot) and 35 (#282, gha-dev SHA-pin brief skill).
+
+**Next, in order:** row 34 → 29 → 17 → 35 → 21 → 13 → 20 (needs the owner's new name); row 14's last item (#206)
+and rows 12, 24 wait on the owner; pre-stage 31/32 for the owner; 30 needs an owner OK on the settings diff.
+
 **Shipped (v3.8.0 released 2026-09-25, first GitHub Release):** #212 · #198 · #194 · #208 · #214 Pages
 deploy + release workflows · #215 cross-checking-research · #216 hash gate / MEMORY.md seed / read-once /
 allow rules · #217 ghost simplify · #218 sandbox governance · #219 Makefile fail-fast · #220 13 skills
@@ -17,21 +26,19 @@ docs-governance has no deploy hook) · qte77/qte77#192 (learning → ci-status-c
 retire, #158 keep, #125 no-merge, #177/#178 defer, #185 do, #167 CodeQL stays NOT required (bump PRs from
 GITHUB_TOKEN never run CodeQL). Owner branch `feat/pages-ops` (row 20) is on origin.
 
-**Next, in order:** row 26 → 27 → 28 → 29 → 17 → 21 → 23 → 24 → 20
-(needs the owner's new name) → 13/14; pre-stage 31/32 for the owner; 30 needs an owner OK on the settings diff.
+_The 2026-10-11 order (rows 26 → 27 → 28 → 29 → 17 → 21 → 23 → 24 → 20 → 13/14) is superseded by the 2026-11-17 order above._
 
 **Loop:** branch per topic → fix → `make validate && make check_sync && make test_install` (fail-fast
 since #219) + `bash .github/scripts/compute-skill-hashes.sh --check` + markdownlint-cli2 on every changed
-`.md` incl. CHANGELOG → push → CI green → owner merges (`gh pr merge N --squash --delete-branch`; ruleset: 0
-reviews, required check CodeFactor, signed commits; the Claude Code auto-mode classifier blocks agent
-merge-without-review, so it needs a normal permission prompt) → strike the row in the same PR.
+`.md` incl. CHANGELOG → push → CI green → owner merges (squash; ruleset: 0 reviews, required check CodeFactor, signed commits; an
+agent merge needs the owner's go-ahead) → strike the row in the same PR.
 Release: dispatch Bump Version → merge the bump PR (only CodeFactor reports on GITHUB_TOKEN PRs; it is
 the only required check) → Tag Release runs → dispatch Publish Release.
 
 **Owner gates:** every merge; the plan-file rule landing in `qte77/qte77` (unblocks #207/#197/#200);
 keep/cut decisions (#157, #158, #125, #177/#178, #185); #167 ruleset change.
 
-**Commands:** gh needs `env -u GH_TOKEN -u GITHUB_TOKEN` (stale env token). Local docs build:
+**Commands:** local docs build:
 `make docs_stage && uvx --from "mkdocs<2.0" --with mkdocs-material mkdocs build --strict`.
 Bump dry-run: `uvx bump-my-version==1.5.1 bump minor --dry-run -vv --no-commit --no-tag --allow-dirty`.
 
@@ -63,7 +70,7 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 3 | ~~First release~~ — v3.8.0: bump #229 → tag `v3.8.0` on ec1e774 → Release published (first ever) | — | — |
 | 4 | ~~#180: `research-cross-check.js` as its own skill + workflow, no hardcoded paths; cc-meta 1.16.0~~ — shipped (#215) | — | — |
 | 5 | ~~#155, #186, #150 + #183 allow-rule part~~ — shipped (#216) | — | — |
-| 5b | #183: settings templates commit `allow`, push `ask` (owner chose option b) — branch `fix/settings-commit-push-policy`, PR open | agent | PR merged; close #183 (governance points: keep both deny classes; generic rules user-level; rules SSOT = this repo) |
+| 5b | ~~#183: settings templates commit `allow`, push `ask` (owner chose option b)~~ — shipped (#237); #183 closed 2026-10-11 | — | — |
 | 6 | ~~#184: drop ghost `simplify`; gha-dev → built-in `/simplify`~~ — shipped (#217) | — | — |
 | 7 | ~~#151 remnant: workspace-sandbox governance README + CONTRIBUTING~~ — shipped (#218) | — | — |
 | 7b | ~~Makefile fail-fast (`.SHELLFLAGS := -ec`)~~ — shipped (#219) | — | — |
@@ -74,8 +81,8 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 11 | ~~Plan-file rule (local `/workspaces/.claude/rules/unattended-execution.md`) lands in `qte77/qte77`~~ (qte77/qte77#193); ~~then #207 close~~ (closed); #197 rework (drop handoff template, dated plan, rebase, 1.6.0), #200 rebase-or-close | owner | rule on qte77/qte77 main |
 | 12 | Decisions: #157, #158, #125, #177/#178, #185, #167 | owner | decision recorded on each issue |
 | 13 | #175 remainder: re-evaluate the 12 held skills once #157/#158/#161/#125/#187 are decided | agent (after 12) | each held skill either `stable` + hash or its hold reason recorded |
-| 14 | P2 backlog: ~~#187 (stale `last-verified-cc-version` sweep)~~ — PR #270; #206 (Content-Signal + llms.txt check) — owner: a project-site `robots.txt` is never read (see the issue comment), needs the user-site repo or a custom domain; ~~#127 (sh-dev plugin)~~ — PR #272; ~~#126 (handoff Stop hook, after #157/#158)~~ — PR #266. #206 is with the cloud lane (per #262, 2026-10-26; still open) | agent | one PR each, green |
-| 15 | Deferred (low ROI / author-deferred / spike): ~~#48 goals.json~~ (unblocked: `goals.json` now exists in qte77/qte77) — PR #265, #75 cc-voice STT, #101 Graphify eval, #190 OWASP LLM tracking (explicitly YAGNI) | owner | revisit when a consumer task needs one |
+| 14 | P2 backlog: ~~#187 (stale `last-verified-cc-version` sweep)~~ — PR #270 (merged); #206 (Content-Signal + llms.txt check) — owner: a project-site `robots.txt` is never read (see the issue comment), needs the user-site repo or a custom domain; ~~#127 (sh-dev plugin)~~ — PR #272 (merged); ~~#126 (handoff Stop hook, after #157/#158)~~ — PR #266 (merged). Only #206 is left (open 2026-11-17) | owner (#206 needs a user-site repo or custom domain) | one PR each, green |
+| 15 | Deferred (low ROI / author-deferred / spike): ~~#48 goals.json~~ — PR #265 (merged 2026-10-31), #75 cc-voice STT, #101 Graphify eval, #190 OWASP LLM tracking (explicitly YAGNI) | owner | revisit when a consumer task needs one |
 | 16 | ~~Lint all markdown in CI (was root-only, 8 files) + fix 181 errors + align `make lint_md`~~ — shipped (#232) | — | — |
 | 17 | Drop this repo's `.markdownlint.jsonc` + `check-markdownlint-config.py` now that qte77/.github#46 put MD025 in the shared config (CI then fetches the shared one) | agent | file + guard removed; `make lint_md` and CI markdown stay at 0 errors |
 | 18 | ~~README inventory guard (counts + plugin rows vs marketplace)~~ — shipped (#233) | — | — |
@@ -89,10 +96,12 @@ SHA-pinned; `qte77/.github@*` is allowlisted, `astral-sh/setup-uv` relies on `ve
 | 26 | ~~python-dev (audit B): `setup-python-dev.sh:49` copies every `scaffold/workflows/*.yaml`, so `dependabot.yaml` lands in `.github/workflows/` (invalid workflow) — exclude it there (already copied correctly at :60); README "Deployed files" lists only settings.local.json — document the `.scaffold`=`python` deploy set; align plugin.json description; 2.1.4→2.1.5~~ — shipped (signed re-post of #255) | — | — |
 | 27 | ~~Docs (audit C): add `plugins/readme-generator/README.md` (missing → absent from the docs site; skills + `workflows/audit-repos.js`), bump; website-audit README says WCAG 2.1 at lines 9 + 20 (skill and root README say 2.2) and omits `auditing-website-seo-geo`, bump~~ — shipped (#256) | — | — |
 | 28 | ~~Settings merge, not clobber (audit D + permissions finding): python-dev, rust-dev, go-dev, typescript-dev, embedded-dev, gha-dev SessionStart hooks copy `.claude/settings.local.json` only if missing, so the first plugin wins in polyglot repos; workspace-setup/-sandbox likewise never update an existing `.claude/settings.json`, so template fixes (#216, #237) never reach existing workspaces. Merge `permissions.allow` (jq, unique) into existing files; keep copy-if-missing as the no-jq fallback; bump all touched plugins~~ — shipped (signed re-post of #257, rebased after #258: python-dev 2.1.6, workspace-setup 1.7.2, workspace-sandbox 1.5.2) | — | — |
-| 29 | Verify, then fix or record not-a-bug (audit E, unverified): web-recon README Install (vs #222); root README "Full setup" list missing website-audit, readme-generator, web-recon, cc-voice; cc-voice STT status README vs marketplace.json; description drift plugin.json vs marketplace.json (ralph, mas-design, cpp-desktop); codebase-tools README mentions "context compaction" (lives in cc-meta); cc-meta README omits its MEMORY.md SessionStart hook (#201); docs-governance `rules/` has no deploy path; security-audit README promises Workflow fan-out but `Workflow` is not in that skill's allowed-tools; `designing-mas-plugins` / `securing-mas` descriptions vs skill-authoring.md | agent | each item fixed or recorded as not-a-bug |
+| 29 | Fix README/manifest drift (audit E, verified 2026-11-17). **Drift:** security-audit (root README, plugin README and `workflows/audit-owasp.js`) promises a Workflow fan-out, but `auditing-code-security/SKILL.md` `allowed-tools` has no `Workflow`; `plugin.json` vs `marketplace.json` descriptions differ for cpp-desktop, mas-design, docs-generator, ralph, tdd-core and security-audit; codebase-tools README line 3 mentions "context compaction" (lives in cc-meta); cc-meta README omits its MEMORY.md SessionStart hook (#201), it documents only the SessionEnd and Stop hooks. **Not drift:** versions match across the plugins (cc-voice's plugin.json lives in its own repo); every plugin has a README; root README "Full setup" lists website-audit, readme-generator and web-recon (cc-voice is external; workspace-sandbox is the "pick one" alternative). **Still to check:** web-recon README Install vs #222; docs-governance `rules/` deploy path; `designing-mas-plugins` / `securing-mas` descriptions vs skill-authoring.md | agent | each drift item fixed (plugin bumps per the version gate); each still-to-check item fixed or recorded as not-a-bug |
 | 30 | Permission prompts: run `/fewer-permission-prompts`; replace one-off allow entries in `.claude/settings.local.json` with patterns (`make:*`, `uvx:*`, `npm exec:*`, `node --check:*`, `actionlint:*`, `wc:*`, `sort:*`; keep rm/mv as ask); one AGENTS.md line telling agents raw grep/cat/ls/head are denied (rtk) — use Read or python3 | owner (settings diff) → agent | subagent runs stop prompting for routine commands |
 | 31 | Pre-stage owner decision — `metadata:` nesting (all 68 skills): Claude Code reads `allowed-tools`, `model`, `disable-model-invocation`, `context`, `agent`, `argument-hint` at the frontmatter TOP level; here they sit under `metadata:` and are ignored (e.g. `committing-staged-with-message` has `disable-model-invocation: true` yet is model-invocable). Hoisting changes behaviour estate-wide. Pre-stage: per-skill list of behaviour gained/lost | agent (pre-stage) → owner | list ready; owner decides hoist/no-hoist |
 | 32 | Pre-stage owner decision — overlaps: workspace-setup vs workspace-sandbox (share rules, governance, read-once, statusline, hooks.json; differ in setup script, settings template, .gitignore, link-claude-home.sh → one plugin with a sandbox option?); cc-meta's 4 session-memory skills (`handing-off-session` writes handoff files the plans-only rule forbids; ties #157 #158 #126 #201); review/security in three layers (these plugins, official code-review/security-guidance plugins, built-in /code-review /security-review) | agent (pre-stage) → owner | options + recommended default per overlap |
 | 33 | ~~#262 review follow-ups: read-once cache hardening (per-user 700 cache dir, owned-and-not-symlink check, `install -m 600` snapshots skipping secret-like and >1 MiB files, same path logic in `compact.sh`, tests) + doc fixes (CONTRIBUTING secrets, python-dev settings merge wording, web-recon install line)~~ — shipped in the #262 PR | — | — |
+| 34 | #291 read-once follow-ups: the TTL-expired branch of `.claude/scripts/read-once/hook.sh` (about lines 101-109) rewrites the cache entry but never refreshes `$CACHE_FILE.snap`, so a later diff compares against a stale snapshot; plus the issue's doc points (hard links, legacy cache-dir glob, silent no-op without `md5sum`) and missing tests (symlink loop, relative symlink, symlink to a directory, TTL case) | agent | snapshot refreshed on TTL expiry with a test in `.claude/scripts/read-once/test.sh`; docs and tests from #291 added; workspace-setup/-sandbox bumped; #291 closed |
+| 35 | #282 gha-dev: skill for the SHA-pin + grouped Dependabot brief (`plugins/gha-dev/skills/` holds only `creating-gha`) | agent | skill added per skill-authoring.md; gha-dev bumped; #282 closed |
 | — | Outside this repo (FYI, owner): the codespace's user-level plugin set — dotfiles `.claude/settings.json` enables 5 qte77 plugins but `install.sh` copies with no-clobber, so the live `~/.claude/settings.json` has none | owner | — |
 | — | Excluded (other author): #199; PRs #200/#201 (see row 11) | — | — |
