@@ -22,6 +22,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **read-once hook** (workspace-setup 1.7.7, workspace-sandbox 1.5.7): when the TTL ran out the hook
+  let the read through but kept the old diff-mode snapshot, so the next changed-file diff compared
+  against content from before that read; it now refreshes the snapshot there too. READMEs now say a
+  hard link to a secret file is still snapshotted (it has its own name) and that the hook silently
+  does nothing without `jq`, `md5sum`, `realpath` or `stat` (stock macOS has no `md5sum`). `test.sh`
+  adds the TTL case, relative symlinks, a symlink loop and a symlink to a directory (33/33) (#291).
 - **CodeQL workflow**: the `github/codeql-action` pins (`33d7b85`) were labelled `# v3`, but that
   commit is `v4.39.3`; the comments now name the real version.
 - **README / marketplace.json**: `cc-voice`'s STT was still marked "planned" in the README while
@@ -49,8 +55,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and on the resolved symlink target) and files over 1 MiB. Both scripts fail open: invalid input
   or a failed write exits 0 and writes nothing. `test.sh` covers all of these (25/25; 11 cases
   fail against the previous hook) (#262). Upgrade note: the old `${TMPDIR:-/tmp}/claude-read-once-<session>`
-  directories are abandoned, not cleaned up, and may hold world-readable snapshots; remove the
-  `${TMPDIR:-/tmp}/claude-read-once-*` directories you own.
+  directories are abandoned, not cleaned up, and may hold world-readable snapshots; remove those
+  `claude-read-once-<session>` directories you own (not with a `claude-read-once-*` glob, which without
+  `$XDG_RUNTIME_DIR` also matches the new `claude-read-once-<uid>` base).
 
 ### Added
 

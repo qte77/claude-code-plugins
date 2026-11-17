@@ -63,6 +63,37 @@ rm -rf "$base"; read_ev | bash "$hook" >/dev/null
 check "symlink to a secret file: not snapshotted" "$(find "$base" -name '*.snap' | wc -l | tr -d ' ')" "0"
 rm -f "$f"; f="$TMPDIR/sample.txt"
 
+# --- #291 ---
+snap_of() { echo "$base/$sid/$(echo -n "$(realpath "$1")" | md5sum | cut -d' ' -f1).snap"; }
+snaps_now() { find "$base" -name '*.snap' 2>/dev/null | wc -l | tr -d ' '; }
+
+# TTL expiry refreshes the snapshot, so a later diff is against the content just read.
+rm -rf "$base"; f="$TMPDIR/ttl.txt"; echo v1 > "$f"
+read_ev | bash "$hook" >/dev/null
+echo v2 > "$f"; touch -d '+2 seconds' "$f"
+read_ev | READ_ONCE_TTL=0 bash "$hook" >/dev/null
+check "TTL expiry refreshes the snapshot" "$(cat "$(snap_of "$f")" 2>/dev/null)" "v2"
+echo v3 > "$f"; touch -d '+4 seconds' "$f"
+out7=$(read_ev | bash "$hook")
+has "diff after TTL expiry is against the refreshed snapshot" "$out7" "-v2"
+
+# A relative symlink is resolved from its own dir: to a secret it is skipped, to a file it is kept.
+rm -rf "$base"; mkdir "$TMPDIR/rel"; echo secret > "$TMPDIR/rel/.env"; echo ok > "$TMPDIR/rel/plain.txt"
+f="$TMPDIR/rel/a.txt"; (cd "$TMPDIR/rel" && ln -s .env a.txt); read_ev | bash "$hook" >/dev/null
+check "relative symlink to a secret file: not snapshotted" "$(snaps_now)" "0"
+f="$TMPDIR/rel/b.txt"; (cd "$TMPDIR/rel" && ln -s plain.txt b.txt); read_ev | bash "$hook" >/dev/null
+check "relative symlink to a plain file: snapshotted" "$(cat "$(snap_of "$f")" 2>/dev/null)" "ok"
+
+# A symlink loop or a symlink to a directory passes through: exit 0, no output, nothing cached.
+for kind in loop dir; do
+  rm -rf "$base"; f="$TMPDIR/$kind-link"
+  if [ "$kind" = loop ]; then ln -s "$f" "$f"; else mkdir "$TMPDIR/somedir"; ln -s "$TMPDIR/somedir" "$f"; fi
+  out=$(read_ev | bash "$hook"); rc=$?
+  check "symlink $kind: exits 0 silently" "${rc}[$out]" "0[]"
+  check "symlink $kind: nothing cached" "$(find "$base" -type f 2>/dev/null | wc -l | tr -d ' ')" "0"
+done
+f="$TMPDIR/sample.txt"
+
 # Fail open: bad input and write failures exit 0 and write nothing.
 rm -rf "$base"
 printf 'not json' | bash "$hook" >/dev/null 2>&1; rc=$?
