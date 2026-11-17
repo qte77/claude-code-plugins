@@ -67,6 +67,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **CI: read-once tests** (`.github/workflows/test-read-once.yaml`): runs `.claude/scripts/read-once/test.sh` on PRs
+  that touch the read-once hook, so a regression fails before merge (plan 0001 row 36, from the #293 review).
 - **rules/ci-status-checks.md**: a required check that never reports (app not enabled, or a run
   stuck "in progress") blocks merge and auto-merge for good; confirm a check reports before
   requiring it. `workspace-setup` 1.7.4, `workspace-sandbox` 1.5.4.
