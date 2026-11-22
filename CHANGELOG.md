@@ -13,6 +13,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): the context field now reads
+  `ctx:46% used·compact@50%`, the share of the window in use and the share at which compaction
+  fires (from `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, else the observed 16.5% buffer), with `!` when at
+  most 3% usable is left; it replaces `ctx(free):.NN`. Colour thresholds are unchanged. Values from
+  stdin and the environment reach `awk` only as data after a numeric check (a value such as
+  `0;system("...")` could run before), and fields split only on tabs with control characters
+  scrubbed (a space in the directory name shifted every later field). The world clock is unchanged.
+  New regression test `.claude/scripts/statusline-test.sh`, run by `test-statusline.yaml`.
+- **Settings templates** (`settings-base.json`, `settings-sandbox.json`) and this repo's
+  `.claude/settings.json`: `env` adds `BASH_MAX_OUTPUT_LENGTH` `15000` and
+  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` `50` next to the existing keys. The setup hooks still copy
+  settings and the statusline only when missing, so existing repos are updated separately.
 - **`unattended-execution` rule** (workspace-setup 1.7.5, workspace-sandbox 1.5.5): compaction
   guidance corrected against the current docs (threshold 60 plus an output cap in user-level `env`;
   re-onboard with a `SessionStart` hook on matcher `compact`, which `PreCompact` cannot do); new

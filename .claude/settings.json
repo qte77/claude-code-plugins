@@ -1,4 +1,8 @@
 {
+  "env": {
+    "BASH_MAX_OUTPUT_LENGTH": "15000",
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "50"
+  },
   "statusLine": {
     "type": "command",
     "command": "bash .claude/scripts/statusline.sh"
