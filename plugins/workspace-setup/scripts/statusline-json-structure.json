@@ -86,8 +86,9 @@
 
   "_statusline_output_format": {
     "line1": "agent:{type} model:{id} ver:{version} cost:{usd} dur:{minutes}m",
-    "line2": "lines:+{added}/-{removed} tokens(i/o):{in}k/{out}k ctx(free):{pct} >200k:{bool}",
-    "line3": "dir:{basename} branch:{git_branch} user:{whoami} time:{HH:MM:SS}"
+    "line2": "lines:+{added}/-{removed} tokens(i/o):{in}k/{out}k ctx:{used}% used·compact@{compact_at}%[!] >200k:{bool} (\"!\" when at most 3% usable is left)",
+    "line3": "dir:{basename} branch:{git_branch} user:{whoami} time:{HH:MM:SS}",
+    "line4": "clocks: {label}:{HH:MM} ... (only when CC_WORLD_CLOCK or ~/.claude/world-clock is set)"
   },
 
   "_usage_notes": {

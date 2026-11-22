@@ -1,0 +1,30 @@
+name: Test statusline
+
+# .claude/scripts/statusline-test.sh covers the statusline context label, hostile input, field
+# splitting and the world clock; run it on PRs that touch the script.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".claude/scripts/statusline.sh"
+      - ".claude/scripts/statusline-test.sh"
+      - "plugins/workspace-setup/scripts/statusline.sh"
+      - "plugins/workspace-sandbox/scripts/statusline.sh"
+      - "plugins/workspace-setup/scripts/statusline-json-structure.json"
+      - ".github/workflows/test-statusline.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  statusline:
+    name: statusline-test.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run the statusline regression tests
+        run: bash .claude/scripts/statusline-test.sh .claude/scripts/statusline.sh plugins/workspace-setup/scripts/statusline-json-structure.json
