@@ -28,6 +28,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   clock is unchanged. The `unattended-execution` rule now recommends 50 for
   `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, matching the templates.
   New regression test `.claude/scripts/statusline-test.sh`, run by `test-statusline.yaml`.
+- **workspace-setup** 1.8.1, **workspace-sandbox** 1.6.1: the READMEs document the two `env`
+  defaults the settings templates ship, `BASH_MAX_OUTPUT_LENGTH` `15000` and
+  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` `50`, with a link to the Claude Code env-vars docs.
 - **`deploy-mkdocs-ghpages.yaml`**: `pages: write` and `id-token: write` move from the workflow level
   to the `deploy` job, the only job that uses them (CodeFactor flagged them as overly broad).
 - **Settings templates** (`settings-base.json`, `settings-sandbox.json`) and this repo's
