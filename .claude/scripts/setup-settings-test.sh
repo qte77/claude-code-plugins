@@ -115,5 +115,27 @@ d="$work/outside-repo"; mkdir -p "$d/real" "$work/elsewhere"; echo '{}' > "$work
 git -C "$d" init -q; run_hook "$d"
 ok ".claude symlinked outside the repo, target not in any repo: merged as before" "[ \"\$(jq -c '.permissions.allow | unique' '$work/elsewhere/settings.json')\" = '$want_allow' ]"
 
+# 11. Exported git environment variables fail closed: they can point git at another repository
+other=$(repo other-repo)
+d=$(repo env-gitdir); commit_settings "$d"; cp "$d/.claude/settings.json" "$work/envgd.before"
+(cd "$d" && GIT_DIR="$other/.git" bash "$script" >"$d/hook.out" 2>&1); rc=$?
+ok "GIT_DIR at another repo: exit 0, tracked file untouched" "[ $rc = 0 ] && cmp -s '$d/.claude/settings.json' '$work/envgd.before' && grep -q 'tracked' '$d/hook.out'"
+d=$(repo env-index); commit_settings "$d"; cp "$d/.claude/settings.json" "$work/envix.before"
+(cd "$d" && GIT_INDEX_FILE="$work/empty-index" bash "$script" >"$d/hook.out" 2>&1); rc=$?
+ok "GIT_INDEX_FILE at an empty index: exit 0, tracked file untouched" "[ $rc = 0 ] && cmp -s '$d/.claude/settings.json' '$work/envix.before'"
+d=$(repo env-worktree); commit_settings "$d"; cp "$d/.claude/settings.json" "$work/envwt.before"
+(cd "$d" && GIT_DIR="$d/.git" GIT_WORK_TREE="$d" bash "$script" >"$d/hook.out" 2>&1); rc=$?
+ok "GIT_DIR + GIT_WORK_TREE set: exit 0, tracked file untouched" "[ $rc = 0 ] && cmp -s '$d/.claude/settings.json' '$work/envwt.before'"
+
+# 12. A realpath without -m (stock macOS): git check fails closed, tracked file untouched
+rbin="$work/no-realpath-m"; mkdir -p "$rbin"
+for t in bash jq cp mkdir dirname basename ls cat tr sed grep env cmp tail head find rm mv git; do
+  p=$(command -v "$t" 2>/dev/null) && [ -x "$p" ] && ln -sf "$p" "$rbin/$t"
+done
+printf '#!/bin/sh\n[ "$1" = "-m" ] && exit 1\nexec %s "$@"\n' "$(command -v realpath)" > "$rbin/realpath"; chmod +x "$rbin/realpath"
+d=$(repo no-realpath-m); commit_settings "$d"; cp "$d/.claude/settings.json" "$work/nrm.before"
+(cd "$d" && PATH="$rbin" bash "$script" >"$d/hook.out" 2>&1); rc=$?
+ok "realpath without -m: exit 0 and tracked file untouched" "[ $rc = 0 ] && cmp -s '$d/.claude/settings.json' '$work/nrm.before'"
+
 echo "$pass passed, $fail failed"
 [ "$fail" -eq 0 ]

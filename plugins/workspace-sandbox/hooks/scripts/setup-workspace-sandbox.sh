@@ -42,6 +42,9 @@ SETTINGS_SOURCE="$PLUGIN_DIR/settings/settings-sandbox.json"
 # The path is resolved first, so a symlinked .claude or settings.json is checked at its target.
 settings_tracked_or_unknown() {
   local real dir
+  # Reason: these variables can point git at another repository, index or work tree, so its answer
+  # about this file cannot be trusted; treat as tracked and skip
+  [ -z "${GIT_DIR:-}${GIT_WORK_TREE:-}${GIT_INDEX_FILE:-}" ] || return 0
   real=$(realpath -m -- "$1" 2>/dev/null) || return 0
   dir=$(dirname "$real")
   # No .git (dir or file) at or above the target: not a repository, so not tracked
