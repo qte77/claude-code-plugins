@@ -84,13 +84,13 @@
       "name": "workspace-setup",
       "source": "./plugins/workspace-setup",
       "description": "Deploys workspace rules, statusline, governance files, base settings, and read-once deduplication hook",
-      "version": "1.9.1"
+      "version": "1.9.2"
     },
     {
       "name": "workspace-sandbox",
       "source": "./plugins/workspace-sandbox",
       "description": "Deploys workspace rules, statusline script, eased sandbox settings, and read-once deduplication hook",
-      "version": "1.7.1"
+      "version": "1.7.2"
     },
     {
       "name": "docs-governance",
@@ -120,7 +120,7 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.7"
+      "version": "1.2.8"
     },
     {
       "name": "sh-dev",
@@ -177,7 +177,7 @@
       "name": "planning",
       "source": "./plugins/planning",
       "description": "Planning — feature/refactor planning agent and GitHub issue triage (ROI × feasibility → P0–P3 plan)",
-      "version": "1.1.3"
+      "version": "1.1.4"
     },
     {
       "name": "web-recon",
