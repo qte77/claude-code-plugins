@@ -18,9 +18,13 @@ Skills for creating and publishing GitHub Actions to the Marketplace.
 ## Scripts
 
 `scripts/check-mechanical-pr.py OWNER/REPO NUMBER` is the tier-1 check from the shared
-`review-tiers` rule. It prints PASS only for a PR that changes pinned `uses:` lines (each SHA equals
-its tag's commit, permissions unchanged) or a Dependabot same-major dependency bump, with all checks
-green. Anything else prints FAIL with reasons and needs a reviewer. It needs `gh`; stdlib only.
+`review-tiers` rule. It prints PASS only for a PR with at least one checks result, all green, in one of
+two shapes. Pins: workflow files (plus changelog files, which are not line-checked) where every changed
+line is a pinned `uses:` line, each added line replaces a removed line of the same action and path,
+each new SHA is its tag's commit and no `permissions:` line changed. Bumps: lock files only, by
+Dependabot, with every version change in the title and the head of the body staying within the same
+major (same minor for 0.x). It fails if the head moves while it runs. Anything else prints FAIL with
+reasons and needs a reviewer. It needs `gh`; stdlib only.
 
 ## Settings
 
