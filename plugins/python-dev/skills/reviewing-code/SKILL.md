@@ -2,9 +2,9 @@
 name: reviewing-code
 description: Provides concise, focused code reviews matching exact task complexity requirements. Use when reviewing code quality, security, or when the user asks for code review.
 compatibility: Designed for Claude Code
+argument-hint: "[file-or-directory]"
 metadata:
-  allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
-  argument-hint: [file-or-directory]
+  intended-tools: Read, Grep, Glob, WebFetch, WebSearch
   stability: stable
   content-hash: sha256:aac832c4eeac1975cea660d8ad904ba0d68e98629fa43d65b2b8a8f4ea7d55cb
 ---

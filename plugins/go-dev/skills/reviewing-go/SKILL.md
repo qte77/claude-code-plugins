@@ -2,9 +2,9 @@
 name: reviewing-go
 description: Provides concise, focused Go code reviews matching exact task complexity requirements. Use when reviewing Go code quality, concurrency safety, or when the user asks for code review.
 compatibility: Designed for Claude Code
+argument-hint: "[file-or-directory]"
 metadata:
-  allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
-  argument-hint: [file-or-directory]
+  intended-tools: Read, Grep, Glob, WebFetch, WebSearch
   stability: stable
   content-hash: sha256:6f31b28e0cea1077916a248eab78da6e097af5d82ed346780e7b31823257fe5a
 ---

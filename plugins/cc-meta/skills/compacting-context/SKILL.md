@@ -2,9 +2,9 @@
 name: compacting-context
 description: Compacts verbose context into structured summary. Use after pollution sources (searches, logs, JSON) or at phase milestones.
 compatibility: Designed for Claude Code
+argument-hint: "[compaction-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob
-  argument-hint: [compaction-name]
+  intended-tools: Read, Grep, Glob
   context: fork
   agent: Explore
   model: sonnet

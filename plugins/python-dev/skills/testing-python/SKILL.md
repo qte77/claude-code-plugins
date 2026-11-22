@@ -2,9 +2,9 @@
 name: testing-python
 description: Writes tests following TDD Red-Green-Refactor (pytest + Hypothesis). Tests behavior, not implementation. Use when writing unit tests, integration tests, or property tests.
 compatibility: Designed for Claude Code
+argument-hint: "[test-scope or component-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: [test-scope or component-name]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: stable
   content-hash: sha256:9c6623b8a660d59c5dbdaf72e4e00e0d9cfec0abff96a6b0b62647a3fcf8394c
 ---

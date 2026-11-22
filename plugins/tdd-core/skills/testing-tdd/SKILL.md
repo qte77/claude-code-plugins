@@ -2,9 +2,9 @@
 name: testing-tdd
 description: Writes tests following TDD Red-Green-Refactor cycle. Language-agnostic methodology with Arrange-Act-Assert structure. Use when implementing features test-first.
 compatibility: Designed for Claude Code
+argument-hint: "[feature-or-module-to-test]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: [feature-or-module-to-test]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: development
 ---
 

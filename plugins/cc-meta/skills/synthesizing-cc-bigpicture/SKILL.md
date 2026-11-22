@@ -2,9 +2,9 @@
 name: synthesizing-cc-bigpicture
 description: Synthesizes a living big-picture meta-plan from Claude Code sessions, plans, tasks, and team communications. Use when orienting across projects, assessing reasoning modes, or creating a plan-to-plan overview.
 compatibility: Designed for Claude Code
+argument-hint: "[project-name] [time-range] [output-path]"
 metadata:
-  allowed-tools: Read, Grep, Glob
-  argument-hint: "[project-name] [time-range] [output-path]"
+  intended-tools: Read, Grep, Glob
   context: fork
 ---
 

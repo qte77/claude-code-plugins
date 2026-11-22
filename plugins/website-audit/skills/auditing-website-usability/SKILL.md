@@ -2,9 +2,9 @@
 name: auditing-website-usability
 description: Audits website usability for UX optimization, covering forms, navigation, validation, and microcopy. Use when reviewing user experience, task completion flows, or interface friction points.
 compatibility: Designed for Claude Code
+argument-hint: "[url-or-file-path]"
 metadata:
-  allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
-  argument-hint: [url-or-file-path]
+  intended-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:0e7c6cbfc6559f5799d96568468a418ca323f0fbd15dc5ed294decd5e56874a8
 ---

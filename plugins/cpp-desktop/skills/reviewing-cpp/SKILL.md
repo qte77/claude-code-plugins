@@ -2,9 +2,9 @@
 name: reviewing-cpp
 description: Reviews C++ desktop code for memory safety, framework anti-patterns, build system issues, and thread safety. Use when reviewing C++ GUI code quality or when the user asks for code review.
 compatibility: Designed for Claude Code
+argument-hint: "[file-or-directory]"
 metadata:
-  allowed-tools: Read, Grep, Glob
-  argument-hint: [file-or-directory]
+  intended-tools: Read, Grep, Glob
   stability: stable
   content-hash: sha256:5d7b41a7e11ef261a0eac761368c2b26933bf811211574dce8d6f5969c11b430
 ---

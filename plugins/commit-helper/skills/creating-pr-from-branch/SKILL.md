@@ -2,11 +2,11 @@
 name: creating-pr-from-branch
 description: Create a pull request from the current branch. Analyzes commits, generates title+body from PR template, pauses for approval, then pushes and creates PR. Use after committing changes.
 compatibility: Designed for Claude Code
+argument-hint: "[base-branch]"
 metadata:
   model: haiku
-  argument-hint: [base-branch]
   disable-model-invocation: true
-  allowed-tools: Bash, Read, Glob, Grep
+  intended-tools: Bash, Read, Glob, Grep
 ---
 
 # Create PR from Current Branch

@@ -2,9 +2,9 @@
 name: designing-backend
 description: Designs concise, streamlined backend systems matching exact task requirements. Use when planning APIs, data models, system architecture, or when the user requests backend design work.
 compatibility: Designed for Claude Code
+argument-hint: "[component-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
-  argument-hint: [component-name]
+  intended-tools: Read, Grep, Glob, WebSearch, WebFetch
   context: fork
   agent: Explore
   stability: stable

@@ -2,9 +2,9 @@
 name: detecting-secrets
 description: Detect hardcoded secrets, API keys, tokens, and credentials in code and git history. Use when auditing for leaked secrets or before publishing code.
 compatibility: Designed for Claude Code
+argument-hint: "[file-or-directory]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Bash
-  argument-hint: [file-or-directory]
+  intended-tools: Read, Grep, Glob, Bash
   stability: stable
   content-hash: sha256:bd93017a3c7d2155542ad5032c2cdc04d664355f1dab85892967dc7ffc794f4b
 ---

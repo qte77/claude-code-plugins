@@ -2,9 +2,9 @@
 name: creating-gha
 description: Creates GitHub Actions for the Marketplace. Use when scaffolding a new action, implementing composite steps, writing BATS tests, or preparing a Marketplace release.
 compatibility: Designed for Claude Code
+argument-hint: "[action-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
-  argument-hint: [action-name]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:4e77989b5611850e34fead6ec84ebf03caa757a08a63795e59c88fc2b7ad348e
 ---

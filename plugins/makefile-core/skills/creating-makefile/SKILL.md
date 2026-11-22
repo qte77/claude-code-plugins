@@ -2,9 +2,9 @@
 name: creating-makefile
 description: Scaffold or review Makefiles following org conventions. Use when creating a new Makefile, auditing an existing one, or adding recipes to a project. Auto-detects project type from the working directory.
 compatibility: Designed for Claude Code
+argument-hint: "[project-type-or-makefile-path]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: "[project-type-or-makefile-path]"
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: stable
   content-hash: sha256:99b10f5578553e5aa4ded222da3c8955c843a3ab52aa3bcd8b007c40ac35a5a4
 ---

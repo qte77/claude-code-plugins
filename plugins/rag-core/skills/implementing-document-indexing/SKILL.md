@@ -2,9 +2,9 @@
 name: implementing-document-indexing
 description: Implements document indexing with heading-boundary chunking, embedding, FAISS vector store, and PageIndex-style hybrid retrieval. Use when building RAG pipelines, document search, or memory layers.
 compatibility: Designed for Claude Code
+argument-hint: "[module-or-feature]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: [module-or-feature]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: development
 ---
 

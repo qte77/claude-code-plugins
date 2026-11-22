@@ -2,9 +2,9 @@
 name: cross-checking-research
 description: Cross-check a consumer repo against a research hub both ways — pull hub concepts/sources to cite or adopt, push the repo's reusable findings back as ready-to-PR drafts. Use after an ADR/plan milestone.
 compatibility: Designed for Claude Code
+argument-hint: "<consumer-repo-path> [research-hub-path] [focus]"
 metadata:
-  allowed-tools: Read, Glob, Grep, Bash, Workflow
-  argument-hint: "<consumer-repo-path> [research-hub-path] [focus]"
+  intended-tools: Read, Glob, Grep, Bash, Workflow
   stability: experimental
 ---
 

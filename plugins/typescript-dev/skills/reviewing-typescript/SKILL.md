@@ -2,9 +2,9 @@
 name: reviewing-typescript
 description: Provides concise, focused TypeScript/React code reviews matching exact task complexity requirements. Use when reviewing TypeScript code quality, type safety, or when the user asks for code review.
 compatibility: Designed for Claude Code
+argument-hint: "[file-or-directory]"
 metadata:
-  allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
-  argument-hint: [file-or-directory]
+  intended-tools: Read, Grep, Glob, WebFetch, WebSearch
   stability: stable
   content-hash: sha256:b285fa9c65674635325a88669c5f6662ef5059d788e570b57ded2804eaf7b57e
 ---

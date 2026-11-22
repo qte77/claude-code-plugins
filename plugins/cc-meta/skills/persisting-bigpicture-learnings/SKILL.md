@@ -2,9 +2,9 @@
 name: persisting-bigpicture-learnings
 description: Persist bigpicture synthesis as dated snapshots in a learnings hub. Maintains latest pointer + append-only archive for cross-session compound learning.
 compatibility: Designed for Claude Code
+argument-hint: "[input-path] [hub-path]"
 metadata:
-  allowed-tools: Read, Write, Glob
-  argument-hint: "[input-path] [hub-path]"
+  intended-tools: Read, Write, Glob
   context: inline
   stability: development
 ---

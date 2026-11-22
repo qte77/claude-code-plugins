@@ -2,9 +2,9 @@
 name: writing-readme
 description: Generate or update README.md files across three scopes — repo (with project-type detection), account (GitHub user profile), and org (organization profile). Use when creating, updating, or aligning a README to org conventions.
 compatibility: Designed for Claude Code
+argument-hint: "<scope> [target]"
 metadata:
-  argument-hint: <scope> [target]
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebFetch, Agent
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash, WebFetch, Agent
   stability: stable
   content-hash: sha256:ac8830d64c179b095cb8713a541ea88ffeb5fcd32ad15f2ac6fa10e7cc5991d6
 ---

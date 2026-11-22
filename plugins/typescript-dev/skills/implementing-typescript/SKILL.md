@@ -2,9 +2,9 @@
 name: implementing-typescript
 description: Implements concise, streamlined TypeScript/React code matching exact architect specifications. Use when writing TypeScript code, creating modules, or when the user asks to implement features in TypeScript/React.
 compatibility: Designed for Claude Code
+argument-hint: "[feature-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
-  argument-hint: [feature-name]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:d2cac197cd70af4f908c5301064dc42bdc1fa79e68c7c3a236e7c97ae521a99e
 ---

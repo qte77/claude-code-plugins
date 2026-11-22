@@ -2,9 +2,9 @@
 name: handing-off-session
 description: Generate structured session handoff notes for cross-session continuity. Use at end of session or when switching context.
 compatibility: Designed for Claude Code
+argument-hint: "[output-path]"
 metadata:
-  allowed-tools: Read, Write, Glob, Grep
-  argument-hint: [output-path]
+  intended-tools: Read, Write, Glob, Grep
   context: inline
   stability: development
 ---

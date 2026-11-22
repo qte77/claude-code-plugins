@@ -2,11 +2,11 @@
 name: synthesizing-research
 description: Synthesize all prior research into a unified GTM narrative. Run after `analyzing-contradictions` to prepare for slide deck generation (Phase 5).
 compatibility: Designed for Claude Code
+argument-hint: "[optional-synthesis-focus]"
 metadata:
   stability: stable
   content-hash: sha256:a8c1dc87f705a039a21f114e8b7f28a7f8518948388e7ed17f573ff5949b2160
-  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
-  argument-hint: [optional-synthesis-focus]
+  intended-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 ---
 
 # Synthesizing Research (Phase 5)

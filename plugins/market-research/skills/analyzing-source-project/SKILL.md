@@ -2,11 +2,11 @@
 name: analyzing-source-project
 description: Assess a source project's technical capabilities. Reads `config/sources.md` and produces a structured capability profile. Use to start the GTM pipeline or evaluate technical differentiators (Phase 0).
 compatibility: Designed for Claude Code
+argument-hint: "[project-path-or-url]"
 metadata:
   stability: stable
   content-hash: sha256:e856f199bd04e9ce7b891e33b0506c2d142968bf9df9c4c0e0c7f23f957a8d95
-  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
-  argument-hint: [project-path-or-url]
+  intended-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
 ---
 
 # Analyzing Source Project (Phase 0)
