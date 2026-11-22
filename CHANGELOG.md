@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   no hoist, so no tool is pre-approved and behaviour is unchanged; the docs reserve the old name.
   `context`, `agent`, `model` and `disable-model-invocation` stay nested pending owner decisions
   (plan 2026-09-24-0001 row 31). Patch versions bumped for the 26 plugins.
+- **workspace-setup** (1.8.2), **workspace-sandbox** (1.6.2): shared rule `unattended-execution.md` § Quality gates adds "a monitor step fails on any exit code it doesn't expect" (unknown exit codes, an empty expected report and skipped sources fail or warn visibly, never a quiet green run). Promoted after a third green-but-did-nothing run in qte77/ai-agents-research (#837).
 - **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): the context field now reads
   `ctx:46% used·compact@50%`, the share of the window in use and the share at which compaction
   fires (from `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, else the observed 16.5% buffer), with `!` when at
@@ -39,6 +40,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   clock is unchanged. The `unattended-execution` rule now recommends 50 for
   `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, matching the templates.
   New regression test `.claude/scripts/statusline-test.sh`, run by `test-statusline.yaml`.
+- **workspace-setup** 1.8.1, **workspace-sandbox** 1.6.1: the READMEs document the two `env`
+  defaults the settings templates ship, `BASH_MAX_OUTPUT_LENGTH` `15000` and
+  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` `50`, with a link to the Claude Code env-vars docs.
 - **`deploy-mkdocs-ghpages.yaml`**: `pages: write` and `id-token: write` move from the workflow level
   to the `deploy` job, the only job that uses them (CodeFactor flagged them as overly broad).
 - **Settings templates** (`settings-base.json`, `settings-sandbox.json`) and this repo's
