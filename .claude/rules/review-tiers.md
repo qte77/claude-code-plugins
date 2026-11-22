@@ -1,0 +1,26 @@
+# Review Tiers
+
+Match review effort to what a PR can break. Classify by the diff, not the title.
+
+## Tiers
+
+- **Tier 1, no AI reviewer:** a deterministic check passes the PR, and all checks are green.
+  - Only pinned `uses:` lines change: each SHA equals the tag's commit and permissions are unchanged.
+  - Or a Dependabot lock-file or manifest bump stays within the same major version (same minor for 0.x).
+- **Tier 2:** one fresh reviewer on a mid-tier model, for major-version bumps (read the release
+  notes), lock-file changes not made by Dependabot, docs and ordinary code.
+- **Tier 3:** one fresh reviewer on the strongest model, with a time-boxed brief, for hooks,
+  permissions, rulesets, workflow triggers or injection, tokens and secrets.
+
+## Rules
+
+- **Fix rounds:** diff the reviewed diff against the new one and check only that delta against the
+  requested fixes. Start a new review only if the delta goes beyond them.
+- **Merge pinned to the reviewed head commit** (`--match-head-commit`), so nothing unreviewed lands.
+- **Classify by the diff:** a PR titled "bump" that touches a workflow trigger is tier 3.
+
+## Why
+
+AI reviews of mechanical PRs found nothing a script would not; reviews of security logic found real defects.
+
+The tier-1 check ships as `check-mechanical-pr.py` in the `gha-dev` plugin.
