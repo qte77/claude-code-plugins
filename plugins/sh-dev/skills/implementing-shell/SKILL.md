@@ -2,9 +2,9 @@
 name: implementing-shell
 description: Write and review Bash scripts — strict mode, argument parsing, usage messages, exit codes, DRY_RUN, dependency checks, ShellCheck clean. Use for hooks, CI helpers and setup scripts.
 compatibility: Designed for Claude Code
+argument-hint: "[script-path]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: "[script-path]"
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: experimental
 ---
 

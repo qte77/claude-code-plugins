@@ -2,9 +2,9 @@
 name: generating-writeup
 description: Generates academic/technical writeups with IEEE citations and pandoc PDF output. Use when creating research papers, technical reports, or documentation with references.
 compatibility: Designed for Claude Code
+argument-hint: "[topic] [template] [citation-style]"
 metadata:
-  allowed-tools: Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch
-  argument-hint: "[topic] [template] [citation-style]"
+  intended-tools: Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:9e500bc5e5b4c840c55fdb360e80ad198953af3b1be65784df0f00ae22cbf5ad
 ---

@@ -4,6 +4,10 @@ on:
   pull_request:
     paths:
       - "plugins/*/skills/*/SKILL.md"
+      - ".claude/skills/*/SKILL.md"
+      - ".github/scripts/check-skill-frontmatter.py"
+      - ".github/scripts/test_check_skill_frontmatter.py"
+      - ".github/workflows/check-skill-integrity.yaml"
 
 permissions:
   contents: read
@@ -14,6 +18,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Verify stable skill content hashes
         run: bash .github/scripts/compute-skill-hashes.sh --check
+
+      - name: Test the frontmatter check
+        run: python3 -m unittest discover -s .github/scripts -p 'test_check_skill_frontmatter.py' -v
+
+      - name: Reserved frontmatter fields stay out of metadata
+        run: python3 .github/scripts/check-skill-frontmatter.py

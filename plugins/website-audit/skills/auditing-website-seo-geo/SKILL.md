@@ -2,9 +2,9 @@
 name: auditing-website-seo-geo
 description: Audits a site's SEO and AI-search (GEO) readiness — meta tags, Open Graph/Twitter, JSON-LD, robots/llms conventions — and generates fixes. Use when reviewing search visibility, social previews, structured data, or LLM/AI-crawler discoverability.
 compatibility: Designed for Claude Code
+argument-hint: "[url-or-file-path]"
 metadata:
-  allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
-  argument-hint: [url-or-file-path]
+  intended-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:6fc16d33ad7c663af30e578ac2b6fe93b1737781ec4df878ac84c2a52ff3515b
 ---

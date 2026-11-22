@@ -2,9 +2,9 @@
 name: triaging-security-report
 description: Verify an external or AI-generated security report against the actual codebase before acting on it. Use when handed a scanner PDF, automated teardown, audit report, or bug-bounty submission — classifies every finding CONFIRMED / OVERSTATED / FALSE-POSITIVE / FABRICATED and salvages the real work items.
 compatibility: Designed for Claude Code
+argument-hint: "[report-file-or-summary]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
-  argument-hint: [report-file-or-summary]
+  intended-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:0b3e59afe6c3935ca55dc9d84319e861f98c81568db2903cb9dfd174bd32cd1b
 ---

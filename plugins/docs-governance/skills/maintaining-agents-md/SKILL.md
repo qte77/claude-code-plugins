@@ -2,9 +2,9 @@
 name: maintaining-agents-md
 description: Maintains AGENTS.md, AGENT_LEARNINGS.md, AGENT_REQUESTS.md, and CONTRIBUTING.md governance files in sync with codebase changes. Use when updating governance files, during sprint reviews, or after structural changes.
 compatibility: Designed for Claude Code
+argument-hint: "[audit|sync|promote|full]"
 metadata:
-  argument-hint: [audit|sync|promote|full]
-  allowed-tools: Read, Grep, Glob, Edit
+  intended-tools: Read, Grep, Glob, Edit
   stability: stable
   content-hash: sha256:7aed6247ed8472ddf5d9d0387f039e54b3bd51c5a57f924464f625808fe75661
 ---

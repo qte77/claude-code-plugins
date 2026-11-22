@@ -2,9 +2,9 @@
 name: checking-compliance
 description: Generates compliance requirements from CE/FCC/UL standards for a device description. Use when starting a new embedded product, checking regulatory compliance, or generating initial SYS-REQ entries from applicable directives.
 compatibility: Designed for Claude Code
+argument-hint: "[device-description]"
 metadata:
-  allowed-tools: Read, Write, WebSearch, WebFetch
-  argument-hint: [device-description]
+  intended-tools: Read, Write, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:70309f2eb68a0ceeef78777b3d23182c63a63ac3a4828b5278c407df0158ff83
 ---

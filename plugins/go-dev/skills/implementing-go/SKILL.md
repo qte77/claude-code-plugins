@@ -2,9 +2,9 @@
 name: implementing-go
 description: Implements concise, streamlined Go code matching exact architect specifications. Use when writing Go code, creating packages, or when the user asks to implement features in Go.
 compatibility: Designed for Claude Code
+argument-hint: "[feature-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
-  argument-hint: [feature-name]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:efb2236c389be7d5d5311931961aeb3044c4ff360740706b80446fd0a74f7ae5
 ---

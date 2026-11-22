@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `.github/scripts/check-skill-frontmatter.py` (stdlib, with unittest tests), run by
+  `check-skill-integrity.yaml`: fails when a SKILL.md nests an enforced Claude Code frontmatter
+  field under `metadata:` or leaves `argument-hint` unquoted. Enforced so far: `argument-hint`,
+  `allowed-tools`. `.claude/rules/skill-authoring.md` gains a "Frontmatter fields" section.
 - **memory-hygiene** (0.1.0, new plugin): `consolidating-memory` skill cleans a project's auto memory in a
   background subagent (back up, verify facts against the repo and recent sessions, fix, merge, delete obsolete
   entries, keep `MEMORY.md` a one-line-per-memory index). A `SessionStart`/`SessionEnd` hook asks for a pass on
@@ -21,6 +25,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **All 66 skills with an `argument-hint`** (26 plugins plus `.claude/skills/committing-staged-with-message`):
+  `argument-hint` moves from `metadata:` to the top level and is quoted, so Claude Code shows it in
+  autocomplete (it ignored the nested key, and 48 unquoted values parsed as YAML lists).
+  Nested `metadata.allowed-tools` (69 skills) is renamed `metadata.intended-tools`: owner decision,
+  no hoist, so no tool is pre-approved and behaviour is unchanged; the docs reserve the old name.
+  `context`, `agent`, `model` and `disable-model-invocation` stay nested pending owner decisions
+  (plan 2026-09-24-0001 row 31). Patch versions bumped for the 26 plugins.
 - **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): the context field now reads
   `ctx:46% used·compact@50%`, the share of the window in use and the share at which compaction
   fires (from `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, else the observed 16.5% buffer), with `!` when at

@@ -1,6 +1,6 @@
 {
   "name": "sh-dev",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shell scripting skills — BATS testing, ShellCheck, and Bash conventions (strict mode, usage, exit codes, DRY_RUN) for hooks, CI helpers and setup scripts",
   "author": {
     "name": "Claude Code Utils Contributors"

@@ -2,11 +2,11 @@
 name: generating-slide-deck
 description: Generate an investor or stakeholder presentation from Phase 5 synthesis; produces a structured slide outline with headlines, talking points, and data citations. Run after `synthesizing-research` (Phase 6).
 compatibility: Designed for Claude Code
+argument-hint: "[audience-type]"
 metadata:
   stability: stable
   content-hash: sha256:b5fd7c159f176dc92aaab3f6c8ec224123bb6e9277404a480c8a1f3072fe682a
-  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
-  argument-hint: [audience-type]
+  intended-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 ---
 
 # Generating Slide Deck (Phase 6)

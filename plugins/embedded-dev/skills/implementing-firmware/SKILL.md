@@ -2,9 +2,9 @@
 name: implementing-firmware
 description: Implements ESP-IDF or PlatformIO firmware with mandatory requirement docstring tags and MISRA-C linting. Use when writing embedded C code, implementing firmware features, or adding requirement-traced functions.
 compatibility: Designed for Claude Code
+argument-hint: "[feature-or-requirement]"
 metadata:
-  allowed-tools: Read, Write, Edit, Glob, Grep, Bash
-  argument-hint: [feature-or-requirement]
+  intended-tools: Read, Write, Edit, Glob, Grep, Bash
   stability: stable
   content-hash: sha256:0a0457594dd459c1070c0ea7581055ccd87cfd2999b728cace6c0ab35d44cb86
 ---

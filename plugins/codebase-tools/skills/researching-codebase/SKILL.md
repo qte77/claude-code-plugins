@@ -2,9 +2,9 @@
 name: researching-codebase
 description: Investigates codebase before planning. Use before any non-trivial implementation task to gather context in isolation.
 compatibility: Designed for Claude Code
+argument-hint: "[topic-or-question]"
 metadata:
-  allowed-tools: Read, Grep, Glob
-  argument-hint: [topic-or-question]
+  intended-tools: Read, Grep, Glob
   context: fork
   agent: Explore
   stability: stable

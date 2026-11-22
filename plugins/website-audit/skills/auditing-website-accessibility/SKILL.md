@@ -2,9 +2,9 @@
 name: auditing-website-accessibility
 description: Audits website accessibility for WCAG 2.2 AA compliance, generating findings and code fixes. Use when reviewing accessibility, keyboard navigation, screen reader compatibility, or inclusive design.
 compatibility: Designed for Claude Code
+argument-hint: "[url-or-file-path]"
 metadata:
-  allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
-  argument-hint: [url-or-file-path]
+  intended-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:74f858aeef05a3248b1ec5f9d9a36d4867c364e3150c262879e1593a3302e47b
 ---

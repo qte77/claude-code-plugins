@@ -2,9 +2,9 @@
 name: testing-shell
 description: Test Bash scripts with BATS — @test blocks, setup/teardown, run + $status/$output assertions, stubbing commands, temp dirs. Use for hooks, CI helpers, setup scripts and GHA scripts.
 compatibility: Designed for Claude Code
+argument-hint: "[script-or-test-path]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: "[script-or-test-path]"
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: experimental
 ---
 

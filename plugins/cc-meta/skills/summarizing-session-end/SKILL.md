@@ -3,7 +3,7 @@ name: summarizing-session-end
 description: Auto-generates a session summary on SessionEnd. Writes structured notes to ~/.claude/session-summaries/ for use by bigpicture synthesis.
 compatibility: Designed for Claude Code
 metadata:
-  allowed-tools: Read, Write, Glob
+  intended-tools: Read, Write, Glob
   context: inline
   stability: development
 ---

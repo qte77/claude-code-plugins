@@ -2,9 +2,9 @@
 name: analyzing-cpp-codebase
 description: Analyzes C++ desktop codebase architecture, dependency graphs, framework detection, and migration assessment. Use when exploring an unfamiliar C++ project or assessing upgrade paths.
 compatibility: Designed for Claude Code
+argument-hint: "[directory-or-question]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Bash
-  argument-hint: [directory-or-question]
+  intended-tools: Read, Grep, Glob, Bash
   stability: stable
   content-hash: sha256:0fccb258bd50eb0c465a69a8a9e1f59a74c49ce5f2ec2c3042bfe641b919b5d0
 ---
