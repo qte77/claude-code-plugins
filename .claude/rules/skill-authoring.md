@@ -30,7 +30,7 @@ Claude Code reads its own frontmatter fields (`argument-hint`, `allowed-tools`, 
 ([skills docs](https://code.claude.com/docs/en/skills)). Put `argument-hint` at the top level,
 quoted (`"[name]"`), because an unquoted `[name]` is a YAML list. Keep the tools a skill uses under
 `metadata.intended-tools`: a top-level `allowed-tools` pre-approves those tools, so it needs an
-owner decision. Other fields stay where they are until the owner decides on each. `.github/scripts/check-skill-frontmatter.py` enforces this in CI for the
+owner decision. `disable-model-invocation` also sits at the top level. Other fields stay where they are until the owner decides on each. `.github/scripts/check-skill-frontmatter.py` enforces this in CI for the
 fields listed in its `ENFORCED` tuple, which grows as each field is moved.
 
 ## SKILL.md body size

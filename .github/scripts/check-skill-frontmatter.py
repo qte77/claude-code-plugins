@@ -15,7 +15,7 @@ import pathlib
 import re
 import sys
 
-ENFORCED = ("argument-hint", "allowed-tools")
+ENFORCED = ("argument-hint", "allowed-tools", "disable-model-invocation")
 # Reason: tolerate any indent, quoted keys and a space before the colon, so a style change can't hide a key
 KEY = re.compile(r"""^(?P<indent>[ \t]*)(?:"(?P<dq>[^"]*)"|'(?P<sq>[^']*)'|(?P<plain>[A-Za-z0-9_.-]+))[ \t]*:(?:[ \t]+(?P<value>.*))?$""")
 FLOW_KEY = re.compile(r"""[{,][ \t]*(?:"([^"]*)"|'([^']*)'|([A-Za-z0-9_.-]+))[ \t]*:""")
@@ -23,6 +23,7 @@ FIX = {
     "argument-hint": "move it to the top level as a quoted string",
     "allowed-tools": "rename it metadata.intended-tools (a top-level allowed-tools pre-approves tools and "
                      "needs an owner decision)",
+    "disable-model-invocation": "move it to the top level",
 }
 
 

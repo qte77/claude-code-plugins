@@ -13,6 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **review-tiers rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): new shared rule
+  `.claude/rules/review-tiers.md` ties review effort to what the diff can break. Tier 1 needs no AI
+  reviewer (a deterministic check for workflow pin bumps by trusted bots), tier 2 is one mid-tier reviewer
+  (every lock-file or manifest bump included), tier 3 one strongest-model reviewer with a time-boxed brief;
+  fix rounds review only the delta; merges pin the reviewed head commit.
+- **gha-dev** (1.2.8): `scripts/check-mechanical-pr.py` is the tier-1 check for workflow pin bumps (stdlib,
+  with unit tests). It passes trusted-bot PRs only, with a clean merge state, a non-empty green check list
+  and an unmoved head. The diff is read as bytes split on newlines; each removed `uses:` line must pair
+  with an added line in the same change block that differs only in SHA and tag, the tag stays in the same
+  major and does not go lower, and the SHA is the tag's commit. Renames, copies, mode changes, binary
+  files, control or separator characters, files outside the PR file list and 100 or more files fail; a
+  root `CHANGELOG.md` or a new `changelog.d/*.md|rst` fragment may ride along. Lock-file bumps are tier 2.
+- **planning** (1.1.4): `triaging-issues` gains an "Open PR inbox" section: which PRs to fold, which to
+  skip, and how to list them with `gh search prs --involves`.
 - `.github/scripts/check-skill-frontmatter.py` (stdlib, with unittest tests), run by
   `check-skill-integrity.yaml`: fails when a SKILL.md nests an enforced Claude Code frontmatter
   field under `metadata:` (at any indent, quoted or flow-style) or leaves `argument-hint` unquoted.
@@ -26,7 +40,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Devcontainer Node feature pinned to `"version": "24"` (was the feature default, `lts`), so the dev environment matches the Node 24 estate target.
-
+- **unattended-execution rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): every goal, loop or stop
+  condition lists an owner pause as an exit, and the session records the pause point in the plan's
+  opening status before stopping. A paused session otherwise matches neither gate and keeps being re-driven.
 - **All 66 skills with an `argument-hint`** (26 plugins plus `.claude/skills/committing-staged-with-message`):
   `argument-hint` moves from `metadata:` to the top level and is quoted, so Claude Code shows it in
   autocomplete (it ignored the nested key, and 48 unquoted values parsed as YAML lists).
@@ -34,6 +50,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   no hoist, so no tool is pre-approved and behaviour is unchanged; the docs reserve the old name.
   `context`, `agent`, `model` and `disable-model-invocation` stay nested pending owner decisions
   (plan 2026-09-24-0001 row 31). Patch versions bumped for the 26 plugins.
+- **commit-helper** (1.2.3), **ralph** (1.0.7), `.claude/skills/committing-staged-with-message`:
+  `disable-model-invocation: true` moves from `metadata:` to the top level in 5 skills, so Claude Code
+  honours it: `creating-pr-from-branch`, `committing-staged-with-message` (plugin and `.claude` copy),
+  `generating-interactive-userstory-md` and `generating-prd-md-from-userstory-md` are now invoked only
+  by the user, not by the model. `check-skill-frontmatter.py` enforces it. `context`, `agent` and
+  `model` stay nested pending owner decisions (plan 2026-09-24-0001 row 31).
 - **workspace-setup** (1.9.1), **workspace-sandbox** (1.7.1): the settings templates no longer set `ENABLE_CODE_SECURITY_REVIEW` `0`; the security-guidance plugin's LLM security review is back on by default. Its commit reviews ran in practice and caught real bugs on the day the opt-in shipped, which outweighs the small per-prompt hook cost. Set `ENABLE_CODE_SECURITY_REVIEW` `0` in project or local settings to opt out.
 - **workspace-setup** (1.9.0), **workspace-sandbox** (1.7.0): the settings templates set `ENABLE_CODE_SECURITY_REVIEW` `0`, so the security-guidance plugin's LLM security review is opt-in (the templates do not enable that plugin; the key only matters where it is enabled). Where no API credentials reach the plugin that review never runs, yet the prompt hook still lists untracked files on every prompt. Turning the review off removes that listing; the plugin's tracked-file baseline snapshot still runs on each prompt, so the hook can still be slow (it runs under the 30 s default for `UserPromptSubmit` command hooks). Pattern warnings stay on. To opt in, set `ENABLE_CODE_SECURITY_REVIEW` `1` in project or local settings and make sure credentials reach the plugin (see the plugin README's credentials section; the template's `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` `1` withholds a Claude Code sign-in from plugin hooks). The setup hooks copy a template only when `.claude/settings.json` is missing, so existing repos keep their settings until changed there.
 - **workspace-setup** (1.8.2), **workspace-sandbox** (1.6.2): shared rule `unattended-execution.md` § Quality gates adds "a monitor step fails on any exit code it doesn't expect" (unknown exit codes, an empty expected report and skipped sources fail or warn visibly, never a quiet green run). Promoted after a third green-but-did-nothing run in qte77/ai-agents-research (#837).
