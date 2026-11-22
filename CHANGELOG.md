@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Devcontainer Node feature pinned to `"version": "24"` (was the feature default, `lts`), so the dev environment matches the Node 24 estate target.
+
 - **All 66 skills with an `argument-hint`** (26 plugins plus `.claude/skills/committing-staged-with-message`):
   `argument-hint` moves from `metadata:` to the top level and is quoted, so Claude Code shows it in
   autocomplete (it ignored the nested key, and 48 unquoted values parsed as YAML lists).
