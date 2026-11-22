@@ -103,7 +103,7 @@ use case (e.g. the UI-e2e section applies when the project ships a UI).
 - **Compact at phase/milestone boundaries**; durable facts belong in the plan or memory, not only
   in-conversation.
 - **Enforcing compaction in long runs:** the model cannot trigger `/compact`; set
-  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=<pct>` (60 for long PR/CI loops; it can only lower the
+  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=<pct>` (50 for long PR/CI loops, as the workspace settings templates set; it can only lower the
   threshold and applies to main + subagents) and cap tool output with `BASH_MAX_OUTPUT_LENGTH`
   (e.g. 15000), both in the `env` block of user-level settings so every session gets them
   ([env vars](https://code.claude.com/docs/en/env-vars)). In SDK/headless runs

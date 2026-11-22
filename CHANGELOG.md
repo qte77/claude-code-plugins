@@ -16,10 +16,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): the context field now reads
   `ctx:46% used·compact@50%`, the share of the window in use and the share at which compaction
   fires (from `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, else the observed 16.5% buffer), with `!` when at
-  most 3% usable is left; it replaces `ctx(free):.NN`. Colour thresholds are unchanged. Values from
-  stdin and the environment reach `awk` only as data after a numeric check (a value such as
-  `0;system("...")` could run before), and fields split only on tabs with control characters
-  scrubbed (a space in the directory name shifted every later field). The world clock is unchanged.
+  most 3% usable is left; it replaces `ctx(free):.NN`. Colour thresholds are unchanged. The world
+  clock is unchanged. The `unattended-execution` rule now recommends 50 for
+  `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, matching the templates.
   New regression test `.claude/scripts/statusline-test.sh`, run by `test-statusline.yaml`.
 - **`deploy-mkdocs-ghpages.yaml`**: `pages: write` and `id-token: write` move from the workflow level
   to the `deploy` job, the only job that uses them (CodeFactor flagged them as overly broad).
@@ -36,6 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): fields from the status
+  JSON split only on tabs, with control characters scrubbed; a space in the directory name shifted
+  every later field.
 - **README / manifest drift** (plan 0001 row 29): `plugin.json` and `marketplace.json` descriptions now match for
   cpp-desktop (1.0.4), ralph (1.0.5), mas-design, docs-generator, tdd-core and security-audit. `auditing-code-security`
   lists `Workflow` in its `allowed-tools`, matching its Workflow Mode (security-audit 1.2.4). The codebase-tools README no
@@ -65,6 +67,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+- **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`
+  and `remaining_percentage` were interpolated into `awk` program text, so a value such as
+  `0;system("id>file")` ran as code. Values now reach `awk` only as `-v` data after a numeric check.
 - **read-once hook** (workspace-setup 1.7.6, workspace-sandbox 1.5.6): the cache moved from a
   world-default `${TMPDIR:-/tmp}/claude-read-once-<session>` to a per-user
   `claude-read-once-<uid>/<session>` under `$XDG_RUNTIME_DIR` (else `$TMPDIR`, else `/tmp`), created

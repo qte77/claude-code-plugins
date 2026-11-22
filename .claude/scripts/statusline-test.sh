@@ -28,13 +28,14 @@ has "imminent marker when at most 3% usable is left" "$out" "48% used·compact@5
 out=$(render < "$sample")
 has "without the override the observed 16.5% buffer applies" "$out" "compact@84%"
 
-# Values reach awk only as data: a hostile value must never run, and is treated as absent
+# Values reach awk only as data: a hostile value must never run, and is treated as absent.
+# The payloads have no spaces, so they cannot be broken up by a whitespace split before awk sees them
 marker="$work/pwned-env"
-out=$(CLAUDE_AUTOCOMPACT_PCT_OVERRIDE="0;system(\"touch $marker\")" render < "$sample")
+out=$(CLAUDE_AUTOCOMPACT_PCT_OVERRIDE="0;system(\"id>$marker\")" render < "$sample")
 no_file "a hostile CLAUDE_AUTOCOMPACT_PCT_OVERRIDE never runs" "$marker"
 marker="$work/pwned-json"
 has "a non-numeric override falls back to the default buffer" "$out" "compact@84%"
-out=$(sample_with "del(.context_window.current_usage) | .context_window.remaining_percentage = \"1;system(\\\"touch $marker\\\")\"" \
+out=$(sample_with "del(.context_window.current_usage) | .context_window.remaining_percentage = \"1;system(\\\"id>$marker\\\")\"" \
     | render)
 no_file "a hostile remaining_percentage never runs" "$marker"
 has "a non-numeric remaining_percentage reads as 100% free" "$out" "ctx:0% used"
