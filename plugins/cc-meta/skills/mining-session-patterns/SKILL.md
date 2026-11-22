@@ -2,9 +2,9 @@
 name: mining-session-patterns
 description: Extract actionable patterns from Claude Code session JSONL files. Surfaces error→fix sequences, tool failure rates, and cost-per-story signals for compound learning.
 compatibility: Designed for Claude Code
+argument-hint: "[time-range] [output-path]"
 metadata:
-  allowed-tools: Read, Glob, Grep, Write
-  argument-hint: "[time-range] [output-path]"
+  intended-tools: Read, Glob, Grep, Write
   context: fork
   stability: development
 ---

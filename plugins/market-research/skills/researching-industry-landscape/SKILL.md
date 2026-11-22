@@ -2,11 +2,11 @@
 name: researching-industry-landscape
 description: Map competitive intelligence and industry landscape; produce a competitor map and whitespace analysis. Run alongside `analyzing-source-project` at the start of the GTM pipeline (Phase 1A).
 compatibility: Designed for Claude Code
+argument-hint: "[industry-or-product-category]"
 metadata:
   stability: stable
   content-hash: sha256:63b5d0505a4eb7efa5c9bab7a80fa3542178874fb2ed02ba3d4887d8146e5bf9
-  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
-  argument-hint: [industry-or-product-category]
+  intended-tools: Read, Write, Glob, Grep, WebSearch, WebFetch, Agent
 ---
 
 # Researching Industry Landscape (Phase 1A)

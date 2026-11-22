@@ -2,9 +2,9 @@
 name: testing-rust
 description: Writes tests following TDD (using cargo test, proptest, and insta) best practices. Use when writing unit tests, integration tests, or property-based tests in Rust.
 compatibility: Designed for Claude Code
+argument-hint: "[test-scope or component-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: [test-scope or component-name]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: stable
   content-hash: sha256:05ca1842234b8ba0cdd00693b47ee16fec6d4b15d498c867d29cd74a44779ff0
 ---

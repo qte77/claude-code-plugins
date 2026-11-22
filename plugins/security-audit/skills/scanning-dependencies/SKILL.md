@@ -2,9 +2,9 @@
 name: scanning-dependencies
 description: Scan project dependencies for vulnerabilities, license issues, and supply chain risks. Use when auditing third-party packages or before releases.
 compatibility: Designed for Claude Code
+argument-hint: "[project-root]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
-  argument-hint: [project-root]
+  intended-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:a9ff14d899f3ffba809dd64536fd8a9f2cdd04ce72a99cfa9890a2fd06daf95f
 ---

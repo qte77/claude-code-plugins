@@ -2,9 +2,9 @@
 name: triaging-issues
 description: Triage open GitHub issues by ROI × feasibility — cluster by concern, score each, and propose a P0–P3 plan with execution order, quick wins, and evidenced close candidates. Use for "triage the issues" or "what should we work on next?".
 compatibility: Designed for Claude Code
+argument-hint: "[label-or-keyword]"
 metadata:
-  argument-hint: "[label-or-keyword]"
-  allowed-tools: Bash, Read, Grep, Glob, Agent
+  intended-tools: Bash, Read, Grep, Glob, Agent
   stability: experimental
 ---
 

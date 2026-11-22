@@ -2,9 +2,9 @@
 name: enforcing-doc-hierarchy
 description: Audit documentation against its declared hierarchy — broken links, duplicates, misplaced content, stale references, single-source-of-truth enforcement. Use for doc health reviews.
 compatibility: Designed for Claude Code
+argument-hint: "[file-directory-or-full]"
 metadata:
-  argument-hint: [file-directory-or-full]
-  allowed-tools: Read, Grep, Glob, Edit, Bash
+  intended-tools: Read, Grep, Glob, Edit, Bash
   stability: stable
   content-hash: sha256:f3511128045a12f2123f63cde504f92fb618a591b9b261f5aa490422b29a3afe
 ---

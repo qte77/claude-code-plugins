@@ -2,9 +2,9 @@
 name: distilling-plan-learnings
 description: Extracts decisions, rejected alternatives, and patterns from recent plans into a persistent learnings document. Use after completing a plan or sprint.
 compatibility: Designed for Claude Code
+argument-hint: "[time-range] [output-path]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write
-  argument-hint: "[time-range] [output-path]"
+  intended-tools: Read, Grep, Glob, Edit, Write
   context: fork
   stability: development
 ---

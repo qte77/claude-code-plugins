@@ -4,7 +4,7 @@ description: Converts UserStory.md into a structured PRD.md document. Use after 
 compatibility: Designed for Claude Code
 metadata:
   disable-model-invocation: true
-  allowed-tools: Read, Write
+  intended-tools: Read, Write
   stability: stable
   content-hash: sha256:ec9fcb1f7c496c6ea8dfd10499729bfbc4ff258fe367bf36a69ac287d7dc58a6
 ---

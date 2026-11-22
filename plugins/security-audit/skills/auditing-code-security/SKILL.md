@@ -2,9 +2,9 @@
 name: auditing-code-security
 description: Audit code against OWASP Top 10 vulnerabilities with structured findings. Use when reviewing code for security issues or conducting security audits.
 compatibility: Designed for Claude Code
+argument-hint: "[file-or-directory]"
 metadata:
-  allowed-tools: Read, Grep, Glob, WebSearch, WebFetch, Workflow
-  argument-hint: [file-or-directory]
+  intended-tools: Read, Grep, Glob, WebSearch, WebFetch, Workflow
   stability: stable
   content-hash: sha256:ff6c21be83f8cbf0dd2b5abc6e5234ee06f462b4737d1c835c5caf89c048bd12
 ---

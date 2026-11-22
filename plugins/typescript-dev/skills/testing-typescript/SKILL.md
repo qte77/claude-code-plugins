@@ -2,9 +2,9 @@
 name: testing-typescript
 description: Writes tests following TDD (using vitest and @testing-library/react) best practices. Use when writing unit tests, integration tests, or component tests in TypeScript.
 compatibility: Designed for Claude Code
+argument-hint: "[test-scope or component-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
-  argument-hint: [test-scope or component-name]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash
   stability: stable
   content-hash: sha256:9d120f8a107caa25d18f6a308f85fb8ddaf7d09c4b57c3b62d2c414fba14c6cf
 ---

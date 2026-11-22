@@ -2,9 +2,9 @@
 name: implementing-rust
 description: Implements concise, streamlined Rust code matching exact architect specifications. Use when writing Rust code, creating modules, or when the user asks to implement features in Rust.
 compatibility: Designed for Claude Code
+argument-hint: "[feature-name]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
-  argument-hint: [feature-name]
+  intended-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   stability: stable
   content-hash: sha256:482c79e5df4fb86ef1f81118f527b72b64d60704b01de8664819e9099c4baf78
 ---

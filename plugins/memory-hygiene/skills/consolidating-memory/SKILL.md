@@ -5,8 +5,8 @@ compatibility: Designed for Claude Code
 context: fork
 agent: general-purpose
 allowed-tools: Read, Glob, Grep, Edit, Write
+argument-hint: "[project-dir]"
 metadata:
-  argument-hint: "[project-dir]"
   stability: development
 ---
 

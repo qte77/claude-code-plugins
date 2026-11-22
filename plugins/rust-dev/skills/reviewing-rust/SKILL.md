@@ -2,9 +2,9 @@
 name: reviewing-rust
 description: Provides concise, focused Rust code reviews matching exact task complexity requirements. Use when reviewing Rust code quality, safety, or when the user asks for code review.
 compatibility: Designed for Claude Code
+argument-hint: "[file-or-directory]"
 metadata:
-  allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
-  argument-hint: [file-or-directory]
+  intended-tools: Read, Grep, Glob, WebFetch, WebSearch
   stability: stable
   content-hash: sha256:e3c44dc62159fe501bb2d9ffd531773daf004d180c40f554efbb775b2fd8ce9d
 ---

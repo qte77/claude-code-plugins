@@ -2,9 +2,9 @@
 name: web-recon
 description: Recon and assess the attack surface of a web app/API you own or are authorized to test — endpoint enumeration, auth-posture matrix, BOLA/BFLA, cron checks, via web-recon-kit. Refuses unauthorized targets.
 compatibility: Designed for Claude Code
+argument-hint: "[target-base-url]"
 metadata:
-  allowed-tools: Read, Write, Edit, Bash, WebFetch
-  argument-hint: [target-base-url]
+  intended-tools: Read, Write, Edit, Bash, WebFetch
   stability: experimental
 ---
 

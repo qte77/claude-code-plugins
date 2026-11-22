@@ -4,9 +4,9 @@ description: Audit and tighten codebase quality gates — architecture, lint, ty
   tests, docs, code review. Use when onboarding a project, before a release, or
   when validation is too permissive.
 compatibility: Designed for Claude Code
+argument-hint: "[scope: full | audit | tighten | review | fix | arch | docs]"
 metadata:
-  allowed-tools: Read, Grep, Glob, Bash, Edit, Write, Agent
-  argument-hint: "[scope: full | audit | tighten | review | fix | arch | docs]"
+  intended-tools: Read, Grep, Glob, Bash, Edit, Write, Agent
   stability: experimental
 ---
 

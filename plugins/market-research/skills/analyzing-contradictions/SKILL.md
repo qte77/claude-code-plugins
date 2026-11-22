@@ -2,11 +2,11 @@
 name: analyzing-contradictions
 description: Detect gaps and contradictions across all prior phases; surface cross-phase tensions, unresolved assumptions, and sales/investor objections. Run after `developing-gtm-strategy` (Phase 4).
 compatibility: Designed for Claude Code
+argument-hint: "[optional-focus-area]"
 metadata:
   stability: stable
   content-hash: sha256:09aa54c11c2e6368450e5f48f564f8ba85056eb4c3615d6684745c8501a12784
-  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
-  argument-hint: [optional-focus-area]
+  intended-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 ---
 
 # Analyzing Contradictions (Phase 4)

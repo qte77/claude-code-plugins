@@ -2,9 +2,9 @@
 name: auditing-readme
 description: Audit README.md files against best practices for repos, accounts, or orgs. Detects missing sections, stale links, inconsistent formatting, and convention violations. Use when reviewing README quality across one or many repos.
 compatibility: Designed for Claude Code
+argument-hint: "<scope> [target-or-glob]"
 metadata:
-  argument-hint: <scope> [target-or-glob]
-  allowed-tools: Read, Grep, Glob, Bash, WebFetch, Agent
+  intended-tools: Read, Grep, Glob, Bash, WebFetch, Agent
   stability: stable
   content-hash: sha256:c890d9cfd89aac067be0497201066360c5bdbf7dccc7d42d4957d795405b1651
 ---

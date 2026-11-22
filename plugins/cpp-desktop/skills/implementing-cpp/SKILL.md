@@ -2,9 +2,9 @@
 name: implementing-cpp
 description: Implements C++17 desktop GUI code with wxWidgets, GTK3, or Qt framework patterns and CMake build system. Use when writing C++ desktop application code, creating GUI components, or implementing framework-specific features.
 compatibility: Designed for Claude Code
+argument-hint: "[feature-or-component]"
 metadata:
-  allowed-tools: Read, Write, Edit, Glob, Grep, Bash
-  argument-hint: [feature-or-component]
+  intended-tools: Read, Write, Edit, Glob, Grep, Bash
   stability: stable
   content-hash: sha256:4fdd42d49c686f7983e44accff97977741957768915408d403c050ce82380fb8
 ---

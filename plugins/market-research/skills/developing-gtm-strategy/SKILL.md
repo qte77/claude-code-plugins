@@ -2,11 +2,11 @@
 name: developing-gtm-strategy
 description: Develop customer segmentation, channel selection, and a 90-day launch plan from Phase 2 PMF assessment. Run after `validating-product-market-fit` (Phase 3).
 compatibility: Designed for Claude Code
+argument-hint: "[product-name]"
 metadata:
   stability: stable
   content-hash: sha256:aba8abd399d1b9d2af36338ff5fc9da2831dd5773d4e5dc972efa1daf6af3a4c
-  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
-  argument-hint: [product-name]
+  intended-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 ---
 
 # Developing GTM Strategy (Phase 3)
