@@ -89,7 +89,7 @@ use case (e.g. the UI-e2e section applies when the project ships a UI).
   maps each exit code it knows (e.g. 0 = nothing new, 1 = new items with a non-empty report) and
   fails the job on every other code, an empty report where one is expected, or a source it skipped.
   Skips surface as `::warning::` annotations and in the step summary, never as a quiet green run.
-  Promoted from `qte77/ai-agents-research` `AGENT_LEARNINGS.md` after a third green run that did
+  Promoted from `qte77/ai-agents-research` `AGENT_LEARNINGS.md` (lines 31–34) after a third green run that did
   nothing (ai-agents-research#837).
 
 ## UI e2e verification (when the project ships a UI)
