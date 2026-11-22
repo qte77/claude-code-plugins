@@ -15,9 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `.github/scripts/check-skill-frontmatter.py` (stdlib, with unittest tests), run by
   `check-skill-integrity.yaml`: fails when a SKILL.md nests an enforced Claude Code frontmatter
-  field under `metadata:` or leaves `argument-hint` unquoted. Enforced so far: `argument-hint`,
-  `allowed-tools`. `.claude/rules/skill-authoring.md` gains a "Frontmatter fields" section.
-- **memory-hygiene** (0.1.0, new plugin): `consolidating-memory` skill cleans a project's auto memory in a
+  field under `metadata:` (at any indent, quoted or flow-style) or leaves `argument-hint` unquoted.
+  Enforced so far: `argument-hint`, `allowed-tools`. `__pycache__/` is now git-ignored. `.claude/rules/skill-authoring.md` gains a "Frontmatter fields" section.
+- **memory-hygiene** (0.1.1, new plugin): `consolidating-memory` skill cleans a project's auto memory in a
   background subagent (back up, verify facts against the repo and recent sessions, fix, merge, delete obsolete
   entries, keep `MEMORY.md` a one-line-per-memory index). A `SessionStart`/`SessionEnd` hook asks for a pass on
   the `schedule` option: `weekly` (default), `daily`, `monthly`, `session-start`, `session-end`, `compact` or

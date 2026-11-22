@@ -13,3 +13,6 @@ site/
 
 # Personal Claude Code settings, never shared
 .claude/settings.local.json
+
+# Python bytecode
+__pycache__/

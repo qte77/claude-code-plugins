@@ -6,7 +6,7 @@ frontmatter and does not act on `metadata:` contents; the skills docs also say n
 frontmatter field names as `metadata` keys (https://code.claude.com/docs/en/skills).
 
 ENFORCED grows as each field is moved out of `metadata:` (plan 2026-09-24-0001 row 31).
-Stdlib only, line-based like compute-skill-hashes.sh, so CI needs no YAML package.
+Stdlib only and line-based like compute-skill-hashes.sh, so CI needs no YAML package; it accepts\nany indent, quoted keys and a flow-style `metadata: {...}`.
 
 Usage: check-skill-frontmatter.py [SKILL.md ...]   (default: every plugin and .claude skill)
 """
@@ -16,12 +16,18 @@ import re
 import sys
 
 ENFORCED = ("argument-hint", "allowed-tools")
-TOP_KEY = re.compile(r"^([A-Za-z0-9_-]+):(.*)$")
-NESTED_KEY = re.compile(r"^  ([A-Za-z0-9_-]+):")
+# Reason: tolerate any indent, quoted keys and a space before the colon, so a style change can't hide a key
+KEY = re.compile(r"""^(?P<indent>[ \t]*)(?:"(?P<dq>[^"]*)"|'(?P<sq>[^']*)'|(?P<plain>[A-Za-z0-9_.-]+))[ \t]*:(?:[ \t]+(?P<value>.*))?$""")
+FLOW_KEY = re.compile(r"""[{,][ \t]*(?:"([^"]*)"|'([^']*)'|([A-Za-z0-9_.-]+))[ \t]*:""")
+FIX = {
+    "argument-hint": "move it to the top level as a quoted string",
+    "allowed-tools": "rename it metadata.intended-tools (a top-level allowed-tools pre-approves tools and "
+                     "needs an owner decision)",
+}
 
 
 def frontmatter(text: str) -> list[str] | None:
-    lines = text.split("\n")
+    lines = [line.rstrip("\r") for line in text.split("\n")]
     if not lines or lines[0].strip() != "---":
         return None
     for i, line in enumerate(lines[1:], 1):
@@ -30,24 +36,43 @@ def frontmatter(text: str) -> list[str] | None:
     return None
 
 
+def nested(path: pathlib.Path, n: int, key: str) -> list[str]:
+    if key not in ENFORCED:
+        return []
+    return [f"{path}:{n}: metadata.{key} reuses a reserved frontmatter field name; {FIX[key]}"]
+
+
 def check_file(path: pathlib.Path) -> list[str]:
     fm = frontmatter(path.read_text(encoding="utf-8"))
     if fm is None:
         return [f"{path}: no frontmatter"]
     out = []
     in_metadata = False
+    child_indent = None
     for n, line in enumerate(fm, 2):
-        top = TOP_KEY.match(line)
-        if top:
-            key, value = top.group(1), top.group(2).strip()
-            in_metadata = key == "metadata"
-            if key == "argument-hint" and not value.startswith(("'", '"')):
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        m = KEY.match(line)
+        indent = len(line) - len(line.lstrip(" \t"))
+        if indent == 0:
+            in_metadata, child_indent = False, None
+            if not m:
+                continue
+            key = m.group("dq") or m.group("sq") or m.group("plain")
+            value = (m.group("value") or "").strip()
+            if key == "metadata":
+                in_metadata = True
+                if value.startswith("{"):
+                    for k in FLOW_KEY.findall(value):
+                        out += nested(path, n, next(x for x in k if x))
+            elif key == "argument-hint" and not value.startswith(("'", '"')):
                 out.append(f"{path}:{n}: argument-hint must be a quoted string (an unquoted [x] is a YAML list)")
             continue
-        nested = NESTED_KEY.match(line)
-        if in_metadata and nested and nested.group(1) in ENFORCED:
-            out.append(f"{path}:{n}: metadata.{nested.group(1)} is a reserved top-level field; "
-                       "move it to the top level or rename it")
+        if in_metadata and m:
+            # Reason: only direct children of metadata count; deeper keys belong to their own parent
+            child_indent = indent if child_indent is None else child_indent
+            if indent == child_indent:
+                out += nested(path, n, m.group("dq") or m.group("sq") or m.group("plain"))
     return out
 
 

@@ -27,9 +27,10 @@ new skills; this rule **tightens its defaults** for this repo:
 Claude Code reads its own frontmatter fields (`argument-hint`, `allowed-tools`, `context`,
 `agent`, `model`, `disable-model-invocation`, ...) only at the top level and does not act on
 `metadata:` contents; the docs also say not to reuse those names as `metadata` keys
-([skills docs](https://code.claude.com/docs/en/skills)). Put them at the top level, or keep a
-non-reserved name under `metadata:`. Quote `argument-hint` (`"[name]"`), because an unquoted
-`[name]` is a YAML list. `.github/scripts/check-skill-frontmatter.py` enforces this in CI for the
+([skills docs](https://code.claude.com/docs/en/skills)). Put `argument-hint` at the top level,
+quoted (`"[name]"`), because an unquoted `[name]` is a YAML list. Keep the tools a skill uses under
+`metadata.intended-tools`: a top-level `allowed-tools` pre-approves those tools, so it needs an
+owner decision. Other fields stay where they are until the owner decides on each. `.github/scripts/check-skill-frontmatter.py` enforces this in CI for the
 fields listed in its `ENFORCED` tuple, which grows as each field is moved.
 
 ## SKILL.md body size

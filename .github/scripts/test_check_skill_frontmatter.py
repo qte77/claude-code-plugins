@@ -43,6 +43,41 @@ class CheckSkillFrontmatter(unittest.TestCase):
     def test_renamed_nested_key_passes(self):
         self.assertEqual(problems("name: x\nmetadata:\n  intended-tools: Read, Bash\n"), [])
 
+    def test_nested_key_with_any_indent_is_reported(self):
+        for indent in (" ", "    "):
+            with self.subTest(indent=len(indent)):
+                out = problems(f"name: x\nmetadata:\n{indent}stability: stable\n{indent}allowed-tools: Read\n")
+                self.assertEqual(len(out), 1)
+                self.assertIn("metadata.allowed-tools", out[0])
+
+    def test_nested_key_in_flow_mapping_is_reported(self):
+        out = problems("name: x\nmetadata: {stability: stable, allowed-tools: Read, 'argument-hint': '[a]'}\n")
+        self.assertEqual(len(out), 2)
+
+    def test_quoted_or_spaced_nested_key_is_reported(self):
+        for line in ('  "allowed-tools": Read', "  'allowed-tools': Read", "  allowed-tools : Read"):
+            with self.subTest(line=line):
+                self.assertEqual(len(problems(f"name: x\nmetadata:\n{line}\n")), 1)
+
+    def test_quoted_metadata_parent_is_recognised(self):
+        self.assertEqual(len(problems("name: x\n\"metadata\":\n  allowed-tools: Read\n")), 1)
+
+    def test_grandchild_key_is_not_a_metadata_key(self):
+        # Reason: only direct children of metadata reuse a frontmatter field name
+        self.assertEqual(problems("name: x\nmetadata:\n  notes:\n    allowed-tools: Read\n"), [])
+
+    def test_unquoted_hint_with_quoted_or_spaced_key_is_reported(self):
+        for line in ('"argument-hint": [a]', "argument-hint : [a]"):
+            with self.subTest(line=line):
+                out = problems(f"name: x\n{line}\n")
+                self.assertEqual(len(out), 1)
+                self.assertIn("argument-hint must be a quoted string", out[0])
+
+    def test_allowed_tools_message_points_to_rename_not_hoist(self):
+        out = problems("name: x\nmetadata:\n  allowed-tools: Read\n")
+        self.assertIn("intended-tools", out[0])
+        self.assertNotIn("move it to the top level", out[0])
+
     def test_file_without_frontmatter_is_reported(self):
         with tempfile.TemporaryDirectory() as d:
             p = pathlib.Path(d) / "SKILL.md"
