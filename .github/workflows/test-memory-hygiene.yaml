@@ -1,0 +1,25 @@
+name: Test memory-hygiene hook
+
+# Run the memory-hygiene schedule tests on PRs that touch the plugin's scripts.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "plugins/memory-hygiene/scripts/**"
+      - ".github/workflows/test-memory-hygiene.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  memory-hygiene:
+    name: memory-hygiene test.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run the memory-hygiene schedule tests
+        run: bash plugins/memory-hygiene/scripts/test.sh

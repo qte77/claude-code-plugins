@@ -1,0 +1,32 @@
+{
+  "name": "memory-hygiene",
+  "version": "0.1.0",
+  "description": "Scheduled clean-up of Claude Code auto memory: verify, fix, merge and prune memories and keep MEMORY.md a short index (weekly by default; daily, monthly, per session or after compaction)",
+  "author": {
+    "name": "Claude Code Utils Contributors"
+  },
+  "keywords": [
+    "memory",
+    "auto-memory",
+    "consolidation",
+    "dreaming",
+    "context",
+    "tokens"
+  ],
+  "userConfig": {
+    "schedule": {
+      "type": "string",
+      "title": "Memory clean-up schedule",
+      "description": "When a memory clean-up pass is due: weekly (default), daily, monthly, session-start (every new or cleared session), session-end (runs at the next session start), compact (after each compaction), or off.",
+      "default": "weekly",
+      "options": ["weekly", "daily", "monthly", "session-start", "session-end", "compact", "off"]
+    },
+    "mode": {
+      "type": "string",
+      "title": "When a pass is due",
+      "description": "auto (default): Claude runs the clean-up in a background subagent. remind: only show you a reminder, with no model cost.",
+      "default": "auto",
+      "options": ["auto", "remind"]
+    }
+  }
+}
