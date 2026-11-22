@@ -120,7 +120,7 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.2.8"
+      "version": "1.2.9"
     },
     {
       "name": "sh-dev",

@@ -96,6 +96,12 @@ def version_parts(version: str) -> list[int] | None:
     return [int(x) for x in m.group(1).split(".")] if m else None
 
 
+def has_suffix(version: str) -> bool:
+    """True when the version carries a prerelease or build suffix after its numbers."""
+    m = VERSION.match(version)
+    return bool(m and m.end(1) < len(version))
+
+
 def same_major(old: str, new: str) -> bool:
     """True when old -> new keeps the major version (the minor for 0.x)."""
     o, n = version_parts(old), version_parts(new)
@@ -173,7 +179,7 @@ class DiffParser:
         elif is_changelog(m.group(1)):
             self.current = Section(m.group(1), read=False)
         elif not self.allowed(m.group(2)):
-            self.reasons.append(f"file not allowed in this shape: {m.group(2)}")
+            self.reasons.append(f"file is neither a workflow file nor a changelog entry:{m.group(2)}")
         else:
             self.current = Section(m.group(2))
         if self.current is not None:
@@ -211,6 +217,8 @@ def pin_reasons(
         reasons.append("empty diff")
     verified = 0
     for section in sections:
+        if section.read and not any(h.added or h.removed for h in section.hunks):
+            reasons.append(f"{section.path}: no changed line in a section that is read")
         for hunk in section.hunks:
             if len(hunk.added) != len(hunk.removed):
                 reasons.append(f"{section.path}: a change block adds and removes a different number of lines")
@@ -238,6 +246,9 @@ def pair_reasons(old: str, new: str, lookup: Callable[[str, str], str | None], r
         return 0
     if not same_major(old_tag, new_tag) or not not_lower(old_tag, new_tag):
         reasons.append(f"{action} {old_tag} -> {new_tag} is a major bump or a downgrade (tier 2)")
+        return 0
+    if has_suffix(new_tag) and not has_suffix(old_tag):
+        reasons.append(f"{action} {old_tag} -> {new_tag} moves to a prerelease or suffixed tag (tier 2)")
         return 0
     found = lookup(action, new_tag)
     if found != sha:
