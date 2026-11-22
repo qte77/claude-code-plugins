@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **workspace-setup** (1.8.2), **workspace-sandbox** (1.6.2): shared rule `unattended-execution.md` § Quality gates adds "a monitor step fails on any exit code it doesn't expect" (unknown exit codes, an empty expected report and skipped sources fail or warn visibly, never a quiet green run). Promoted after a third green-but-did-nothing run in qte77/ai-agents-research (#837).
 - **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): the context field now reads
   `ctx:46% used·compact@50%`, the share of the window in use and the share at which compaction
   fires (from `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`, else the observed 16.5% buffer), with `!` when at
