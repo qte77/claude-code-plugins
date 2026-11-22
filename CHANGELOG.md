@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **memory-hygiene** (0.1.0, new plugin): `consolidating-memory` skill cleans a project's auto memory in a
+  background subagent (back up, verify facts against the repo and recent sessions, fix, merge, delete obsolete
+  entries, keep `MEMORY.md` a one-line-per-memory index). A `SessionStart`/`SessionEnd` hook asks for a pass on
+  the `schedule` option: `weekly` (default), `daily`, `monthly`, `session-start`, `session-end`, `compact` or
+  `off`; `mode` `auto` (Claude runs it) or `remind` (reminder only). Schedule tests run in CI.
+
 ### Changed
 
 - **`unattended-execution` rule** (workspace-setup 1.7.5, workspace-sandbox 1.5.5): compaction
