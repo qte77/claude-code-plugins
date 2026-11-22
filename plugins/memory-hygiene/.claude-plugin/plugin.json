@@ -1,6 +1,6 @@
 {
   "name": "memory-hygiene",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Scheduled clean-up of Claude Code auto memory: verify, fix, merge and prune memories and keep MEMORY.md a short index (weekly by default; daily, monthly, per session or after compaction)",
   "author": {
     "name": "Claude Code Utils Contributors"

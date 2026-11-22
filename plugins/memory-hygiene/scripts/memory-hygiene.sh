@@ -26,6 +26,11 @@ SKILL="/memory-hygiene:consolidating-memory"
 # directory itself outside git; `autoMemoryDirectory` in user settings overrides it.
 memory_dir() {
   local dir="$1" custom common root
+  # Already a memory dir (`done`/`paths` from the skill): use it as given.
+  if is_memory_dir "$dir"; then
+    printf '%s\n' "$dir"
+    return
+  fi
   custom=$(jq -r '.autoMemoryDirectory // empty' "$CONFIG_DIR/settings.json" 2>/dev/null)
   if [ -n "$custom" ]; then
     printf '%s\n' "${custom/#\~/$HOME}"
@@ -34,6 +39,15 @@ memory_dir() {
   common=$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
   if [ -n "$common" ]; then root=$(dirname "$common"); else root="$dir"; fi
   printf '%s/projects/%s/memory\n' "$CONFIG_DIR" "$(printf '%s' "$root" | sed 's/[^A-Za-z0-9]/-/g')"
+}
+
+# True when DIR is <config>/projects/<key>/memory, compared on resolved paths
+# (the config dir is often reached through a symlink).
+is_memory_dir() {
+  local real config
+  real=$(cd "$1" 2>/dev/null && pwd -P) || return 1
+  config=$(cd "$CONFIG_DIR" 2>/dev/null && pwd -P) || return 1
+  [ "$(basename "$real")" = memory ] && [ "$(dirname "$(dirname "$real")")" = "$config/projects" ]
 }
 
 state_key() { basename "$(dirname "$1")" | tr -cd 'A-Za-z0-9_-'; }

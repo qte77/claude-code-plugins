@@ -82,6 +82,20 @@ check "auto memory disabled: quiet" quiet \
   "$(CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 run SessionStart startup)"
 check "no memory dir: quiet" quiet "$(run SessionStart startup "$TMP")"
 
+# done/paths given the memory dir itself (what the skill passes), not a project dir
+reset_state
+bash "$SCRIPT" "done" "$MEM" >/dev/null
+check "done <memory dir>: records under the project's key" yes \
+  "$([ -e "$CLAUDE_PLUGIN_DATA/$KEY.last-run" ] && echo yes || echo no)"
+check "done <memory dir>: no stray state file" 1 "$(find "$CLAUDE_PLUGIN_DATA" -type f | wc -l | tr -d ' ')"
+check "paths <memory dir>: the dir as given" "memory_dir=$MEM" "$(bash "$SCRIPT" paths "$MEM" | head -1)"
+ln -s "$CLAUDE_CONFIG_DIR" "$TMP/claude-link"
+LINKED="$TMP/claude-link/projects/$KEY/memory"
+reset_state
+bash "$SCRIPT" "done" "$LINKED" >/dev/null
+check "done <memory dir via a symlinked config dir>: same key" yes \
+  "$([ -e "$CLAUDE_PLUGIN_DATA/$KEY.last-run" ] && echo yes || echo no)"
+
 # modes
 out=$(jq -n --arg c "$REPO" '{hook_event_name: "SessionStart", source: "startup", cwd: $c}' | bash "$SCRIPT" hook)
 check "auto: adds context for Claude" true "$(jq 'has("hookSpecificOutput")' <<<"$out")"
