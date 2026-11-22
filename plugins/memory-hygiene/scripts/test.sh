@@ -88,7 +88,11 @@ bash "$SCRIPT" "done" "$MEM" >/dev/null
 check "done <memory dir>: records under the project's key" yes \
   "$([ -e "$CLAUDE_PLUGIN_DATA/$KEY.last-run" ] && echo yes || echo no)"
 check "done <memory dir>: no stray state file" 1 "$(find "$CLAUDE_PLUGIN_DATA" -type f | wc -l | tr -d ' ')"
-check "paths <memory dir>: the dir as given" "memory_dir=$MEM" "$(bash "$SCRIPT" paths "$MEM" | head -1)"
+check "paths <memory dir>: the resolved dir" "memory_dir=$MEM" "$(bash "$SCRIPT" paths "$MEM" | head -1)"
+check "paths . inside the memory dir: the project's key" "last_run=$CLAUDE_PLUGIN_DATA/$KEY.last-run" \
+  "$(cd "$MEM" && bash "$SCRIPT" paths . | sed -n 2p)"
+check "paths memory (relative) from its parent: the project's key" "last_run=$CLAUDE_PLUGIN_DATA/$KEY.last-run" \
+  "$(cd "$(dirname "$MEM")" && bash "$SCRIPT" paths memory | sed -n 2p)"
 ln -s "$CLAUDE_CONFIG_DIR" "$TMP/claude-link"
 LINKED="$TMP/claude-link/projects/$KEY/memory"
 reset_state

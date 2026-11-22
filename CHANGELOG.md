@@ -61,10 +61,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - **memory-hygiene** 0.1.2: `memory-hygiene.sh done <dir>` and `paths <dir>` treated a memory
-  directory (`<config>/projects/<key>/memory`, the path the SessionStart reminder names) as a
-  project directory, so a
-  finished pass was recorded under a wrong key and the schedule never saw it. Such a directory is now
-  used as given; paths are compared after resolving symlinks (the config dir is often a symlink).
+  directory (`<config>/projects/<key>/memory`, for example the path named in the SessionStart
+  context) as a project directory, so a finished pass was recorded under a wrong key and the
+  schedule never saw it. Such a directory, given absolute, relative or through a symlinked config
+  dir, is now resolved and used as the memory dir.
 
 - **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): fields from the status
   JSON split only on tabs, with control characters scrubbed; a space in the directory name shifted
