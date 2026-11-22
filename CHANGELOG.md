@@ -78,6 +78,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+- **workspace-setup** 1.8.2, **workspace-sandbox** 1.6.2: the SessionStart hook no longer edits a
+  git-tracked `.claude/settings.json`. Merging the plugin's `permissions.allow` into a tracked file
+  dirtied the repo on every session and could get personal pre-approvals committed to public repos.
+  Missing allow entries are now appended to `.claude/settings.local.json` (the user's order is kept),
+  which gets a local `.git/info/exclude` entry `**/.claude/settings.local.json` unless git already
+  ignores it. A tracked local file, a local file that is not a JSON object, or an exclude file that
+  cannot be written gives a warning, never a failed hook; a tracked `settings.json` deleted from the
+  working tree is no longer recreated. Allow rules in the local file apply without the workspace
+  trust step. Cleanup for checkouts touched by the old hook: `git restore .claude/settings.json`;
+  an untracked old copy that blocks a pull can be moved aside, pulled, and its personal rules moved
+  to `settings.local.json`. New regression test `.claude/scripts/setup-settings-test.sh` (25 cases
+  per hook, git config isolated), run by `test-setup-settings.yaml`.
 - **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`
   and `remaining_percentage` were interpolated into `awk` program text, so a value such as
   `0;system("id>file")` ran as code. Values now reach `awk` only as `-v` data after a numeric check.

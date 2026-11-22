@@ -1,0 +1,32 @@
+name: Test setup settings
+
+# .claude/scripts/setup-settings-test.sh covers the SessionStart hooks' settings step: a git-tracked
+# .claude/settings.json is never modified; run it on PRs that touch either hook or the test.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "plugins/workspace-setup/hooks/scripts/setup-workspace.sh"
+      - "plugins/workspace-sandbox/hooks/scripts/setup-workspace-sandbox.sh"
+      - "plugins/workspace-setup/settings/**"
+      - "plugins/workspace-sandbox/settings/**"
+      - ".claude/scripts/setup-settings-test.sh"
+      - ".github/workflows/test-setup-settings.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup-settings:
+    name: setup-settings-test.sh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: workspace-setup hook
+        run: bash .claude/scripts/setup-settings-test.sh plugins/workspace-setup plugins/workspace-setup/hooks/scripts/setup-workspace.sh
+      - name: workspace-sandbox hook
+        run: bash .claude/scripts/setup-settings-test.sh plugins/workspace-sandbox plugins/workspace-sandbox/hooks/scripts/setup-workspace-sandbox.sh
