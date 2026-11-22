@@ -13,6 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **review-tiers rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): new shared rule
+  `.claude/rules/review-tiers.md` ties review effort to what the diff can break. Tier 1 needs no AI
+  reviewer (a deterministic check for workflow pin bumps by trusted bots), tier 2 is one mid-tier reviewer
+  (every lock-file or manifest bump included), tier 3 one strongest-model reviewer with a time-boxed brief;
+  fix rounds review only the delta; merges pin the reviewed head commit.
+- **gha-dev** (1.2.8): `scripts/check-mechanical-pr.py` is the tier-1 check for workflow pin bumps (stdlib,
+  with unit tests). It passes trusted-bot PRs only, with a clean merge state, a non-empty green check list
+  and an unmoved head. The diff is read as bytes split on newlines; each removed `uses:` line must pair
+  with an added line in the same change block that differs only in SHA and tag, the tag stays in the same
+  major and does not go lower, and the SHA is the tag's commit. Renames, copies, mode changes, binary
+  files, control or separator characters, files outside the PR file list and 100 or more files fail; a
+  root `CHANGELOG.md` or a new `changelog.d/*.md|rst` fragment may ride along. Lock-file bumps are tier 2.
+- **planning** (1.1.4): `triaging-issues` gains an "Open PR inbox" section: which PRs to fold, which to
+  skip, and how to list them with `gh search prs --involves`.
 - `.github/scripts/check-skill-frontmatter.py` (stdlib, with unittest tests), run by
   `check-skill-integrity.yaml`: fails when a SKILL.md nests an enforced Claude Code frontmatter
   field under `metadata:` (at any indent, quoted or flow-style) or leaves `argument-hint` unquoted.
@@ -25,6 +39,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **unattended-execution rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): every goal, loop or stop
+  condition lists an owner pause as an exit, and the session records the pause point in the plan's
+  opening status before stopping. A paused session otherwise matches neither gate and keeps being re-driven.
 - **All 66 skills with an `argument-hint`** (26 plugins plus `.claude/skills/committing-staged-with-message`):
   `argument-hint` moves from `metadata:` to the top level and is quoted, so Claude Code shows it in
   autocomplete (it ignored the nested key, and 48 unquoted values parsed as YAML lists).

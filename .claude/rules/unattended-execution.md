@@ -76,6 +76,10 @@ use case (e.g. the UI-e2e section applies when the project ships a UI).
   the owner's OK, or dropped with a reason") and excludes owner-gated items explicitly. A condition
   that the approved path makes impossible ("is an open PR" after the owner says merge) loops the
   stop hook until the goal is cleared.
+- **Every goal, loop or stop condition lists an owner pause as an exit.** A condition such as "only
+  owner- or data-gated items remain" matches neither a pause nor a stop request, so the checker
+  keeps re-driving a paused session. Before stopping on a pause, the session records the pause
+  point in the plan's opening status.
 
 ## Quality gates (always)
 
