@@ -118,6 +118,34 @@ class ParseBumps(unittest.TestCase):
         cmp.parse_bumps("Bump foo from 1.0.0 to 1.1.0", "Bumps foo from 1.0.0 to 9.0.0", reasons)
         self.assertTrue(any("two different" in r for r in reasons))
 
+    def test_group_body_with_table_and_details_parses_both(self) -> None:
+        body = (
+            "Bumps the all group with 2 updates in the / directory: [foo](https://example.invalid/foo) and bar.\n\n"
+            "Updates `foo` from 0.7.3 to 0.8.0\n<details>\n<summary>Release notes</summary>\n"
+            "Updates `foo` from 0.1.0 to 0.2.0\n</details>\n\n"
+            "Updates `bar` from 8.3.0 to 9.0.0\n<details>\n> quoted notes\n</details>\n\n"
+            "| Package | From | To |\n| --- | --- | --- |\n"
+            "| [foo](https://example.invalid/foo) | `0.7.3` | `0.8.0` |\n"
+            "| [bar](https://example.invalid/bar) | `8.3.0` | `9.0.0` |\n"
+        )
+        reasons: list[str] = []
+        bumps = cmp.parse_bumps("Bump the all group with 2 updates", body, reasons)
+        self.assertEqual(bumps, {"foo": ("0.7.3", "0.8.0"), "bar": ("8.3.0", "9.0.0")})
+        self.assertEqual(reasons, [])
+
+    def test_group_count_mismatch_fails(self) -> None:
+        reasons: list[str] = []
+        body = (
+            "| Package | From | To |\n| --- | --- | --- |\n| foo | `1.0.0` | `1.1.0` |\n| bar | `1.0.0` | `1.0.1` |\n"
+        )
+        cmp.parse_bumps("Bump the all group with 3 updates", body, reasons)
+        self.assertTrue(any("3 updates" in r for r in reasons))
+
+    def test_updates_line_inside_details_is_ignored(self) -> None:
+        body = "Updates `foo` from 1.0.0 to 1.1.0\n<details>\nUpdates `bar` from 1.0.0 to 9.0.0\n</details>\n"
+        reasons: list[str] = []
+        self.assertEqual(cmp.parse_bumps("t", body, reasons), {"foo": ("1.0.0", "1.1.0")})
+
 
 if __name__ == "__main__":
     unittest.main()

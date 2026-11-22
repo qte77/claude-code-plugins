@@ -43,6 +43,10 @@ BUMP = re.compile(
     re.I,
 )
 
+TABLE_ROW = re.compile(
+    r"^\|\s*\[?`?([\w@./-]+?)`?\]?(?:\([^)]*\))?\s*\|\s*`?v?([\w.+-]+?)`?\s*\|\s*`?v?([\w.+-]+?)`?\s*\|\s*$", re.M
+)
+
 
 def gh(*args: str) -> str:
     out = subprocess.run(["gh", *args], capture_output=True, text=True)
@@ -133,14 +137,26 @@ def check_pins(repo: str, num: str, reasons: list[str]) -> int:
 
 
 def parse_bumps(title: str, body: str, reasons: list[str]) -> dict[str, tuple[str, str]]:
-    """Version changes from the title and the part of the body before Dependabot's details and notes."""
-    head = re.split(r"<details>|\n---|\n>", body, maxsplit=1)[0]
+    """Version changes from the title, Dependabot's package table and its `Updates x from a to b` lines.
+
+    Release notes inside <details> blocks and quoted lines are dropped first. A grouped PR ("with N updates") must
+    yield exactly N packages, so a body format this parser does not understand fails instead of passing."""
+    text = re.sub(r"(?is)<details>.*?</details>", "", body)
+    text = "\n".join(ln for ln in text.splitlines() if not ln.lstrip().startswith(">"))
     bumps: dict[str, tuple[str, str]] = {}
-    for m in BUMP.finditer(title + "\n" + head):
-        pkg, change = m.group(1), (m.group(2), m.group(3))
+    found = [(m.group(1), (m.group(2), m.group(3))) for m in BUMP.finditer(title + "\n" + text)]
+    found += [
+        (m.group(1), (m.group(2), m.group(3)))
+        for m in TABLE_ROW.finditer(text)
+        if m.group(1).lower() != "package" and not set(m.group(1)) <= set("-:")
+    ]
+    for pkg, change in found:
         if bumps.get(pkg, change) != change:
             reasons.append(f"{pkg} is named with two different version changes")
         bumps[pkg] = change
+    group = re.search(r"with (\d+) updates?", title + "\n" + text)
+    if group and int(group.group(1)) != len(bumps):
+        reasons.append(f"group says {group.group(1)} updates but {len(bumps)} were parsed")
     return bumps
 
 

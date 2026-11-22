@@ -20,9 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   review only the delta; merges pin the reviewed head commit.
 - **gha-dev** (1.2.8): `scripts/check-mechanical-pr.py` is the tier-1 check (stdlib, with unit tests). It
   requires each added `uses:` line to replace a removed line of the same action, fails on an empty check
-  list, fails if the head moves during the check, reads version changes only from the title and the head
-  of the body (flagging a package named with two different changes), and lets changelog files ride along
-  with pin changes.
+  list, fails if the head moves during the check, reads version changes from the title, Dependabot's package table and
+  `Updates` lines (not release notes; a "with N updates" group must parse N packages, and a package named
+  with two different changes is flagged), and lets changelog files ride along with pin changes.
 - **planning** (1.1.4): `triaging-issues` gains an "Open PR inbox" section: which PRs to fold, which to
   skip, and how to list them with `gh search prs --involves`.
 - `.github/scripts/check-skill-frontmatter.py` (stdlib, with unittest tests), run by
