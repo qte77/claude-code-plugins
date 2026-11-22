@@ -95,6 +95,27 @@ class PinReasons(unittest.TestCase):
         self.assertEqual(pin_problems(pin + file_diff("CHANGELOG.md", "+- bump"), tags), [])
         self.assertTrue(pin_problems(pin + file_diff("src/app.py", "+print(1)"), tags))
 
+    def test_prerelease_suffix_added_to_the_tag_fails(self) -> None:
+        diff = file_diff(
+            self.wf,
+            "-" + uses("actions/checkout", SHA_A, "v4.2.0"),
+            "+" + uses("actions/checkout", SHA_B, "v4.2.0-rc1"),
+        )
+        self.assertTrue(pin_problems(diff, {("actions/checkout", "v4.2.0-rc1"): SHA_B}))
+
+    def test_suffix_on_both_tags_still_passes(self) -> None:
+        diff = file_diff(
+            self.wf,
+            "-" + uses("actions/checkout", SHA_A, "v4.2.0-rc1"),
+            "+" + uses("actions/checkout", SHA_B, "v4.2.0-rc2"),
+        )
+        self.assertEqual(pin_problems(diff, {("actions/checkout", "v4.2.0-rc2"): SHA_B}), [])
+
+    def test_workflow_section_without_a_changed_line_fails(self) -> None:
+        other = ".github/workflows/other.yaml"
+        diff = file_diff(WF, OLD, NEW) + f"diff --git a/{other} b/{other}\n--- a/{other}\n+++ b/{other}\n"
+        self.assertTrue(any("no changed line" in r for r in pin_problems(diff, TAGS)))
+
 
 class DiffHygiene(unittest.TestCase):
     """H0 separators, H2 file operations, M1 changelog scope, M2 header-only skip."""
@@ -259,6 +280,11 @@ class Evaluate(unittest.TestCase):
     def test_shape_mismatch_fails(self) -> None:
         self.assertTrue(evaluate(pr_view(files=[{"path": "src/a.py"}]), file_diff("src/a.py", "+x"))[0])
 
+    def test_hundred_files_fail_as_possibly_truncated(self) -> None:
+        files = [{"path": f".github/workflows/w{i}.yaml"} for i in range(100)]
+        reasons, _ = evaluate(pr_view(files=files), file_diff(WF, OLD, NEW))
+        self.assertTrue(any("100 or more" in r for r in reasons))
+
 
 class BlockPairing(unittest.TestCase):
     """N2: a changed line cannot move across context lines inside one hunk."""
@@ -295,6 +321,15 @@ class BlockPairing(unittest.TestCase):
             "+" + uses("actions/cache", SHA_B, "v4.1.0"),
         )
         self.assertEqual(pin_problems(diff, tags), [])
+
+    def test_empty_context_line_splits_a_block(self) -> None:
+        diff = file_diff(WF, OLD, "", NEW)
+        self.assertTrue(pin_problems(diff, TAGS))
+
+    def test_changelog_section_without_hunk_is_ignored(self) -> None:
+        header = "diff --git a/CHANGELOG.md b/CHANGELOG.md\n--- a/CHANGELOG.md\n+++ b/CHANGELOG.md\n"
+        diff = file_diff(WF, OLD, NEW) + header
+        self.assertEqual(pin_problems(diff, TAGS), [])
 
     def test_no_newline_marker_does_not_split_a_block(self) -> None:
         diff = file_diff(WF, OLD, "\\ No newline at end of file", NEW, "\\ No newline at end of file")

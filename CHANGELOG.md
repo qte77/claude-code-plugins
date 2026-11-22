@@ -84,6 +84,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **gha-dev** 1.2.9: `check-mechanical-pr.py` now fails a bump to a prerelease or suffixed tag
+  (`# v4.2.0` to `# v4.2.0-rc1`) and a read workflow section with no changed line, names the
+  rejected file accurately, and has regression tests for the hunkless-section, empty-context-line
+  and 100-file cases; the README says lock-file and manifest bumps are not checked.
 - **memory-hygiene** 0.1.2: `memory-hygiene.sh done <dir>` and `paths <dir>` treated a memory
   directory (`<config>/projects/<key>/memory`, for example the path named in the SessionStart
   context) as a project directory, so a finished pass was recorded under a wrong key and the
