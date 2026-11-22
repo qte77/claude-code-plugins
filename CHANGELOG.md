@@ -104,6 +104,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+- **workspace-setup** 1.9.2, **workspace-sandbox** 1.7.2: the SessionStart hook no longer edits a
+  git-tracked `.claude/settings.json`. Merging the plugin's `permissions.allow` into a tracked file
+  dirtied the repo on every session and could get personal pre-approvals committed to public repos.
+  A tracked file is left alone and nothing else is written; the hook prints one warning line. The
+  check fails closed: the path is resolved first (a symlinked `.claude` or `settings.json` is checked
+  at its target), and only "no repository above it" or git's clean "not tracked" answer allows a
+  write. Any other git problem (git missing, dubious ownership, corrupt index) counts as tracked, so
+  the file is neither merged nor recreated. So does an exported `GIT_DIR`, `GIT_WORK_TREE` or
+  `GIT_INDEX_FILE` (it can point git at another repository), and so does a missing GNU `realpath -m`
+  (GNU coreutils, not on stock macOS): in those cases the whole settings step is skipped, even for an
+  untracked or absent file. Otherwise untracked, missing, or outside-git behaviour is unchanged.
+  Cleanup for checkouts touched by the old hook: `git restore .claude/settings.json` (this also
+  discards your own uncommitted edits to that file). New regression
+  test `.claude/scripts/setup-settings-test.sh` (25 cases per hook, git config isolated), run by
+  `test-setup-settings.yaml`.
 - **`statusline.sh`** (workspace-setup 1.8.0, workspace-sandbox 1.6.0): `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE`
   and `remaining_percentage` were interpolated into `awk` program text, so a value such as
   `0;system("id>file")` ran as code. Values now reach `awk` only as `-v` data after a numeric check.

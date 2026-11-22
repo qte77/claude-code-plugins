@@ -5,6 +5,7 @@ set -euo pipefail
 
 PLUGIN_DIR="$CLAUDE_PLUGIN_ROOT"
 DEPLOYED=()
+WARNINGS=()
 
 # 1. Rules → .claude/rules/
 mkdir -p .claude/rules
@@ -27,7 +28,44 @@ fi
 # 3. Base settings → .claude/settings.json (copy-if-not-exists; merge permissions.allow if present)
 SETTINGS_TARGET=".claude/settings.json"
 SETTINGS_SOURCE="$PLUGIN_DIR/settings/settings-base.json"
-if [ ! -f "$SETTINGS_TARGET" ]; then
+# Reason: a git-tracked settings.json is shared project config. Merging personal pre-approvals
+# into it dirties the repo every session and can get them committed, so a tracked file is left
+# alone and nothing else is written for it. The check fails closed: only "no repository above the
+# file" or a clean "not tracked" answer from git allows a write; any other git problem (missing
+# git, dubious ownership, corrupt index, path outside the work tree) counts as tracked.
+# The path is resolved first, so a symlinked .claude or settings.json is checked at its target.
+settings_tracked_or_unknown() {
+  local real dir
+  # Reason: these variables can point git at another repository, index or work tree, so its answer
+  # about this file cannot be trusted; treat as tracked and skip
+  [ -z "${GIT_DIR:-}${GIT_WORK_TREE:-}${GIT_INDEX_FILE:-}" ] || return 0
+  real=$(realpath -m -- "$1" 2>/dev/null) || return 0
+  dir=$(dirname "$real")
+  # No .git (dir or file) at or above the target: not a repository, so not tracked
+  local up="$dir"
+  while [ ! -e "$up/.git" ]; do
+    [ "$up" = "/" ] && return 1
+    up=$(dirname "$up")
+  done
+  command -v git >/dev/null 2>&1 || return 0
+  [ -d "$dir" ] || return 0
+  local err rc=0
+  err=$(LC_ALL=C git -C "$dir" ls-files --error-unmatch -- "$(basename "$real")" 2>&1 >/dev/null) || rc=$?
+  [ "$rc" -eq 0 ] && return 0
+  # 1 plus git's "did not match" message is the one clean "not tracked" answer
+  if [ "$rc" -eq 1 ] && [[ "$err" == *"did not match any file(s) known to git"* ]]; then
+    return 1
+  fi
+  return 0
+}
+SKIP_SETTINGS=false
+if settings_tracked_or_unknown "$SETTINGS_TARGET"; then
+  SKIP_SETTINGS=true
+  WARNINGS+=("settings: $SETTINGS_TARGET is git-tracked (or its tracking state could not be read); left unchanged, base permissions not merged")
+fi
+if [ "$SKIP_SETTINGS" = true ]; then
+  :
+elif [ ! -f "$SETTINGS_TARGET" ]; then
   cp "$SETTINGS_SOURCE" "$SETTINGS_TARGET"
   DEPLOYED+=("settings: settings.json (base)")
 elif command -v jq >/dev/null 2>&1; then
@@ -53,7 +91,6 @@ done
 
 # 5. Drift check: ~/.claude should be a symlink to persisted storage (rebuild
 # survival). This hook can't fix it — see scripts/link-claude-home.sh for why.
-WARNINGS=()
 if [ ! -L "$HOME/.claude" ]; then
   WARNINGS+=("~/.claude is not a symlink to persisted storage — memory, sessions, credentials, and settings will not survive a container rebuild. Run scripts/link-claude-home.sh from your devcontainer's onCreateCommand (this hook runs too late to fix it itself).")
 fi
