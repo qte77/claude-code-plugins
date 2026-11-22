@@ -19,10 +19,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   one mid-tier reviewer, tier 3 one strongest-model reviewer with a time-boxed brief; fix rounds
   review only the delta; merges pin the reviewed head commit.
 - **gha-dev** (1.2.8): `scripts/check-mechanical-pr.py` is the tier-1 check (stdlib, with unit tests). It
-  requires each added `uses:` line to replace a removed line of the same action, fails on an empty check
-  list, fails if the head moves during the check, reads version changes from the title, Dependabot's package table and
-  `Updates` lines (not release notes; a "with N updates" group must parse N packages, and a package named
-  with two different changes is flagged), and lets changelog files ride along with pin changes.
+  accepts trusted-bot PRs only, requires a clean merge state and a non-empty green check list, fails if the
+  head moves during the check, and reads the diff as bytes split on newlines. Pins: each added `uses:` line
+  must equal its removed partner except SHA and tag, the tag stays in the same major and does not go lower.
+  Bumps: signed Dependabot commits only, version changes from the title, package table and `Updates` lines
+  (a "with N updates" group must parse N packages), manifest lines version-only. Renames, copies, mode
+  changes, binary files, control or separator characters and files outside the shape fail; a root
+  `CHANGELOG.md` or a new `changelog.d/*.md|rst` fragment may ride along. `review-tiers.md` restricts tier 1
+  to trusted-bot PRs.
 - **planning** (1.1.4): `triaging-issues` gains an "Open PR inbox" section: which PRs to fold, which to
   skip, and how to list them with `gh search prs --involves`.
 - `.github/scripts/check-skill-frontmatter.py` (stdlib, with unittest tests), run by
