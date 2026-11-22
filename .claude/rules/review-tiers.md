@@ -4,15 +4,12 @@ Match review effort to what a PR can break. Classify by the diff, not the title.
 
 ## Tiers
 
-- **Tier 1, no AI reviewer:** only for PRs from trusted bots (Dependabot, github-actions), never
-  fork or outside-author PRs. A deterministic check passes the PR, the merge state is clean and all
-  checks are green.
-  - Only pinned `uses:` lines change: each SHA equals the tag's commit, the tag stays in the same
-    major version and does not go lower, and permissions are unchanged.
-  - Or a Dependabot lock-file or manifest bump stays within the same major version (same minor for
-    0.x), with every commit signed by Dependabot and manifest lines changing only versions.
+- **Tier 1, no AI reviewer:** only workflow pin bumps (`uses:` lines) by trusted bots (Dependabot,
+  github-actions), never fork or outside-author PRs. A deterministic check passes the PR: each SHA
+  equals the tag's commit, the tag stays in the same major version and does not go lower, permissions
+  are unchanged, the merge state is clean and all checks are green.
 - **Tier 2:** one fresh reviewer on a mid-tier model, for major-version bumps (read the release
-  notes), lock-file changes not made by Dependabot, docs and ordinary code.
+  notes), every lock-file or manifest bump, docs and ordinary code.
 - **Tier 3:** one fresh reviewer on the strongest model, with a time-boxed brief, for hooks,
   permissions, rulesets, workflow triggers or injection, tokens and secrets.
 

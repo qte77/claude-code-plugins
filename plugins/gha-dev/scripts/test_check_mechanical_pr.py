@@ -28,19 +28,6 @@ class SameMajor(unittest.TestCase):
         self.assertFalse(cmp.same_major("main", "1.0.0"))
 
 
-class BumpRegex(unittest.TestCase):
-    def test_dependabot_title(self) -> None:
-        m = cmp.BUMP.search("Bump requests from 2.31.0 to 2.32.3")
-        self.assertIsNotNone(m)
-        self.assertEqual(m.groups(), ("requests", "2.31.0", "2.32.3"))
-
-    def test_linked_body_form(self) -> None:
-        text = "Bumps [ruff](https://example.invalid/ruff) from 0.4.1 to 0.4.9.\n"
-        m = cmp.BUMP.search(text)
-        self.assertIsNotNone(m)
-        self.assertEqual(m.groups(), ("ruff", "0.4.1", "0.4.9"))
-
-
 class Classifiers(unittest.TestCase):
     def test_pinned_uses_line(self) -> None:
         line = "      - uses: actions/checkout@" + "a" * 40 + " # v4.1.0"
@@ -107,52 +94,6 @@ class PinReasons(unittest.TestCase):
         self.assertEqual(pin_problems(pin + file_diff("changelog.d/x.md", "+Bump checkout"), tags), [])
         self.assertEqual(pin_problems(pin + file_diff("CHANGELOG.md", "+- bump"), tags), [])
         self.assertTrue(pin_problems(pin + file_diff("src/app.py", "+print(1)"), tags))
-
-
-class ParseBumps(unittest.TestCase):
-    def test_reads_title_and_head_of_body(self) -> None:
-        reasons: list[str] = []
-        bumps = cmp.parse_bumps("Bump requests from 2.31.0 to 2.32.3", "", reasons)
-        self.assertEqual(bumps, {"requests": ("2.31.0", "2.32.3")})
-        self.assertEqual(reasons, [])
-
-    def test_ignores_lines_inside_details(self) -> None:
-        body = "Bumps foo from 1.0.0 to 1.1.0.\n<details>\nBumps bar from 1.0.0 to 9.0.0\n</details>"
-        reasons: list[str] = []
-        self.assertEqual(cmp.parse_bumps("t", body, reasons), {"foo": ("1.0.0", "1.1.0")})
-
-    def test_package_with_two_different_changes_is_flagged(self) -> None:
-        reasons: list[str] = []
-        cmp.parse_bumps("Bump foo from 1.0.0 to 1.1.0", "Bumps foo from 1.0.0 to 9.0.0", reasons)
-        self.assertTrue(any("two different" in r for r in reasons))
-
-    def test_group_body_with_table_and_details_parses_both(self) -> None:
-        body = (
-            "Bumps the all group with 2 updates in the / directory: [foo](https://example.invalid/foo) and bar.\n\n"
-            "Updates `foo` from 0.7.3 to 0.8.0\n<details>\n<summary>Release notes</summary>\n"
-            "Updates `foo` from 0.1.0 to 0.2.0\n</details>\n\n"
-            "Updates `bar` from 8.3.0 to 9.0.0\n<details>\n> quoted notes\n</details>\n\n"
-            "| Package | From | To |\n| --- | --- | --- |\n"
-            "| [foo](https://example.invalid/foo) | `0.7.3` | `0.8.0` |\n"
-            "| [bar](https://example.invalid/bar) | `8.3.0` | `9.0.0` |\n"
-        )
-        reasons: list[str] = []
-        bumps = cmp.parse_bumps("Bump the all group with 2 updates", body, reasons)
-        self.assertEqual(bumps, {"foo": ("0.7.3", "0.8.0"), "bar": ("8.3.0", "9.0.0")})
-        self.assertEqual(reasons, [])
-
-    def test_group_count_mismatch_fails(self) -> None:
-        reasons: list[str] = []
-        body = (
-            "| Package | From | To |\n| --- | --- | --- |\n| foo | `1.0.0` | `1.1.0` |\n| bar | `1.0.0` | `1.0.1` |\n"
-        )
-        cmp.parse_bumps("Bump the all group with 3 updates", body, reasons)
-        self.assertTrue(any("3 updates" in r for r in reasons))
-
-    def test_updates_line_inside_details_is_ignored(self) -> None:
-        body = "Updates `foo` from 1.0.0 to 1.1.0\n<details>\nUpdates `bar` from 1.0.0 to 9.0.0\n</details>\n"
-        reasons: list[str] = []
-        self.assertEqual(cmp.parse_bumps("t", body, reasons), {"foo": ("1.0.0", "1.1.0")})
 
 
 class DiffHygiene(unittest.TestCase):
@@ -252,7 +193,7 @@ class PinPairing(unittest.TestCase):
                 self.assertTrue(pin_problems(file_diff(WF, OLD, new), TAGS))
 
 
-class StatusAndShape(unittest.TestCase):
+class Status(unittest.TestCase):
     """M3 merge state, L3 logins, H3 commits and manifests, shape choice."""
 
     def test_status_requires_rollup_clean_and_green(self) -> None:
@@ -271,50 +212,16 @@ class StatusAndShape(unittest.TestCase):
         cmp.status_reasons(ok, "CLEAN", reasons)
         self.assertEqual(reasons, [])
 
-    def test_choose_shape(self) -> None:
-        self.assertEqual(cmp.choose_shape([WF, "CHANGELOG.md"]), "pins")
-        self.assertEqual(cmp.choose_shape(["uv.lock", "pyproject.toml"]), "bump")
-        self.assertIsNone(cmp.choose_shape(["CHANGELOG.md"]))
-        self.assertIsNone(cmp.choose_shape([WF, "uv.lock"]))
-        self.assertIsNone(cmp.choose_shape([WF, "src/a.py"]))
-        self.assertIsNone(cmp.choose_shape([]))
+    def test_pin_files_ok(self) -> None:
+        self.assertTrue(cmp.pin_files_ok([WF, "CHANGELOG.md"]))
+        for paths in ([], ["CHANGELOG.md"], ["uv.lock"], [WF, "uv.lock"], [WF, "src/a.py"]):
+            self.assertFalse(cmp.pin_files_ok(paths), paths)
 
     def test_only_trusted_bot_logins(self) -> None:
         self.assertTrue(cmp.is_trusted_author("dependabot[bot]"))
         self.assertTrue(cmp.is_trusted_author("app/dependabot"))
         self.assertFalse(cmp.is_trusted_author("dependabot"))
         self.assertFalse(cmp.is_trusted_author("someone"))
-
-    def test_commits_must_be_dependabot_and_verified(self) -> None:
-        good = {"author": {"login": "dependabot[bot]"}, "commit": {"verification": {"verified": True}}}
-        cases = [
-            ([], False),
-            ([good], True),
-            ([good, {**good, "author": {"login": "someone"}}], False),
-            ([good, {**good, "author": None}], False),
-            ([good, {"author": good["author"], "commit": {"verification": {"verified": False}}}], False),
-        ]
-        for commits, ok in cases:
-            reasons: list[str] = []
-            cmp.commit_reasons(commits, reasons)
-            self.assertEqual(not reasons, ok, commits)
-
-    def test_manifest_changes_must_be_version_only_for_named_packages(self) -> None:
-        bumps = {"foo": ("1.2.0", "1.3.0")}
-        lock = file_diff("uv.lock", "-version = 1", "+version = 2")
-        good = file_diff("package.json", '-    "foo": "^1.2.0",', '+    "foo": "^1.3.0",')
-        other_pkg = file_diff("package.json", '-    "bar": "^1.2.0",', '+    "bar": "^1.3.0",')
-        extra = file_diff("package.json", '-    "foo": "^1.2.0",', '+    "foo": "^1.3.0", "x": "http://evil"')
-        script = file_diff("package.json", '+    "postinstall": "curl evil"')
-        for diff, ok in [(lock, True), (good, True), (other_pkg, False), (extra, False), (script, False)]:
-            reasons: list[str] = []
-            cmp.manifest_reasons(diff, bumps, reasons)
-            self.assertEqual(not reasons, ok, diff)
-
-    def test_non_lock_file_in_bump_diff_fails(self) -> None:
-        reasons: list[str] = []
-        cmp.manifest_reasons(file_diff("src/a.py", "+x"), {"foo": ("1.0.0", "1.1.0")}, reasons)
-        self.assertTrue(reasons)
 
 
 def pr_view(**over: object) -> dict:
@@ -331,14 +238,13 @@ def pr_view(**over: object) -> dict:
     return view
 
 
-def evaluate(view: dict, diff: str, commits: list | None = None) -> tuple[list[str], str]:
-    reasons, shape, _ = cmp.evaluate(view, lambda: diff.encode(), lambda: commits or [], lambda a, t: TAGS.get((a, t)))
-    return reasons, shape
+def evaluate(view: dict, diff: str) -> tuple[list[str], int]:
+    return cmp.evaluate(view, lambda: diff.encode(), lambda a, t: TAGS.get((a, t)))
 
 
 class Evaluate(unittest.TestCase):
     def test_pin_pr_by_trusted_bot_passes(self) -> None:
-        self.assertEqual(evaluate(pr_view(), file_diff(WF, OLD, NEW)), ([], "pins"))
+        self.assertEqual(evaluate(pr_view(), file_diff(WF, OLD, NEW)), ([], 1))
 
     def test_pin_pr_by_outside_author_fails(self) -> None:
         self.assertTrue(evaluate(pr_view(author={"login": "stranger"}), file_diff(WF, OLD, NEW))[0])
@@ -347,25 +253,80 @@ class Evaluate(unittest.TestCase):
         self.assertTrue(evaluate(pr_view(mergeStateStatus="BEHIND"), file_diff(WF, OLD, NEW))[0])
 
     def test_invalid_utf8_diff_fails(self) -> None:
-        reasons, _, _ = cmp.evaluate(pr_view(), lambda: b"\xff\xfe", lambda: [], lambda a, t: None)
+        reasons, _ = cmp.evaluate(pr_view(), lambda: b"\xff\xfe", lambda a, t: None)
         self.assertTrue(reasons)
-
-    def test_bump_pr_passes_only_with_signed_dependabot_commits(self) -> None:
-        view = pr_view(files=[{"path": "uv.lock"}], title="Bump foo from 1.0.0 to 1.1.0")
-        diff = file_diff("uv.lock", "-a", "+b")
-        good = [{"author": {"login": "dependabot[bot]"}, "commit": {"verification": {"verified": True}}}]
-        self.assertEqual(evaluate(view, diff, good), ([], "bump"))
-        self.assertTrue(evaluate(view, diff, [])[0])
-        self.assertTrue(
-            evaluate(
-                pr_view(files=[{"path": "uv.lock"}], author={"login": "app/github-actions"}, title=view["title"]),
-                diff,
-                good,
-            )[0]
-        )
 
     def test_shape_mismatch_fails(self) -> None:
         self.assertTrue(evaluate(pr_view(files=[{"path": "src/a.py"}]), file_diff("src/a.py", "+x"))[0])
+
+
+class BlockPairing(unittest.TestCase):
+    """N2: a changed line cannot move across context lines inside one hunk."""
+
+    def test_uses_line_moved_below_its_with_block_fails(self) -> None:
+        tags = {("third/upload", "v1.1.0"): SHA_B}
+        diff = file_diff(
+            WF,
+            "-" + uses("third/upload", SHA_A, "v1.0.0"),
+            "         with:",
+            "           path: x",
+            "+" + uses("third/upload", SHA_B, "v1.1.0"),
+        )
+        self.assertTrue(pin_problems(diff, tags))
+
+    def test_step_reordered_after_a_run_step_fails(self) -> None:
+        tags = {("step-security/harden-runner", "v1.1.0"): SHA_B}
+        diff = file_diff(
+            WF,
+            "-" + uses("step-security/harden-runner", SHA_A, "v1.0.0"),
+            "       - run: make build",
+            "+" + uses("step-security/harden-runner", SHA_B, "v1.1.0"),
+        )
+        self.assertTrue(pin_problems(diff, tags))
+
+    def test_two_separate_adjacent_blocks_pass(self) -> None:
+        tags = {("actions/checkout", "v4.1.0"): SHA_B, ("actions/cache", "v4.1.0"): SHA_B}
+        diff = file_diff(
+            WF,
+            OLD,
+            NEW,
+            "       - run: make build",
+            "-" + uses("actions/cache", SHA_A, "v4.0.0"),
+            "+" + uses("actions/cache", SHA_B, "v4.1.0"),
+        )
+        self.assertEqual(pin_problems(diff, tags), [])
+
+    def test_no_newline_marker_does_not_split_a_block(self) -> None:
+        diff = file_diff(WF, OLD, "\\ No newline at end of file", NEW, "\\ No newline at end of file")
+        self.assertEqual(pin_problems(diff, TAGS), [])
+
+
+class FileSetAndHead(unittest.TestCase):
+    def test_new_changelog_fragment_must_be_a_regular_file(self) -> None:
+        frag = "diff --git a/changelog.d/n.md b/changelog.d/n.md\nnew file mode 120000\n@@ -0,0 +1 @@\n+x\n"
+        self.assertTrue(pin_problems(file_diff(WF, OLD, NEW) + frag, TAGS))
+
+    def test_diff_files_must_equal_the_pr_file_list(self) -> None:
+        frag = "diff --git a/CHANGELOG.md b/CHANGELOG.md\n@@ -1 +1 @@\n+x\n"
+        for files, ok in [({WF}, True), ({WF, "CHANGELOG.md"}, False), ({WF}, True)]:
+            reasons: list[str] = []
+            cmp.pin_reasons(file_diff(WF, OLD, NEW), lambda a, t: TAGS.get((a, t)), reasons, files)
+            self.assertEqual(not reasons, ok, files)
+        reasons = []
+        cmp.pin_reasons(file_diff(WF, OLD, NEW) + frag, lambda a, t: TAGS.get((a, t)), reasons, {WF})
+        self.assertTrue(reasons)
+
+    def test_head_moved(self) -> None:
+        reasons: list[str] = []
+        cmp.head_reasons(SHA_A, SHA_A, reasons)
+        self.assertEqual(reasons, [])
+        cmp.head_reasons(SHA_A, SHA_B, reasons)
+        self.assertTrue(reasons)
+
+    def test_lock_file_prs_are_not_tier_one(self) -> None:
+        view = pr_view(files=[{"path": "uv.lock"}], title="Bump foo from 1.0.0 to 1.1.0")
+        reasons, _ = evaluate(view, file_diff("uv.lock", "-a", "+b"))
+        self.assertTrue(any("not workflow pins" in r for r in reasons))
 
 
 if __name__ == "__main__":

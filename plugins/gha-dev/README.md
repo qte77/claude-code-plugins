@@ -18,21 +18,24 @@ Skills for creating and publishing GitHub Actions to the Marketplace.
 ## Scripts
 
 `scripts/check-mechanical-pr.py OWNER/REPO NUMBER` is the tier-1 check from the shared
-`review-tiers` rule. It prints PASS only when the author is a trusted bot (Dependabot or
-github-actions), the merge state is clean, the check list is non-empty and all green, and the head
-did not move while it ran, for one of two shapes:
+`review-tiers` rule, for workflow pin bumps only. It prints PASS when all of these hold:
 
-- **Pins**: workflow files only (changelog entries may ride along). Each removed `uses:` line pairs
-  with an added line that differs only in SHA and tag comment; the tag moves up within the same
-  major (same minor for 0.x) and the SHA is that tag's commit; no `permissions:` change.
-- **Bumps** (Dependabot only): lock files and manifests only; every commit by Dependabot with a
-  verified signature; version changes from the title, package table and `Updates` lines stay within
-  the same major, a group's "N updates" matches the packages parsed; a manifest line may only swap
-  the version of a bumped package. Lock files are not read line by line.
+- The author is a trusted bot (Dependabot or github-actions).
+- Only workflow files change (the root `CHANGELOG.md` and new or edited `changelog.d/*.md|rst`
+  fragments may ride along, unread; a new fragment must be a regular file). The files in the diff equal
+  the PR's file list, which must be under 100 files.
+- In every change block, each removed `uses:` line pairs with an added line that differs only in SHA
+  and tag comment (same indentation, action and path). The tag moves up within the same major version
+  (same minor for 0.x), the SHA is that tag's commit, and no `permissions:` line changes.
+- No rename, copy, mode change, binary, added or deleted file (a new changelog fragment excepted), no
+  control or Unicode separator character in a changed line, and the diff is valid UTF-8.
+- The merge state is clean, the check list is non-empty and all green, and the head did not move while
+  it ran.
 
-It rejects renames, copies, mode changes, binary or added or deleted files (a new changelog fragment
-excepted), control or Unicode separator characters in changed lines, and invalid UTF-8. Anything
-else prints FAIL with reasons and needs a reviewer. It needs `gh`; stdlib only.
+Residuals by design: a pin with the same tag and a new SHA passes (it looks like a moved tag; the check
+proves the SHA matches the tag today, not that the tag is trustworthy), and without required checks on
+the base branch a slow workflow may not have registered its check yet. Lock-file bumps are not checked;
+they are tier 2. Anything else prints FAIL with reasons. It needs `gh`; stdlib only.
 
 ## Settings
 
