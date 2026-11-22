@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `0;system("...")` could run before), and fields split only on tabs with control characters
   scrubbed (a space in the directory name shifted every later field). The world clock is unchanged.
   New regression test `.claude/scripts/statusline-test.sh`, run by `test-statusline.yaml`.
+- **`deploy-mkdocs-ghpages.yaml`**: `pages: write` and `id-token: write` move from the workflow level
+  to the `deploy` job, the only job that uses them (CodeFactor flagged them as overly broad).
 - **Settings templates** (`settings-base.json`, `settings-sandbox.json`) and this repo's
   `.claude/settings.json`: `env` adds `BASH_MAX_OUTPUT_LENGTH` `15000` and
   `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` `50` next to the existing keys. The setup hooks still copy
