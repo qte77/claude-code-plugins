@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **review-tiers rule** (workspace-setup 1.9.2, workspace-sandbox 1.7.2): new shared rule
+- **review-tiers rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): new shared rule
   `.claude/rules/review-tiers.md` ties review effort to what the diff can break. Tier 1 needs no AI
   reviewer (deterministic check for pinned `uses:` lines and same-major Dependabot bumps), tier 2 is
   one mid-tier reviewer, tier 3 one strongest-model reviewer with a time-boxed brief; fix rounds
@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **unattended-execution rule** (workspace-setup 1.9.2, workspace-sandbox 1.7.2): every goal, loop or stop
+- **unattended-execution rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): every goal, loop or stop
   condition lists an owner pause as an exit, and the session records the pause point in the plan's
   opening status before stopping. A paused session otherwise matches neither gate and keeps being re-driven.
 - **All 66 skills with an `argument-hint`** (26 plugins plus `.claude/skills/committing-staged-with-message`):
