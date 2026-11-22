@@ -25,7 +25,13 @@ SKILL="/memory-hygiene:consolidating-memory"
 # The auto-memory dir is derived from the git repository (worktrees share it), or the
 # directory itself outside git; `autoMemoryDirectory` in user settings overrides it.
 memory_dir() {
-  local dir="$1" custom common root
+  local dir="$1" custom common root real
+  # Already a memory dir (e.g. the path the SessionStart context names): use its resolved
+  # path, so a relative or symlinked argument still yields the project's key.
+  if real=$(resolved_memory_dir "$dir"); then
+    printf '%s\n' "$real"
+    return
+  fi
   custom=$(jq -r '.autoMemoryDirectory // empty' "$CONFIG_DIR/settings.json" 2>/dev/null)
   if [ -n "$custom" ]; then
     printf '%s\n' "${custom/#\~/$HOME}"
@@ -34,6 +40,16 @@ memory_dir() {
   common=$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
   if [ -n "$common" ]; then root=$(dirname "$common"); else root="$dir"; fi
   printf '%s/projects/%s/memory\n' "$CONFIG_DIR" "$(printf '%s' "$root" | sed 's/[^A-Za-z0-9]/-/g')"
+}
+
+# Print DIR resolved when it is <config>/projects/<key>/memory (compared on resolved
+# paths: the config dir is often reached through a symlink); fail otherwise.
+resolved_memory_dir() {
+  local real config
+  real=$(cd "$1" 2>/dev/null && pwd -P) || return 1
+  config=$(cd "$CONFIG_DIR" 2>/dev/null && pwd -P) || return 1
+  [ "$(basename "$real")" = memory ] && [ "$(dirname "$(dirname "$real")")" = "$config/projects" ] || return 1
+  printf '%s\n' "$real"
 }
 
 state_key() { basename "$(dirname "$1")" | tr -cd 'A-Za-z0-9_-'; }
