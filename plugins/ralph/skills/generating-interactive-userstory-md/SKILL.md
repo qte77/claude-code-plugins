@@ -2,9 +2,9 @@
 name: generating-interactive-userstory-md
 description: Build UserStory.md interactively via Q&A. Use when the user wants to create a user story document or start the assisted workflow.
 compatibility: Designed for Claude Code
+disable-model-invocation: true
 metadata:
   intended-tools: AskUserQuestion, Read, Write, WebFetch, WebSearch
-  disable-model-invocation: true
   stability: stable
   content-hash: sha256:e36675831972045ce779f241dc6efedcbc399ee3c0238bd531291c5b2647f704
 ---

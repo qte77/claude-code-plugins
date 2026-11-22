@@ -29,6 +29,10 @@ class CheckSkillFrontmatter(unittest.TestCase):
         out = problems("name: x\nmetadata:\n  allowed-tools: Read, Grep\n")
         self.assertIn("metadata.allowed-tools", out[0])
 
+    def test_nested_disable_model_invocation_is_reported(self):
+        out = problems("name: x\nmetadata:\n  disable-model-invocation: true\n")
+        self.assertIn("metadata.disable-model-invocation", out[0])
+
     def test_unquoted_top_level_argument_hint_is_reported(self):
         # Reason: YAML reads an unquoted [a] as a list, not the string the docs expect
         out = problems("name: x\nargument-hint: [a]\n")

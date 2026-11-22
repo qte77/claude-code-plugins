@@ -2,8 +2,8 @@
 name: generating-prd-md-from-userstory-md
 description: Converts UserStory.md into a structured PRD.md document. Use after generating UserStory.md and before initializing the Ralph loop.
 compatibility: Designed for Claude Code
+disable-model-invocation: true
 metadata:
-  disable-model-invocation: true
   intended-tools: Read, Write
   stability: stable
   content-hash: sha256:ec9fcb1f7c496c6ea8dfd10499729bfbc4ff258fe367bf36a69ac287d7dc58a6
