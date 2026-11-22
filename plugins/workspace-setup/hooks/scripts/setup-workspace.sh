@@ -28,54 +28,51 @@ fi
 # 3. Base settings → .claude/settings.json (copy-if-not-exists; merge permissions.allow if present)
 SETTINGS_TARGET=".claude/settings.json"
 SETTINGS_SOURCE="$PLUGIN_DIR/settings/settings-base.json"
-tracked() { git ls-files --error-unmatch "$1" >/dev/null 2>&1; }
-if [ ! -f "$SETTINGS_TARGET" ]; then
-  if tracked "$SETTINGS_TARGET"; then
-    WARNINGS+=("settings: $SETTINGS_TARGET is tracked but deleted in the working tree; not recreated")
-  else
-    cp "$SETTINGS_SOURCE" "$SETTINGS_TARGET"
-    DEPLOYED+=("settings: settings.json (base)")
+# Reason: a git-tracked settings.json is shared project config. Merging personal pre-approvals
+# into it dirties the repo every session and can get them committed, so a tracked file is left
+# alone and nothing else is written for it. The check fails closed: only "no repository above the
+# file" or a clean "not tracked" answer from git allows a write; any other git problem (missing
+# git, dubious ownership, corrupt index, path outside the work tree) counts as tracked.
+# The path is resolved first, so a symlinked .claude or settings.json is checked at its target.
+settings_tracked_or_unknown() {
+  local real dir
+  real=$(realpath -m -- "$1" 2>/dev/null) || return 0
+  dir=$(dirname "$real")
+  # No .git (dir or file) at or above the target: not a repository, so not tracked
+  local up="$dir"
+  while [ ! -e "$up/.git" ]; do
+    [ "$up" = "/" ] && return 1
+    up=$(dirname "$up")
+  done
+  command -v git >/dev/null 2>&1 || return 0
+  [ -d "$dir" ] || return 0
+  local err rc=0
+  err=$(LC_ALL=C git -C "$dir" ls-files --error-unmatch -- "$(basename "$real")" 2>&1 >/dev/null) || rc=$?
+  [ "$rc" -eq 0 ] && return 0
+  # 1 plus git's "did not match" message is the one clean "not tracked" answer
+  if [ "$rc" -eq 1 ] && [[ "$err" == *"did not match any file(s) known to git"* ]]; then
+    return 1
   fi
+  return 0
+}
+SKIP_SETTINGS=false
+if settings_tracked_or_unknown "$SETTINGS_TARGET"; then
+  SKIP_SETTINGS=true
+  WARNINGS+=("settings: $SETTINGS_TARGET is git-tracked (or its tracking state could not be read); left unchanged, base permissions not merged")
+fi
+if [ "$SKIP_SETTINGS" = true ]; then
+  :
+elif [ ! -f "$SETTINGS_TARGET" ]; then
+  cp "$SETTINGS_SOURCE" "$SETTINGS_TARGET"
+  DEPLOYED+=("settings: settings.json (base)")
 elif command -v jq >/dev/null 2>&1; then
-  # Merge permissions.allow instead of skipping, since a copy-if-not-exists never reaches a
-  # workspace that already has the file.
-  # Reason: a git-tracked settings.json is shared project config. Writing personal
-  # pre-approvals into it dirties the repo and can get them committed, so they go to the
-  # untracked settings.local.json; if that file is tracked too, nothing is written.
-  MERGE_TARGET="$SETTINGS_TARGET"
-  if tracked "$SETTINGS_TARGET"; then
-    MERGE_TARGET=".claude/settings.local.json"
-    if tracked "$MERGE_TARGET"; then
-      MERGE_TARGET=""
-      WARNINGS+=("settings: permissions merge skipped (settings.json and settings.local.json are git-tracked)")
-    fi
-  fi
-  CURRENT='{}'
-  if [ -n "$MERGE_TARGET" ] && [ -f "$MERGE_TARGET" ]; then
-    if ! CURRENT=$(jq -c 'if type == "object" then . else error("not an object") end' "$MERGE_TARGET" 2>/dev/null); then
-      WARNINGS+=("settings: $MERGE_TARGET is not a JSON object; permissions merge skipped")
-      MERGE_TARGET=""
-    fi
-  fi
-  if [ -n "$MERGE_TARGET" ]; then
-    NEW_ALLOW=$(jq '.permissions.allow // []' "$SETTINGS_SOURCE")
-    # Append only missing entries, so the user's own order is kept and nothing is rewritten
-    MERGED=$(jq -c --argjson new "$NEW_ALLOW" '(.permissions.allow // []) as $have | .permissions.allow = ($have + [$new[] | select(. as $x | $have | index([$x]) | not)])' <<<"$CURRENT")
-    if [ "$MERGED" != "$CURRENT" ]; then
-      echo "$MERGED" | jq '.' > "$MERGE_TARGET"
-      DEPLOYED+=("settings: $(basename "$MERGE_TARGET") (base permissions merged)")
-    fi
-    # Keep the local file out of commits with a local-only ignore; the same pattern Claude
-    # Code adds to the global excludes file. Never fatal.
-    if [ "$MERGE_TARGET" != "$SETTINGS_TARGET" ] && [ -f "$MERGE_TARGET" ] \
-      && ! git check-ignore -q "$MERGE_TARGET" 2>/dev/null; then
-      if ! { EXCLUDE=$(git rev-parse --git-path info/exclude 2>/dev/null) \
-        && mkdir -p "$(dirname "$EXCLUDE")" 2>/dev/null \
-        && { [ ! -s "$EXCLUDE" ] || [ -z "$(tail -c1 "$EXCLUDE")" ] || echo; } >> "$EXCLUDE" 2>/dev/null \
-        && echo '**/.claude/settings.local.json' >> "$EXCLUDE" 2>/dev/null; }; then
-        WARNINGS+=("settings: $MERGE_TARGET is not git-ignored (could not write .git/info/exclude); do not commit it")
-      fi
-    fi
+  # Merge permissions.allow into an existing file instead of skipping it — a
+  # copy-if-not-exists never reaches a workspace that already has the file.
+  NEW_ALLOW=$(jq '.permissions.allow // []' "$SETTINGS_SOURCE")
+  MERGED=$(jq -c --argjson new "$NEW_ALLOW" '.permissions.allow = ((.permissions.allow // []) + $new | unique)' "$SETTINGS_TARGET")
+  if [ "$MERGED" != "$(jq -c '.' "$SETTINGS_TARGET")" ]; then
+    echo "$MERGED" | jq '.' > "$SETTINGS_TARGET"
+    DEPLOYED+=("settings: settings.json (base permissions merged)")
   fi
 fi
 
