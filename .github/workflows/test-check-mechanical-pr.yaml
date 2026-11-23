@@ -1,0 +1,27 @@
+name: Test check-mechanical-pr
+
+# plugins/gha-dev/scripts/test_check_mechanical_pr.py covers the tier-1 pin-bump checker (#307) but
+# only ran locally; run it on PRs that touch the checker so a regression fails before merge.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "plugins/gha-dev/scripts/check-mechanical-pr.py"
+      - "plugins/gha-dev/scripts/test_check_mechanical_pr.py"
+      - ".github/workflows/test-check-mechanical-pr.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-mechanical-pr:
+    name: check-mechanical-pr unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Run the checker's unit tests
+        run: python3 -m unittest discover -s plugins/gha-dev/scripts -p 'test_check_mechanical_pr.py' -v

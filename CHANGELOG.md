@@ -39,6 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- CI: new `test-check-mechanical-pr` workflow runs the `gha-dev` `check-mechanical-pr.py` unit tests on
+  PRs that touch the checker or its tests (they only ran locally before). No plugin files changed.
 - Devcontainer Node feature pinned to `"version": "24"` (was the feature default, `lts`), so the dev environment matches the Node 24 estate target.
 - **unattended-execution rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): every goal, loop or stop
   condition lists an owner pause as an exit, and the session records the pause point in the plan's
