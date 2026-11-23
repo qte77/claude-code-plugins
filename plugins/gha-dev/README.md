@@ -34,7 +34,7 @@ Skills for creating and publishing GitHub Actions to the Marketplace.
 
 Residuals by design: a pin with the same tag and a new SHA passes (it looks like a moved tag; the check
 proves the SHA matches the tag today, not that the tag is trustworthy), and without required checks on
-the base branch a slow workflow may not have registered its check yet. Lock-file bumps are not checked;
+the base branch a slow workflow may not have registered its check yet. Lock-file and manifest bumps are not checked;
 they are tier 2. Anything else prints FAIL with reasons. It needs `gh`; stdlib only.
 
 ## Settings
