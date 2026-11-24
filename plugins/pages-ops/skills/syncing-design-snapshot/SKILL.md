@@ -1,6 +1,10 @@
 ---
 name: syncing-design-snapshot
 description: "Pull a Claude Design page template (.dc.html + shared scripts) into a repo's static-site snapshot and re-apply the repo's own patches, failing loudly on anything the design changed. Use when re-syncing a site from its design system."
+compatibility: Designed for Claude Code
+metadata:
+  intended-tools: Read, Write, Bash, Artifact, DesignSync
+  stability: experimental
 ---
 
 # Syncing a design snapshot into a repo
@@ -19,9 +23,12 @@ Where the design system lives decides the tool:
   the shared files it loads (`action: "read"`, `paths`, an `out_dir`), e.g. `project/templates/<page>/*` and
   `project/templates/_shared/<script>.js`. `DesignSync` cannot reach an artifact.
 - **A standalone claude.ai/design project** (`claude.ai/design/p/<projectId>`). Use `DesignSync` `list_files`
-  and `get_file`. `get_file` caps at 256 KiB and truncates silently. Standalone Claude Design closes on
-  14 December 2026 (help-centre article "Migrate from standalone Claude Design to Claude"); after migration,
-  edits made in Claude are not migrated back, so a migrated system must be read from its artifact.
+  and `get_file`. `get_file` is reported to cap at 256 KiB and truncate silently (unverified: no vendor doc
+  states a limit, as of 2026-11-24); check that a large file ends where it should. Standalone Claude Design
+  closes on 14 December 2026, per the help-centre article
+  [Migrate from standalone Claude Design to Claude](https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude)
+  (read 2026-11-24). After migration the standalone copy is read-only, so a migrated system must be read
+  from its artifact.
 
 Copy the text files flat into one directory (binary files such as photos stay in the snapshot; fetch them once).
 Design systems can change several times a day: fetch right before syncing, and never reuse an earlier fetch.
@@ -32,12 +39,17 @@ Design systems can change several times a day: fetch right before syncing, and n
 `(file, original, replacement, why)` tuples (`replacement=None` deletes). Start from
 `examples/project.config.example.py`: it has two replacements and a guarded deletion. Keep every patch listed
 with its reason in the site's README, and send each design-side fix upstream so the patch can be dropped later.
+The config is executed as Python, so use only the repo's own reviewed config, never one that came with the
+fetched export. A replacement counts as carried once it is on the page, so make each replacement (and each
+original) unique on the page; a short one that also occurs elsewhere can hide a patch that is still needed.
+An empty original or guard, or a guard on a replacement, fails as a bad patch.
 
 For a deletion that removes content (a held claim, a link the site must not show, a stored-data call), add a fifth
 element, a **guard**: a short phrase of that content. Without it, a design that only restyles the markup (say, a
 font-family literal turned into a CSS variable) makes the exact original disappear, and the patch reports
 "carried" while the content ships. With a guard, the patch counts as carried only once the guard phrase is gone
-too; otherwise it fails for review. Pick a phrase that occurs nowhere else on the page.
+too; otherwise it fails for review. An applied deletion also fails when the phrase is still on the page
+afterwards (a second, restyled copy). Pick a phrase that occurs nowhere else on the page.
 
 ## 3. Dry run, then sync
 

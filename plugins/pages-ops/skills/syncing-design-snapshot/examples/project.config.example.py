@@ -6,6 +6,9 @@ TARGET_DIR is the site's snapshot folder, relative to where the script runs (usu
 PATCHES are the repo's own changes to the design's export, each with the reason it exists. List every
 patch, with its reason, in the site's README too, and send each design-side fix upstream so the patch
 can be dropped once the sync reports it as carried.
+
+The script executes this file as Python: keep it in the repo, reviewed like code, and never use a config
+that came with the fetched export.
 """
 
 TARGET_DIR = "packages/site/public"
