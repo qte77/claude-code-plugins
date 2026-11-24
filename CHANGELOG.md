@@ -13,11 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **pages-ops** (0.1.0, new plugin, draft): skill `syncing-design-snapshot` syncs a Claude Design page
+- **design-to-pages** (0.1.0, new plugin, draft; renamed from `pages-ops` before its first release, since it will grow into the whole Claude Design to Cloudflare Pages pipeline, see #236): skill `syncing-design-snapshot` syncs a Claude Design page
   template into a repo's static-site snapshot and re-applies the repo's own patches. Each patch reads
   `applied`, `carried` or `FAIL`; any `FAIL` writes nothing; a deletion patch can carry a guard phrase.
   `scripts/sync_template.py` is stdlib, with unit tests; an example project config
-  (`examples/project.config.example.py`) is loaded by the tests, and the `Test pages-ops` workflow runs
+  (`examples/project.config.example.py`) is loaded by the tests, and the `Test design-to-pages` workflow runs
   them on PRs that touch the plugin.
 - **review-tiers rule** (workspace-setup 1.9.3, workspace-sandbox 1.7.3): new shared rule
   `.claude/rules/review-tiers.md` ties review effort to what the diff can break. Tier 1 needs no AI
