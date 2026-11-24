@@ -2,7 +2,7 @@
 
 # qte77-claude-code-plugins
 
-Claude Code plugin marketplace — 28 plugins, 70 skills, 2 agents from production workflows.
+Claude Code plugin marketplace — 29 plugins, 71 skills, 2 agents from production workflows.
 
 Browse the plugin docs at **[qte77.github.io/claude-code-plugins](https://qte77.github.io/claude-code-plugins/)**
 (rebuilt from the READMEs on every push to `main`).
@@ -38,6 +38,7 @@ This line is the single tested-against statement; skills carry no per-skill CC v
 | **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC), reports with optional pandoc PDF |
 | **readme-generator** | `writing-readme` `auditing-readme` | Generate and audit README.md files for repos, accounts, and orgs |
 | **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` `auditing-website-seo-geo` `verifying-design-canvas` | Design research, usability, WCAG 2.2, SEO/GEO audits, design-canvas fidelity checks |
+| **pages-ops** | `syncing-design-snapshot` | Sync a Claude Design page template into a site snapshot and re-apply the repo's own patches (fails on design-side changes) |
 | **docs-governance** | `enforcing-doc-hierarchy` `maintaining-agents-md` | Documentation hierarchy audit + agent governance |
 | **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` `generating-prd-md-from-userstory-md` | PRD pipeline for the Ralph loop |
 | **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, KiCad PCB audit |
@@ -88,6 +89,7 @@ claude plugin install market-research@qte77-claude-code-plugins
 claude plugin install docs-generator@qte77-claude-code-plugins
 claude plugin install readme-generator@qte77-claude-code-plugins
 claude plugin install website-audit@qte77-claude-code-plugins
+claude plugin install pages-ops@qte77-claude-code-plugins
 claude plugin install docs-governance@qte77-claude-code-plugins
 claude plugin install ralph@qte77-claude-code-plugins
 claude plugin install embedded-dev@qte77-claude-code-plugins

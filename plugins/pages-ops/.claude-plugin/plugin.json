@@ -1,0 +1,14 @@
+{
+  "name": "pages-ops",
+  "version": "0.1.0",
+  "description": "Sync a Claude Design page template into a repo's static-site snapshot and re-apply the repo's own patches, failing loudly on anything the design changed",
+  "author": {
+    "name": "Claude Code Utils Contributors"
+  },
+  "keywords": [
+    "claude-design",
+    "design-sync",
+    "static-site",
+    "patches"
+  ]
+}
