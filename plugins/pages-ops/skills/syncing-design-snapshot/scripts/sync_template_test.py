@@ -1,12 +1,16 @@
 """Unit tests for sync_template.apply_patches's applied/carried/FAIL classification.
 
 No test runner is configured in this repository for standalone plugin scripts, so this uses only the
-standard library. Run: python3 -m unittest discover -s <this directory>
+standard library. Run: python3 -m unittest discover -s <this directory> -p '*_test.py'
+(the default pattern, test*.py, finds no tests here).
 """
 
+import pathlib
 import unittest
 
-from sync_template import apply_patches
+from sync_template import apply_patches, load_config
+
+EXAMPLE = pathlib.Path(__file__).resolve().parent.parent / "examples" / "project.config.example.py"
 
 
 class ApplyPatchesTest(unittest.TestCase):
@@ -82,6 +86,35 @@ class ApplyPatchesTest(unittest.TestCase):
         files = {"a.html": "text"}
         failed = apply_patches(files, [("missing.html", "x", "y", "why"), ("a.html", "nope", "y", "why")])
         self.assertEqual(failed, 2)
+
+
+class ExampleConfigTest(unittest.TestCase):
+    """The shipped example config loads through load_config and its patches fit the engine."""
+
+    def setUp(self):
+        self.config = load_config(EXAMPLE)
+
+    def test_defines_target_dir_and_patches(self):
+        self.assertIsInstance(self.config.TARGET_DIR, str)
+        self.assertTrue(self.config.PATCHES)
+        for patch in self.config.PATCHES:
+            self.assertIn(len(patch), (4, 5), patch)
+            if len(patch) == 5:
+                self.assertIsNone(patch[2], "only a deletion takes a guard")
+
+    def test_has_a_guarded_deletion(self):
+        self.assertTrue(any(len(p) == 5 and p[2] is None and p[4] for p in self.config.PATCHES))
+
+    def test_patches_apply_to_a_template_holding_their_originals(self):
+        # Each original sits in its file once, so a fresh template reads "applied" for every patch.
+        files = {}
+        for name, old, *_ in self.config.PATCHES:
+            files[name] = files.get(name, "<body>\n") + old + "\n"
+        self.assertEqual(apply_patches(files, self.config.PATCHES), 0)
+        for name, old, new, *_ in self.config.PATCHES:
+            self.assertNotIn(old, files[name])
+            if new is not None:
+                self.assertIn(new, files[name])
 
 
 if __name__ == "__main__":

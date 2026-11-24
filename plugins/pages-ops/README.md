@@ -16,5 +16,6 @@ and re-applies those changes. It never writes to the design system.
 
 ## Status
 
-Draft (0.1.0). The sync engine and its unit tests are in place. Not yet included: a CI workflow
-for the tests and an example project config.
+Draft (0.1.0). The sync engine, its unit tests and an example project config
+(`skills/syncing-design-snapshot/examples/project.config.example.py`, loaded by the tests) are in
+place. The `Test pages-ops` workflow runs the tests on PRs that touch the plugin.

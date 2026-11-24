@@ -29,8 +29,9 @@ Design systems can change several times a day: fetch right before syncing, and n
 ## 2. Configure the patches
 
 `scripts/sync_template.py` reads a project config with `TARGET_DIR` and `PATCHES`, a list of
-`(file, original, replacement, why)` tuples (`replacement=None` deletes). Keep every patch listed with its reason
-in the site's README, and send each design-side fix upstream so the patch can be dropped later.
+`(file, original, replacement, why)` tuples (`replacement=None` deletes). Start from
+`examples/project.config.example.py`: it has two replacements and a guarded deletion. Keep every patch listed
+with its reason in the site's README, and send each design-side fix upstream so the patch can be dropped later.
 
 For a deletion that removes content (a held claim, a link the site must not show, a stored-data call), add a fifth
 element, a **guard**: a short phrase of that content. Without it, a design that only restyles the markup (say, a

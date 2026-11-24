@@ -14,8 +14,9 @@ phrase (see apply_patches). Every patch is classified:
   carried  - the template already contains `replacement` (safe to drop the patch)
   FAIL     - `original` is not in the template (it changed upstream; review the patch)
 
-Any FAIL aborts the sync with nothing written. See ../SKILL.md section 2 for the config shape, and
-`load_config`/`main` below for running this as a CLI against a config file.
+Any FAIL aborts the sync with nothing written. See ../SKILL.md section 2 for the config shape,
+../examples/project.config.example.py for a config to copy, and `load_config`/`main` below for running
+this as a CLI against a config file.
 """
 
 from __future__ import annotations
