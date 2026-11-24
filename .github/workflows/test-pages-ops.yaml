@@ -1,0 +1,31 @@
+name: Test pages-ops
+
+# Run the syncing-design-snapshot engine's unit tests (incl. the example config) on PRs that touch the plugin.
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "plugins/pages-ops/**"
+      - ".github/workflows/test-pages-ops.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pages-ops:
+    name: pages-ops unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Run the sync engine's unit tests
+        working-directory: plugins/pages-ops/skills/syncing-design-snapshot/scripts
+        # The test file is *_test.py, which the default pattern (test*.py) does not find.
+        run: python3 -m unittest discover -s . -p '*_test.py' -v

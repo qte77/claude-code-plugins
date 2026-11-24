@@ -184,6 +184,12 @@
       "source": "./plugins/web-recon",
       "description": "Authorized web/API reconnaissance & attack-surface assessment \u2014 endpoint enumeration, auth-posture matrix, BOLA/BFLA, gate classification; drives the web-recon-kit harness",
       "version": "0.1.3"
+    },
+    {
+      "name": "pages-ops",
+      "source": "./plugins/pages-ops",
+      "description": "Sync a Claude Design page template into a repo's static-site snapshot and re-apply the repo's own patches, failing loudly on anything the design changed",
+      "version": "0.1.0"
     }
   ]
 }
