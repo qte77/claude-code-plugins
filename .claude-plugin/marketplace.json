@@ -186,8 +186,8 @@
       "version": "0.1.3"
     },
     {
-      "name": "pages-ops",
-      "source": "./plugins/pages-ops",
+      "name": "design-to-pages",
+      "source": "./plugins/design-to-pages",
       "description": "Sync a Claude Design page template into a repo's static-site snapshot and re-apply the repo's own patches, failing loudly on anything the design changed",
       "version": "0.1.0"
     }

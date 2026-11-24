@@ -1,4 +1,4 @@
-# pages-ops
+# design-to-pages
 
 Keeps a repo's static-site snapshot in sync with the Claude Design page template it comes from.
 The design system owns the templates (`*.dc.html` plus shared scripts); the repo keeps a flat
@@ -18,4 +18,4 @@ and re-applies those changes. It never writes to the design system.
 
 Draft (0.1.0). The sync engine, its unit tests and an example project config
 (`skills/syncing-design-snapshot/examples/project.config.example.py`, loaded by the tests) are in
-place. The `Test pages-ops` workflow runs the tests on PRs that touch the plugin.
+place. The `Test design-to-pages` workflow runs the tests on PRs that touch the plugin.
