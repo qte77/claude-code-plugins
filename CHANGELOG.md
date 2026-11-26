@@ -189,6 +189,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `tag-release.yaml`, `bump-version.yaml` and `publish-release.yaml` re-pinned from
   `qte77/.github@613b950` to `qte77/.github@a32769a` (main, 2026-11-12, qte77/.github#64). Inputs
   used by these callers are unchanged at the new pin.
+- Release workflows (`bump-version.yaml`, `tag-release.yaml`, `publish-release.yaml`) re-pinned to the `qte77/.github` v0.1.2 tag commit in tag form (`@aeef158f…  # v0.1.2`), so Dependabot can follow qte77/.github releases (#316). The called files are unchanged except `bump-version`, which gains the optional `scriv_pin` input (not used here).
 
 ### Fixed
 
